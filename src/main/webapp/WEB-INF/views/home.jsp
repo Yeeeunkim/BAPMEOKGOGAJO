@@ -12,4 +12,4 @@ footer{ background:#1D3557;  bottom: 0px; left: 0px; width: 100%; height: 350px;
 	<c:import url="WEB-INF/views/common/menubar.jsp"/>	
 	<c:import url="WEB-INF/views/common/footer.jsp"/>
 </body>
-</html>
+</html> 
