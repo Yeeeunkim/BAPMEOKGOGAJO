@@ -53,14 +53,4 @@ public class MemberController {
 		return mv;
 	}
 	
-	// 일반회원 가입, 사업자 회원가입 페이지
-	@RequestMapping("enroll.me")
-	public String enroll(@RequestParam("auth_code") String auth_code) {
-		if(auth_code.equals("1")) {
-			return "memberEnroll";
-		} else {
-			return "ownerEnroll";
-		}
-		
-	}
 }
