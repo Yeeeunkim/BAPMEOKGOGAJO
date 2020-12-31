@@ -174,7 +174,7 @@
 			</span> 
 		
 			<ul class="navbar_icons" >
-				<li class="menu" onclick="login();"><a href="#">Login</a></li>
+				<li class="menu"><a href="">Login</a></li>
 				<li class="menu"><a href=""><i class="fas fa-user"></i></a></li>
 				<li class="menu"><a href=""><i class="fas fa-star"></i></a></li>
 			</ul>
@@ -197,9 +197,8 @@
 	    }); */
 
 
-	    function login(){
-			location.href="${ contextPath }/login.me"
-		}
+	 
+	  </script>
 	</script>
 </body>
 </html>
