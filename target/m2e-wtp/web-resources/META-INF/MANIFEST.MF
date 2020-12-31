@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: Shinjinsik
 Build-Jdk: 1.8.0_202
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: Shinjinsik
+Build-Jdk: 15
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> 53d82e20588d1769533add361e500671680982da
