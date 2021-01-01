@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
 <title>Insert title here</title>
 <style>
-  	/*사이브 메뉴바 높이*/
+  	/* .사이브 메뉴바 높이*/
 	#sideBar{
        margin-top:  -550px;
        text-align: center;
