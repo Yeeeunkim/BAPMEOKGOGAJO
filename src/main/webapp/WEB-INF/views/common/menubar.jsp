@@ -178,6 +178,7 @@
 				<li class="menu" onclick="login();" ><a href="#">Login</a></li>
 				<li class="menu"><a href=""><i class="fas fa-user"></i></a></li>
 				<li class="menu"><a href=""><i class="fas fa-star"></i></a></li>
+				<li class="menu" onclick="manager();" ><a href="#">M</a></li>
 			</ul>
 		</nav>
 		
@@ -205,6 +206,9 @@
 			location.href="${ contextPath }/shop.do"
 		}
 	    
+	    function manager(){
+	    	location.href="${ contextPath }/manager.ma"
+	    }
 	    
 	</script>
 </body>
