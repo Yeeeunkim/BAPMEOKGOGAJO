@@ -59,7 +59,7 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
-	test
+	
 	<div id="agreeArea">
 	<form action="${ contextPath }/enroll.me" method="post">
 		<input type="hidden" name="auth_code" value="<%= value %>">
