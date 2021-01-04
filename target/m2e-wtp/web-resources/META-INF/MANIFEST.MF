@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: USER
-=======
-Built-By: Shinjinsik
->>>>>>> a527a57b413cef7763b2f6d61883a81ad59dfb6d
 Build-Jdk: 1.8.0_202
 Created-By: Maven Integration for Eclipse
 
