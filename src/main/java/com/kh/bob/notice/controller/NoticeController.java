@@ -1,11 +1,18 @@
 package com.kh.bob.notice.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bob.common.Pagination;
 import com.kh.bob.notice.model.exception.BoardException;
 import com.kh.bob.notice.model.service.NoticeService;
+import com.kh.bob.notice.model.vo.Attachment;
 import com.kh.bob.notice.model.vo.Board;
 import com.kh.bob.notice.model.vo.PageInfo;
 
@@ -58,13 +66,66 @@ public class NoticeController {
 	}
 	
 	// 공지사항 작성 기능
+	@Transactional
 	@RequestMapping("nInsert.no")
-	public String noticeInsert(@ModelAttribute Board b, 
+	public String noticeInsert(@ModelAttribute Board board, 
 								@RequestParam("uploadFile") MultipartFile uploadFile,
 								HttpServletRequest request) {
-		return null;
+		Attachment attachment = new Attachment();
+		
+		if(uploadFile != null && !uploadFile.isEmpty()) {	// 첨부파일이 있다면
+			// 리네임
+			String renameFileName = saveFile(uploadFile, request);
+			
+			if(renameFileName != null) {
+				attachment.setSaveName(renameFileName);
+				attachment.setOriginName(uploadFile.getOriginalFilename());
+			}		
+		}
+		System.out.println(board);
+		// 공지사항 카테고리 == 0
+		board.setCateCode(0);
+		if(board.getbContents().equals("")) {	// 공지사항 내용이 없으면
+			board.setbContents(" ");	// 공백 추가
+		}
+		int result = nService.insertBoard(board, attachment);
+		
+		if(result > 0) {
+			return "redirect:nList.no";
+		} else {
+			throw new BoardException("게시글 등록에 실패했습니다.");
+		}
 	}
-
+	
+	// 첨부파일 리네임 메소드
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		// 웹 서버 contextPath를 불러와 폴더의 경로를 받아옴(webapp 하위의 resources 폴더)
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String savePath = root + "\\buploadFiles";
+		
+		File folder = new File(savePath);
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String originFileName = file.getOriginalFilename();
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
+								+ "." + originFileName.substring(originFileName.lastIndexOf(".") + 1);
+		
+		String renamePath = folder + "\\" + renameFileName;
+		
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return renameFileName;
+	}
 	
 	//FAQ
 	@RequestMapping("fList.no")

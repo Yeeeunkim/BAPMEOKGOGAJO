@@ -41,7 +41,7 @@
 
 .bArea {
 	width: 60% !important;
-	display: inline-block !important;
+	display: inline !important;
 	position: relative;
 	top: 80px;
 	margin: auto;
@@ -68,8 +68,9 @@ td{border-bottom: 1px solid #1D3557 !important;}
 	<c:import url="../common/menubar.jsp" />
 	<br>
 	<br>
-	<h1 style="text-align: center;">고객센터></h1>
+	<h1 style="text-align: center;">공지사항></h1>
 	<div class="row">
+		<div class="col-1"></div>
 		<div class="sArea">
 			<c:import url="../common/noticeSidebar.jsp" />
 		</div>
@@ -104,7 +105,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					[이전]
 				</c:if>
 				<c:if test="${ pi.currentPage > 1 }">
-					<c:url var="before" value="blist.bo">
+					<c:url var="before" value="nList.no">
 						<c:param name="page" value="${ pi.currentPage - 1 }"/>
 					</c:url>
 					<a class="aPage" href="${ before }">[이전]</a> &nbsp;
@@ -117,7 +118,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
-						<c:url var="pagination" value="blist.bo">
+						<c:url var="pagination" value="nList.no">
 							<c:param name="page" value="${ p }"/>
 						</c:url>
 						<a class="aPage" href="${ pagination }">${ p }</a> &nbsp;
@@ -129,7 +130,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					[다음]
 				</c:if>
 				<c:if test="${ pi.currentPage < pi.maxPage }">
-					<c:url var="after" value="blist.bo">
+					<c:url var="after" value="nList.no">
 						<c:param name="page" value="${ pi.currentPage + 1 }"/>
 					</c:url> 
 					<a class="aPage" href="${ after }">[다음]</a>
@@ -142,6 +143,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 			<!-- 버튼 : 관리자만 보이게 추후 수정 필요 -->
 			<button class="nBtn" onclick="nInsert();">글쓰기</button>
 		</div>
+		<div class="col-2"></div>
 	</div>
 
 	<c:import url="../common/footer.jsp" />

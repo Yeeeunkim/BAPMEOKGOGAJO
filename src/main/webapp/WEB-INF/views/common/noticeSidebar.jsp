@@ -16,6 +16,7 @@
 	width: 200px;
 	height: 600px;
 	position: relative;
+/* 	left: 100% !important; */
 	top: 100px;
 }
 

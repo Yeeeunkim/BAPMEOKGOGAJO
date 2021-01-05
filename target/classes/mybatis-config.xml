@@ -7,6 +7,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
 	</typeAliases>
 	 
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
