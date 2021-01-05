@@ -49,7 +49,6 @@
 				</tr>
 				<tr>  
 					<th>
-						test
 						<textarea id="content_text" name="content" placeholder="질문을 입력해주세요." style="font-family: 'Gugi;"></textarea>
 					</th>
 				</tr>
