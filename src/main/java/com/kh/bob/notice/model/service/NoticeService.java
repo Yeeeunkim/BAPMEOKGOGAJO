@@ -30,6 +30,9 @@ public interface NoticeService {
 	Board selectBoard(int bNo);
 
 	Attachment selectAttachment(int bNo);
+
+	int deleteNotice(int bNo);
+
 	
 	
 	// 민병욱 끝 ====================================================

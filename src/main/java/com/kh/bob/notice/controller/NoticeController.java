@@ -94,12 +94,14 @@ public class NoticeController {
 				attachment.setOriginName(uploadFile.getOriginalFilename());
 			}
 		}
-		System.out.println(board);
+		
 		// 공지사항 카테고리 == 0
 		board.setCateCode(0);
+		
 		if (board.getbContents().equals("")) { // 공지사항 내용이 없으면
 			board.setbContents(" "); // 공백 추가
 		}
+		
 		int result = nService.insertNotice(board, attachment);
 
 		if (result > 0) {
@@ -161,6 +163,18 @@ public class NoticeController {
 		
 		
 		return mv;
+	}
+	
+	// 공지사항 삭제
+	@RequestMapping("ndelete.no")
+	public String nDelete(@RequestParam("bNo") int bNo) {
+		int result = nService.deleteNotice(bNo);
+		
+		if(result > 0) {
+			return "redirect:nList.no";
+		} else {
+			throw new BoardException("게시글 삭제를 실패했습니다.");
+		}
 	}
 	
 	// FAQ

@@ -53,6 +53,10 @@ public class NoticeDAO {
 	public Attachment selectAttachment(SqlSessionTemplate sqlSession, int bNo) {
 		return sqlSession.selectOne("boardMapper.selectAttachment", bNo);
 	}
+
+	public int deleteNotice(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.update("boardMapper.deleteNotice", bNo);
+	}
 	
 	// 민병욱 끝 ====================================================
 

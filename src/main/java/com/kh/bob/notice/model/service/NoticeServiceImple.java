@@ -66,10 +66,8 @@ public class NoticeServiceImple implements NoticeService {
 
 	@Override
 	public Board selectBoard(int bNo) {
-		Board board = null;
-		
+		Board board = null;		
 		board = nDAO.selectBoard(sqlSession, bNo);
-		
 		return board;
 	}
 
@@ -79,6 +77,12 @@ public class NoticeServiceImple implements NoticeService {
 		attachment = nDAO.selectAttachment(sqlSession, bNo);
 		return attachment;
 	}
+
+	@Override
+	public int deleteNotice(int bNo) {
+		return nDAO.deleteNotice(sqlSession, bNo);
+	}
+
 
 	
 	// 민병욱 끝 ====================================================

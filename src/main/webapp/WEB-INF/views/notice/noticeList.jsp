@@ -62,6 +62,11 @@ td{border-bottom: 1px solid #1D3557 !important;}
 .aPage{
 	color: black !important;
 }
+
+.aTitle{
+	color: black;
+}
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -94,7 +99,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 								<c:param name="bNo" value="${ b.bNo }"/>
 								<c:param name="page" value="${ pi.currentPage }"/>
 							</c:url>
-							<a href="${ ndetail }" style="color: black;">${ b.bTitle }</a>
+							<a href="${ ndetail }" class="aTitle">${ b.bTitle }</a>
 						</td>
 						<td>${ b.bWrite }</td>
 					</tr>

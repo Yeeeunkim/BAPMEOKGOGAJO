@@ -91,6 +91,13 @@
 		from board_attachment
 		where board_no = #{bNo}
 	</select>
+	
+	<!-- 공지사항 삭제 -->
+	<update id="deleteNotice">
+		update board_info
+		set board_status = 'N'
+		where board_no = #{bNo}
+	</update>
    
 <!-- 민병욱 끝 ==================================================== -->
    
