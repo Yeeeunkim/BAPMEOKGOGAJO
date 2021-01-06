@@ -162,7 +162,33 @@
 </head>
 <body>
 
-	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/> 
+	
+   <div class="loginArea" align="right">
+   <!-- 로그인  안한상태 -->
+	<c:if test="${ empty sessionScope.loginUser }">
+		<nav class="navbar" id="gnb">
+			<span class="navbar_logo">
+				<img id="logo" src="resources/images/logo.png">
+				<a href="">밥먹고 가조</a>
+					<span class="searchbar">
+          				 <input class="search_input" type="text" name="" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+       				 </span>
+			</span>  
+		
+			<ul class="navbar_icons" >
+				<li class="menu" onclick="shop();"><a href="#">About</a></li>
+			     <li class="menu" onclick="location.href='loginView.me'" ><a href="#">Login</a></li> 
+			     <li class="menu" onclick="location.href='enrollForm.me'" ><a href="#">Join</a></li> 
+				<!-- <li class="menu" ><a href=""><i class="fas fa-user"></i></a></li>
+				<li class="menu"><a href=""><i class="fas fa-star"></i></a></li> -->
+			</ul>
+		</nav>
+	</c:if>
+	
+	<!-- 로그인 성공 -->
+	<c:if test="${ !empty sessionScope.loginUser }">
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
 				<img id="logo" src="resources/images/logo.png">
@@ -175,12 +201,18 @@
 		
 			<ul class="navbar_icons" >
 				<li class="menu" onclick="shop();"><a href="#">About</a></li>
-				<li class="menu" onclick="login();" ><a href="#">Login</a></li>
-				<li class="menu"><a href=""><i class="fas fa-user"></i></a></li>
-				<li class="menu"><a href=""><i class="fas fa-star"></i></a></li>
-				<li class="menu" onclick="manager();" ><a href="#">M</a></li>
+				<li class="menu" onclick="location.href='logoutView.me'"  ><a href="#">Logout</a></li> 
+				<li class="menu" onclick="mypage()"><a href=""><i class="fas fa-user"></i></a></li>
+				<li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
+				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 
 			</ul>
 		</nav>
+	</c:if>
+	
+	
+	
+</div>
+		
 		
 	<script>
 	/*  $(function(){ // document ready
@@ -198,9 +230,7 @@
 	      }
 	    }); */
 		
-	    function login(){
-			location.href="${ contextPath }/login.me"
-		}
+	  
 	    
 	    function shop(){
 			location.href="${ contextPath }/shop.do"
@@ -208,6 +238,10 @@
 	    
 	    function manager(){
 	    	location.href="${ contextPath }/manager.ma"
+	    }
+	    
+	    function mypage(){
+	    	location.href="${ contextPath}/myPage.me"
 	    }
 	    
 	</script>

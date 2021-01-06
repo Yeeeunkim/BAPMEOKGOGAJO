@@ -131,6 +131,7 @@
 </style>
 </head>
 <body>
+<!-- 사장님 마이페이지 -->
 	<c:import url="../common/header.jsp"/>
 	<div class="outer">
 		<h1>도대담 회원님, 환영합니다.</h1>

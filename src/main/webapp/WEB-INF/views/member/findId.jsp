@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%-- <%@ page session="false" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +79,27 @@
 <body style="font-family: 'Gugi'; ">
 	<jsp:include page="../common/menubar.jsp" />
 
+	 <div class="loginArea" align="right">
+   <!-- 로그인  안한상태 -->
+	<c:if test="${ empty sessionScope.loginUser }">
+		<nav class="navbar" id="gnb">
+			<span class="navbar_logo">
+				<img id="logo" src="resources/images/logo.png">
+				<a href="">밥먹고 가조</a>
+					<span class="searchbar">
+          				 <input class="search_input" type="text" name="" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+       				 </span>
+			</span>  
+		
+			<ul class="navbar_icons" >
+				<li class="menu" onclick="shop();"><a href="#">About</a></li>
+			     <li class="menu" onclick="location.href='loginView.me'" ><a href="#">Login</a></li> 
+			     <li class="menu" onclick="location.href='enrollForm.me'" ><a href="#">Join</a></li> 
+			</ul>
+		</nav>
+	</c:if>
+
 	<div id="loginArea">
 		<form>
 			<br><br><br>
@@ -88,12 +110,12 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">아이디</label> 
-				<input type="text" class="form-control inputForm" id="inputId" readonly="readonly">
+				<input type="text" class="form-control inputForm" id="inputId" readonly="readonly" value="${ loginUser.member_id }">
 				<label class="hidden"></label>
 			</div>
 			</div>
 			<br>
-			<button type="button" class="btn btn-primary loginBtn"> 로그인 </button>
+			<button type="button" class="btn btn-primary loginBtn" onclick="location.href='loginView.me'"> 로그인 </button>
 			<br>
 			<button type="button" class="btn btn-primary loginBtn"> 비밀번호 찾기 </button>
 		</form>

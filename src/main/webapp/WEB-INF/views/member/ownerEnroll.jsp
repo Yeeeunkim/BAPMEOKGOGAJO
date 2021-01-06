@@ -101,7 +101,7 @@
 <body style="font-family: 'Gugi';">
 	<jsp:include page="../common/menubar.jsp" />
 
-	<form>
+	<form action="oinsert.me" method="post" id="joinForm">
 	<div id="enrollArea">
 		<h1 style="text-align: center;">사업자 회원가입 ></h1>
 		<br>
@@ -113,25 +113,19 @@
 		<input class= "cInput" type="text" name="member_name" id="member_name" placeholder="사업자명">
 	</div><br><br>
 	
-	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;사업자 번호</p>&nbsp;&nbsp;
-	<div class="input-info">
-		<input class= "cInput" type="tel" name="business_number" id="business_number" placeholder="사업자 번호(-없이 입력해주세요)">
-	</div><br><br>
 	
-	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;식당명</p>&nbsp;&nbsp;
-	<div class="input-info">
-		<input class= "cInput" type="text" name="shopName" id="shopName" placeholder="식당명">
-	</div><br><br>
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;아이디</p>&nbsp;&nbsp;
 	<div class="input-info">
 		<input class= "cInput" type="text" name="member_id" id="member_id" placeholder="아이디">
-	</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">8~16자리 영문 소문자, 숫자가 사용 가능합니다</pre><br>
+		<button  class="authBtn">확인</button>
+	</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">6~20자리 영문 소문자, 숫자가 사용 가능합니다</pre><br>
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;비밀번호</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="password" name="member_pwd1" id="member_pwd1" placeholder="비밀번호">
-	</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">8~16자리 영문 소문자, 숫자, 특수문자가 사용 가능합니다</pre><br>
+		<input class= "cInput" type="password" name="member_pwd" id="member_pwd1" placeholder="비밀번호">
+		<button  class="authBtn" onclick="chkPW()">확인</button>
+	</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">6~20자리 영문 소문자, 숫자, 특수문자가 사용 가능합니다</pre><br>
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;비밀번호 확인</p>&nbsp;&nbsp;
 	<div class="input-info">
@@ -143,20 +137,8 @@
 		<input class= "cInput" type="email" name="email" id="email" placeholder="이메일">
 	</div><br><br>
 	
-	<p class="pp"></p><p class="pInput"><b>*</b>&nbsp;&nbsp;홈페이지</p>&nbsp;&nbsp;
-		<input class= "cInput" type="text" name="webAddress" id="webAddress" placeholder="홈페이지 주소">
-	<br><br>
-	
-	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;업체 주소</p>&nbsp;&nbsp;
-	<div class="input-info">
-		<input class= "cInput" type="text" name="shopAddress" id="shopAddress" placeholder="업체 주소">
-	</div><br><br>
-	
-	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;업체 번호</p>&nbsp;&nbsp;
-	<div class="input-info">
-		<input class= "cInput" type="tel" name="shopPhone" id="shopPhone" placeholder="업체 번호">
-	</div><br><br>
-	
+		<input type="hidden" name="member_birth" value="owner">
+		
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;핸드폰</p>&nbsp;&nbsp;
 	<div class="input-info">
 		<input class= "cInput" type="tel" name="phone" id="phone" placeholder="핸드폰(-없이 입력해주세요)">
@@ -169,18 +151,12 @@
 		<button class="authBtn">확인</button>
 	</div><br><br>
 	
-	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;대표사진</p>&nbsp;&nbsp;
-	<div class="mb-3">
-  		<input class="form-control form-control-sm" id="formFileSm" type="file" onchange="readURL(this)">
-	</div><br>
-	<p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">가로/세로 250px로 변환되어 나타납니다.</pre><br>
-	<br>
-	<p class="pp"></p><p class="pInput"><b style="color: red;"></b>&nbsp;&nbsp;미리보기</p>&nbsp;&nbsp;
-	<div id="uploadImg" style="width: 400px; height: 400px;"></div>
-	<br><br><br><br><br>
-	
-	
-	<button type="submit" name="auth_code" value="2" class="btn btn-primary enrollBtn"> 가입하기 </button>
+	<p class="pp"></p><p class="pInput"><b>*</b>&nbsp;&nbsp;성별</p>&nbsp;&nbsp;
+			<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;여자
+		<br><br><br>
+		
+	<button type="submit" name="auth_code" id="nextStep" value="2" class="btn btn-primary enrollBtn"> 가입하기 </button>
 	
 	<br><br><br>
 	</div>
@@ -189,15 +165,42 @@
 	<jsp:include page="../common/footer.jsp"/>
 	 
 	<script>
-		function readURL(input){
-			if(input.files && input.files[0]){
-				var reader = new FileReader();
-				reader.onload = function(e){
-					$('#uploadImg').html("<img id=img src=''>")
-					$('#img').attr('src', e.target.result).css('width', '250px').css('height', '250px');
+	 $(document).ready(function(){
+			$('#nextStep').click(function(){
+				if($('#member_name').prop('checked') == false || $('#member_id').prop('checked') == false
+						|| $('#member_pwd').prop('checked') == false || $('#member_pwd2').prop('checked') == false
+						|| $('#email').prop('checked') == false || $('#phone').prop('checked') == false
+						|| $('#gender').prop('checked') == false){
+			    	alert('필수 입력란을 작성하세요.');
+			    	return false;
+				}else{
+					return true;
 				}
-				reader.readAsDataURL(input.files[0]);
-			}
+			});
+		});
+	 
+	 //수정해야함
+	 function chkPW(){
+
+		 var pw = $("#member_pwd1").val();
+		 var num = pw.search(/[0-9]/g);
+		 var eng = pw.search(/[a-z]/ig);
+		 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+		 if(pw.length < || pw.length > 20){  
+ 
+		  alert("6자리 ~ 20자리 이내로 입력해주세요.");
+		  return false;
+		 }else if(pw.search(/\s/) != -1){
+		  alert("비밀번호는 공백 없이 입력해주세요.");
+		  return false;
+		 }else if(num < 0 || eng < 0 || spe < 0 ){
+		  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+		  return false;
+		 }else {
+				console.log("통과");
+		 }
+
 		}
 	</script>
 </body>

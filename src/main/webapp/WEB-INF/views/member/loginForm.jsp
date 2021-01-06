@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,24 +88,28 @@
 <body style="font-family: 'Gugi'; ">
 	<jsp:include page="../common/menubar.jsp" />
 
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+	
 	<div id="loginArea">
-		<form>
+    <c:if test="${ empty sessionScope.loginUser }">
+	   <form action="login.me" method="post">
+	      <table id="loginTable" style="text-align:center;">
 			<br><br><br>
 			<h1 style="text-align: center;">회원 로그인 ></h1>
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">아이디</label> 
-				<input type="text" class="form-control inputForm" id="inputId" placeholder="아이디를 입력해주세요">
+				<input type="text" class="form-control inputForm" id="inputId" placeholder="아이디를 입력해주세요" name="member_id">
 				<label class="hidden"></label>
 			</div>
 			<div class="mb-4">
 				<label class="form-label inputTilte">비밀번호</label>
-				<input type="password" class="form-control inputForm" id="inputPw" placeholder="비밀번호를 입력해주세요">
+				<input type="password" class="form-control inputForm" id="inputPw" placeholder="비밀번호를 입력해주세요" name="member_pwd">
 				<label class="hidden"></label>
 			</div>
 			<div class="mb-4">
 				<br>
-				<a onclick="findId();" class="aForm">아이디 찾기</a>|<a onclick="findPw();" class="aForm">비밀번호 찾기</a>|<a onclick="enroll();" class="aForm">회원가입</a>
+				<a href="#" onclick="findId();" class="aForm">아이디 찾기</a>|<a href="#" onclick="findPw();" class="aForm">비밀번호 찾기</a>|<a href="#"onclick="enroll();" class="aForm">회원가입</a>
 			</div>
 			<br>
 			<button type="submit" class="btn btn-primary loginBtn"> 로그인 </button>
@@ -112,7 +117,9 @@
 			<a href="#" class="snsBtn"><img class="snsBtn" src="resources/images/naver.png"></a>
 			<br>
 			<a href="#" class="snsBtn"><img class="snsBtn" src="resources/images/kakao.png"></a>
+		  </table>
 		</form>
+	</c:if> 
 	</div>
 	
 	<jsp:include page="../common/footer.jsp"/>

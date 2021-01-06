@@ -47,8 +47,9 @@
 </head>
 <body>
 	<c:import url="../common/header.jsp"/>
+	<c:if test="${ !empty sessionScope.loginUser }">
 	<div class="outer">
-		<h1>도대담 회원님, 환영합니다.</h1>
+		<h1><c:out value="${ loginUser.member_name}님 환영합니다."/></h1>
 		<div class="mid">
 			<h5>예약 내역 조회</h5>
 			<div class="inner">
@@ -80,10 +81,12 @@
 						<td>2020-11-28</td>
 					</tr>
 				</table>
-				<button class="updateBtn">회원 정보 수정</button>
+				<c:url var="myinfo" value="minfoUpate.me"/>
+				<button class="updateBtn" onclick="location.href='${myinfo}'">회원 정보 수정</button>
 			</div>
 		</div>
-	</div>
+	  </div>
+	</c:if>
 	<c:import url="../common/footer.jsp"/>
 </body>
 </html>

@@ -32,7 +32,6 @@
 </head>
 <body>
 	<div id="section">
-         <div id="sideBar">
              <form action="<%= request.getContextPath() %>/" method="post" id="myForm" name="myForm">
               <input type="submit" id="userUpadteBtn"  style="font-size: 25px;" value="고객센터">
 		         <div id="subMenuDiv">
@@ -49,7 +48,6 @@
 		             </ul>
 		         </div>
             </form> 
-         </div>
     </div>
 
 </body>

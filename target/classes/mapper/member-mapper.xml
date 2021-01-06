@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+ <!--김예은 시작 ================================================ -->
+	<select id="selectLogin" resultMap="bMemberResultSet">
+  			<!--암호화 전 로그인 방식 -->
+  		select *
+  		from MEMBER_INFO
+  		where member_id=#{member_id}
+  		      and member_pwd=#{member_pwd}
+  		      and member_status='Y' 
+  		      
+  	</select>
+  	
+  	<resultMap type="Member" id="bMemberResultSet">
+  		<id property="member_id" column="MEMBER_ID"/>
+  		<result property="member_pwd" column="MEMBER_PWD"/>
+  		<result property="member_name" column="MEMBER_NAME"/>
+  		<result property="phone" column="PHONE"/>
+  		<result property="email" column="EMAIL"/>
+  		<result property="gender" column="GENDER"/>
+  		<result property="member_enroll" column="MEMBER_ENROLL"/>
+  		<result property="member_status" column="MEMBER_STATUS"/>
+  		<result property="member_birth" column="MEMBER_BIRTH"/>
+  		<result property="auth_code" column="AUTH_CODE"/>
+  	</resultMap>
+
+  	<insert id="memberInsert"  >
+  		insert into member_info
+  		values(#{member_id}, #{member_pwd}, #{member_name}, #{phone}, #{email},
+  				 #{gender}, sysdate, default, #{member_birth}, #{auth_code})
+  	</insert>
+   
+   <select id="selectId" resultMap="bMemberResultSet">
+   		select *
+   		from member_info
+   		where member_name = #{member_name} and  phone = #{phone} and member_status = 'Y'
+   </select>
+   
+<!--김예은 끝 ================================================= -->
+  	
+</mapper>
