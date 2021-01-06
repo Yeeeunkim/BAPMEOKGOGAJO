@@ -12,24 +12,60 @@ import com.kh.bob.notice.model.vo.PageInfo;
 
 @Repository("nDAO")
 public class NoticeDAO {
+	// 강동기 시작 ===============================================
+	
+	// 강동기 끝 ================================================
 
+	// 김예은 시작 ================================================
+	
+	// 김예은 끝 =================================================
+
+	
+	// 김하영 시작 ================================================
+	
+	// 김하영 끝 =================================================
+
+	
+	// 민병욱 시작 =================================================
 	public int getListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("boardMapper.getListCount");
 	}
 
-	public ArrayList<Board> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Board> noticeList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
+
+		return (ArrayList) sqlSession.selectList("boardMapper.noticeList", null, rowBounds);
 	}
 
-	public int insertBoard(SqlSessionTemplate sqlSession, Board board) {
-		return sqlSession.insert("boardMapper.insertBoard", board);
+	public int insertNotice(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.insert("boardMapper.insertNotice", board);
 	}
 
 	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment attachment) {
 		return sqlSession.insert("boardMapper.insertAttachment", attachment);
 	}
+	
+	public Board selectBoard(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.selectOne("boardMapper.selectBoard", bNo);
+	}
+
+	public Attachment selectAttachment(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.selectOne("boardMapper.selectAttachment", bNo);
+	}
+	
+	// 민병욱 끝 ====================================================
+
+	
+	
+	
+	// 신진식 시작 ===================================================
+	
+	// 신진식 끝 =====================================================
+
+	
+	// 원태원 시작 ====================================================
+	
+	// 원태원 끝 ======================================================
 
 }

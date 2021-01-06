@@ -64,15 +64,15 @@
 					<br>
 					    <tr> 
 							 <th colspan= "3">
-								<div id="titleImgArea" >
-									<img id="titleImg" width="500" height="300" >
+								<div id="titleImgArea" style="width: 100%; height: 100%;">
+									<img id="titleImg" width="100%" height="100%" >
 								</div>
 							</th>
 						</tr> 
 				</tr>
 				<tr>  
 					<th>
-						<textarea id="content_text" name="bContents" placeholder="내용을 입력해주세요." style="font-family: 'Gugi;"></textarea>
+						<textarea id="content_text" name="bContents" placeholder="내용을 입력해주세요." style="font-family: 'Gugi; width: 100%;"></textarea>
 					</th>
 				</tr>
 				<tr style="border: none;">

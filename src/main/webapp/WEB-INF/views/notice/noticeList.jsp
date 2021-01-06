@@ -87,9 +87,15 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				<tbody>
 				<c:if test="${ !empty list }">			
 				<c:forEach var="b" items="${ list }">
-					<tr>
-						<td scope="row">${ b.bNo }</th>
-						<td class="nTitle">${ b.bTitle }</td>
+					<tr class="nContents">
+						<td scope="row">${ b.bNo }</td>
+						<td class="nTitle">
+							<c:url var="ndetail" value="ndetail.no">
+								<c:param name="bNo" value="${ b.bNo }"/>
+								<c:param name="page" value="${ pi.currentPage }"/>
+							</c:url>
+							<a href="${ ndetail }" style="color: black;">${ b.bTitle }</a>
+						</td>
 						<td>${ b.bWrite }</td>
 					</tr>
 				</c:forEach>
@@ -140,7 +146,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				
 			</table>
 			
-			<!-- 버튼 : 관리자만 보이게 추후 수정 필요 -->
+			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
 			<button class="nBtn" onclick="nInsert();">글쓰기</button>
 		</div>
 		<div class="col-2"></div>
@@ -152,6 +158,18 @@ td{border-bottom: 1px solid #1D3557 !important;}
 		function nInsert(){
 			location.href = "${ contextPath }/nInsertForm.no"
 		}
+		
+		$(function(){
+			$('.nContents').mouseenter(function(){
+				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
+			}).mouseout(function(){
+				$(this).css({'color':'black', 'font-weight':'normal'});
+			}).click(function(){
+				var bNo = $(this).children('td').eq(0).text();
+				
+				location.href="ndetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
+			});
+		});
 	</script>
 </body>
 </html>
