@@ -97,16 +97,14 @@ footer {
 		<th></th>
 		<th></th>
 		<tr>
-			<th>&nbsp제목&nbsp&nbsp <input value="${board.bTitle}"
-				style="border: 0px; width: 87%;" readonly="readonly"></th>
+			<th>&nbsp제목&nbsp&nbsp<input value="${board.bTitle}" style="border: 0px; width: 87%;" readonly="readonly"></th>
 			<th></th>
 			<th></th>
 		</tr>
 		<tr>
 			<div id="fileArea">
-				<th>&nbsp첨부파일&nbsp&nbsp <a
-					href="${ contextPath }/resources/buploadFiles/${ attachment.saveName }"
-					download="${ attachment.originName }" style="color: black;">${ attachment.originName }</a>
+				<th>&nbsp첨부파일&nbsp&nbsp
+					<a href="${ contextPath }/resources/buploadFiles/${ attachment.saveName }" download="${ attachment.originName }" style="color: black;">${ attachment.originName }</a>
 				</th>
 			</div>
 			<br>
@@ -127,7 +125,7 @@ footer {
 			</th>
 		</tr>
 
-		<c:url var="nupView" value="nupView.no">
+		<c:url var="nupView" value="nupview.no">
 			<c:param name="bNo" value="${ board.bNo }" />
 			<c:param name="page" value="${ page }" />
 		</c:url>
@@ -138,7 +136,7 @@ footer {
 		<%-- 				<c:if test="${ # }"> --%>
 		<tr style="border: none;">
 			<td colspan="2" align="center" style="border: none;">
-				<button class="btn1" onclick="location.href='${ nupView }'"	style="position: absolute;">수정하기</button>
+				<button class="btn1" onclick="nUpView();"	style="position: absolute;">수정하기</button>
 				<button class="btn2" onclick="nDelete();">삭제하기</button>
 			</td style="border: none;">
 		</tr style="border: none;">
@@ -169,6 +167,10 @@ footer {
 	         if(bool){
 	        	 location.href= '${ ndelete }';
 	         }
+		}
+		
+		function nUpView(){
+				location.href='${ nupView }'
 		}
 	</script>
 </body>

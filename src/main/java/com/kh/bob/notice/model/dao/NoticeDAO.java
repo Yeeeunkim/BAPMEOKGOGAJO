@@ -57,6 +57,14 @@ public class NoticeDAO {
 	public int deleteNotice(SqlSessionTemplate sqlSession, int bNo) {
 		return sqlSession.update("boardMapper.deleteNotice", bNo);
 	}
+
+	public int updateNotice(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.update("boardMapper.updateNotice", board);
+	}
+
+	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment attachment) {
+		return sqlSession.update("boardMapper.updateAttachment", attachment);
+	}
 	
 	// 민병욱 끝 ====================================================
 

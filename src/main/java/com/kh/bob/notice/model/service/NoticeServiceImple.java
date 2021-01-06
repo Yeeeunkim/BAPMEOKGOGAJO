@@ -83,6 +83,28 @@ public class NoticeServiceImple implements NoticeService {
 		return nDAO.deleteNotice(sqlSession, bNo);
 	}
 
+	@Transactional
+	@Override
+	public int updateNotice(Board board, Attachment attachment) {
+		int result = 0;
+		// 게시글 수정
+		result = nDAO.updateNotice(sqlSession, board);
+		
+		if(result > 0) {
+			if (attachment.getSaveName() != null) { // 첨부파일이 있다면
+				attachment.setbNo(board.getbNo());
+				if(attachment.getaNo() == 0) {	// 기존 첨부파일 없다가 생겼다면
+					return nDAO.insertAttachment(sqlSession, attachment);
+				}
+				result = nDAO.updateAttachment(sqlSession, attachment);
+			}
+		} else {	// 게시글 수정 못했으면
+			return 0 ;
+		}
+		
+		return result;
+	}
+
 
 	
 	// 민병욱 끝 ====================================================

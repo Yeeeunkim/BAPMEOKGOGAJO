@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -174,6 +172,72 @@ public class NoticeController {
 			return "redirect:nList.no";
 		} else {
 			throw new BoardException("게시글 삭제를 실패했습니다.");
+		}
+	}
+	
+	// 공지사항 수정 뷰
+	@RequestMapping("nupview.no")
+	public ModelAndView nUpdateView(@RequestParam("bNo") int bNo, 
+							@RequestParam("page") int page,
+							ModelAndView mv) {
+		
+		Board board = nService.selectBoard(bNo);
+		Attachment attachment = nService.selectAttachment(bNo);
+		
+		System.out.println(attachment);
+		
+		mv.addObject("board", board)
+		  .addObject("attachment", attachment)
+		  .addObject("page", page)
+		  .setViewName("noticeUpdateForm");
+		
+		return mv;
+	}
+	
+	// 공지사항 수정 기능
+	@RequestMapping("nupdate.no")
+	public ModelAndView nUpdate(@ModelAttribute Board board,
+								@ModelAttribute Attachment attachment,
+								@RequestParam("reloadFile") MultipartFile reloadFile,
+								@RequestParam("page") int page,
+								HttpServletRequest request,
+								ModelAndView mv) {
+		
+		if (reloadFile != null && !reloadFile.isEmpty()) { // 새로 변경할 파일이 있다면
+			if (attachment.getSaveName() != null) { // 기존에 넣었던 파일이 있다면
+				deleteFile(attachment.getSaveName(), request);
+			}
+
+			String renameFileName = saveFile(reloadFile, request);
+
+			if (renameFileName != null) {
+				attachment.setOriginName(reloadFile.getOriginalFilename());
+				attachment.setSaveName(renameFileName);
+			}
+		}
+		
+		int result = nService.updateNotice(board, attachment);
+		
+		if (result > 0) {
+			mv.addObject("page", page)
+			  .addObject("bNo", board.getbNo())
+			  .setViewName("redirect:ndetail.no");
+			
+			return mv;
+		} else {
+			throw new BoardException("게시글 수정에 실패했습니다.");
+		}
+	}
+	
+	// 기존 첨부파일 삭제 메소드
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\buploadFiles";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		if(f.exists()) {
+			f.delete();
 		}
 	}
 	

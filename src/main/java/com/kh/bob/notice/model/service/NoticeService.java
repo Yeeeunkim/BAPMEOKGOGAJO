@@ -33,6 +33,8 @@ public interface NoticeService {
 
 	int deleteNotice(int bNo);
 
+	int updateNotice(Board board, Attachment attachment);
+
 	
 	
 	// 민병욱 끝 ====================================================

@@ -98,6 +98,21 @@
 		set board_status = 'N'
 		where board_no = #{bNo}
 	</update>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice">
+		update board_info
+		set board_title = #{bTitle},
+		    board_contents = #{bContents}
+		where board_no = #{bNo}
+	</update>
+	
+	<update id="updateAttachment">
+		update board_attachment
+		set origin_name = #{originName},
+			save_name = #{saveName}
+		where attachment_no = #{aNo}
+	</update>
    
 <!-- 민병욱 끝 ==================================================== -->
    
