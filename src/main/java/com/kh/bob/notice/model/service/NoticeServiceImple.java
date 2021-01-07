@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.kh.bob.notice.model.dao.NoticeDAO;
 import com.kh.bob.notice.model.vo.Attachment;
 import com.kh.bob.notice.model.vo.Board;
+import com.kh.bob.notice.model.vo.Comment;
 import com.kh.bob.notice.model.vo.PageInfo;
 
 @Service("nService")
@@ -36,8 +37,8 @@ public class NoticeServiceImple implements NoticeService {
 	// 민병욱 시작 =================================================
 
 	@Override
-	public int getListCount() {
-		return nDAO.getListCount(sqlSession);
+	public int getListCount(Board board) {
+		return nDAO.getListCount(sqlSession, board);
 	}
 
 	@Override
@@ -47,10 +48,10 @@ public class NoticeServiceImple implements NoticeService {
 
 	@Transactional
 	@Override
-	public int insertNotice(Board board, Attachment attachment) {
+	public int insertBoard(Board board, Attachment attachment) {
 		int result = 0;
 		// 1. 게시글 추가
-		result = nDAO.insertNotice(sqlSession, board);
+		result = nDAO.insertBoard(sqlSession, board);
 
 		if (result > 0) { // 게시글 추가 성공했다면
 			if (attachment.getSaveName() != null) { // 첨부파일이 있다면
@@ -104,6 +105,23 @@ public class NoticeServiceImple implements NoticeService {
 		
 		return result;
 	}
+
+	@Override
+	public ArrayList<Board> qnaList(PageInfo pi) {
+		return nDAO.qnaList(sqlSession, pi);
+	}
+
+	@Override
+	public int insertComment(Comment comment) {
+		return nDAO.insertComment(sqlSession, comment);
+	}
+
+	@Override
+	public ArrayList<Comment> selectCommentList(int bNo) {
+		return nDAO.selectCommentList(sqlSession, bNo);
+	}
+
+
 
 
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.bob.notice.model.vo.Attachment;
 import com.kh.bob.notice.model.vo.Board;
+import com.kh.bob.notice.model.vo.Comment;
 import com.kh.bob.notice.model.vo.PageInfo;
 
 public interface NoticeService {
@@ -21,11 +22,11 @@ public interface NoticeService {
 	// 김하영 끝 =================================================
 
 	// 민병욱 시작 =================================================
-	int getListCount();
+	int getListCount(Board board);
 
 	ArrayList<Board> noticeList(PageInfo pi);
 
-	int insertNotice(Board b, Attachment attachment);
+	int insertBoard(Board b, Attachment attachment);
 
 	Board selectBoard(int bNo);
 
@@ -34,6 +35,12 @@ public interface NoticeService {
 	int deleteNotice(int bNo);
 
 	int updateNotice(Board board, Attachment attachment);
+
+	ArrayList<Board> qnaList(PageInfo pi);
+
+	int insertComment(Comment comment);
+
+	ArrayList<Comment> selectCommentList(int bNo);
 
 	
 	

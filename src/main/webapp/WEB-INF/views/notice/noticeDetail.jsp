@@ -25,14 +25,14 @@
 
 /*테이블관련*/
 table {
-	width: 500px;
+	width: 800px;
 	font-family: 'Gugi';
 }
 
 #noticeTable {
 	text-align: left;
 	margin: auto;
-	width: 500px;
+	width: 800px;
 	margin-top: 45px;
 }
 
@@ -47,7 +47,7 @@ table {
 #content_text {
 	display: block;
 	margin-right: auto;
-	width: 500px;
+	width: 800px;
 	height: 250px;
 	resize: none;
 	outline: none;
@@ -67,7 +67,7 @@ table {
 	border-radius: 50px;
 	background: #F42B03;
 	color: white;
-	margin-left: 310px;
+	margin-left: 610px;
 	margin-top: 40px;
 }
 
@@ -78,7 +78,7 @@ table {
 	border-radius: 50px;
 	background: #F42B03;
 	color: white;
-	margin-left: 200px;
+	margin-left: 500px;
 	margin-top: 40px;
 }
 
@@ -90,8 +90,7 @@ footer {
 </head>
 <body>
 	<c:import url="../common/menubar.jsp" />
-	<h1 align="center" style="margin-top: 110px; font-family: 'Gugi';">공지사항
-		></h1>
+	<h1 align="center" style="margin-top: 110px; font-family: 'Gugi';">공지사항></h1>
 	<table id="noticeTable">
 		<th></th>
 		<th></th>
@@ -121,7 +120,7 @@ footer {
 		</tr>
 		<tr>
 			<th>
-				<textarea id="content_text" name="content" style="font-family: ' Gugi;" readonly="readonly">${board.bContents}</textarea>
+				<textarea id="content_text" name="bContents" style="font-family: ' Gugi;" readonly="readonly">${board.bContents}</textarea>
 			</th>
 		</tr>
 
@@ -136,7 +135,7 @@ footer {
 		<%-- 				<c:if test="${ # }"> --%>
 		<tr style="border: none;">
 			<td colspan="2" align="center" style="border: none;">
-				<button class="btn1" onclick="nUpView();"	style="position: absolute;">수정하기</button>
+				<button class="btn1" onclick="nUpView();" style="position: absolute;">수정하기</button>
 				<button class="btn2" onclick="nDelete();">삭제하기</button>
 			</td style="border: none;">
 		</tr style="border: none;">

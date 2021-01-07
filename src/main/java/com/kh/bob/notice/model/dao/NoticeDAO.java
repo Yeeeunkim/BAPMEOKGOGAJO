@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.bob.notice.model.vo.Attachment;
 import com.kh.bob.notice.model.vo.Board;
+import com.kh.bob.notice.model.vo.Comment;
 import com.kh.bob.notice.model.vo.PageInfo;
 
 @Repository("nDAO")
@@ -27,8 +28,8 @@ public class NoticeDAO {
 
 	
 	// 민병욱 시작 =================================================
-	public int getListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("boardMapper.getListCount");
+	public int getListCount(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.selectOne("boardMapper.getListCount", board);
 	}
 
 	public ArrayList<Board> noticeList(SqlSessionTemplate sqlSession, PageInfo pi) {
@@ -38,8 +39,8 @@ public class NoticeDAO {
 		return (ArrayList) sqlSession.selectList("boardMapper.noticeList", null, rowBounds);
 	}
 
-	public int insertNotice(SqlSessionTemplate sqlSession, Board board) {
-		return sqlSession.insert("boardMapper.insertNotice", board);
+	public int insertBoard(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.insert("boardMapper.insertBoard", board);
 	}
 
 	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment attachment) {
@@ -64,6 +65,21 @@ public class NoticeDAO {
 
 	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment attachment) {
 		return sqlSession.update("boardMapper.updateAttachment", attachment);
+	}
+
+	public ArrayList<Board> qnaList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+
+		return (ArrayList) sqlSession.selectList("boardMapper.qnaList", null, rowBounds);
+	}
+
+	public int insertComment(SqlSessionTemplate sqlSession, Comment comment) {
+		return sqlSession.insert("boardMapper.insertComment", comment);
+	}
+
+	public ArrayList<Comment> selectCommentList(SqlSessionTemplate sqlSession, int bNo) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectCommentList", bNo);
 	}
 	
 	// 민병욱 끝 ====================================================

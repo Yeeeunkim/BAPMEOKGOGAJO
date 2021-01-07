@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
-<!-- 	게시판 ResultSet  -->
-
 <!-- 강동기 시작 =============================================== -->
    
 <!-- 강동기 끝 ================================================ -->
@@ -20,6 +18,7 @@
    
 <!-- 민병욱 시작 ================================================= -->
 
+<!-- 	게시판 ResultSet  -->
 <resultMap type="Board" id="boardResultSet">
 		<id property="bNo" column="BOARD_NO"/>
 		<result property="bTitle" column="BOARD_TITLE"/>
@@ -37,12 +36,30 @@
 		<result property="saveName" column="SAVE_NAME"/>
 		<result property="bNo" column="BOARD_NO"/>
 	</resultMap>
+
+<!-- 	답글 ResultSet  -->	
+	<resultMap type="Comment" id="CommentResultSet">
+		<id property="cNo" column="COMMENT_NO"/>
+		<result property="cContents" column="COMMENT_CONTENT"/>
+		<result property="cWrite" column="COMMENT_WIRTE"/>
+		<result property="bNo" column="BOARD_NO"/>
+		<result property="mId" column="MEMBER_ID"/>
+	</resultMap>
 	
 	<!-- 게시글 수 카운트 -->
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from board_info
-		where board_status = 'Y'
+		<where>
+			board_status = 'Y'
+			<if test='cateCode != null and cateCode == 0'>
+				and cate_code = #{cateCode}
+			</if>
+			<if test='cateCode != null and cateCode == 1'>
+				and cate_code = #{cateCode}
+			</if>
+		</where>
+		
 	</select>
 	
 	<!-- 공지 게시글 리스트 조회 -->
@@ -55,7 +72,7 @@
 	
 	<!--  공지 게시글 추가 -->
 	<!-- @@@@@글 작성자 추후 로그인 세션 가져온 후 수정 필요@@@@@ -->
-	<insert id="insertNotice">
+	<insert id="insertBoard">
 		insert into board_info
 		values(seq_bno.nextval,
 				#{bTitle},
@@ -113,6 +130,31 @@
 			save_name = #{saveName}
 		where attachment_no = #{aNo}
 	</update>
+	
+	<!-- QNA 게시글 리스트  qnaList-->
+	<select id="qnaList" resultMap="boardResultSet">
+		select * 
+		from board_info
+		where board_status='Y' and cate_code = 1
+		order by board_no desc
+	</select>
+	
+	<!-- QNA 답글 추가 -->
+	<insert id="insertComment">
+		insert into board_comment
+		values(seq_cno.nextval, #{cContents}, sysdate, #{bNo}, 'test')
+	</insert>
+	
+	<!-- QNA 답글 조회 -->
+	<select id="selectCommentList" resultMap="CommentResultSet">
+		select *
+		from board_comment
+		where board_no = #{bNo}
+		order by comment_no desc
+	</select>
+	
+	
+	
    
 <!-- 민병욱 끝 ==================================================== -->
    

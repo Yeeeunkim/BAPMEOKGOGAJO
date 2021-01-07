@@ -34,7 +34,7 @@
 	
 	#titleInput {
 		width: 87%;
-		border: 1px solid lightgray;
+		border: 0px solid lightgray;
 	}
 	
 	/*글쓰기 버튼*/

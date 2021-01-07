@@ -49,11 +49,14 @@
 
 .nBtn{
 	float: right;
-	margin: 0 auto;
+	margin-top: 50px;
+	width: 100px;
+	height: 30px;
 	background: #F42B03;
-	color: white;
-	font-size: 16px; 
-	border: 0px !important;
+	color: white; 
+	border: none;
+	border-radius: 50px; 
+/* 	border: 0px !important; */   
 }
 
 th{border-bottom: 3px solid #1D3557 !important;}
@@ -66,7 +69,6 @@ td{border-bottom: 1px solid #1D3557 !important;}
 .aTitle{
 	color: black;
 }
-
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -102,9 +104,10 @@ td{border-bottom: 1px solid #1D3557 !important;}
 							<a href="${ ndetail }" class="aTitle">${ b.bTitle }</a>
 						</td>
 						<td>${ b.bWrite }</td>
-					</tr>
+					</tr>				
 				</c:forEach>
 				</c:if>
+				
 				</tbody>
 				
 				<!-- 페이징 처리 -->
