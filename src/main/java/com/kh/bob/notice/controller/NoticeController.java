@@ -382,6 +382,19 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 	}
+	
+	// QnA 수정하기 뷰
+	@RequestMapping("qupView.no")
+	public ModelAndView qUpdateView(@RequestParam("bNo") int bNo, @RequestParam("page") int page, ModelAndView mv) {
+
+		Board board = nService.selectBoard(bNo);
+		Attachment attachment = nService.selectAttachment(bNo);
+
+		mv.addObject("board", board).addObject("attachment", attachment).addObject("page", page)
+				.setViewName("qnaUpdateForm");
+
+		return mv;
+	}
 
 	// 민병욱 끝 ====================================================
 
