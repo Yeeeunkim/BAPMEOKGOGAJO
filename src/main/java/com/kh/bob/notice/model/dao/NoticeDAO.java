@@ -55,17 +55,17 @@ public class NoticeDAO {
 		return sqlSession.selectOne("boardMapper.selectAttachment", bNo);
 	}
 
-	public int deleteNotice(SqlSessionTemplate sqlSession, int bNo) {
-		return sqlSession.update("boardMapper.deleteNotice", bNo);
+	public int deleteBoard(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.update("boardMapper.deleteBoard", bNo);
 	}
 
-	public int updateNotice(SqlSessionTemplate sqlSession, Board board) {
-		return sqlSession.update("boardMapper.updateNotice", board);
+	public int updateBoard(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.update("boardMapper.updateBoard", board);
 	}
 
 	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment attachment) {
 		return sqlSession.update("boardMapper.updateAttachment", attachment);
-	}
+	} 
 
 	public ArrayList<Board> qnaList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();

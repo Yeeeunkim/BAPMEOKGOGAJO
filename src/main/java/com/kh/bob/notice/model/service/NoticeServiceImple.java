@@ -80,16 +80,16 @@ public class NoticeServiceImple implements NoticeService {
 	}
 
 	@Override
-	public int deleteNotice(int bNo) {
-		return nDAO.deleteNotice(sqlSession, bNo);
+	public int deleteBoard(int bNo) {
+		return nDAO.deleteBoard(sqlSession, bNo);
 	}
 
 	@Transactional
 	@Override
-	public int updateNotice(Board board, Attachment attachment) {
+	public int updateBoard(Board board, Attachment attachment) {
 		int result = 0;
 		// 게시글 수정
-		result = nDAO.updateNotice(sqlSession, board);
+		result = nDAO.updateBoard(sqlSession, board);
 		
 		if(result > 0) {
 			if (attachment.getSaveName() != null) { // 첨부파일이 있다면

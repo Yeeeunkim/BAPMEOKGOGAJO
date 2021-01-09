@@ -128,6 +128,16 @@ footer {
 						onclick="location.href='nlist.no'">목록으로</button>
 				</td style="border: none;">
 			</tr style="border: none;">
+			
+			<!-- submit 시 넘길 값 -->
+			<input type="hidden" name="page" value="${ page }">
+			<input type="hidden" name="bNo" value="${ board.bNo }">
+			<c:if test="${ !empty attachment.aNo }">
+				<input type=hidden name="aNo" value="${ attachment.aNo }">
+			</c:if>
+			<c:if test="${ empty attachment.aNo }">
+				<input type=hidden name="aNo" value="0">
+			</c:if>
 		</table>
 	</form>
 

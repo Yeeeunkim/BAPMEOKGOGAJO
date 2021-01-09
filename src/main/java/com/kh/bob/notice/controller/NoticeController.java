@@ -176,7 +176,7 @@ public class NoticeController {
 	// 공지사항 삭제
 	@RequestMapping("ndelete.no")
 	public String nDelete(@RequestParam("bNo") int bNo) {
-		int result = nService.deleteNotice(bNo);
+		int result = nService.deleteBoard(bNo);
 		
 		if(result > 0) {
 			return "redirect:nList.no";
@@ -224,7 +224,7 @@ public class NoticeController {
 			}
 		}
 		
-		int result = nService.updateNotice(board, attachment);
+		int result = nService.updateBoard(board, attachment);
 		
 		if (result > 0) {
 			mv.addObject("page", page)
@@ -247,17 +247,6 @@ public class NoticeController {
 		if(f.exists()) {
 			f.delete();
 		}
-	}
-	
-	// FAQ
-	@RequestMapping("fList.no")
-	public String faqList() {
-		return "faqList";
-	}
-
-	@RequestMapping("fInsertForm.no")
-	public String faqInsertView() {
-		return "faqInsertForm";
 	}
 
 	// QnA 뷰(+페이징)
@@ -390,11 +379,74 @@ public class NoticeController {
 		Board board = nService.selectBoard(bNo);
 		Attachment attachment = nService.selectAttachment(bNo);
 
-		mv.addObject("board", board).addObject("attachment", attachment).addObject("page", page)
-				.setViewName("qnaUpdateForm");
+		mv.addObject("board", board)
+		  .addObject("attachment", attachment)
+		  .addObject("page", page)
+		  .setViewName("qnaUpdateForm");
 
 		return mv;
 	}
+	
+	// QnA 수정하기 기능
+	@RequestMapping("qupdate.no")
+	public ModelAndView qUpdate(@ModelAttribute Board board,
+									@ModelAttribute Attachment attachment,
+									@RequestParam("reloadFile") MultipartFile reloadFile,
+									@RequestParam("page") int page,
+									HttpServletRequest request,
+									ModelAndView mv) {
+		if (reloadFile != null && !reloadFile.isEmpty()) { // 새로 변경할 파일이 있다면
+			if (attachment.getSaveName() != null) { // 기존에 넣었던 파일이 있다면
+				deleteFile(attachment.getSaveName(), request);
+			}
+
+			String renameFileName = saveFile(reloadFile, request);
+
+			if (renameFileName != null) {
+				attachment.setOriginName(reloadFile.getOriginalFilename());
+				attachment.setSaveName(renameFileName);
+			}
+		}
+		
+		int result = nService.updateBoard(board, attachment);
+		
+		if (result > 0) {
+			mv.addObject("page", page)
+			  .addObject("bNo", board.getbNo())
+			  .setViewName("redirect:qdetail.no");
+			
+			return mv;
+		} else {
+			throw new BoardException("게시글 수정에 실패했습니다.");
+		}
+		
+	}
+	
+	// QnA 삭제
+	@RequestMapping("qdelete.no")
+	public String qDelete(@RequestParam("bNo") int bNo) {
+		int result = nService.deleteBoard(bNo);
+
+		if (result > 0) {
+			return "redirect:qList.no";
+		} else {
+			throw new BoardException("게시글 삭제를 실패했습니다.");
+		}
+	}
+	
+	
+	
+	// FAQ
+	@RequestMapping("fList.no")
+	public String faqList() {
+		return "faqList";
+	}
+
+	@RequestMapping("fInsertForm.no")
+	public String faqInsertView() {
+		return "faqInsertForm";
+	}
+
 
 	// 민병욱 끝 ====================================================
 

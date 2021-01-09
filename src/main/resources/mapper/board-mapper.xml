@@ -109,15 +109,15 @@
 		where board_no = #{bNo}
 	</select>
 	
-	<!-- 공지사항 삭제 -->
-	<update id="deleteNotice">
+	<!-- 공지사항, QNA 삭제 -->
+	<update id="deleteBoard">
 		update board_info
 		set board_status = 'N'
 		where board_no = #{bNo}
 	</update>
 	
-	<!-- 공지사항 수정 -->
-	<update id="updateNotice">
+	<!-- 공지사항, QNA 수정 -->
+	<update id="updateBoard">
 		update board_info
 		set board_title = #{bTitle},
 		    board_contents = #{bContents}

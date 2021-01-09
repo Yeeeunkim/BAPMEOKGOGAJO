@@ -32,9 +32,9 @@ public interface NoticeService {
 
 	Attachment selectAttachment(int bNo);
 
-	int deleteNotice(int bNo);
+	int deleteBoard(int bNo);
 
-	int updateNotice(Board board, Attachment attachment);
+	int updateBoard(Board board, Attachment attachment);
 
 	ArrayList<Board> qnaList(PageInfo pi);
 

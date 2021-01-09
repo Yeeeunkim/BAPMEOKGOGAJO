@@ -134,7 +134,7 @@
 			<tr style="border: none;">
 				<td colspan="2" align="center" style="border: none;">
 						<button class="btn1" onclick="location.href='${ qupView }'" style="position: absolute;">수정하기</button>
-						<button class="btn2" onclick="location.href='${ qdelete }'">삭제하기</button>
+						<button class="btn2" onclick="qDelete();">삭제하기</button>
 				</td style="border: none;"> 
 			</tr style="border: none;">
 <%-- 				</c:if> --%>
@@ -211,6 +211,14 @@
 				getCommentList();
 			}, 1000);
 		});
+		
+		// 삭제 여부 물어봐줌
+		function qDelete(){
+      		 var bool = confirm('정말 삭제하시겠습니까?');   
+	         if(bool){
+	        	 location.href= '${ qdelete }';
+	         }
+		}
 	</script>  
 </body>
 </html>
