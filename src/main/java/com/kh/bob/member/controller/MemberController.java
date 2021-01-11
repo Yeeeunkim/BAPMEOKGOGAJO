@@ -1,11 +1,16 @@
 package com.kh.bob.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +34,10 @@ public class MemberController {
 	@Autowired
 	private MemberService bmService;
 	
+
+	@Autowired
+	private BCryptPasswordEncoder bcrypt;
+	
 	//로그인 페이지 
 	@RequestMapping("loginView.me")
 	public String loginForm() {
@@ -44,8 +53,7 @@ public class MemberController {
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do"; 
 		} else {
-			model.addAttribute("message", "로그인에 실패했습니다.");
-			return "../common/errorPage";
+			throw new MemberException("로그인에 실패했습니다.");
 		}	
 	}
 	
@@ -66,17 +74,16 @@ public class MemberController {
 	// 아이디찾기 기능 페이지
 	@RequestMapping("findId.me")
 	public String findId(@RequestParam("member_name") String member_name,@RequestParam("phone") String phone, Model model) {
-		
+	
 		model.addAttribute("member_name", member_name);
 		model.addAttribute("phone", phone);
+
+		Member findId = bmService.findId(model);
 		
-		Member loginUser = bmService.findId(model);
-		
-		if(loginUser != null) {
-			model.addAttribute("loginUser", loginUser);
+		if(findId != null) {
+			model.addAttribute("findId", findId);
 			return "findId";
 		} else {
-//			throw new MemberException("아이디 찾기에 실패했습니다.");
 			throw new MemberException("아이디 찾기에 실패했습니다.");
 		}	
 	}
@@ -87,10 +94,22 @@ public class MemberController {
 		return "findPwdForm";
 	}
 	
+	
 	// 비밀번호찾기 기능 페이지
 	@RequestMapping("findPwd.me")
-	public String findPwd() {
-		return "findPwd";
+	public String findPwd(@RequestParam String member_id, @RequestParam String email, Model model) {
+		
+		model.addAttribute("member_id", member_id);
+		model.addAttribute("email", email);
+		
+		Member findPwd = bmService.findPwd(model);
+		
+		if(findPwd != null) {
+			model.addAttribute("findPwd", findPwd);
+			return "findPwd";
+		}else {
+			throw new MemberException("비밀번호 찾기에 실패했습니다.");
+		}
 	}
 	
 	// 회원가입 선택 페이지
@@ -145,7 +164,11 @@ public class MemberController {
 	
 	//사업자 회원가입 기능 페이지
 	@RequestMapping("oinsert.me") 
-	public String insertOwner(@ModelAttribute Member m) {
+	public String insertOwner(@ModelAttribute Member m,@RequestParam("year") String year,
+													@RequestParam("month") String month,
+													@RequestParam("date") String date) {
+		
+		m.setMember_birth(  year + "/" + month + "/" + date);
 		
 		int result = bmService.memberInsert(m);
 		
@@ -156,11 +179,141 @@ public class MemberController {
 		}
 	}
 	
-	//일반 회원정보 수정
-	@RequestMapping("minfoUpate.me")
-	public String minfoUpdate() {
-		return "updateMemberForm";
+	// 수정 아이디 중복검사
+	  @RequestMapping("dupid.me") public void
+	  idDuplicateCheck(@RequestParam("member_id") String member_id,
+	  HttpServletResponse response) {
+	  
+	  int result = bmService.checkIdDup(member_id);
+	  
+	  try { response.getWriter(); } catch (IOException e) { e.printStackTrace(); }
+	  
+	  if( result > 0) { ((PrintWriter) response).print("fail"); }else {
+	  ((PrintWriter) response).print("success"); } ((PrintWriter)
+	  response).flush(); ((PrintWriter) response).close(); }
+	 
+	
+	//일반 마이페이지  
+	@RequestMapping("myPage.me")
+	public String myPageForm() {
+		return "myPage";
 	}
-	   
+	
+	//비밀번호 변경
+	@RequestMapping("mPwdUpdate.me")
+	public String pwdUpdate() {
+		return "updatePwdForm";
+	}
+	
+	
+	@RequestMapping("mInfoPwdForm.me")
+	public String mCheckPwdForm() {
+		return "checkPwd";
+	}
+	
+	// 비밀번호 변경
+	@RequestMapping("updatePwd.me")
+	public String pwdUpdate(@RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd") String newPwd,
+						HttpSession session) {
+		
+		Member m = bmService.loginMember((Member)session.getAttribute("loginUser"));
+		System.out.println("m :" + m);
+		
+		if(member_pwd == m.getMember_pwd()) {
+			String encNewPwd  = bcrypt.encode(newPwd);
+			System.out.println("encNewPwd : " + encNewPwd);
+
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("member_id", m.getMember_id());
+			map.put("newPwd", encNewPwd);
+			
+			int result = bmService.updatePwd(map);
+			
+			if(result > 0) {
+				return "myPage";
+			}else {
+				throw new MemberException("비밀번호 수정에 실패하였습니다.");
+			}
+		} else {
+			throw new MemberException("기존 비밀번호가 틀렸습니다.");
+		}
+	}
+	//일반 정보 수정 비밀번호 기능 페이지 
+	@RequestMapping("mInfoPwd.me")
+	public String mCheckPwd(Member m, HttpSession session, Model model) {
+		Member loginUser = bmService.infoPwd(m);
+		
+		if(loginUser  != null ) {
+			session.setAttribute("loginUser", loginUser);
+			return "updateMemberForm";
+		} else {
+			throw new MemberException("비밀번호 오류");
+		}	
+	}
+	
+	// 일반 회원정보 수정 기능 페이지 
+	@RequestMapping("mInfoUpdate.me")
+	public String minfoUpdate(@ModelAttribute Member m, Model model) {
+		int result = bmService.minfoUpdate(m);
+		System.out.println(m);
+		if(result > 0) {
+			model.addAttribute("loginUser", m);
+			return "myPage";
+		}else {
+			throw new MemberException("일반회원 정보 수정에 실패하였습니다.");
+		}
+	}
+	
+	//사업자 마이페이지 
+	@RequestMapping("shopMypage.me")
+	public String shopMyPageForm() {
+		return "shopMyPage";
+	}
+	
+	@RequestMapping("oInfoPwdForm.me")
+	public String oCheckPwdForm() {
+		return "checkShopPwd";
+	}
+	
+	//사업자 정보 수정 비밀번호 기능 페이지 
+		@RequestMapping("oInfokPwd.me")
+		public String oCheckPwd(Member m, HttpSession session, Model model) {
+			Member loginUser = bmService.infoPwd(m);
+			
+			if(loginUser  != null ) {
+				session.setAttribute("loginUser", loginUser);
+				return "updateShopForm";
+			} else {
+				throw new MemberException("비밀번호 오류");
+			}	
+		}
+	// 사업자 회원정보 수정 기능 페이지 
+	@RequestMapping("oInfoUpdate.me")
+	public String oinfoUpdate(@ModelAttribute Member m, Model model) {
+		int result = bmService.minfoUpdate(m);
+		System.out.println(m);
+		if(result > 0) {
+			model.addAttribute("loginUser", m);
+			return "shopMyPage";
+		}else {
+			throw new MemberException("일반회원 정보 수정에 실패하였습니다.");
+		}
+	}	
+
+	
+	//일반, 사업자 회원 탈퇴
+	@RequestMapping("mdelete.me")
+	public String deleteMember(@RequestParam("member_id") String member_id, SessionStatus status) {
+		int result = bmService.deleteMember(member_id);
+		
+		if(result > 0) {
+			status.setComplete();
+			return "redirect:home.do";
+		}else {
+			throw new MemberException("회원탈퇴에 실패하였습니다");
+		}
+	}
+
+	
 	// 김예은 끝 =================================================
 }

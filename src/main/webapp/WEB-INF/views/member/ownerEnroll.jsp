@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="../js/jquery-3.5.1.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,7 +96,12 @@
 #uploadImg {
 	display: inline !important;
 }
-
+#idResult{
+		font-size: 14px;
+	}
+	#pwdResult{
+		font-size: 14px;
+	}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -110,34 +116,48 @@
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;사업자명</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="text" name="member_name" id="member_name" placeholder="사업자명">
+		<input class= "cInput" type="text" name="member_name" id="member_name" placeholder="사업자명을 입력하세요">
 	</div><br><br>
-	
-	
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;아이디</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="text" name="member_id" id="member_id" placeholder="아이디">
-		<button  class="authBtn">확인</button>
-	</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">6~20자리 영문 소문자, 숫자가 사용 가능합니다</pre><br>
+		<input class= "cInput" type="text" name="member_id" id="member_id" placeholder="아이디를 입력하세요.">
+		<label id="idResult" ></label>
+	</div>
+	<p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">6~20자리 영문 소문자, 숫자가 사용 가능합니다</pre><br>
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;비밀번호</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="password" name="member_pwd" id="member_pwd1" placeholder="비밀번호">
-		<button  class="authBtn" onclick="chkPW()">확인</button>
+		<input class= "cInput" type="password" name="member_pwd" id="member_pwd" placeholder="비밀번호를 입력하세요. ">
 	</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">6~20자리 영문 소문자, 숫자, 특수문자가 사용 가능합니다</pre><br>
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;비밀번호 확인</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="password" name="member_pwd2" id="member_pwd2" placeholder="비밀번호 확인">
-	</div><br><br>
+		<input class= "cInput" type="password" name="member_pwd2" id="member_pwd2" placeholder="비밀번호를 입력하세요.">
+	</div><div><label id="pwdResult"></label></div><br><br>
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;이메일</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="email" name="email" id="email" placeholder="이메일">
+		<input class= "cInput" type="email" name="email" id="email" placeholder="이메일를 입력하세요.">
 	</div><br><br>
 	
-		<input type="hidden" name="member_birth" value="owner">
+	<p class="pp"></p><p class="pInput"><b></b>&nbsp;&nbsp;생년월일</p>&nbsp;&nbsp;
+		<select name="year">
+							<c:forEach begin="<%= new GregorianCalendar().get(Calendar.YEAR) - 100 %>" end="<%= new GregorianCalendar().get(Calendar.YEAR) %>" var="i">
+								<option value="${ i }">${ i }</option>
+							</c:forEach>
+						</select>
+						<select name="month">
+							<c:forEach begin="1" end="12" var="i">
+								<option value="${ i }">${ i }</option>
+							</c:forEach>
+						</select>
+						<select name="date">
+							<c:forEach begin="1" end="31" var="i">
+								<option value="${ i }">${ i }</option>
+							</c:forEach>
+		</select>
+		<br><br>
 		
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;핸드폰</p>&nbsp;&nbsp;
 	<div class="input-info">
@@ -147,7 +167,7 @@
 	
 	<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;인증번호</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="tel" name="phoneAuth" id="phoneAuth" placeholder="인증번호">
+		<input class= "cInput" type="tel" name="phoneAuth" id="phoneAuth" placeholder="인증번호를 입력하세요.">
 		<button class="authBtn">확인</button>
 	</div><br><br>
 	
@@ -156,52 +176,44 @@
 			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;여자
 		<br><br><br>
 		
-	<button type="submit" name="auth_code" id="nextStep" value="2" class="btn btn-primary enrollBtn"> 가입하기 </button>
+	<button type="submit" name="auth_code"  value="2" class="btn btn-primary enrollBtn" onclick="return validate();"> 가입하기 </button>
 	
 	<br><br><br>
 	</div>
 	</form>
 	
 	<jsp:include page="../common/footer.jsp"/>
-	 
 	<script>
-	 $(document).ready(function(){
-			$('#nextStep').click(function(){
-				if($('#member_name').prop('checked') == false || $('#member_id').prop('checked') == false
-						|| $('#member_pwd').prop('checked') == false || $('#member_pwd2').prop('checked') == false
-						|| $('#email').prop('checked') == false || $('#phone').prop('checked') == false
-						|| $('#gender').prop('checked') == false){
-			    	alert('필수 입력란을 작성하세요.');
-			    	return false;
-				}else{
-					return true;
-				}
-			});
-		});
+
 	 
-	 //수정해야함
-	 function chkPW(){
-
-		 var pw = $("#member_pwd1").val();
-		 var num = pw.search(/[0-9]/g);
-		 var eng = pw.search(/[a-z]/ig);
-		 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-
-		 if(pw.length < || pw.length > 20){  
- 
-		  alert("6자리 ~ 20자리 이내로 입력해주세요.");
-		  return false;
-		 }else if(pw.search(/\s/) != -1){
-		  alert("비밀번호는 공백 없이 입력해주세요.");
-		  return false;
-		 }else if(num < 0 || eng < 0 || spe < 0 ){
-		  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-		  return false;
-		 }else {
-				console.log("통과");
-		 }
-
+		/* 빈칸 시 alert창 */
+		function validate(){
+			if($('#member_name').val() == 0){
+				alert('사업자명을 입력해주세요');
+				$('#member_name').focus();
+				return false;
+			}else if($('#member_id').val() == 0){
+				alert('아이디를 입력해주세요');
+				$('#member_id').focus();
+				return false;
+			}else if($('#member_pwd').val() == 0){
+				alert('비밀번호를 입력해주세요');
+				$('#member_pwd').focus();
+				return false;
+			}else if($('#email').val() == 0){
+				alert('이메일을 입력해주세요');
+				$('#email').focus();
+				return false;
+			}else if($('#phone').val() == 0){
+				alert('휴대폰 번호를 입력해주세요');
+				$('#phone').focus();
+				return false;
+			}else{
+				$('#joinForm').submit();
+				
+			}
 		}
 	</script>
+
 </body>
 </html>

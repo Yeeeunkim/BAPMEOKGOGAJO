@@ -89,6 +89,10 @@
 	height: 50px;
 }
 
+	span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
+	span.ok{color: green;}
+	span.error{color: red;}
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -122,6 +126,9 @@
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;아이디</p>&nbsp;&nbsp;
 		<div class="input-info">
 			<input class= "cInput" type="text" name="member_id" id="member_id" placeholder="아이디">
+			<span class="guide ok">이 아이디는 사용 가능합니다.</span>
+						<span class="guide error">이 아이디는 사용 불가능합니다.</span>
+						<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
 		</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">8~16자리 영문 소문자, 숫자가 사용 가능합니다</pre><br>
 		
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;비밀번호</p>&nbsp;&nbsp;
@@ -181,19 +188,98 @@
 	
 	<jsp:include page="../common/footer.jsp"/>
 	<script>
-	 $(document).ready(function(){
-			$('#nextStep').click(function(){
-				if($('#member_name').prop('checked') == false || $('#member_id').prop('checked') == false
-						|| $('#member_pwd').prop('checked') == false || $('#member_pwd2').prop('checked') == false
-						|| $('#email').prop('checked') == false || $('#phone').prop('checked') == false
-						|| $('#gender').prop('checked') == false){
-			    	alert('필수 입력란을 작성하세요.');
-			    	return false;
-				}else{
-					return true;
+	/*아이디 중복체크 */
+	 var isUsable = false; //id중복시 false, 사용가능 true
+	 var isIdChecked = false; //id 중복 확인을 했는지 확인
+	 $('#member_id').on('change paste keyup', function(){
+		 isIdChecked = false;
+	 });
+	 
+	 
+		$(function(){
+			$('#member_id').on('keyup', function(){
+				var userId = $(this).val().trim();//현재 내꺼 가져오기
+			
+				if(userId.length < 4){
+					$('.guide').hide();
+					$('#idDuplicateCheck').val(0); //0이면 중복확인 안된 상태
 				}
+				
+				$.ajax({
+					url: 'dupid.me',
+					data: {id:userId},
+					success:  function(data){
+						if(data == 'true'){
+							$('.guide.error').hide();
+							$('.guide.ok').show();
+							$('#idDuplicateCheck').val(1);
+						}else{
+							$('.guide.error').show();
+							$('.guide.ok').hide();
+							$('#idDuplicateCheck').val(0);
+						}
+					}
+				});
 			});
 		});
+	 
+	<%--  $('#member_id').change(function(){
+		 var userId = $('#member_id');
+		 
+		 if(userId.val().length < 6 || userId.val().length > 20){
+			 alert('아이디는 최소 6자리 이상 20자리 이하여야 합니다.');
+			 userId.focus();
+		 }else{
+			 $.ajax({
+				 url: '<%= request.getContextPath() %>/dupid.me',
+				 data: {userId:userId.val()},
+				 success: function(data){
+					 console.log(data);
+					 
+					 if(data == 'success'){
+						 $('#idResult').text('사용 가능한 아이디입니다.');
+						 $('#idResult').css({'color':'#4572C4','float':'left','display':'inline-block'});
+						 isUsable = true;
+						 isIdChecked = true;
+					 }else{
+						 $('#idResult').text('사용 불가능한 아이디입니다.');
+						 $('#idResult').css({'color':'red','float':'left','display':'inline-block'});
+						 userId.focus();
+						 isUsable = false;
+						 isIdChecked = false;
+					 }
+				 }
+			 });
+		 }
+	 }); --%>
+	
+	/* 빈칸 시 alert창 */
+	function validate(){
+		if($('#member_name').val() == 0){
+			alert('사업자명을 입력해주세요');
+			$('#member_name').focus();
+			return false;
+		}else if($('#member_id').val() == 0){
+			alert('아이디를 입력해주세요');
+			$('#member_id').focus();
+			return false;
+		}else if($('#member_pwd').val() == 0){
+			alert('비밀번호를 입력해주세요');
+			$('#member_pwd').focus();
+			return false;
+		}else if($('#email').val() == 0){
+			alert('이메일을 입력해주세요');
+			$('#email').focus();
+			return false;
+		}else if($('#phone').val() == 0){
+			alert('휴대폰 번호를 입력해주세요');
+			$('#phone').focus();
+			return false;
+		}else{
+			$('#joinForm').submit();
+			
+		}
+	}
 	</script>
 	
 </body>

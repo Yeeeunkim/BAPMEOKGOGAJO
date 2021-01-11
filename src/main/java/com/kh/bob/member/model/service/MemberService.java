@@ -1,5 +1,7 @@
 package com.kh.bob.member.model.service;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -14,6 +16,21 @@ public interface MemberService {
 	int memberInsert(Member m);
 
 	Member findId(Model model);
+
+	int checkIdDup(String member_id);
+
+	Member infoPwd(Member m);
+
+	int minfoUpdate(Member m);
+
+	int deleteMember(String member_id);
+
+	Member findPwd(Model model);
+
+	int pwdUpdate(String member_pwd);
+
+	int updatePwd(HashMap<String, String> map);
+
 
 
 

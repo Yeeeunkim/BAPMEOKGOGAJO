@@ -1,5 +1,7 @@
 package com.kh.bob.member.model.service;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +32,45 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member findId(Model model) {
-		// TODO Auto-generated method stub
-		return bmDAO.findId(sqlSession, model);
+	public Member infoPwd(Member m) {
+		return bmDAO.infoPwd(sqlSession, m);
 	}
 
-	
+	//수정
+	@Override
+	public int checkIdDup(String member_id) {
+		return  bmDAO.checkIdDup(sqlSession, member_id);
+	}
+
+	@Override
+	public int minfoUpdate(Member m) {
+		return bmDAO.minfoUpdate(sqlSession, m);
+	}
+
+	@Override
+	public int deleteMember(String member_id) {
+		return bmDAO.deleteMember(sqlSession, member_id);
+	}
+
+	//아이디 비밀번호 찾기
+	@Override
+	public Member findId(Model model) {
+		return bmDAO.findId(sqlSession, model);
+	}
+	@Override
+	public Member findPwd(Model model) {
+		return bmDAO.findPwd(sqlSession, model);
+	}
+
+	@Override
+	public int pwdUpdate(String member_pwd) {
+		return bmDAO.pwdUpate(sqlSession, member_pwd);
+	}
+
+	@Override
+	public int updatePwd(HashMap<String, String> map) {
+		return bmDAO.updatePwd(sqlSession, map);
+	}
 
 
 

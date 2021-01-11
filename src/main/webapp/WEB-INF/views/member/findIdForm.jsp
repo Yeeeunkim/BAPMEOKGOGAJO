@@ -94,12 +94,12 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">이름</label> 
-				<input type="text" name="member_name" class="form-control inputForm" id="inputName" placeholder="이름을 입력해주세요">
+				<input type="text" name="member_name" class="form-control inputForm" id="inputName" name="member_name" placeholder="이름을 입력해주세요" >
 				<label class="hidden"></label>
 			</div>
 			<div class="mb-4">
 				<label class="form-label inputTilte">휴대폰</label>
-				<input type="text" name="phone" class="form-control inputForm" id="inputPhone" placeholder="번호를 입력해주세요">
+				<input type="text" name="phone" class="form-control inputForm" id="inputPhone" name="phone" placeholder="번호를 입력해주세요">
 				<label class="hidden"></label>
 			</div>
 			<br>
