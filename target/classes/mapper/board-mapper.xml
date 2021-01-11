@@ -70,7 +70,7 @@
 		order by board_no desc
 	</select>
 	
-	<!--  공지 게시글 추가 -->
+	<!--  공지 게시글, QNA, FAQ 추가 -->
 	<!-- @@@@@글 작성자 추후 로그인 세션 가져온 후 수정 필요@@@@@ -->
 	<insert id="insertBoard">
 		insert into board_info
@@ -109,7 +109,7 @@
 		where board_no = #{bNo}
 	</select>
 	
-	<!-- 공지사항, QNA 삭제 -->
+	<!-- 공지사항, QNA, FAQ 삭제 -->
 	<update id="deleteBoard">
 		update board_info
 		set board_status = 'N'
@@ -131,7 +131,7 @@
 		where attachment_no = #{aNo}
 	</update>
 	
-	<!-- QNA 게시글 리스트  qnaList-->
+	<!-- QNA 게시글 리스트-->
 	<select id="qnaList" resultMap="boardResultSet">
 		select * 
 		from board_info
@@ -153,7 +153,13 @@
 		order by comment_no desc
 	</select>
 	
-	
+	<!-- FAQ 게시글 리스트 -->
+	<select id="faqList" resultMap="boardResultSet">
+		select * 
+		from board_info
+		where board_status='Y' and cate_code = 2
+		order by board_no desc
+	</select>
 	
    
 <!-- 민병욱 끝 ==================================================== -->

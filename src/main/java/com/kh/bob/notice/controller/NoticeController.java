@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -303,7 +304,7 @@ public class NoticeController {
 		// QnA 카테고리 == 1
 		board.setCateCode(1);
 		
-		if (board.getbContents().equals("")) { // 공지사항 내용이 없으면
+		if (board.getbContents().equals("")) { // QnA 내용이 없으면
 			board.setbContents(" "); // 공백 추가
 		}
 		
@@ -436,17 +437,89 @@ public class NoticeController {
 	
 	
 	
-	// FAQ
+	// FAQ 리스트 뷰
 	@RequestMapping("fList.no")
-	public String faqList() {
-		return "faqList";
+	public ModelAndView faqList(ModelAndView mv) {
+		
+		ArrayList<Board> list = nService.faqList();
+		
+		if (list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("faqList");
+		} else {
+			throw new BoardException("게시글 전체 조회에 실패했습니다.");
+		}
+		
+		return mv;
 	}
-
+	
+	// FAQ 등록 뷰
 	@RequestMapping("fInsertForm.no")
 	public String faqInsertView() {
 		return "faqInsertForm";
 	}
+	
+	// FAQ 등록 기능
+	@RequestMapping("fInsert.no")
+	public String fInsert(@ModelAttribute Board board,
+						  HttpServletRequest request) {
+		// FAQ 카테고리 == 2
+		board.setCateCode(2);
 
+		if (board.getbContents().equals("")) { // QnA 내용이 없으면
+			board.setbContents(" "); // 공백 추가
+		}
+		
+		Attachment a = new Attachment();
+		
+		int result = nService.insertBoard(board, a);
+		
+		if (result > 0) {
+			return "redirect:fList.no";
+		} else {
+			throw new BoardException("게시글 등록에 실패했습니다.");
+		}
+	}
+	
+	// FAQ 삭제 뷰
+	@RequestMapping("fDeleteView.no")
+	public ModelAndView faqDeleteView(ModelAndView mv) {
+		
+		ArrayList<Board> list = nService.faqList();
+		
+		if (list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("faqDelete");
+		} else {
+			throw new BoardException("게시글 전체 조회에 실패했습니다.");
+		}
+		return mv;
+	}
+
+	// FAQ 삭제 기능
+	@RequestMapping("fDelete.no")
+	@ResponseBody	// return으로 보낸 값을 뷰로 인식하지 않고 데이터 값으로 인식해서 보내게함
+	public int fDelete(@RequestParam("bNoList[]") ArrayList<String> bNoList) {
+		System.out.println(bNoList);
+		System.out.println(bNoList.size());
+		int size = bNoList.size();
+		int result = 0;
+		
+		for(int i = 0; i < size; i++) {
+			int bNo = Integer.parseInt(bNoList.get(i));
+			System.out.println(bNo);
+			result = nService.deleteBoard(bNo);
+			if(result < 1) {
+				throw new BoardException("게시글 삭제에 실패했습니다.");
+			}
+		}
+		
+		if (result > 0) {
+			return bNoList.size();
+		} else {
+			throw new BoardException("게시글 삭제를 실패했습니다.");
+		}
+	}
 
 	// 민병욱 끝 ====================================================
 

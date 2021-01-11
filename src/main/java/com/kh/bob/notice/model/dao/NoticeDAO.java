@@ -81,6 +81,12 @@ public class NoticeDAO {
 	public ArrayList<Comment> selectCommentList(SqlSessionTemplate sqlSession, int bNo) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectCommentList", bNo);
 	}
+
+	public ArrayList<Board> faqList(SqlSessionTemplate sqlSession) {
+		return (ArrayList) sqlSession.selectList("boardMapper.faqList");
+	}
+
+
 	
 	// 민병욱 끝 ====================================================
 
