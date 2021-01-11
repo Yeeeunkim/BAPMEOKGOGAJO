@@ -347,7 +347,6 @@ public class NoticeController {
 	public String addCommnet(@ModelAttribute Comment comment, HttpSession session) {
 		// @@@@@ 수정필요 댓글 작성시 작성자 아이디도 보내야함 @@@@@
 		
-		System.out.println(comment);
 		int result = nService.insertComment(comment);
 		
 		if(result > 0) {
@@ -500,14 +499,11 @@ public class NoticeController {
 	@RequestMapping("fDelete.no")
 	@ResponseBody	// return으로 보낸 값을 뷰로 인식하지 않고 데이터 값으로 인식해서 보내게함
 	public int fDelete(@RequestParam("bNoList[]") ArrayList<String> bNoList) {
-		System.out.println(bNoList);
-		System.out.println(bNoList.size());
 		int size = bNoList.size();
 		int result = 0;
 		
 		for(int i = 0; i < size; i++) {
 			int bNo = Integer.parseInt(bNoList.get(i));
-			System.out.println(bNo);
 			result = nService.deleteBoard(bNo);
 			if(result < 1) {
 				throw new BoardException("게시글 삭제에 실패했습니다.");
@@ -517,7 +513,7 @@ public class NoticeController {
 		if (result > 0) {
 			return bNoList.size();
 		} else {
-			throw new BoardException("게시글 삭제를 실패했습니다.");
+			throw new BoardException("게시글 삭제에 실패했습니다.");
 		}
 	}
 

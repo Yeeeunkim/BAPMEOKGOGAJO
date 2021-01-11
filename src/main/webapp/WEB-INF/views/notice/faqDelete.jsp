@@ -96,27 +96,15 @@
 	<c:import url="../common/footer.jsp" />
 	
 	<script>
-// 		function fDelete(){
-// // 			var check = document.getElmentsByName('check');
-// // 			var check = document.getElmentsById('check');
-// 			console(check);
-// // 	  		var bool = confirm('정말 삭제하시겠습니까?');   
-// // 	        if(bool){
-// // 	       	 location.href= '${ ndelete }';
-// // 	        }
-// 		}
-		
 		function fDelete(){
 			var check = document.getElementsByName('check');
 			var bNoList = [];
 			for(var i in check){	
 				if(check[i].checked){
-					console.log(check[i].id);
 					bNoList.push(check[i].id);
 				}
 			}
 			
-			console.log(bNoList.length);
 			if(bNoList.length == 0){
 				alert("삭제할 게시물을 체크해주세요.");
 			} else {
@@ -126,7 +114,6 @@
 						url: 'fDelete.no',
 						data: {bNoList:bNoList},
 						success: function(data){
-							console.log(data);
 							alert("게시글" + data + "개 삭제 성공");
 							location.reload();
 						}
