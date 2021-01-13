@@ -10,12 +10,12 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script typ='text/javascript'>
-	kakao.init('97b21c3a08d201b9a56b90370c60f34e');
+	kakao.init('ebec4584a30ed61834650763475ef4ae');
   	
   	kakao.Auth.login({
 		success: function(authObj){
 			kakao.API.request({
-				url:'/v2/user/me,
+				url:'/v2/user/me',
 				success:function(res){
 				console.log(res);
 				

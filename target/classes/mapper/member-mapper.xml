@@ -32,7 +32,7 @@
   	</insert>
    
    <!-- 아이디 중복확인 -->
-   <select id="checkIdDup"  resultType="_int">
+   <select id="checkidDup"  resultType="_int">
   		select count(*)
   		from member_info
   		where member_id=#{member_id}
