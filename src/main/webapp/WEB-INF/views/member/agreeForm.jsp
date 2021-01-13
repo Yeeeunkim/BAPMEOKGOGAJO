@@ -55,7 +55,6 @@
 }
 /* style="font-family: 'Gugi';" */
 
-
 </style>
 </head>
 <body>
