@@ -65,8 +65,6 @@
 				</tr style="border: none;">
 			</table>
 	</form> 
-	 
-	 <c:import url="../common/noticeSidebar.jsp" />  
 	  
    
          <c:import url="../common/footer.jsp"/>

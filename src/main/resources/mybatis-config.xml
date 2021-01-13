@@ -6,12 +6,12 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.kh.bob.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
+		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/>
 	</typeAliases>
 	 
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
-		<mapper resource="mapper/member-mapper.xml"/>
 		<mapper resource="mapper/board-mapper.xml"/>
 	</mappers>
 	
