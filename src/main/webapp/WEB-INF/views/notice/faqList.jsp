@@ -87,9 +87,10 @@
 				</c:forEach>
 			</c:if>
 			
-			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
+			<c:if test="${ loginUser.member_id eq 'admin' }">
 			<button class="btn1" onclick="location.href='fInsertForm.no'">글쓰기</button>
 			<button class="btn1" onclick="location.href='fDeleteView.no'">삭제하기</button>
+			</c:if>
 		</div>
 		<div class="col-2"></div>
 	</div>

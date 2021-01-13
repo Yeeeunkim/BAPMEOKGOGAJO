@@ -69,7 +69,7 @@
 				<th></th>
 				<th></th>
 				<tr>
-					<th>&nbsp제목&nbsp&nbsp <input type="text" id="text" name="bTitle"  value="${board.bTitle}""></th>
+					<th>&nbsp제목&nbsp&nbsp <input type="text" id="text" name="bTitle"  value="${board.bTitle}" style="width: 87%;"></th>
 					<th></th>
 					<th></th>
 				</tr>
@@ -101,7 +101,9 @@
 				</th>
 			</tr>
 			
-			<!-- @@@@@답변 테이블 : 추후 작성자와 관리자만 볼 수 있게 조건 넣어야 함 @@@@@-->
+				<!-- 관리자만 답변 가능-->
+				<c:if test="${ loginUser.member_id eq 'admin' }">
+				<input type="hidden" id="admin" name="mId" value='${loginUser.member_id}'>
 <!-- 			<table class="replyTable"> -->
 				<tr>
 					<th>
@@ -111,11 +113,15 @@
 					</th>
 					
 				</tr>
+				</c:if>
+				<!-- 작성자만 볼 수 있음-->
+				<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin'}">
 				<tr>
 					<td id="commentTd">&nbsp답변<br>
 					<textarea rows="5" cols="111" id="cContents" style="font-family: ' Gugi;" readonly="readonly">${comment.cContents}</textarea>
 					</td>
 				</tr>
+				</c:if>
 <!-- 			</table> -->
 			
 					
@@ -130,14 +136,14 @@
 					<c:param name="page" value="${page}"/>
 				</c:url>
 				
-<%-- 				<c:if test="${ # }"> --%>
+			<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin' }">
 			<tr style="border: none;">
 				<td colspan="2" align="center" style="border: none;">
 						<button class="btn1" onclick="location.href='${ qupView }'" style="position: absolute;">수정하기</button>
 						<button class="btn2" onclick="qDelete();">삭제하기</button>
 				</td style="border: none;"> 
 			</tr style="border: none;">
-<%-- 				</c:if> --%>
+			</c:if>
 		</table> 
 	  
    
@@ -171,11 +177,12 @@
 				
 		$('#rSubmit').on('click', function(){
 			var cContents = $('#rContent').val();
-			var bNo = ${ board.bNo};
+			var bNo = ${board.bNo};
+			var mId = $('#admin').val();
 			
 			$.ajax({
 				url: 'addReply.no',
-				data: {cContents:cContents, bNo:bNo},
+				data: {cContents:cContents, bNo:bNo, mId:mId},
 				success: function(data){
 					if(data == 'success'){
 						$('#rContent').val('');

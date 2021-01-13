@@ -133,8 +133,9 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				
 			</table>
 			
-			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
+			<c:if test="${ !empty loginUser.member_id }">
 			<button class="nBtn" onclick="qInsert();">글쓰기</button>
+			</c:if>
 		</div>
 		<div class="col-2"></div>
 	</div>

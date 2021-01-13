@@ -153,12 +153,13 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					<a class="aPage" href="${ after }">[다음]</a>
 				</c:if>
 			</td>
-		</tr>
-				
-			</table>
+			</tr>	
+		</table>
 			
-			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
+			<c:if test="${ loginUser.member_id eq 'admin' }">
+			<input type="hidden" name="mId" value='${loginUser.member_id}'>
 			<button class="nBtn" onclick="nInsert();">글쓰기</button>
+			</c:if>
 		</div>
 		<div class="col-2"></div>
 	</div>

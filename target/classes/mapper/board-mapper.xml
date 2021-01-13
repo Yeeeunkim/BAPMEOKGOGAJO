@@ -80,7 +80,7 @@
 				sysdate,
 				'Y',
 				#{cateCode},				
-				'test')
+				#{mId})
 		<selectKey keyProperty="bNo" resultType="_int" order="AFTER">
 			select seq_bno.currval from dual
 		</selectKey>	<!-- 현재 시퀀스를 가상 테이블에 담아둠 -->
@@ -142,7 +142,7 @@
 	<!-- QNA 답글 추가 -->
 	<insert id="insertComment">
 		insert into board_comment
-		values(seq_cno.nextval, #{cContents}, sysdate, #{bNo}, 'test')
+		values(seq_cno.nextval, #{cContents}, sysdate, #{bNo}, #{mId})
 	</insert>
 	
 	<!-- QNA 답글 조회 -->

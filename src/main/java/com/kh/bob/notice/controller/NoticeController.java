@@ -94,6 +94,8 @@ public class NoticeController {
 			HttpServletRequest request) {
 		Attachment attachment = new Attachment();
 
+		System.out.println(board);
+		
 		if (uploadFile != null && !uploadFile.isEmpty()) { // 첨부파일이 있다면
 			// 리네임
 			String renameFileName = saveFile(uploadFile, request);
@@ -112,7 +114,7 @@ public class NoticeController {
 		}
 		
 		int result = nService.insertBoard(board, attachment);
-
+		
 		if (result > 0) {
 			return "redirect:nList.no";
 		} else {
