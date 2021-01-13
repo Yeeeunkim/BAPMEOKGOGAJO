@@ -93,7 +93,7 @@
 		
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
+				id="checkBox_01"  name='agree'> <label class="form-check-label"
 				for="flexCheckDefault"> 위의 약관에 동의합니다 (필수) </label>
 		</div><br><br>
 
@@ -124,7 +124,7 @@
 		
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
+				id="checkBox_02"  name='agree'> <label class="form-check-label"
 				for="flexCheckDefault"> 위의 약관에 동의합니다 (필수) </label>
 		</div><br><br>
 
@@ -144,29 +144,52 @@
 		
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
+				id="flexCheckDefault"  name='agree'> <label class="form-check-label"
 				for="flexCheckDefault"> 위의 약관에 동의합니다 (선택) </label>
 		</div><br><br>
 		
 		
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
+				id="checkBox_03"  name='agree'> <label class="form-check-label"
 				for="flexCheckDefault"> 만 14세 이상입니다 (필수) </label>
 		</div>
 		<br><br><br><br>
 		<p>위 서비스 이용약관 및 개인정보 수집/이용안내에 대해 동의하며, 회원가입을 하시겠습니까?</p>
 		<div class="form-check">
-			<input class="form-check-input" type="checkbox" value=""
-				id="flexCheckDefault"> <label class="form-check-label"
+			<input class="form-check-input" type="checkbox" value="selectall"
+				id="flexCheckDefault"  name='agree'   onclick='selectAll(this)'> <label class="form-check-label"
 				for="flexCheckDefault"> 전체 동의합니다 </label>
 		</div><br><br>
 		
-		<button type="submit" class="btn btn-primary enrollBtn"> 가입하기 </button>
+		<button type="submit" id="nextStep" class="btn btn-primary enrollBtn"> 가입하기 </button>
 		</form>
 	</div>
 	 
 	<jsp:include page="../common/footer.jsp"/>
 	 
+	 <script>
+	 function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.querySelectorAll('input[type="checkbox"]');
+		  
+		  checkboxes.forEach((checkbox) => {      //작동성공인데 빨간줄 원인을 못찾음
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+	 
+	 $(document).ready(function(){
+			$('#nextStep').click(function(){
+				if($('#checkBox_01').prop('checked') == false || $('#checkBox_02').prop('checked') == false
+						|| $('#checkBox_03').prop('checked') == false){
+			    	alert('필수 약관에 동의 하셔야 합니다.');
+			    	return false;
+				}else{
+					return true;
+				}
+			});
+		});
+	 
+	 </script>
 </body>
 </html>
