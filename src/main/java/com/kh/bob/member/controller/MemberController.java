@@ -56,6 +56,11 @@ public class MemberController {
 			throw new MemberException("로그인에 실패했습니다.");
 		}	
 	}
+	//카카오 로그인
+	@RequestMapping("kakaoLogin.me")
+	public String kakaoLogin() {
+		return "kakoLogin";
+	}
 	
 	//로그아웃
 	@RequestMapping("logoutView.me")
@@ -63,7 +68,7 @@ public class MemberController {
 		status.setComplete();
 		return "redirect:home.do";
 	}
-
+	
 	// 아이디찾기 페이지
 	@RequestMapping("findFormId.me")
 	public String findIdForm() {
@@ -180,17 +185,17 @@ public class MemberController {
 	}
 	
 	// 수정 아이디 중복검사
-	  @RequestMapping("dupid.me") public void
-	  idDuplicateCheck(@RequestParam("member_id") String member_id,
-	  HttpServletResponse response) {
-	  
-	  int result = bmService.checkIdDup(member_id);
-	  
-	  try { response.getWriter(); } catch (IOException e) { e.printStackTrace(); }
-	  
-	  if( result > 0) { ((PrintWriter) response).print("fail"); }else {
-	  ((PrintWriter) response).print("success"); } ((PrintWriter)
-	  response).flush(); ((PrintWriter) response).close(); }
+	@RequestMapping("dupId.me")
+	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
+		boolean isUsable = bmService.checkIdDup(member_id) == 0 ? true : false;
+		System.out.println("isUsable :" + isUsable);
+		
+		try {
+			response.getWriter().print(isUsable);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	 
 	
 	//일반 마이페이지  
@@ -313,7 +318,7 @@ public class MemberController {
 			throw new MemberException("회원탈퇴에 실패하였습니다");
 		}
 	}
-
+	
 	
 	// 김예은 끝 =================================================
 }

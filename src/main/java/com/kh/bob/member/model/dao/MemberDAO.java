@@ -22,7 +22,7 @@ public class MemberDAO {
 
 
 	public int checkIdDup(SqlSessionTemplate sqlSession, String member_id) {
-		return sqlSession.selectOne("memberMapper.checkIdDup", member_id);
+		return sqlSession.selectOne("memberMapper.checkidDup", member_id);
 	}
 
 	public Member infoPwd(SqlSessionTemplate sqlSession, Member m) {
@@ -52,10 +52,5 @@ public class MemberDAO {
 	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.update("memberMapper.updatePwd", map);
 	}
-
-
-
-	
-	
 // 김예은 끝 =================================================
 }

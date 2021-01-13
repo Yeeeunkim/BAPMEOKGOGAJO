@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 		return bmDAO.infoPwd(sqlSession, m);
 	}
 
-	//수정
+	//수정해야함
 	@Override
 	public int checkIdDup(String member_id) {
 		return  bmDAO.checkIdDup(sqlSession, member_id);
@@ -52,7 +52,6 @@ public class MemberServiceImpl implements MemberService {
 		return bmDAO.deleteMember(sqlSession, member_id);
 	}
 
-	//아이디 비밀번호 찾기
 	@Override
 	public Member findId(Model model) {
 		return bmDAO.findId(sqlSession, model);

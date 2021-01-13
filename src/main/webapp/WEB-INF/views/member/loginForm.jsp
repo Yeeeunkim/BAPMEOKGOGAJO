@@ -31,7 +31,10 @@
 <script src="${ contextPath }/js/jquery-3.5.1.min.js"></script>
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js" crossorigin="anonymous"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>	
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- 구글 api -->	
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- <meta name="google-signin-client_id" content="1057917963809-pudrp1s95ujocaosdl1kj0tv5h91pptn.apps.googleusercontent.com"> -->
 <style>
 #loginArea {
 /* 	border: 1px solid lightgray; */
@@ -117,11 +120,28 @@
 			<br>
 			<button type="submit" class="btn btn-primary loginBtn" onclick="return loginVal();"> 로그인 </button>
 			<br>
-			<a href="#" class="snsBtn"><img class="snsBtn" src="resources/images/naver.png"></a>
+			<span id="name"></span>
+			<input type="button"  id="loginBtn" value="checking.." onclick="
+			if(this.value === 'Login'){
+				gauth.signIn().then(function(){
+					console.log('gauth.signIn()');
+					checkLoginStatus();
+				});
+			}else{
+				gauth.signOut().then(function(){
+					console.log('gauth.signOut()');
+					checkLoginStatus();
+				});
+			}
+			"> 
+			<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 			<br>
-			<a id="kakao-login-btn"></a><p>
-			<a href="https://developers.kakao.com/logout"></a>
-
+			<a href="#" class="snsBtn"><img class="snsBtn" src="resources/images/naver.png" ></a>
+			<br>
+			 <a id="kakao-login-btn" onclick="location.href='kakaoLogin.me'" class="snsBtn"></a><p> 
+			<!-- <a href="javascript:kakaoLogin();"  ><img  src="resources/images/kakao.png" style="height:60px; width: auto;"></a> -->
+		<!-- 	<input type="button" value="카카오톡 로그아웃" onclick="ktout()"> -->
+			<a href="https://developers.kakao.com/logout">로그아웃</a>
 			
 			<!-- <a href="kakaoLogin.jsp" class="snsBtn"><img class="snsBtn" src="resources/images/kakao.png"></a> -->
 		  </table>
@@ -129,7 +149,7 @@
 	</div>
 	<jsp:include page="../common/footer.jsp"/>
 	
-	
+	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<script type='text/javascript'>
 		function findId(){
 			location.href= "${ contextPath }/findFormId.me"
@@ -159,26 +179,76 @@
 			}
 		}
 		
-		/*카카오톡 로그인*/
-		Kakao.init('97b21c3a08d201b9a56b90370c60f34e');
-			
+		//카카오 로그인
+		Kakao.init('ebec4584a30ed61834650763475ef4ae');
 			// 카카오 로그인 버튼을 생성합니다.
-			Kakao.Auth.createLoginButton({
+			 Kakao.Auth.createLoginButton({
 			  container: '#kakao-login-btn',
 			  success: function(authObj) {
-				alert(JSON.stringify(authObj));
-			  },
-			  fail: function(err) {
-				 alert(JSON.stringify(err));
-			  }
-			});
-
-
-
-
-
-
-
+				Kakao.API.request({
+					url: 'v2/user/me',
+					success: function(res){
+						console.log(res);
+						var id = res.id;
+						var email = res.kakao_account.email;
+						var name = res.properties.nickname;
+						var image = res.properties.profile_image;
+						var html = '<BR>' + email + '<BR>' + name;
+						
+						html += '<BR><img src="' + image + '">';
+						
+						$('body').append(html);
+					 alert(res.properties.name + '님 환영합니다.');
+					 //location.href="./result?name="+ res.properties.nickname;
+					}
+				})
+				console.log(authObj);
+				var token = authObj.access_token;
+			 	 },
+				fail: function(err){
+					alert(JSON.stringify(error));
+				}
+				});
+			
+		//구글 로그인 
+		/*  function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		  console.log('Name: ' + profile.getName());
+		  console.log('Image URL: ' + profile.getImageUrl());
+		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		}  */
+	function checkLoginStatus(){
+			var loginBtn = document.querySelector('#loginBtn');
+			var nameTxt = document.querySelector('#name');
+			 if(gauth.isSignedIn.get()){
+				 console.log('logined');
+				 loginBtn.value = 'Logout';
+				 var profile = gauth.currentUser.get().getBasicProfile();
+				 console.log(profile.getName());
+				 nameTxt.innerHTML = 'Welcome <strong>'+profile.getName() + '</strong> ';
+			 }else {
+				 console.log('logouted');
+				 loginBtn.value = 'Login';
+				 nameTxt.innerHTML = '';
+			 }
+		}
+		
+	 function init(){
+			console.log('init');
+			 gapi.load('auth2', function() {
+				 console.log('auth2');
+				 window.gauth = gapi.auth2.init({
+					 client_id: '1057917963809-pudrp1s95ujocaosdl1kj0tv5h91pptn.apps.googleusercontent.com'
+				 })
+				 gauth.then(function(){
+					 console.log('googleAuth success');
+					 checkLoginStatus();
+				 }, function(){
+					 console.log('googleAuth fail');
+				 });
+			 });
+		} 
 	</script>
 </body>
 </html>

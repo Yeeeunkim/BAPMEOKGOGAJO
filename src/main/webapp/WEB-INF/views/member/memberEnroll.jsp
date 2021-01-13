@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${contextPath}/resources/css/member-style.css" type="text/css">
 <!-- 부트 스트랩 -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -31,7 +32,9 @@
 <script src="https://kit.fontawesome.com/7293f5b137.js"
 	crossorigin="anonymous"></script>
 <style>
-
+span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
+	span.ok{color: green;}
+	span.error{color: red;}
 #enrollArea {
 	/* 	border: 1px solid lightgray; */
 	width: 80%;
@@ -89,16 +92,12 @@
 	height: 50px;
 }
 
-	span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
-	span.ok{color: green;}
-	span.error{color: red;}
-
 </style>
 </head>
 <body style="font-family: 'Gugi';">
 	<jsp:include page="../common/menubar.jsp" />
 
-	<form action="minsert.me" method="post" id="joinForm">
+	<form action="minsert.me" method="post" id="joinForm" onsubmit="return validate()">
 		<div id="enrollArea">
 			<h1 style="text-align: center;">일반 회원가입 ></h1>
 			<br>
@@ -125,11 +124,8 @@
 		
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;아이디</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="member_id" id="member_id" placeholder="아이디">
-			<span class="guide ok">이 아이디는 사용 가능합니다.</span>
-						<span class="guide error">이 아이디는 사용 불가능합니다.</span>
-						<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
-		</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">8~16자리 영문 소문자, 숫자가 사용 가능합니다</pre><br>
+			<input class= "cInput" type="text" name="member_id" id="userId" placeholder="아이디">
+		</div><p class="pp"></p><pre style="color: red; text-align: left; display: inline-block;">8~16자리 영문 소문자, 숫자가 사용 가능합니다</pre><br> 
 		
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;비밀번호</p>&nbsp;&nbsp;
 		<div class="input-info">
@@ -180,106 +176,54 @@
 			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;여자
 		<br><br><br>
 		
-		<button type="submit" name="auth_code" id="nextStep"value="1" class="btn btn-primary enrollBtn"> 가입하기 </button>
+		<button type="submit" name="auth_code" id="nextStep"value="1" > 가입하기 </button>
 		
 		<br><br><br>
 		</div>	
 	</form>
 	
 	<jsp:include page="../common/footer.jsp"/>
-	<script>
-	/*아이디 중복체크 */
-	 var isUsable = false; //id중복시 false, 사용가능 true
-	 var isIdChecked = false; //id 중복 확인을 했는지 확인
-	 $('#member_id').on('change paste keyup', function(){
-		 isIdChecked = false;
-	 });
-	 
-	 
-		$(function(){
-			$('#member_id').on('keyup', function(){
-				var userId = $(this).val().trim();//현재 내꺼 가져오기
+	<script type="text/javascript">
+		function validate(){
+			var objName = document.getElementById("member_name");  
+			var objID = document.getElementById("member_id");
+			var objPwd1 = document.getElementById("memebr_pwd");
+			var objPwd2 = document.getElementById("member_pwd2");
+			var objEmail = document.getElementById("email");
+			var objPhone = document.getElementById("phone");
 			
-				if(userId.length < 4){
-					$('.guide').hide();
-					$('#idDuplicateCheck').val(0); //0이면 중복확인 안된 상태
-				}
-				
-				$.ajax({
-					url: 'dupid.me',
-					data: {id:userId},
-					success:  function(data){
-						if(data == 'true'){
-							$('.guide.error').hide();
-							$('.guide.ok').show();
-							$('#idDuplicateCheck').val(1);
-						}else{
-							$('.guide.error').show();
-							$('.guide.ok').hide();
-							$('#idDuplicateCheck').val(0);
-						}
-					}
-				});
-			});
-		});
-	 
-	<%--  $('#member_id').change(function(){
-		 var userId = $('#member_id');
-		 
-		 if(userId.val().length < 6 || userId.val().length > 20){
-			 alert('아이디는 최소 6자리 이상 20자리 이하여야 합니다.');
-			 userId.focus();
-		 }else{
-			 $.ajax({
-				 url: '<%= request.getContextPath() %>/dupid.me',
-				 data: {userId:userId.val()},
-				 success: function(data){
-					 console.log(data);
-					 
-					 if(data == 'success'){
-						 $('#idResult').text('사용 가능한 아이디입니다.');
-						 $('#idResult').css({'color':'#4572C4','float':'left','display':'inline-block'});
-						 isUsable = true;
-						 isIdChecked = true;
-					 }else{
-						 $('#idResult').text('사용 불가능한 아이디입니다.');
-						 $('#idResult').css({'color':'red','float':'left','display':'inline-block'});
-						 userId.focus();
-						 isUsable = false;
-						 isIdChecked = false;
-					 }
-				 }
-			 });
-		 }
-	 }); --%>
-	
-	/* 빈칸 시 alert창 */
-	function validate(){
-		if($('#member_name').val() == 0){
-			alert('사업자명을 입력해주세요');
-			$('#member_name').focus();
-			return false;
-		}else if($('#member_id').val() == 0){
-			alert('아이디를 입력해주세요');
-			$('#member_id').focus();
-			return false;
-		}else if($('#member_pwd').val() == 0){
-			alert('비밀번호를 입력해주세요');
-			$('#member_pwd').focus();
-			return false;
-		}else if($('#email').val() == 0){
-			alert('이메일을 입력해주세요');
-			$('#email').focus();
-			return false;
-		}else if($('#phone').val() == 0){
-			alert('휴대폰 번호를 입력해주세요');
-			$('#phone').focus();
-			return false;
-		}else{
-			$('#joinForm').submit();
+			var regul1 = /^[a-z0-9]{4,12}$/;
+			var regul3 = /^[가-힝a-zA-Z]{2,}$/;
+			
+			if((objID.value) == ""){
+				alert("아이디를 입력하지 않았습니다.");
+				objID.focus();
+				return false;
+			}
+			
+			if(!check(regul1, objID,"아이디는 4~12자의 대문자와 숫자로만 입력 가능합니다.")){
+				return false;
+			}
+			
+			if((objPwd1.value) == ""){
+				alert("비밀번호를 입력해 주세요");
+				objPwd1.focus();
+				return false;
+			}
+			if((objPwd2.value) == ""){
+				alert("비밀번호를 입력해 주세요");
+				objPwd2.focus();
+				return false;
+			}
+			
+			if((objPwd1.value) != (objPwd2.value)){
+				alert("비밀번호가 일치 하지 않습니다.");
+				objPwd1.focus();
+				objPwd2.focus();
+				return false;
+			}
 			
 		}
-	}
 	</script>
 	
 </body>
