@@ -130,8 +130,9 @@
 	}
 </style>
 </head>
-<body>
-	<c:import url="../common/header.jsp"/>
+<body  style="font-family: 'Gugi'; ">
+<!-- 사장님 마이페이지 -->
+	<c:import url="../common/menubar.jsp"/>
 	<div class="outer">
 		<h1>도대담 회원님, 환영합니다.</h1>
 		<div class="inner introduceDiv">
@@ -261,7 +262,8 @@
 			</div>
 		</div>
 		<div class="updateBtnArea">
-			<button class="updateBtn">회원 정보 수정</button>
+			<c:url var="oinfo" value="oInfoPwdForm.me"/>
+			<button class="updateBtn" onclick="location.href='${oinfo}'" >회원 정보 수정</button>
 		</div>
 	</div>
 	<c:import url="../common/footer.jsp"/>
