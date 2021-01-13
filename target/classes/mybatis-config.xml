@@ -9,10 +9,13 @@
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/>
+		<!-- 테스트용 -->
+		<typeAlias type="com.kh.bob.shop.model.vo.Shop" alias="Shop"/>
 	</typeAliases>
 	 
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
 		<mapper resource="mapper/board-mapper.xml"/>
+		<mapper resource="mapper/shop-mapper.xml"/>
 	</mappers>
 	
 </configuration>

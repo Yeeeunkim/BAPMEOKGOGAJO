@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopMapper">
+
+<!-- @@@@@테스트용 식당 정보 불러와서 넘기기 -->
+	<resultMap type="Shop" id="shopResultSet">
+		<id property="sNo" column="SHOP_NO"/>
+		<result property="sName" column="SHOP_NAME"/>
+		<result property="sOpen" column="SHOP_OPEN"/>
+		<result property="sClose" column="SHOP_CLOSE"/>
+		<result property="sAddress" column="SHOP_ADDRESS"/>
+		<result property="sPhone" column="SHOP_PHONE"/>
+		<result property="maxResTime" column="MAX_RESERVATION_TIME"/>
+		<result property="sCategory" column="SHOP_CATE"/>
+		<result property="businessNum" column="BUSINESS_NUMBER"/>
+		<result property="mId" column="MEMBER_ID"/>
+	</resultMap>
+<!-- @@@@@테스트용 식당 정보 불러와서 넘기기 -->
+<select id="selectShop" resultMap="shopResultSet">
+	select *
+	from shop_info
+	where shop_no = #{sNo}
+</select>
+
+</mapper>
