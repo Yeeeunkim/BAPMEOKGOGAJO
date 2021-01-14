@@ -55,12 +55,10 @@
    margin: 0 auto;
    margin-top: 50px;
 }
-
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -69,28 +67,22 @@
    width: 250px !important;
    height: 50px;
 }
-
 #info{
    position: absolute;
    left: 10%;
 }
-
-
 .input-info{
    display: inline;
 }
-
 .cInput {
    width: 30%;
 }
-
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -118,7 +110,6 @@
       color: white;
   
 }
-
 #user{
 	display: block; 
 	margin: 0 auto; 
@@ -138,7 +129,6 @@
   text-align:center;
 }
 #btnR{
-
   background-color: #F42B03;
   border: none;
   color: white;
@@ -146,7 +136,6 @@
   float: right;
   width: 100px;
   height: 40px;
-
  }
  
  td {
@@ -157,7 +146,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .time{
 	margin: auto;
 	display: flex;
@@ -181,7 +169,6 @@
   width: 70%;
   height: 30%;
 }
-
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -215,14 +202,13 @@
        <div class="row">
        <div class="col-3"></div>
        <div class="col-2">
-         <select class="form-select" aria-label="Default select example">
-            <option value="1" selected="selected">12월 1일</option>
-            <option value="2">12월 2일</option>
-            <option value="3">12월 3일</option>
-            <option value="4">12월 4일</option>
-            <option value="5">12월 5일</option>
-            <option value="6">12월 6일</option>
-         </select>
+         	<div class="form-group row">
+			  <label for="example-date-input" class="col-2 col-form-label"></label>
+			  <div class="col-10">
+			    <input class="form-control" type="date" value="2011-08-19" id="example-date-input" style=width:200px;>
+			  </div>
+			</div>
+         
          </div>
          <div class="col-2">
          <select class="form-select" aria-label="Default select example">
@@ -235,8 +221,8 @@
          </select>
          </div><div class="col-2">
          <select class="form-select" aria-label="Default select example">
-            <option value="1" selected="selected">2명</option>
-            <option value="2">1명</option>
+            <option value="1">1명</option>
+            <option value="2" selected="selected">2명</option>
             <option value="3">3명</option>
             <option value="4">4명</option>
             <option value="5">5명</option>
@@ -408,6 +394,3 @@
    
 </body>
 </html>
-
-
-

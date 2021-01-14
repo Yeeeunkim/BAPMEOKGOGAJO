@@ -32,8 +32,10 @@ public class ShopServlet {
 	
 			@RequestMapping("Reservation.do")
 			public String reservationForm() {
+
 				return "shop/shopReservation";
 			}
+			
 			
 			@RequestMapping("shopEnrollAdd.do")
 			public String shopEnrollAdd(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg")  MultipartFile thumbnailImg, HttpServletRequest request
