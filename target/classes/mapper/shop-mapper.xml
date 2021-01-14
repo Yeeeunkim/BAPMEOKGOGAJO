@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopMapper">
+
+	<insert id="insertShop">
+		insert into shop_info values(seq_sno.nextval,#{ShopName},#{OpenTime},#{CloseTime},#{Address},#{ShopPhone},#{BreakTime},#{MaxReservationTime},#{ShopOrigin},#{ShopRename},#{ShopCate},#{businessNum},#{MemberId})
+	</insert>
+
+	 <insert id="insertMenu" >
+		<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
+			INTO shop_menu (menu_no, menu_name, menu_price,menu_status, menu_cate, shop_no)
+			VALUES (SEQ_MNO.nextval, #{item.MenuName}, #{item.MenuPrice}, 'Y', #{item.MenuCate},seq_sno.currval)
+		</foreach> 		
+	</insert>	 
+	
+	
+</mapper>

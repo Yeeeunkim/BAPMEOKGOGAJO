@@ -91,7 +91,7 @@
 
    <div id="shopListArea">
       <!--       <h1 style="text-align: center;">한식 ></h1> -->
-      <select class="form-select" aria-label="Default select example">
+      <select class="form-select" aria-label="Default select example"  id="myselect" onchange="mytypeFunction()">
          <option value="1" selected="selected">전체</option>
          <option value="2">한식</option>
          <option value="3">양식</option>
@@ -100,6 +100,17 @@
          <option value="6">분식</option>
       </select><br><br><br>
       
+      <script>
+		function mytypeFunction() {
+		  var type=document.getElementById("myselect").value;
+		  if(type==2){
+				  location.href= "${ contextPath }/shopEnroll.do"
+			  }
+		  
+		}
+		</script>
+      
+      
       <h2>전체</h2>
       
       
@@ -107,6 +118,8 @@
            <!-- 식당 영역 -->
            <!-- 식당 1행 -->
            <form>
+           	
+           
                <div class="row">
                  <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
