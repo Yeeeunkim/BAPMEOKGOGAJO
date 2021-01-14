@@ -75,7 +75,7 @@ public class ShopServlet {
 
 					}
 				}
-				
+				/*test*/
 				
 				int shopresult=siService.insertShop(si);
 				int menuresult=siService.insertMenu(shopmenu);
