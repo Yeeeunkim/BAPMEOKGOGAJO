@@ -1,8 +1,12 @@
 package com.kh.bob.shop.model.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.bob.shop.model.vo.Reserve;
 import com.kh.bob.shop.model.vo.Shop;
 
 @Repository("sDAO")
@@ -22,9 +26,18 @@ public class ShopDAO {
 
 	// 민병욱 시작 =================================================
 	
-	// @@@@@테스트용 식당 정보 불러와서 넘기기
+	// @@@@@테스트용 
 	public Shop selectShop(SqlSessionTemplate sqlSession, int sNo) {
 		return sqlSession.selectOne("shopMapper.selectShop", sNo);
+	}
+	public Reserve selectReserve(SqlSessionTemplate sqlSession, int rNo) {
+		return sqlSession.selectOne("shopMapper.selectReserve", rNo);
+	}
+	public List selectMenu(SqlSessionTemplate sqlSession, int rNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectMenu", rNo);
+	}
+	public List selectTable(SqlSessionTemplate sqlSession, int rNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectTable", rNo);
 	}
 	
 	// 민병욱 끝 ====================================================

@@ -1,5 +1,9 @@
 package com.kh.bob.shop.model.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.kh.bob.shop.model.vo.Reserve;
 import com.kh.bob.shop.model.vo.Shop;
 
 public interface ShopService {
@@ -18,8 +22,11 @@ public interface ShopService {
 
 	// 민병욱 시작 =================================================
 
-	// @@@@@테스트용 식당 정보 불러와서 넘기기
+	// @@@@@테스트용 
 	Shop selectShop(int sNo);
+	Reserve selectReserve(int rNo);
+	List selectMenu(int rNo);
+	List selectTable(int rNo);
 	
 	// 민병욱 끝 ====================================================
 

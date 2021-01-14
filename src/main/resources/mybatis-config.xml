@@ -12,6 +12,10 @@
 		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/>
 		<!-- 테스트용 -->
 		<typeAlias type="com.kh.bob.shop.model.vo.Shop" alias="Shop"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.Reserve" alias="Reserve"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.Menu" alias="Menu"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.Table" alias="Table"/>
+		
 	</typeAliases>
 	 
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->

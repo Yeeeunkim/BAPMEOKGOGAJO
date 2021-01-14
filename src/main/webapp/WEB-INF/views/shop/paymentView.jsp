@@ -71,20 +71,28 @@
 			</tr>
 			<tr>
 				<td align="center">메뉴 :</td>
-				<td>스시세상</td>
+				<td>
+					<c:forEach var="m" items="${ mList }">
+						${ m.mName } - ${ m.mQty } <br>
+					</c:forEach>
+				</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약테이블 :</td>
-				<td>2인석</td>
+				<td>
+					<c:forEach var="t" items="${ tList }">
+						${ t.sSize } 인석 - ${ t.sQty } <br>
+					</c:forEach>
+				</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약시간 :</td>
-				<td>14:00</td>
+				<td>${ reserve.rTime }</td>
 			</tr>
 			<tr class="red">
 				<td align="center">총금액 :</td>
-				<td>6000원</td>
-			</tr>
+				<td id="totalPrice">${ reserve.totalPrice }</td>
+			</tr> 
 		</table>
 		<br>
 <!-- 		<div id="map"></div> -->
@@ -107,7 +115,10 @@
 		var IMP = window.IMP; // 생략해도 괜찮습니다.
 	  	IMP.init("iamport"); // 발급받은 "가맹점 식별코드"를 사용합니다.
 		
+	  	var totalPrice = 0;
+	  	
 	  	var shopName = $('#sName').text();
+	  	totalPrice = $('#totalPrice').text();
 	  	
 	  	// 결제 버튼 누를 시 동작
 		function requestPay() {
@@ -119,7 +130,7 @@
 					pay_method : 'card',
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : shopName,
-					amount : 100, //판매 가격
+					amount : totalPrice, //판매 가격
 					buyer_email : 'iamport@siot.do',
 					buyer_name : '구매자이름',
 					buyer_tel : '010-1234-5678',

@@ -1,10 +1,14 @@
 package com.kh.bob.shop.model.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.bob.shop.model.dao.ShopDAO;
+import com.kh.bob.shop.model.vo.Reserve;
 import com.kh.bob.shop.model.vo.Shop;
 
 @Service("sService")
@@ -30,10 +34,22 @@ public class ShopServiceImple implements ShopService {
 
 	// 민병욱 시작 =================================================
 
-	// @@@@@테스트용 식당 정보 불러와서 넘기기
+	// @@@@@테스트용
 	@Override
 	public Shop selectShop(int sNo) {
 		return sDAO.selectShop(sqlSession, sNo);
+	}
+	@Override
+	public Reserve selectReserve(int rNo) {
+		return sDAO.selectReserve(sqlSession, rNo);
+	}
+	@Override
+	public List selectMenu(int rNo) {
+		return sDAO.selectMenu(sqlSession, rNo);
+	}
+	@Override
+	public List selectTable(int rNo) {
+		return sDAO.selectTable(sqlSession, rNo);
 	}
 	
 	// 민병욱 끝 ====================================================

@@ -2,24 +2,104 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="shopMapper">
 
-<!-- @@@@@테스트용 식당 정보 불러와서 넘기기 -->
+<!-- 강동기 시작 =============================================== -->
+   
+<!-- 강동기 끝 ================================================ -->
+
+   
+<!--  김예은 시작 ================================================ -->
+ 
+<!--  김예은 끝 ================================================= -->
+
+   
+<!-- 김하영 시작 ================================================ -->
+   
+<!-- 김하영 끝 ================================================= -->
+
+
+<!-- 민병욱 시작 ================================================= -->
+
+	<!-- @@@@@테스트용 -->
 	<resultMap type="Shop" id="shopResultSet">
-		<id property="sNo" column="SHOP_NO"/>
-		<result property="sName" column="SHOP_NAME"/>
-		<result property="sOpen" column="SHOP_OPEN"/>
-		<result property="sClose" column="SHOP_CLOSE"/>
-		<result property="sAddress" column="SHOP_ADDRESS"/>
-		<result property="sPhone" column="SHOP_PHONE"/>
-		<result property="maxResTime" column="MAX_RESERVATION_TIME"/>
-		<result property="sCategory" column="SHOP_CATE"/>
-		<result property="businessNum" column="BUSINESS_NUMBER"/>
-		<result property="mId" column="MEMBER_ID"/>
+		<id property="sNo" column="SHOP_NO" />
+		<result property="sName" column="SHOP_NAME" />
+		<result property="sOpen" column="SHOP_OPEN" />
+		<result property="sClose" column="SHOP_CLOSE" />
+		<result property="sAddress" column="SHOP_ADDRESS" />
+		<result property="sPhone" column="SHOP_PHONE" />
+		<result property="maxResTime" column="MAX_RESERVATION_TIME" />
+		<result property="sCategory" column="SHOP_CATE" />
+		<result property="businessNum" column="BUSINESS_NUMBER" />
+		<result property="mId" column="MEMBER_ID" />
 	</resultMap>
-<!-- @@@@@테스트용 식당 정보 불러와서 넘기기 -->
-<select id="selectShop" resultMap="shopResultSet">
-	select *
-	from shop_info
-	where shop_no = #{sNo}
-</select>
+	
+	<resultMap type="Reserve" id="reserveResultSet">
+		<id property="rNo" column="RESERVE_NO" />
+		<result property="rTime" column="RESERVE_TIME" />
+		<result property="totalPrice" column="TOTAL_PRICE" />
+		<result property="rStatus" column="RESERVE_STATUS" />
+		<result property="rName" column="RESERVE_NAME" />
+		<result property="rPhone" column="RESERVE_PHONE" />
+		<result property="rComment" column="RESERVE_COMMENT" />
+		<result property="rAD" column="RESERVE_AD" />
+		<result property="rPay" column="RESERVE_PAY" />
+		<result property="mId" column="MEMBER_ID" />
+		<result property="sNo" column="SHOP_NO" />
+	</resultMap>
+	
+	<resultMap type="Menu" id="menuResultSet">
+		<id property="mNo" column="mNo" />
+		<result property="mName" column="mName" />
+		<result property="mPrice" column="mPrice" />
+		<result property="mStatus" column="mStatus" />
+		<result property="sNo" column="sNo" />
+		<result property="rNo" column="rNo" />
+		<result property="mQty" column="mQty" />
+	</resultMap>
+	
+	<resultMap type="Table" id="tableResultSet">
+		<id property="rNo" column="RESERVE_NO" />
+		<result property="sSize" column="SEAT_SIZE" />
+		<result property="sQty" column="SEAT_QTY" />
+	</resultMap>
+	
+	<select id="selectShop" resultMap="shopResultSet">
+		select *
+		from shop_info
+		where shop_no = #{sNo}
+	</select>
+	
+	<select id="selectReserve" resultMap="reserveResultSet">
+		select *
+		from reserve_info
+		where reserve_no = #{rNo}
+	</select>
+	
+	<select id="selectMenu" resultMap="menuResultSet">
+		select *
+		from v_addPrice
+		where rNo = #{rNo}
+	</select>
+	
+	<select id="selectTable" resultMap="tableResultSet">
+		select *
+		from reserve_table
+		where reserve_no = #{rNo}
+	</select>
+
+   
+<!-- 민병욱 끝 ==================================================== -->
+   
+   
+<!-- 신진식 시작 =================================================== -->
+   
+<!-- 신진식 끝 ===================================================== -->
+
+   
+<!-- 원태원 시작 ==================================================== -->
+   
+<!-- 원태원 끝 ====================================================== -->
+
+
 
 </mapper>

@@ -75,17 +75,22 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					<tr class="nContents">
 						<td scope="row">${ b.bNo }</td>
 						<td class="nTitle">
-							<c:url var="qdetail" value="qdetail.no">
-								<c:param name="bNo" value="${ b.bNo }"/>
-								<c:param name="page" value="${ pi.currentPage }"/>
-							</c:url>
-							<a href="${ qdetail }" class="aTitle">${ b.bTitle }</a>
+							<c:if test="${ loginUser.member_id eq b.mId || loginUser.member_id eq 'admin'}">
+								<c:url var="qdetail" value="qdetail.no">
+									<c:param name="bNo" value="${ b.bNo }"/>
+									<c:param name="page" value="${ pi.currentPage }"/>
+								</c:url>
+								<a href="${ qdetail }" class="aTitle">${ b.bTitle }</a>
+							</c:if>
+							<c:if test="${ loginUser.member_id ne b.mId && loginUser.member_id ne 'admin'}">
+								<a onclick="noWriter();" class="aTitle">${ b.bTitle }</a>
+							</c:if>
 						</td>
 						<td>${ b.mId }</td>
 						<td>${ b.bWrite }</td>
 					</tr>				
 				</c:forEach>
-				</c:if>
+				</c:if> 
 				
 				</tbody>
 				
@@ -147,17 +152,21 @@ td{border-bottom: 1px solid #1D3557 !important;}
 			location.href = "${ contextPath }/qInsertForm.no"
 		}
 		
-		$(function(){
-			$('.nContents').mouseenter(function(){
-				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
-			}).mouseout(function(){
-				$(this).css({'color':'black', 'font-weight':'normal'});
-			}).click(function(){
-				var bNo = $(this).children('td').eq(0).text();
+// 		$(function(){
+// 			$('.nContents').mouseenter(function(){
+// 				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
+// 			}).mouseout(function(){
+// 				$(this).css({'color':'black', 'font-weight':'normal'});
+// 			}).click(function(){
+// 				var bNo = $(this).children('td').eq(0).text();
 				
-				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
-			});
-		});
+// 				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
+// 			});
+// 		});
+		
+		function noWriter(){
+			alert("작성자만 접근이 가능합니다.");
+		}
 	</script>
 </body>
 </html>
