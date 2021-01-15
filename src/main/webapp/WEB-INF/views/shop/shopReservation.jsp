@@ -352,6 +352,7 @@ h4,h2{margin-left:8%;}
      </div>
    
    
+   
    <br><br>
    <hr class="line">
    <br><br><br>
@@ -360,12 +361,97 @@ h4,h2{margin-left:8%;}
   <h2>식당 정보</h2>
   <br>
   <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp;서울특별시 강남구 역삼동 남도빌딩 3층&nbsp;&nbsp;&nbsp;
-  <!-- <input class= "cInput" type="text" name="address" id="address" placeholder="주소를 입력하세요."> -->
-  <br><br>
-  <img src="<%= request.getContextPath() %>/resources/images/지도.png" id="map"/>
-  <br><br><br><br>
+				<div id="map" style="width:70%;height:350px;"></div>
+
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef"></script>
+		 <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center : new daum.maps.LatLng(36.633535, 127.425882), // 지도의 중심좌표
+            level : 4
+        // 지도의 확대 레벨
+        };
  
+        // 지도를 생성합니다    
+        var map = new daum.maps.Map(mapContainer, mapOption);
+ 
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new daum.maps.services.Geocoder();
+ 
+        var myAddress = [
+                "용산구 한강대로 405", "영등포구 경인로 846", "동대문구 왕산로 214" ];
+ 
+        function myMarker(number, address) {
+            // 주소로 좌표를 검색합니다
+            geocoder
+                    .addressSearch(
+                            //'주소',
+                            address,
+                            function(result, status) {
+                                // 정상적으로 검색이 완료됐으면 
+                                if (status === daum.maps.services.Status.OK) {
+ 
+                                    var coords = new daum.maps.LatLng(
+                                            result[0].y, result[0].x);
+ 
+                                    // 결과값으로 받은 위치를 마커로 표시합니다
+                                    /*
+                                    var marker = new daum.maps.Marker({
+                                        map : map,
+                                        position : coords
+                                    });
+                                     */
+ 
+                                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                                    /*
+                                    var infowindow = new daum.maps.InfoWindow(
+                                            {
+                                                // content : '<div style="width:50px;text-align:center;padding:3px 0;">I</div>'
+                                                content : '<div style="color:red;">' +  number + '</div>'
+                                            });
+                                    infowindow.open(map, marker);
+                                     */
+ 
+                                    // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                                    var content = '<div class="customoverlay">'
+                                            + '    <span class="title">'
+                                            + '<div style="font-style:normal; color:red; font-weight:bold; font-size:2.0em">'
+                                            + number + '</div>' + '</span>'
+                                            + '</div>';
+ 
+                                    // 커스텀 오버레이가 표시될 위치입니다 
+                                    var position = new daum.maps.LatLng(
+                                            result[0].y, result[0].x);
+ 
+                                    // 커스텀 오버레이를 생성합니다
+                                    var customOverlay = new daum.maps.CustomOverlay(
+                                            {
+                                                map : map,
+                                                position : position,
+                                                content : content,
+                                                yAnchor : 1
+                                            });
+ 
+                                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                                    map.setCenter(coords);
+                                }
+                            });
+        }
+ 
+        for (i = 0; i < myAddress.length; i++) {
+            myMarker(i + 1, myAddress[i]);
+        }
+    </script>
   </div>
+
+
+
+
+
+
+
+
+
   
   <hr class="line">
   <br><br><br>
