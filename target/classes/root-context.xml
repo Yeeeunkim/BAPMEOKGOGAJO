@@ -4,9 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- DateBase 등록 : BasicDataSource클래스 사용할거임, 
-	** 이미 만들어져있는걸 클래스는 어노테이션 불가능해서 xml로 설정해야함 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"><!-- ㄴ close라는 소멸 메소드 쓸거야 -->
+	<!-- DataBase 등록 : BasicDataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="BAPMEOKGOGAJO"/>

@@ -143,10 +143,10 @@
 				}, function(rsp) {
 					if (rsp.success) {
 						var msg = '결제가 완료되었습니다.';
-						msg += '고유ID : ' + rsp.imp_uid;
-						msg += '상점 거래ID : ' + rsp.merchant_uid;
-						msg += '결제 금액 : ' + rsp.paid_amount;
-						msg += '카드 승인번호 : ' + rsp.apply_num;
+						msg += '\n고유ID : ' + rsp.imp_uid;
+						msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+						msg += '\n결제 금액 : ' + rsp.paid_amount;
+						msg += '\n카드 승인번호 : ' + rsp.apply_num;
 						$.ajax({
 							url : "payment.sh", // 가맹점 서버 -->
 							data : { 

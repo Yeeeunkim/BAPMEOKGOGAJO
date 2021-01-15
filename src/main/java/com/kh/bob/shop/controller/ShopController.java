@@ -40,19 +40,19 @@ public class ShopController {
 		// 식당 정보 불러와서 넘기기 (식당이름)
 		int sNo = 1;
 		Shop shop = sService.selectShop(sNo);
-//		System.out.println(shop);
+		System.out.println(shop);
 		// 예약 정보 가져오기 (총 금액, 예약시간) -> 결과 한개의 객체
 		int rNo = 1;
 		Reserve reserve = sService.selectReserve(rNo);
-//		System.out.println(reserve);
+		System.out.println(reserve);
 		// 예약 메뉴 가져오기 (주문메뉴) -> 결과 여러개일 수 있으니 list
 //		Map<String, Object> menuMap = new HashMap<String, Object>();
 		List mList = sService.selectMenu(rNo);
-//		System.out.println(mList);
+		System.out.println(mList);
 		// 예약 자리 정보 가져오기 (좌석) -> 결과 여러개일 수 있으니 list
 //		Map<String, Object> tableMap = sService.selectTable(rNo);
 		List tList = sService.selectTable(rNo);
-//		System.out.println(tList);
+		System.out.println(tList);
 		
 		// 예약정보 불러오기
 		
