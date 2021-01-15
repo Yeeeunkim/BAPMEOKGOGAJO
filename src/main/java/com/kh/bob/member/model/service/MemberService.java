@@ -27,9 +27,9 @@ public interface MemberService {
 
 	Member findPwd(Model model);
 
-	int pwdUpdate(String member_pwd);
 
-	int updatePwd(HashMap<String, String> map);
+
+	int pwdUpdate(HashMap<String, String> map);
 
 
 

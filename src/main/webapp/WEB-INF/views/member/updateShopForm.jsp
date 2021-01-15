@@ -63,7 +63,7 @@
 	<c:import url="../common/menubar.jsp"/>
 	<div class="outer">
 		<h2>식당 정보 수정</h2>
-		<form action="mInfoUpdate.me" method="post" id="updateForm" name="updateForm">
+		<form action="oInfoUpdate.me" method="post" id="updateForm" name="updateForm">
 			<table align="center">
 				<tr height="70px">
 					<td width="150px">사업자 이름 : </td>
