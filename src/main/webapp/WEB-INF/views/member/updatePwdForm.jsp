@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 수정</title>
 <style>
 	.outer{
 		width: 70%;
@@ -72,11 +72,13 @@
 				</tr>
 				<tr height="70px">
 					<td>새 비밀번호 </td>
-					<td><input type="password" class="input" id="newPwd"name="member_newPwd"></td>
+					<td><input type="password" class="input" id="newPwd"name="member_newPwd1"></td>
+					<td><label id="pwd1Result"></label></td>
 				</tr>
 					 <tr height="70px">
 					<td>새 비밀번호 확인</td>
 					<td><input type="password" class="input" id="newPwCheck" name="member_newPwd2"  ></td>
+					<td><label id="pwd2Result"></label></td>
 				</tr> 
 			</table>
 			<br><br><br>
@@ -87,39 +89,49 @@
 	</div>
 	<c:import url="../common/footer.jsp"/>
 	<script>
-	$('#newPw').on('keyup', function() {
-		//비밀번호 공백 확인
-		if($("#newPw").val() === ""){
-			$('#newPwMsg').html('<b>비밀번호는 필수 정보입니다.</b>');
-			chk2 = false;
-		}		         
-		//비밀번호 유효성검사
-		else if(!getPwCheck.test($("#newPw").val()) || $("#newPw").val().length < 6){
-			$('#newPwMsg').html('<b>특수문자 포함 6자 이상 입력하세요</b>');
-			chk2 = false;
-		} else {
-			$('#newPwMsg').html('');
-			chk2 = true;
-		}
-				
-	}); //end of new password
-				
-				
-	//비밀번호 확인
-	$('#newPwCheck').on('keyup', function() {
+	$(function(){
+		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
 		
-		if($("#newPwCheck").val() === "") {
-			$('#newPwMsg').html('<b">비밀번호 확인은 필수 정보입니다.</b>');
-			chk3 = false;
-		} else if( $("#newPw").val() != $("#newPwCheck").val() ) {
-			$('#newPwMsg').html('<b>비밀번호가 일치하지 않습니다.</b>');
-			chk3 = false;
-		} else {
-			$('#newPwMsg').html('');
-			chk3 = true;
-	}
+		$('#newPwd').blur(function(){
+			 if(false === reg.test($('#newPwd').val())){
+				 $('#pwd1Result').text('사용 불가능한 비밀번호입니다.');
+				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+				 $('#newPwd').val('');
+		         $('#newPwd').focus();
+		         return false;
+			 }else if($('#newPwd').val()==''){
+				 $('#pwd1Result').text('비밀번호를  입력해주세요.');
+				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+				 $('#newPwd').val('');
+		         $('#newPwd').focus();
+		         return false;
+			}else{
+					$('#pwd1Result').text('사용 가능한 비밀번호입니다');
+					$('#pwd1Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
+					return true;
+			}	
+		});
 		
-				});
+		$('#newPwCheck').blur(function(){
+			 if($('#newPwd').val() != $('#newPwCheck').val()){
+				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');
+				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+				 $('#newPwCheck').val('');
+		         $('#newPwCheck').focus();
+		         return false;
+			 }else if($('#newPwCheck').val()==''){
+				 $('#pwd2Result').text('비밀번호를  입력해주세요.');
+				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+				 $('#newPwCheck').val('');
+		         $('#newPwCheck').focus();
+		         return false;
+			}else{
+					$('#pwd2Result').text('비밀번호가 일치합니다.');
+					$('#pwd2Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
+					return true;
+			}	
+		});
+	});
 	</script>
 </body>
 </html>

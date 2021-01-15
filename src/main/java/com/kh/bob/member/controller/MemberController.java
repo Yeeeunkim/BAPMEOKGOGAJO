@@ -184,7 +184,7 @@ public class MemberController {
 		}
 	}
 	
-	// 수정 아이디 중복검사
+	//아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
 		boolean isUsable = bmService.checkIdDup(member_id) == 0 ? true : false;
@@ -196,7 +196,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-	 
+
 	
 	//일반 마이페이지  
 	@RequestMapping("myPage.me")
@@ -204,45 +204,42 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	//비밀번호 변경
+	
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";
 	}
 	
-	
-	@RequestMapping("mInfoPwdForm.me")
-	public String mCheckPwdForm() {
-		return "checkPwd";
-	}
-	
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.me")
-	public String pwdUpdate(@RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd") String newPwd,
-						HttpSession session) {
-		
+	public String pwdUpdate( @RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd1") String newPwd,
+			HttpSession session) {
 		Member m = bmService.loginMember((Member)session.getAttribute("loginUser"));
-		System.out.println("m :" + m);
+		Member loginUser = bmService.loginMember(m);
 		
-		if(member_pwd == m.getMember_pwd()) {
-			String encNewPwd  = bcrypt.encode(newPwd);
-			System.out.println("encNewPwd : " + encNewPwd);
-
+		if(loginUser != null) {
+			
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("member_id", m.getMember_id());
-			map.put("newPwd", encNewPwd);
-			
-			int result = bmService.updatePwd(map);
+			map.put("newPwd", newPwd);
+			int result = bmService.pwdUpdate(map);
 			
 			if(result > 0) {
 				return "myPage";
 			}else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
-		} else {
-			throw new MemberException("기존 비밀번호가 틀렸습니다.");
+		}else {
+			
+			throw new MemberException("기존 비밀번호 틀렸습니다.");
 		}
 	}
+	
+	@RequestMapping("mInfoPwdForm.me")
+	public String mCheckPwdForm() {
+		return "checkPwd";
+	}
+	
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
@@ -281,7 +278,7 @@ public class MemberController {
 	}
 	
 	//사업자 정보 수정 비밀번호 기능 페이지 
-		@RequestMapping("oInfokPwd.me")
+		@RequestMapping("oInfoPwd.me")
 		public String oCheckPwd(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.infoPwd(m);
 			

@@ -44,13 +44,14 @@ public class MemberDAO {
 	public Member findPwd(SqlSessionTemplate sqlSession, Model model) {
 		return sqlSession.selectOne("memberMapper.selectPwd", model);
 	}
-
-	public int pwdUpate(SqlSessionTemplate sqlSession, String member_pwd) {
-		return sqlSession.update("memberMapper.pwdUpdate", member_pwd);
+	public int pwdUpdate(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("memberMapper.pwdUpdate", map);
 	}
 
-	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		return sqlSession.update("memberMapper.updatePwd", map);
-	}
+	
+	
+	
 // 김예은 끝 =================================================
+
 }
