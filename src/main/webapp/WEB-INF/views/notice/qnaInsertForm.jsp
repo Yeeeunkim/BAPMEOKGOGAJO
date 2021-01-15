@@ -17,16 +17,21 @@
     
     /*테이블관련*/   
 	table{ width: 500px; font-family: 'Gugi'; }
-	#qnaTable {text-align: left;  margin: auto; width: 500px;  margin-top: 45px; }
-	#qnaTable th{border-bottom: 3px solid #1D3557;}
-	#qnaTable td{border-bottom: 1px solid #1D3557;}
+	#noticeTable {text-align: left;  margin: auto; width: 500px;  margin-top: 45px; }
+	#noticeTable th{border-bottom: 3px solid #1D3557;}
+	#noticeTable td{border-bottom: 1px solid #1D3557;}
 
-	#content_text {display: block; margin-right: auto; width: 500px;
+	 #content_text {display: block; margin-right: auto; width: 500px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
-	#text{
-		border: none;
+	
+	#titleInput {
+		width: 87%;
+		border: 0px solid lightgray;
 	}
 	
+	#writerInput{
+		border: none;
+	}
 	
 	/*글쓰기 버튼*/
 	.btn1{ width: 100px; height: 30px; border: none; border-radius: 50px;  background: #F42B03; color:white; margin-left: 310px; margin-top: 40px;} 
@@ -38,44 +43,49 @@
 </head>
 <body>
 	<c:import url="../common/menubar.jsp"/>
-	<h1 align="center" style="margin-top: 110px; font-family: 'Gugi';">QnA 등록 ></h1>
+	<h1 align="center" style="margin-top: 110px; font-family: 'Gugi';">QNA 등록 ></h1>
 	<form action="qInsert.no" method="post" encType="multipart/form-data"> 
-			<table id="qnaTable">
+			<table id="noticeTable">
 				<th></th><th></th><th></th>
 				<tr>
-					<th>&nbsp제목&nbsp&nbsp <input type="text" id="text" name="title" placeholder="제목을 입력하세요."></th>
+					<th>&nbsp&nbsp제목&nbsp&nbsp&nbsp&nbsp
+					<input type="text" id="titleInput" name="bTitle"></th>
 					<th></th>
 					<th></th>
 				</tr>
 				<tr>
-					<th>&nbsp작성자&nbsp&nbsp<input type="text" name="bWriter" readonly value="${ loginUser.id }" style="background: lightgrey;"></th>
-					<th></th>
-					<th></th>
+					<th>&nbsp&nbsp작성자&nbsp&nbsp&nbsp&nbsp
+					<input type="text" id="writerInput" readonly="readonly" name="memberId" value="test"></th>
+				</tr>
+				<tr>
+					<div id="fileArea">
+					<th><input type="file" id="thumbnailImg1"  name="uploadFile" onchange="LoadImg(this,1)" style="border: none;"></th>
+					</div>
+					<br>
+					    <tr> 
+							 <th colspan= "3">
+								<div id="titleImgArea" style="width: 100%; height: 100%;">
+									<img id="titleImg" width="100%" height="100%" >
+								</div>
+							</th>
+						</tr> 
 				</tr>
 				<tr>  
 					<th>
-						<textarea id="content_text" name="content" placeholder="질문을 입력해주세요." style="font-family: 'Gugi;"></textarea>
-					</th>
-				</tr>
-				<tr>  
-					<th>
-						<textarea id="content_text" name="content" placeholder="답변을 입력해주세요." style="font-family: 'Gugi;"></textarea>
+						<textarea id="content_text" name="bContents" placeholder="내용을 입력해주세요." style="font-family: 'Gugi; width: 100%;"></textarea>
 					</th>
 				</tr>
 				<tr style="border: none;">
 					<td colspan="2" align="center" style="border: none;">
 					 <button type="submit" class="btn1"  style="position: absolute;">작성완료</button>
-					 <button class="btn2" id="cancelBtn" onclick="location.href='nlist.no'">목록으로</button>
+					 <button type="button" class="btn2" onclick="location.href= 'qList.no'">목록으로</button>
 					</td style="border: none;"> 
 				</tr style="border: none;">
 			</table>
-	</form> 
-	 
-	 <c:import url="../common/noticeSidebar.jsp" />  
-	  
+	</form> 	  
    
-         <c:import url="../common/footer.jsp"/>
-	 <script type="text/javascript" >
+    <c:import url="../common/footer.jsp"/>
+	<script type="text/javascript" >
 	 	// 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
 				$(function(){
 						$("#fileArea").hide(); 

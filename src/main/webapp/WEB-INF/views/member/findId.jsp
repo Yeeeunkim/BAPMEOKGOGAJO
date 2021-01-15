@@ -73,10 +73,170 @@
 	color: black;
 } 
 
+/*메뉴바 */
+#logo{
+		width: 60px;
+		height: 40px;
+		src:"resources/images/logo.png"  
+	}
+	nav{
+		margin:0;
+		font-family: 'Gugi';
+	}
+	
+	a{
+		text-decoration: none;
+		color:white;
+	}
+	a:hover {
+		color:orange;
+	}
+	
+	.navbar {
+		display:flex; 
+		justify-content:space-between;
+		align-items:center;
+		background-color: #F42B03;
+		padding:  8px 12px;
+	}
+	
+	
+	.navbar_logo{
+		font-size:24px;
+		color:white;
+		margin-left: 400px;
+	}
+	
+	.navbar_logo i{
+		color:#1D3557;
+	}	
+	
+	.navbar_icons{
+		list-style:none;
+		color:white;
+		display:flex;
+		padding-left: 0;
+		margin-right: 370px;
+		
+	}
+	
+	.naver_icons li {
+		padding:8px 12px;
+	}
+	
+	.menu {
+		font-weight:bold;
+		padding-right:30px;
+		padding-left: 30px;
+		margin-top: 10px;	
+	}
+
+	@media screen and (max-width: 780px) {
+		.navbar{
+			flex-direction:column;
+			align-items: flex-start;  /*수직으로 설정*/
+			padding:8px 24px;
+		}	
+		
+		.search_icon {
+			flex-direction: column;
+			align-items:center;
+			text-align: center;
+			width:100%
+		}
+		
+		.naver_menu li {
+			width:100%;
+			
+		}
+		
+		.navbar_icons {
+			lex-direction: column;
+			justify-content: center;
+			width:100%;
+		}
+		
+		.navbar_icons li {
+			width:100%;
+			text-align: center;
+		}
+	}
+	
+	
+	/*--------------------------------------------------------------------*/
+	
+ 	.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color:#F42B03;
+    border-radius: 30px;
+    padding: 10px;
+    }
+    
+   .searchbar {
+   	list-style:none;
+   } 
+
+    .search_input{
+	    color: black;
+	    border: 0;
+	    outline: 0;
+	    background: none;
+	    width: 0;
+	    caret-color:transparent;
+	    line-height: 40px;
+	    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+	    padding: 0 10px;
+	    width: 200px;  /*수정 보류!*/
+	    caret-color:black;
+	    transition: width 0.4s linear;
+	    background-color: white;
+	    border-radius:4px;
+    }
+
+    .searchbar:hover > .search_icon{
+	    background: white;
+	    color: #e74c3c;
+    }
+
+    .search_icon{
+	    height: 50px;
+	    width: 50px;
+	    float: right;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    border-radius: 50%;
+	    color:white;
+	    text-decoration:none;
+    }
 </style>
 </head>
 <body style="font-family: 'Gugi'; ">
-	<jsp:include page="../common/menubar.jsp" />
+<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+
+	 <div class="loginArea" align="right">
+	   <!-- 로그인  안한상태 -->
+			<nav class="navbar" id="gnb">
+				<span class="navbar_logo">
+					<img id="logo" src="resources/images/logo.png">
+					<a href="">밥먹고 가조</a>
+						<span class="searchbar">
+	          				 <input class="search_input" type="text" name="" placeholder="Search...">
+	         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+	       				 </span>
+				</span>  
+				<ul class="navbar_icons" >
+					<li class="menu" onclick="shop();"><a href="#">About</a></li>
+				     <li class="menu" onclick="location.href='loginView.me'" ><a href="#">Login</a></li> 
+				     <li class="menu" onclick="location.href='enrollForm.me'" ><a href="#">Join</a></li> 
+				</ul>
+			</nav>
+	 </div>
 
 	<div id="loginArea">
 		<form>
@@ -88,14 +248,14 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">아이디</label> 
-				<input type="text" class="form-control inputForm" id="inputId" readonly="readonly">
+				<input type="text" class="form-control inputForm" id="inputId" readonly="readonly" value="${ findId.member_id }">
 				<label class="hidden"></label>
 			</div>
 			</div>
 			<br>
-			<button type="button" class="btn btn-primary loginBtn"> 로그인 </button>
+			<button type="button" class="btn btn-primary loginBtn" onclick="location.href='loginView.me'"> 로그인 </button>
 			<br>
-			<button type="button" class="btn btn-primary loginBtn"> 비밀번호 찾기 </button>
+			<button type="button" class="btn btn-primary loginBtn" onclick="location.href='findFormPwd.me'"> 비밀번호 찾기 </button>
 		</form>
 	</div>
 	

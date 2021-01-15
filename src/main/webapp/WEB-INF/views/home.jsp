@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <style>
 	
-	p,h4{font-family: 'Gugi';}
+	p,h4{font-family: 'Gugi';} 
 	
 	 .img{height:70vh;background-size: cover;margin:0;font-family:'Gugi';
 	 	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url("<%= request.getContextPath() %>/resources/images/main/main.png");}
@@ -42,7 +42,7 @@
   	
 	.container-4{
 	  overflow: hidden;
-	  width: 300px;
+	  width: 300px; 
 	  vertical-align: middle;
 	  white-space: nowrap;
 	}
@@ -73,59 +73,58 @@
 	.list_wrap .item .cont {padding:20px; width:120%;}
 	.list_wrap .item strong a {display:block; margin:0 0 10px 0; font-size:16px; letter-spacing: -1px;}
 	.list_wrap .item p {font-size:13px; letter-spacing:-1px;}	
-	.go{display:inline-block; margin-top:10px; padding:5px 10px; background: #eee; font-size:13px; letter-spacing:-1px;}
+	.go{display:inline-block; margin-top:10px; padding:5px 10px; background: #eee; font-size:13px; letter-spacing:-1px;} 
 	
 	/*------------------------------------------------------------------*/
 	
 	 .carousel {width:70%; margin-left:15%; margin-bottom:100px;}
-	.far fa-star {background:yellow;}
+	.far fa-star {background:yellow;} 
 	
 	/*---------------------------------------------------------------------------------------*/
-* {
-  box-sizing: border-box;
-}
-
-form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border:0px;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-   border-radius: 15px 0 0 15px;
-}
-
-
-form.example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background:#F42B03;
-  color: white;
-  font-size: 17px;
-  border: 0px;
-  border-left: none;
-  cursor: pointer;
-    border-radius: 0 15px 15px 0;
-}
-
-
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.card { margin-left:10px;}
-.card{display:inline-block; }
+	* {
+	  box-sizing: border-box;
+	}
+	
+	form.example input[type=text] { 
+	  padding: 10px;
+	  font-size: 17px;
+	  border:0px;
+	  float: left;
+	  width: 80%;
+	  background: #f1f1f1;
+	   border-radius: 15px 0 0 15px; 
+	}
+	
+	
+	form.example button {
+	  float: left;
+	  width: 20%;
+	  padding: 10px;
+	  background:#F42B03;
+	  color: white;
+	  font-size: 17px;
+	  border: 0px;
+	  border-left: none;
+	  cursor: pointer;
+	    border-radius: 0 15px 15px 0;
+	}
+	
+	
+	form.example::after {
+	  content: "";
+	  clear: both;
+	  display: table;
+	}
+	
+	.card { margin-left:10px;} 
+	.card{display:inline-block; }   
 
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-	<c:import url="WEB-INF/views/common/menubar.jsp"/>	
-
-	
+ <%@ include file="common/menubar.jsp" %>
+ 
 	  <div class="img">
         <div class="content">
             <h1> 솔직한 리뷰, 믿을 수 있는 평점</h1>
@@ -278,36 +277,34 @@ form.example::after {
 	
 	<br><br><br>
 	<h4 style="text-align:center">메뉴별 인기 맛집></h4>
-	
 		
-	<div class="carousel">
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png" width="200px">item 1</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/중식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/일식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/중식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/일식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/중식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png" width="200px">item 2</div>
-  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
-</div>
-	  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	  <script src='http://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.15/slick.min.js'></script>
+		<div class="carousel">
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png" width="200px">item 1</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/중식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/일식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/중식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/일식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/중식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png" width="200px">item 2</div>
+		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
+		</div>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.15/slick.min.js'></script>
 	<script type="text/javascript">
-$('.carousel').slick({slidesToShow:5, slidesToScroll:5, dots:true});	
+	$('.carousel').slick({slidesToShow:5, slidesToScroll:5, dots:true});	
 	
-</script>
-		mytest
+	</script>
 	<br><br>
-	<c:import url="WEB-INF/views/common/footer.jsp"/>
+	<%@ include file="common/footer.jsp" %>
 
 	
 </body>

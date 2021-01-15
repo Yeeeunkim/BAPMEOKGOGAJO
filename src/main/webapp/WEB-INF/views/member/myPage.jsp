@@ -45,10 +45,12 @@
 	}
 </style>
 </head>
-<body>
-	<c:import url="../common/header.jsp"/>
-	<div class="outer">
-		<h1>도대담 회원님, 환영합니다.</h1>
+<body style="font-family: 'Gugi'; " >
+
+	<jsp:include page="../common/menubar.jsp" />
+	
+	<div class="outer"><br>
+		<h1><c:out value="${ loginUser.member_name}님 환영합니다."/></h1>
 		<div class="mid">
 			<h5>예약 내역 조회</h5>
 			<div class="inner">
@@ -80,10 +82,13 @@
 						<td>2020-11-28</td>
 					</tr>
 				</table>
-				<button class="updateBtn">회원 정보 수정</button>
+				<c:url var="pwdUpdate" value="mPwdUpdate.me"/>
+				<button class="updateBtn" onclick="location.href='${pwdUpdate}'">비밀번호 변경</button>
+				<c:url var="myinfo" value="mInfoPwdForm.me"/>
+				<button class="updateBtn" onclick="location.href='${myinfo}'">회원 정보 수정</button>
 			</div>
 		</div>
-	</div>
-	<c:import url="../common/footer.jsp"/>
+	  </div>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
