@@ -1,5 +1,6 @@
 package com.kh.bob.member.model.vo;
 
+<<<<<<< HEAD
 import java.sql.Date;
 
 public class Member {
@@ -119,6 +120,4 @@ public class Member {
 				+ "]";
 	}
 
-	
-	
 }

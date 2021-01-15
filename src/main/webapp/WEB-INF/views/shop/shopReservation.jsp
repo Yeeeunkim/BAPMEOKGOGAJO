@@ -55,12 +55,10 @@
    margin: 0 auto;
    margin-top: 50px;
 }
-
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -69,28 +67,22 @@
    width: 250px !important;
    height: 50px;
 }
-
 #info{
    position: absolute;
    left: 10%;
 }
-
-
 .input-info{
    display: inline;
 }
-
 .cInput {
    width: 30%;
 }
-
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -118,7 +110,6 @@
       color: white;
   
 }
-
 #user{
 	display: block; 
 	margin: 0 auto; 
@@ -138,7 +129,6 @@
   text-align:center;
 }
 #btnR{
-
   background-color: #F42B03;
   border: none;
   color: white;
@@ -146,7 +136,6 @@
   float: right;
   width: 100px;
   height: 40px;
-
  }
  
  td {
@@ -157,7 +146,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .time{
 	margin: auto;
 	display: flex;
@@ -182,13 +170,14 @@
   height: 30%;
 }
 
+h4,h2{margin-left:8%;}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 중식</h2>
+          <h2>중식</h2>
           
 
    <!-- 사진, 지도 폼 -->
@@ -214,16 +203,24 @@
 <!--    <div class="btn-group"> -->
        <div class="row">
        <div class="col-3"></div>
-       <div class="col-2">
-         <select class="form-select" aria-label="Default select example">
-            <option value="1" selected="selected">12월 1일</option>
-            <option value="2">12월 2일</option>
-            <option value="3">12월 3일</option>
-            <option value="4">12월 4일</option>
-            <option value="5">12월 5일</option>
-            <option value="6">12월 6일</option>
-         </select>
-         </div>
+	       <div class="col-2">
+	         	<div class="form-group row">
+				  <label for="example-date-input" class="col-2 col-form-label"></label>
+				  <div class="col-10">
+				    <input class="form-control" type="date" id="example-date-input" max="" style=width:200px; >
+				  </div>
+				</div>
+	
+				
+				<script>  /*날짜 범위 제한*/
+				  document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
+				  var today = new Date();
+				  var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
+				  document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+				  document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
+				</script>
+	         </div>
+         
          <div class="col-2">
          <select class="form-select" aria-label="Default select example">
             <option value="1" selected="selected">오후 12:30</option>
@@ -235,8 +232,8 @@
          </select>
          </div><div class="col-2">
          <select class="form-select" aria-label="Default select example">
-            <option value="1" selected="selected">2명</option>
-            <option value="2">1명</option>
+            <option value="1">1명</option>
+            <option value="2" selected="selected">2명</option>
             <option value="3">3명</option>
             <option value="4">4명</option>
             <option value="5">5명</option>
@@ -245,40 +242,7 @@
          </div>
          <div class="col-3"></div>
          </div>
-<!--     </div> -->
-   
-  
-   
-    <!-- <div class="btn-group">
-     <button type="button" class="btn btn-primary">Sony</button>
-     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-       <span class="caret"></span>
-     </button>
-     <div class="dropdown-menu">
-       <a class="dropdown-item" href="#">Tablet</a>
-       <a class="dropdown-item" href="#">Smartphone</a>
-     </div>
-     
-     <button type="button" class="btn btn-primary">Sony</button>
-     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-       <span class="caret"></span>
-     </button>
-     <div class="dropdown-menu">
-       <a class="dropdown-item" href="#">Tablet</a>
-       <a class="dropdown-item" href="#">Smartphone</a>
-     </div>
-     
-     <button type="button" class="btn btn-primary">Sony</button>
-     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-       <span class="caret"></span>
-     </button>
-     <div class="dropdown-menu">
-       <a class="dropdown-item" href="#">Tablet</a>
-       <a class="dropdown-item" href="#">Smartphone</a>
-     </div>
-   </div> -->
-  
-   
+
    
    
    <br><br><br><br>
@@ -298,7 +262,7 @@
   <div class="container">
   <h2>메뉴</h2>
   <br><br>
-  <h4>&nbsp;&nbsp;&nbsp;메인 ></h4>
+  <h4>메인 ></h4>
    <table class="table table-bordered " id="menu">
        <thead>
          <tr>
@@ -323,11 +287,14 @@
        </tbody>
      </table>
    
-   <br>
-   <br><br><br>
+		
    
    
-   <h4>&nbsp;&nbsp;&nbsp;사이드 ></h4>
+   
+   <br><br><br><br>
+   
+   
+   <h4>사이드 ></h4>
    <table class="table table-bordered table-sm" id="menu">
        <thead>
          <tr>
@@ -350,6 +317,33 @@
          </tr>
        </tbody>
      </table>
+     
+     
+     <h4>음료 ></h4>
+   <table class="table table-bordered table-sm" id="menu">
+       <thead>
+         <tr>
+           <th>메뉴</th>
+           <th>가격</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td>사이다</td>
+           <td>2000원</td>
+         </tr>
+         <tr>
+           <td>콜라</td>
+           <td>2000원</td>
+         </tr>
+         <tr>
+           <td>소주</td>
+           <td>4000원</td>
+         </tr>
+       </tbody>
+     </table>
+     
+     
      
      <br>
      </div>
@@ -408,6 +402,3 @@
    
 </body>
 </html>
-
-
-

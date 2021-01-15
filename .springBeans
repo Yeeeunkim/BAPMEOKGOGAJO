@@ -2,6 +2,7 @@
 <beansProjectDescription>
 	<version>1</version>
 	<pluginVersion><![CDATA[3.9.16.202012221225-CI-B2753]]></pluginVersion>
+
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
