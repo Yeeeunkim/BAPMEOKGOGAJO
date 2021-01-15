@@ -6,7 +6,6 @@ public class Table {
 	private int sSize;	// 좌석크기  ex) 2인석, 4인석..
 	
 	public Table() {}
-	
 
 	public Table(int rNo, int sQty, int sSize) {
 		super();

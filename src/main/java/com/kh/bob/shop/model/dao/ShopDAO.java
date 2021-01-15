@@ -39,6 +39,9 @@ public class ShopDAO {
 	public List selectTable(SqlSessionTemplate sqlSession, int rNo) {
 		return (ArrayList)sqlSession.selectList("shopMapper.selectTable", rNo);
 	}
+	public int successReserve(SqlSessionTemplate sqlSession, int rNo) {
+		return sqlSession.update("shopMapper.successReserve", rNo);
+	}
 	
 	// 민병욱 끝 ====================================================
 

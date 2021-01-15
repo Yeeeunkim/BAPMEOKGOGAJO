@@ -94,6 +94,9 @@
 				<td id="totalPrice">${ reserve.totalPrice }</td>
 			</tr> 
 		</table>
+		
+		
+		<input type="hidden" id="rNo" value='${ reserve.rNo }'>
 		<br>
 <!-- 		<div id="map"></div> -->
 		<br><br>
@@ -119,6 +122,7 @@
 	  	
 	  	var shopName = $('#sName').text();
 	  	totalPrice = $('#totalPrice').text();
+	  	var rNo = $('#rNo').val();
 	  	
 	  	// 결제 버튼 누를 시 동작
 		function requestPay() {
@@ -130,7 +134,7 @@
 					pay_method : 'card',
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : shopName,
-					amount : totalPrice, //판매 가격
+					amount : 10, // totalPrice, //판매 가격
 					buyer_email : 'iamport@siot.do',
 					buyer_name : '구매자이름',
 					buyer_tel : '010-1234-5678',
@@ -144,17 +148,14 @@
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						msg += '카드 승인번호 : ' + rsp.apply_num;
 						$.ajax({
-							url : "https://www.myservice.com/payments/complete", // 가맹점 서버 -->
-							method : "POST", 
-							headers : { 
-									"Content-Type" : "application/json" 
-							}, 
+							url : "payment.sh", // 가맹점 서버 -->
 							data : { 
-							imp_uid : rsp.imp_uid, 
-							merchant_uid : rsp.merchant_uid 
-							} 
-						}).done(function(data) {
-					location.href='<%=request.getContextPath()%>/resView.sh' 
+								imp_uid : rsp.imp_uid, 
+								merchant_uid : rsp.merchant_uid,
+								rNo : rNo},
+							success: function(data){
+								console.log(data);
+							}
 						})
 						
 					} else {

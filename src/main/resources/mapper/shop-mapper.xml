@@ -86,6 +86,12 @@
 		from reserve_table
 		where reserve_no = #{rNo}
 	</select>
+	
+	<update id="successReserve">
+		update reserve_info
+		set reserve_status = 'Y'
+		where reserve_no = #{rNo}
+	</update>
 
    
 <!-- 민병욱 끝 ==================================================== -->

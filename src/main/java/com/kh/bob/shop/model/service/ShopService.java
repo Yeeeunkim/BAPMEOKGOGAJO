@@ -27,6 +27,8 @@ public interface ShopService {
 	Reserve selectReserve(int rNo);
 	List selectMenu(int rNo);
 	List selectTable(int rNo);
+	// @@@@@테스트용 
+	int successReserve(int rNo);
 	
 	// 민병욱 끝 ====================================================
 
