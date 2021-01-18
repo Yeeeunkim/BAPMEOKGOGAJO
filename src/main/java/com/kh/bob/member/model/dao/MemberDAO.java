@@ -1,8 +1,57 @@
 package com.kh.bob.member.model.dao;
 
-import org.springframework.stereotype.Repository;
+import java.util.HashMap;
 
-@Repository
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+
+import com.kh.bob.member.model.vo.Member;
+
+@Repository("bmDAO")
 public class MemberDAO {
+// 김예은 시작 ================================================
+	   
+	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.selectLogin", m);
+	}
+
+	public int memberInsert(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.memberInsert", m);
+	}
+
+
+	public int checkIdDup(SqlSessionTemplate sqlSession, String member_id) {
+		return sqlSession.selectOne("memberMapper.checkidDup", member_id);
+	}
+
+	public Member infoPwd(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.infoPwd", m);
+	}
+
+	public int minfoUpdate(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.minfoUpdate", m);
+	}
+
+	public int deleteMember(SqlSessionTemplate sqlSession, String member_id) {
+		return sqlSession.update("memberMapper.deleteMember", member_id);
+	}
+
+	public Member findId(SqlSessionTemplate sqlSession, Model model) {
+		return sqlSession.selectOne("memberMapper.selectId", model);
+	}
+	
+	public Member findPwd(SqlSessionTemplate sqlSession, Model model) {
+		return sqlSession.selectOne("memberMapper.selectPwd", model);
+	}
+	public int pwdUpdate(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("memberMapper.pwdUpdate", map);
+	}
+
+	
+	
+	
+// 김예은 끝 =================================================
 
 }

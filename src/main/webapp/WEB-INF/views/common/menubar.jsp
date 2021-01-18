@@ -47,7 +47,7 @@
 	.navbar_logo{
 		font-size:24px;
 		color:white;
-		margin-left: 400px;
+		margin-left: 250px;
 	}
 	
 	.navbar_logo i{
@@ -59,7 +59,7 @@
 		color:white;
 		display:flex;
 		padding-left: 0;
-		margin-right: 370px;
+		margin-right: 200px;
 		
 	}
 	
@@ -163,7 +163,31 @@
 </head>
 <body>
 
-	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
+ <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/> 
+	
+   <div class="loginArea" align="right">
+   <!-- 로그인  안한상태 -->
+	<c:if test="${ empty sessionScope.loginUser }">
+		<nav class="navbar" id="gnb">
+			<span class="navbar_logo">
+				<img id="logo" src="resources/images/logo.png" onclick="location.href='home.do'">
+				<a onclick="location.href='home.do'">밥먹고 가조</a>
+					<span class="searchbar">
+          				 <input class="search_input" type="text" name="" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+       				 </span>
+			</span>  
+		
+			<ul class="navbar_icons" >
+				<li class="menu" onclick="shop();"><a href="#">About</a></li>
+			     <li class="menu" onclick="location.href='loginView.me'" ><a href="#">Login</a></li> 
+			     <li class="menu" onclick="location.href='enrollForm.me'" ><a href="#">Join</a></li> 
+			</ul>
+		</nav>
+	</c:if>
+	
+	<!-- 로그인 성공 -->
+	<c:if test="${ !empty sessionScope.loginUser }">
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
 				<img id="logo" src="resources/images/logo.png">
@@ -173,15 +197,25 @@
          				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
        				 </span>
 			</span> 
-		
 			<ul class="navbar_icons" >
 				<li class="menu" onclick="shop();"><a href="#">About</a></li>
-				<li class="menu" onclick="login();" ><a href="#">Login</a></li>
-				<li class="menu"><a href=""><i class="fas fa-user"></i></a></li>
-				<li class="menu"><a href=""><i class="fas fa-star"></i></a></li>
-				<li class="menu" onclick="manager();" ><a href="#">M</a></li>
+				<li class="menu" onclick="location.href='logoutView.me'" ><a href="#">Logout</a></li> 
+				<c:if test="${ loginUser.auth_code eq '1' }">
+					<li class="menu" onclick="location.href='myPage.me'"><a href=""><i class="fas fa-user"></i></a></li>
+				</c:if>
+				 <c:if test="${ loginUser.auth_code eq '2'  }">
+					<li class="menu" onclick="location.href='shopMypage.me'"><a href=""><i class="fas fa-user"></i></a></li>
+				</c:if>
+				 <li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
+				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 
 			</ul>
 		</nav>
+	</c:if>
+	
+	
+	
+</div>
+		
 		
 	<script>
 	/*  $(function(){ // document ready
@@ -199,9 +233,7 @@
 	      }
 	    }); */
 		
-	    function login(){
-			location.href="${ contextPath }/login.me"
-		}
+	  
 	    
 	    function shop(){
 			location.href="${ contextPath }/shop.do"
@@ -209,6 +241,10 @@
 	    
 	    function manager(){
 	    	location.href="${ contextPath }/manager.ma"
+	    }
+	    
+	    function mypage(){
+	    	location.href="${ contextPath}/myPage.me"
 	    }
 	    
 	</script>
