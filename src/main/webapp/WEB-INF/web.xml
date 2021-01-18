@@ -31,26 +31,10 @@
 	</servlet>
 	
 	<!-- url  -->	
-	 <servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
-	</servlet-mapping> 
-	
-	
-	<!-- shop관련 -->
-	<!--  <servlet>
-		<servlet-name>ShopServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/shop-context.xml</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ShopServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>  -->
-	
+	</servlet-mapping>
 	
 	<!-- 공지사항 관련 -->
 	 <servlet>
@@ -83,7 +67,7 @@
 	</servlet-mapping>
 	
 	<!-- 게시판관련 -->
-	<!--  <servlet>
+	<!-- <servlet>
 		<servlet-name>boardServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
@@ -94,7 +78,7 @@
 	<servlet-mapping>
 		<servlet-name>boardServlet</servlet-name>
 		<url-pattern>*.bo</url-pattern>
-	</servlet-mapping> 	 -->
+	</servlet-mapping> -->
 	
 	
 	<!-- 관리자 관련 -->

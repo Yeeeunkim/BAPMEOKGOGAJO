@@ -88,18 +88,18 @@
 	<jsp:include page="../common/menubar.jsp" />
 
 	<div id="loginArea">
-		<form action="${ contextPath }/findId.me" method="post" >
+		<form action="${ contextPath }/findId.me" method="post" action="doFindLoginId" onsubmit="findIdForm_submit(this); return false;">
 			<br><br><br>
 			<h1 style="text-align: center;">아이디 찾기 ></h1>
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">이름</label> 
-				<input type="text" class="form-control inputForm" id="inputName" placeholder="이름을 입력해주세요">
+				<input type="text" name="member_name" class="form-control inputForm" id="inputName" name="member_name" placeholder="이름을 입력해주세요" >
 				<label class="hidden"></label>
 			</div>
 			<div class="mb-4">
 				<label class="form-label inputTilte">휴대폰</label>
-				<input type="text" class="form-control inputForm" id="inputPhone" placeholder="번호를 입력해주세요">
+				<input type="text" name="phone" class="form-control inputForm" id="inputPhone" name="phone" placeholder="번호를 입력해주세요">
 				<label class="hidden"></label>
 			</div>
 			<br>
@@ -108,5 +108,39 @@
 	</div>
 	
 	<jsp:include page="../common/footer.jsp"/>
+	
+	<script>
+		function findIdForm_submit(form){
+			if(isNowLoading){
+				alert("처리중입니다.");
+				return;
+			}
+			form.member_name.value = form.member_name.value.trim();
+			form.member_name.value = form.member_name.value.replaceAll('-',"");
+			form.member_name.value = form.member_name.value.replaceAll('_',"");
+			form.member_name.value = form.member_name.value.replaceAll(' ',"");
+		
+			if(form.member_name.value.length == 0){
+				form.member_name.focus();
+				alert("이름을 입력해주세요.");
+				
+				return;
+			}
+			
+			form.phone.value = form.phone.value.trim();
+			form.phone.value = form.phone.value.replaceAll(' ',"");
+		
+			if(form.phone.value.length == 0){
+				form.phone.focus();
+				alert("이메일을 입력해주세요.");
+				
+				return;
+			}
+			
+			form.submit();
+			startLoading();
+		}
+		
+	</script>
 </body>
 </html>

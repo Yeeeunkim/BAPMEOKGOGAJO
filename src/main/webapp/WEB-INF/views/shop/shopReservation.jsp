@@ -55,10 +55,12 @@
    margin: 0 auto;
    margin-top: 50px;
 }
+
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
+
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -67,22 +69,28 @@
    width: 250px !important;
    height: 50px;
 }
+
 #info{
    position: absolute;
    left: 10%;
 }
+
+
 .input-info{
    display: inline;
 }
+
 .cInput {
    width: 30%;
 }
+
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
+
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -110,6 +118,7 @@
       color: white;
   
 }
+
 #user{
 	display: block; 
 	margin: 0 auto; 
@@ -129,6 +138,7 @@
   text-align:center;
 }
 #btnR{
+
   background-color: #F42B03;
   border: none;
   color: white;
@@ -136,6 +146,7 @@
   float: right;
   width: 100px;
   height: 40px;
+
  }
  
  td {
@@ -146,6 +157,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .time{
 	margin: auto;
 	display: flex;
@@ -170,14 +182,13 @@
   height: 30%;
 }
 
-h4,h2{margin-left:8%;}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>중식</h2>
+          <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 중식</h2>
           
 
    <!-- 사진, 지도 폼 -->
@@ -203,24 +214,16 @@ h4,h2{margin-left:8%;}
 <!--    <div class="btn-group"> -->
        <div class="row">
        <div class="col-3"></div>
-	       <div class="col-2">
-	         	<div class="form-group row">
-				  <label for="example-date-input" class="col-2 col-form-label"></label>
-				  <div class="col-10">
-				    <input class="form-control" type="date" id="example-date-input" max="" style=width:200px; >
-				  </div>
-				</div>
-	
-				
-				<script>  /*날짜 범위 제한*/
-				  document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
-				  var today = new Date();
-				  var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
-				  document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-				  document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
-				</script>
-	         </div>
-         
+       <div class="col-2">
+         <select class="form-select" aria-label="Default select example">
+            <option value="1" selected="selected">12월 1일</option>
+            <option value="2">12월 2일</option>
+            <option value="3">12월 3일</option>
+            <option value="4">12월 4일</option>
+            <option value="5">12월 5일</option>
+            <option value="6">12월 6일</option>
+         </select>
+         </div>
          <div class="col-2">
          <select class="form-select" aria-label="Default select example">
             <option value="1" selected="selected">오후 12:30</option>
@@ -232,8 +235,8 @@ h4,h2{margin-left:8%;}
          </select>
          </div><div class="col-2">
          <select class="form-select" aria-label="Default select example">
-            <option value="1">1명</option>
-            <option value="2" selected="selected">2명</option>
+            <option value="1" selected="selected">2명</option>
+            <option value="2">1명</option>
             <option value="3">3명</option>
             <option value="4">4명</option>
             <option value="5">5명</option>
@@ -242,7 +245,40 @@ h4,h2{margin-left:8%;}
          </div>
          <div class="col-3"></div>
          </div>
-
+<!--     </div> -->
+   
+  
+   
+    <!-- <div class="btn-group">
+     <button type="button" class="btn btn-primary">Sony</button>
+     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+       <span class="caret"></span>
+     </button>
+     <div class="dropdown-menu">
+       <a class="dropdown-item" href="#">Tablet</a>
+       <a class="dropdown-item" href="#">Smartphone</a>
+     </div>
+     
+     <button type="button" class="btn btn-primary">Sony</button>
+     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+       <span class="caret"></span>
+     </button>
+     <div class="dropdown-menu">
+       <a class="dropdown-item" href="#">Tablet</a>
+       <a class="dropdown-item" href="#">Smartphone</a>
+     </div>
+     
+     <button type="button" class="btn btn-primary">Sony</button>
+     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+       <span class="caret"></span>
+     </button>
+     <div class="dropdown-menu">
+       <a class="dropdown-item" href="#">Tablet</a>
+       <a class="dropdown-item" href="#">Smartphone</a>
+     </div>
+   </div> -->
+  
+   
    
    
    <br><br><br><br>
@@ -262,7 +298,7 @@ h4,h2{margin-left:8%;}
   <div class="container">
   <h2>메뉴</h2>
   <br><br>
-  <h4>메인 ></h4>
+  <h4>&nbsp;&nbsp;&nbsp;메인 ></h4>
    <table class="table table-bordered " id="menu">
        <thead>
          <tr>
@@ -287,14 +323,11 @@ h4,h2{margin-left:8%;}
        </tbody>
      </table>
    
-		
+   <br>
+   <br><br><br>
    
    
-   
-   <br><br><br><br>
-   
-   
-   <h4>사이드 ></h4>
+   <h4>&nbsp;&nbsp;&nbsp;사이드 ></h4>
    <table class="table table-bordered table-sm" id="menu">
        <thead>
          <tr>
@@ -317,40 +350,12 @@ h4,h2{margin-left:8%;}
          </tr>
        </tbody>
      </table>
-     
-     
-     <h4>음료 ></h4>
-   <table class="table table-bordered table-sm" id="menu">
-       <thead>
-         <tr>
-           <th>메뉴</th>
-           <th>가격</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td>사이다</td>
-           <td>2000원</td>
-         </tr>
-         <tr>
-           <td>콜라</td>
-           <td>2000원</td>
-         </tr>
-         <tr>
-           <td>소주</td>
-           <td>4000원</td>
-         </tr>
-       </tbody>
-     </table>
-     
-     
      
      <br>
      </div>
      <div class="row">
      <button type="button" class="button menuPlus" onclick="reservationShop();" id="btnR">예약하기</button>
      </div>
-   
    
    
    <br><br>
@@ -361,97 +366,12 @@ h4,h2{margin-left:8%;}
   <h2>식당 정보</h2>
   <br>
   <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp;서울특별시 강남구 역삼동 남도빌딩 3층&nbsp;&nbsp;&nbsp;
-				<div id="map" style="width:70%;height:350px;"></div>
-
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef"></script>
-		 <script>
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = {
-            center : new daum.maps.LatLng(36.633535, 127.425882), // 지도의 중심좌표
-            level : 4
-        // 지도의 확대 레벨
-        };
+  <!-- <input class= "cInput" type="text" name="address" id="address" placeholder="주소를 입력하세요."> -->
+  <br><br>
+  <img src="<%= request.getContextPath() %>/resources/images/지도.png" id="map"/>
+  <br><br><br><br>
  
-        // 지도를 생성합니다    
-        var map = new daum.maps.Map(mapContainer, mapOption);
- 
-        // 주소-좌표 변환 객체를 생성합니다
-        var geocoder = new daum.maps.services.Geocoder();
- 
-        var myAddress = [
-                "용산구 한강대로 405", "영등포구 경인로 846", "동대문구 왕산로 214" ];
- 
-        function myMarker(number, address) {
-            // 주소로 좌표를 검색합니다
-            geocoder
-                    .addressSearch(
-                            //'주소',
-                            address,
-                            function(result, status) {
-                                // 정상적으로 검색이 완료됐으면 
-                                if (status === daum.maps.services.Status.OK) {
- 
-                                    var coords = new daum.maps.LatLng(
-                                            result[0].y, result[0].x);
- 
-                                    // 결과값으로 받은 위치를 마커로 표시합니다
-                                    /*
-                                    var marker = new daum.maps.Marker({
-                                        map : map,
-                                        position : coords
-                                    });
-                                     */
- 
-                                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                                    /*
-                                    var infowindow = new daum.maps.InfoWindow(
-                                            {
-                                                // content : '<div style="width:50px;text-align:center;padding:3px 0;">I</div>'
-                                                content : '<div style="color:red;">' +  number + '</div>'
-                                            });
-                                    infowindow.open(map, marker);
-                                     */
- 
-                                    // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-                                    var content = '<div class="customoverlay">'
-                                            + '    <span class="title">'
-                                            + '<div style="font-style:normal; color:red; font-weight:bold; font-size:2.0em">'
-                                            + number + '</div>' + '</span>'
-                                            + '</div>';
- 
-                                    // 커스텀 오버레이가 표시될 위치입니다 
-                                    var position = new daum.maps.LatLng(
-                                            result[0].y, result[0].x);
- 
-                                    // 커스텀 오버레이를 생성합니다
-                                    var customOverlay = new daum.maps.CustomOverlay(
-                                            {
-                                                map : map,
-                                                position : position,
-                                                content : content,
-                                                yAnchor : 1
-                                            });
- 
-                                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                    map.setCenter(coords);
-                                }
-                            });
-        }
- 
-        for (i = 0; i < myAddress.length; i++) {
-            myMarker(i + 1, myAddress[i]);
-        }
-    </script>
   </div>
-
-
-
-
-
-
-
-
-
   
   <hr class="line">
   <br><br><br>
@@ -488,3 +408,6 @@ h4,h2{margin-left:8%;}
    
 </body>
 </html>
+
+
+
