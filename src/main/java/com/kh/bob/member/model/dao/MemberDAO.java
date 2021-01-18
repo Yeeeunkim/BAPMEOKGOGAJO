@@ -1,4 +1,4 @@
-package com.kh.bob.member.model.dao;
+﻿package com.kh.bob.member.model.dao;
 
 import java.util.HashMap;
 
@@ -49,8 +49,4 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.pwdUpdate", member_pwd);
 	}
 
-	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		return sqlSession.update("memberMapper.updatePwd", map);
-	}
-// 김예은 끝 =================================================
 }
