@@ -89,7 +89,8 @@
 	
 	<update id="successReserve">
 		update reserve_info
-		set reserve_status = 'Y'
+		set reserve_status = 'Y',
+		    reserve_pay = to_char(sysdate, 'HH24:MI:SS')
 		where reserve_no = #{rNo}
 	</update>
 

@@ -90,6 +90,11 @@ public class ShopController {
 		
 	}
 	
+	// 예약정보 페이지
+	@RequestMapping("booking.sh")
+	public String bookingInfoView() {
+		return "bookingInfo";
+	}
 	
 	// 민병욱 끝 ====================================================
 

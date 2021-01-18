@@ -11,14 +11,14 @@ public class Reserve {
 		private String rPhone;		// 예약자 연락처
 		private String rComment;	// 요청사항
 		private Date	rAD;		// 결제 승인 시간
-		private Date	rPay;		// 결제 시간
+		private String	rPay;		// 결제 시간
 		private String mId;			// 회원 아이디
 		private int sNo;			// 식당 번호
 		
 		public Reserve() {}
 
 		public Reserve(int rNo, Date rTime, String totalPrice, char rStatus, String rName, String rPhone, String rComment,
-				Date rAD, Date rPay, String mId, int sNo) {
+				Date rAD, String rPay, String mId, int sNo) {
 			super();
 			this.rNo = rNo;
 			this.rTime = rTime;
@@ -97,11 +97,11 @@ public class Reserve {
 			this.rAD = rAD;
 		}
 
-		public Date getrPay() {
+		public String getrPay() {
 			return rPay;
 		}
 
-		public void setrPay(Date rPay) {
+		public void setrPay(String rPay) {
 			this.rPay = rPay;
 		}
 
