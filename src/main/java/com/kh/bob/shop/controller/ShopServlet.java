@@ -123,6 +123,15 @@ public class ShopServlet {
 			
 			}
 			
+			@RequestMapping("ReviewEnrollForm.do")
+			public String ReviewEnrollForm(){
+				return "/review/review";
+			}
+			
+			@RequestMapping("DeclareEnrollForm.do")
+			public String DeclareEnrollForm() {
+				return "/shop/shopDeclareForm";
+			}
 			
 			
 			
@@ -144,6 +153,5 @@ public class ShopServlet {
 		return "/shop/shopList";
 	}	
 	
-	  
 	
 }

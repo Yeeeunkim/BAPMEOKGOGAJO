@@ -42,6 +42,7 @@
   margin: auto;
   text-align:center;
 }
+
 .form-group{
    width: 70%;
    height: 30%;
@@ -94,6 +95,7 @@
 .line{
    width: 60%;
    margin: auto;
+   margin-bottom:50px;
    border: solid 2px gray;
 }
 #menu{
@@ -104,22 +106,27 @@
 .menuPlus{
    display: block !important;
    margin: 0 auto !important;
-      text-align: center;
-      background: #F42B03;
+   text-align: center;
+   background: #F42B03;
    border: 0px;
-      color: white;
+   color: white;
   
 }
-#user{
-	display: block; 
-	margin: 0 auto; 
+
+
+#user{margin-left:20%}
+
+.user{
+	display:block; 
 	width:70px; 
 	height:70px;
 	float:left;
 }
-#gps{
-   width: 40px;
-}
+
+
+
+#gps{width: 40px;}
+
 #map{
   top: 20%;
   width: 50%;
@@ -170,7 +177,35 @@
   height: 30%;
 }
 
+#menuP {
+	border-radius: 30px; width:800px; height:400px;
+}
+
 h4,h2{margin-left:8%;}
+
+
+.button{
+  background-color: #F42B03;
+  border: none;
+  color: white;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+}
+
+#review{display:block; margin-left:48%;}
+
+#declare{display:inline-block;margin-left:90%; border-radius:10px; width:70px; height:20px; font-size:10px;}
+
+.image{display:inline-block;}
+.review{display:inline-block; height:20%;}
+
+
+
+
+
+
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -178,7 +213,6 @@ h4,h2{margin-left:8%;}
    
    <br><br>
           <h2>중식</h2>
-          
 
    <!-- 사진, 지도 폼 -->
    
@@ -190,13 +224,10 @@ h4,h2{margin-left:8%;}
    
    <div id="info">
       <h3>장첸 양꼬치 4.7</h3>
-      <h5>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   02-790-1108</h5>
+      <h5>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02-790-1108</h5>
       <h5>영업시간 &nbsp;&nbsp;&nbsp; 월-금 : 10:00 - 22:30</h5>
       <h5>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연중무휴</h5>
       <h5>웹사이트  &nbsp;&nbsp;&nbsp;&nbsp;식당 홈페이지로 바로가기(아이콘 유무확인)</h5>
-      
-      
-      
    </div>
    <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br>
    
@@ -253,11 +284,7 @@ h4,h2{margin-left:8%;}
    </div>
    <br><br>
    <hr class="line">
-   <br><br><br>
-   
-   
-   
-   
+  
    
   <div class="container">
   <h2>메뉴</h2>
@@ -317,7 +344,8 @@ h4,h2{margin-left:8%;}
          </tr>
        </tbody>
      </table>
-     
+    
+    <br><br><br><br> 
      
      <h4>음료 ></h4>
    <table class="table table-bordered table-sm" id="menu">
@@ -355,136 +383,132 @@ h4,h2{margin-left:8%;}
    
    <br><br>
    <hr class="line">
-   <br><br><br>
+  
    
    <div class="container">
   <h2>식당 정보</h2>
   <br>
-  <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp;서울특별시 강남구 역삼동 남도빌딩 3층&nbsp;&nbsp;&nbsp;
-				<div id="map" style="width:70%;height:350px;"></div>
+ <p style="margin-top:-12px">
+    <em class="link">
+        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+        </a>
+    </em>
+</p>
+<div id="map" style="width:60%;height:350px;"></div>
 
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef"></script>
-		 <script>
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-        mapOption = {
-            center : new daum.maps.LatLng(36.633535, 127.425882), // 지도의 중심좌표
-            level : 4
-        // 지도의 확대 레벨
-        };
- 
-        // 지도를 생성합니다    
-        var map = new daum.maps.Map(mapContainer, mapOption);
- 
-        // 주소-좌표 변환 객체를 생성합니다
-        var geocoder = new daum.maps.services.Geocoder();
- 
-        var myAddress = [
-                "용산구 한강대로 405", "영등포구 경인로 846", "동대문구 왕산로 214" ];
- 
-        function myMarker(number, address) {
-            // 주소로 좌표를 검색합니다
-            geocoder
-                    .addressSearch(
-                            //'주소',
-                            address,
-                            function(result, status) {
-                                // 정상적으로 검색이 완료됐으면 
-                                if (status === daum.maps.services.Status.OK) {
- 
-                                    var coords = new daum.maps.LatLng(
-                                            result[0].y, result[0].x);
- 
-                                    // 결과값으로 받은 위치를 마커로 표시합니다
-                                    /*
-                                    var marker = new daum.maps.Marker({
-                                        map : map,
-                                        position : coords
-                                    });
-                                     */
- 
-                                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                                    /*
-                                    var infowindow = new daum.maps.InfoWindow(
-                                            {
-                                                // content : '<div style="width:50px;text-align:center;padding:3px 0;">I</div>'
-                                                content : '<div style="color:red;">' +  number + '</div>'
-                                            });
-                                    infowindow.open(map, marker);
-                                     */
- 
-                                    // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-                                    var content = '<div class="customoverlay">'
-                                            + '    <span class="title">'
-                                            + '<div style="font-style:normal; color:red; font-weight:bold; font-size:2.0em">'
-                                            + number + '</div>' + '</span>'
-                                            + '</div>';
- 
-                                    // 커스텀 오버레이가 표시될 위치입니다 
-                                    var position = new daum.maps.LatLng(
-                                            result[0].y, result[0].x);
- 
-                                    // 커스텀 오버레이를 생성합니다
-                                    var customOverlay = new daum.maps.CustomOverlay(
-                                            {
-                                                map : map,
-                                                position : position,
-                                                content : content,
-                                                yAnchor : 1
-                                            });
- 
-                                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                    map.setCenter(coords);
-                                }
-                            });
-        }
- 
-        for (i = 0; i < myAddress.length; i++) {
-            myMarker(i + 1, myAddress[i]);
-        }
-    </script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef&libraries=services"></script>
+		<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('서울특별시 강서구 양천로 24가길 59', function(result, status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">식당이름</div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+		</script>
+		<br>
   </div>
 
-
-
-
-
-
-
-
-
-  
-  <hr class="line">
-  <br><br><br>
-  <div class="container">
-  <h2>리뷰</h2>
-  <br><br>
-  
-  
-  </div>
-  
-  <div class="user">
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
   		
-  </div>
+		  <hr class="line">
+	
+		  <div class="container">
+			  <h2>리뷰</h2>
+		  </div>
   
+		
+		<div id="user">
+		  	<p>
+		  		<img src="<%= request.getContextPath() %>/resources/images/user.png" class="user">정말 맛집입니다! <br><br><br><br>
+		  	</p>
+		  	<p>
+		  		<img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
+		  	</p>
+		  	<p>
+		  		<img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
+		  	</p>
+		  	<p>
+		  		<img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
+		  	</p>
+		  		
+		  </div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
   
-  <!-- <script>
-      function reservationShop(){
-         location.href= "${ contextPath }/Reservation.do"
-      }
-   </script> -->
+
+		<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
+		
+		<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
+
+	<script>
+		function reviewEnroll(){
+			location.href="${contextPath}/ReviewEnrollForm.do"
+		}
+
+		function declareEnroll(){
+			location.href="${contextPath}/DeclareEnrollForm.do"
+		}
+	</script>
+
  
-   
+ 	<jsp:include page="../common/footer.jsp" />
+ 	  
 </body>
 </html>
