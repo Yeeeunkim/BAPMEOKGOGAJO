@@ -6,7 +6,6 @@
 	</settings>
 	
 	<typeAliases>
-<<<<<<< HEAD
 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
