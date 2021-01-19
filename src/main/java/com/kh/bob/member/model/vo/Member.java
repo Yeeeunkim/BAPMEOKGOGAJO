@@ -11,7 +11,7 @@ public class Member {
 	private String gender;
 	private Date member_enroll;
 	private String member_status;
-	private String member_birth; //db 수정사항말하기
+	private String member_birth; 
 	private int auth_code;
 	
 	public Member() {}
@@ -119,6 +119,4 @@ public class Member {
 				+ "]";
 	}
 
-	
-	
 }

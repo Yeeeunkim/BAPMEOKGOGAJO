@@ -52,16 +52,6 @@
    		where member_id=#{member_id} and email=#{email} and member_status='Y'
    </select>
    
-<<<<<<< HEAD
-   <select id="pwdUpdate">
-   		update member_info
-   		set member_pwd=#{member_pwd}
-   		where member_id=#{member_id}
-   </select>
-=======
-
->>>>>>> master
-   
    <!-- 회원정보 수정 시 비밀번호 -->
    <select id="infoPwd" resultMap="bMemberResultSet">
    		select *
@@ -85,21 +75,24 @@
    	where member_id=#{member_id}
    </update>
    
-<<<<<<< HEAD
-    <update id="updatePwd">
-  		update member_info
-  		set member_pwd=#{newPwd}
-  		where member_id=#{member_id} and member_pwd=#{member_pwd}
-  	</update>
-=======
 	<update id="pwdUpdate">
 		update member_info
 		set member_pwd=#{newPwd}
 		where member_id=#{member_id}
 	</update>
->>>>>>> master
+	
+   	<select id="selectSinfo">
+   		select *
+   		from shop_info
+   		where member_id=#{member_id}
+   </select>
    
-   
+   <select id="selectSmenu">
+   		select *
+   		from shop_menu
+   		where menu_no=#{menu_no}
+   </select>
+
 <!--김예은 끝 ================================================= -->
   	
 </mapper>

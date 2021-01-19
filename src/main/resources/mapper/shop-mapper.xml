@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopMapper">
+	<insert id="insertShop">
+		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
+	</insert>
+
+	 <insert id="insertMenu" >
+		<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
+			INTO shop_menu (menu_no, menu_name, menu_price,menu_status, menu_cate, shop_no)
+			VALUES (SEQ_MNO.nextval, #{item.menuName}, #{item.menuPrice}, 'Y', #{item.menuCate},seq_sno.currval)
+		</foreach> 		
+	</insert>	 
+	
+
+	
+	<!-- 김예은  끝-->
+	
+</mapper>
