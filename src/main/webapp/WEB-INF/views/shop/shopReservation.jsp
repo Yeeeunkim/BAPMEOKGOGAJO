@@ -486,11 +486,11 @@ h4,h2{margin-left:8%;}
 
 	<script>
 		function reviewEnroll(){
-			location.href="${contextPath}/ReviewEnrollForm.do"
+			location.href="ReviewEnrollForm.do"
 		}
 
 		function declareEnroll(){
-			location.href="${contextPath}/DeclareEnrollForm.do"
+			location.href="DeclareEnrollForm.do"
 		}
 	</script>
 

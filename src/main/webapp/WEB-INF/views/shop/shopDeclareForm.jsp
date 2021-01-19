@@ -62,8 +62,7 @@
 	<div id="body">
 		<h1 align="center"><b>식당 신고></b></h1>
 		<br><br>
-		
-		<form action="" align="center">
+		<form action="declare.do" align="center">
 			<div id="reviewran"><h2><b name="shopName">행복한 찜닭</b> 에 신고내용을 써주세요</h2></div>
 			<br><br>
 			<textarea rows="15" cols="120"></textarea><br><br>
