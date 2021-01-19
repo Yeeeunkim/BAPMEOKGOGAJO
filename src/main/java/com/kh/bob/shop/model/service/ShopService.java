@@ -1,10 +1,9 @@
 package com.kh.bob.shop.model.service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.kh.bob.shop.model.vo.Reserve;
-import com.kh.bob.shop.model.vo.Shop;
+import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ShopInfo;
 
 public interface ShopService {
 
@@ -23,8 +22,8 @@ public interface ShopService {
 	// 민병욱 시작 =================================================
 
 	// @@@@@테스트용 
-	Shop selectShop(int sNo);
-	Reserve selectReserve(int rNo);
+	ShopInfo selectShop(int sNo);
+	ReserveInfo selectReserve(int rNo);
 	List selectMenu(int rNo);
 	List selectTable(int rNo);
 	// @@@@@테스트용 

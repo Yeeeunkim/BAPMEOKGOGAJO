@@ -1,15 +1,14 @@
 package com.kh.bob.shop.model.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.bob.shop.model.dao.ShopDAO;
-import com.kh.bob.shop.model.vo.Reserve;
-import com.kh.bob.shop.model.vo.Shop;
+import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ShopInfo;
 
 @Service("sService")
 public class ShopServiceImple implements ShopService {
@@ -36,11 +35,11 @@ public class ShopServiceImple implements ShopService {
 
 	// @@@@@테스트용
 	@Override
-	public Shop selectShop(int sNo) {
+	public ShopInfo selectShop(int sNo) {
 		return sDAO.selectShop(sqlSession, sNo);
 	}
 	@Override
-	public Reserve selectReserve(int rNo) {
+	public ReserveInfo selectReserve(int rNo) {
 		return sDAO.selectReserve(sqlSession, rNo);
 	}
 	@Override

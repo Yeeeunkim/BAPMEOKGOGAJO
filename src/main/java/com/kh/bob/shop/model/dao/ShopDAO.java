@@ -6,8 +6,8 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.bob.shop.model.vo.Reserve;
-import com.kh.bob.shop.model.vo.Shop;
+import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ShopInfo;
 
 @Repository("sDAO")
 public class ShopDAO {
@@ -27,10 +27,10 @@ public class ShopDAO {
 	// 민병욱 시작 =================================================
 	
 	// @@@@@테스트용 
-	public Shop selectShop(SqlSessionTemplate sqlSession, int sNo) {
+	public ShopInfo selectShop(SqlSessionTemplate sqlSession, int sNo) {
 		return sqlSession.selectOne("shopMapper.selectShop", sNo);
 	}
-	public Reserve selectReserve(SqlSessionTemplate sqlSession, int rNo) {
+	public ReserveInfo selectReserve(SqlSessionTemplate sqlSession, int rNo) {
 		return sqlSession.selectOne("shopMapper.selectReserve", rNo);
 	}
 	public List selectMenu(SqlSessionTemplate sqlSession, int rNo) {

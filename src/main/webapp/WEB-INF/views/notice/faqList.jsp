@@ -94,7 +94,7 @@
 		</div>
 		<div class="col-2"></div>
 	</div>
-
+	<div class="row" style="height: 50px;"></div>
 	<c:import url="../common/footer.jsp" />
 
 </body>

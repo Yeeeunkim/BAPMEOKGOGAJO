@@ -11,10 +11,9 @@
 		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/>
 		<!-- 테스트용 -->
-		<typeAlias type="com.kh.bob.shop.model.vo.Shop" alias="Shop"/>
-		<typeAlias type="com.kh.bob.shop.model.vo.Reserve" alias="Reserve"/>
-		<typeAlias type="com.kh.bob.shop.model.vo.Menu" alias="Menu"/>
-		<typeAlias type="com.kh.bob.shop.model.vo.Table" alias="Table"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ShopInfo" alias="ShopInfo"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ReserveMenu" alias="ReserveMenu"/>
 		
 	</typeAliases>
 	 

@@ -67,27 +67,25 @@
 			<tr>
 				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/resources/images/sushi.png"></td>
 				<td width="150" align="center">가게 :</td>
-				<td id="sName">${ shop.sName }</td>
+				<td id="sName">${ shop.shopName }</td>
 			</tr>
 			<tr>
 				<td align="center">메뉴 :</td>
 				<td>
 					<c:forEach var="m" items="${ mList }">
-						${ m.mName } - ${ m.mQty } <br>
+						${ m.menuName } - ${ m.menuQty } <br>
 					</c:forEach>
 				</td>
 			</tr>
 			<tr class="red">
-				<td align="center">예약테이블 :</td>
+				<td align="center">예약인원 :</td>
 				<td>
-					<c:forEach var="t" items="${ tList }">
-						${ t.sSize } 인석 - ${ t.sQty } <br>
-					</c:forEach>
+						${ reserve.reservePeople } 명 <br>
 				</td>
 			</tr>
 			<tr class="red">
-				<td align="center">예약시간 :</td>
-				<td>${ reserve.rTime }</td>
+				<td align="center">예약일 :</td>
+				<td>${ reserve.reserveTime }</td>
 			</tr>
 			<tr class="red">
 				<td align="center">총금액 :</td>
@@ -96,7 +94,7 @@
 		</table>
 		
 		
-		<input type="hidden" id="rNo" value='${ reserve.rNo }'>
+		<input type="hidden" id="rNo" value='${ reserve.reserveNo }'>
 		<br>
 <!-- 		<div id="map"></div> -->
 		<br><br>
@@ -122,7 +120,7 @@
 	  	
 	  	var shopName = $('#sName').text();
 	  	totalPrice = $('#totalPrice').text();
-	  	var rNo = $('#rNo').val();
+	  	var reserveNo = $('#rNo').val();
 	  	
 	  	// 결제 버튼 누를 시 동작
 		function requestPay() {
@@ -152,7 +150,7 @@
 							data : { 
 								imp_uid : rsp.imp_uid, 
 								merchant_uid : rsp.merchant_uid,
-								rNo : rNo},
+								reserveNo : reserveNo},
 							success: function(data){
 								console.log(data);
 							}

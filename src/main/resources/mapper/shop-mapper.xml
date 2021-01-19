@@ -20,78 +20,70 @@
 <!-- 민병욱 시작 ================================================= -->
 
 	<!-- @@@@@테스트용 -->
-	<resultMap type="Shop" id="shopResultSet">
-		<id property="sNo" column="SHOP_NO" />
-		<result property="sName" column="SHOP_NAME" />
-		<result property="sOpen" column="SHOP_OPEN" />
-		<result property="sClose" column="SHOP_CLOSE" />
-		<result property="sAddress" column="SHOP_ADDRESS" />
-		<result property="sPhone" column="SHOP_PHONE" />
-		<result property="maxResTime" column="MAX_RESERVATION_TIME" />
-		<result property="sCategory" column="SHOP_CATE" />
-		<result property="businessNum" column="BUSINESS_NUMBER" />
-		<result property="mId" column="MEMBER_ID" />
+	<resultMap type="ShopInfo" id="shopInfoResultSet">
+		<id property="shopNo" column="SHOP_NO" />
+		<result property="shopName" column="SHOP_NAME" />
+		<result property="shopIntro" column="SHOP_INTRO" />
+		<result property="shopOpen" column="SHOP_OPEN" />
+		<result property="shopClose" column="SHOP_CLOSE" />
+		<result property="shopAddress" column="SHOP_ADDRESS" />
+		<result property="shopPhone" column="SHOP_PHONE" />
+		<result property="shopBreakStart" column="SHOP_BREAK_START" />
+		<result property="shopBreakClose" column="SHOP_BREAK_CLOSE" />
+		<result property="shopOffday" column="SHOP_OFFDAY" />
+		<result property="maxReservationTime" column="MAX_RESERVATION_TIME" />
+		<result property="shopOrigin" column="SHOP_ORIGIN" />
+		<result property="shopRename" column="SHOP_RENAME" />
+		<result property="shopCate" column="SHOP_CATE" />
+		<result property="businessNumber" column="BUSINESS_NUMBER" />
+		<result property="memberId" column="MEMBER_ID" />
 	</resultMap>
 	
-	<resultMap type="Reserve" id="reserveResultSet">
-		<id property="rNo" column="RESERVE_NO" />
-		<result property="rTime" column="RESERVE_TIME" />
+	<resultMap type="ReserveInfo" id="reserveInfoResultSet">
+		<id property="reserveNo" column="RESERVE_NO" />
+		<result property="reserveTime" column="RESERVE_TIME" />
+		<result property="reservePeople" column="RESERVE_PEOPLE" />
 		<result property="totalPrice" column="TOTAL_PRICE" />
-		<result property="rStatus" column="RESERVE_STATUS" />
-		<result property="rName" column="RESERVE_NAME" />
-		<result property="rPhone" column="RESERVE_PHONE" />
-		<result property="rComment" column="RESERVE_COMMENT" />
-		<result property="rAD" column="RESERVE_AD" />
-		<result property="rPay" column="RESERVE_PAY" />
-		<result property="mId" column="MEMBER_ID" />
-		<result property="sNo" column="SHOP_NO" />
+		<result property="reserveStatus" column="RESERVE_STATUS" />
+		<result property="reserveName" column="RESERVE_NAME" />
+		<result property="reservePhone" column="RESERVE_PHONE" />
+		<result property="reserveComment" column="RESERVE_COMMENT" />
+		<result property="reserveAd" column="RESERVE_AD" />
+		<result property="reservePay" column="RESERVE_PAY" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="shopNo" column="SHOP_NO" />
 	</resultMap>
 	
-	<resultMap type="Menu" id="menuResultSet">
-		<id property="mNo" column="mNo" />
-		<result property="mName" column="mName" />
-		<result property="mPrice" column="mPrice" />
-		<result property="mStatus" column="mStatus" />
-		<result property="sNo" column="sNo" />
-		<result property="rNo" column="rNo" />
-		<result property="mQty" column="mQty" />
+	<resultMap type="ReserveMenu" id="reserveMenuResultSet">
+		<id property="reserveNo" column="RESERVE_NO" />
+		<id property="menuNo" column="MENU_NO" />
+		<id property="menuName" column="MENU_NAME" />
+		<result property="MenuQty" column="MENU_QTY" />
 	</resultMap>
 	
-	<resultMap type="Table" id="tableResultSet">
-		<id property="rNo" column="RESERVE_NO" />
-		<result property="sSize" column="SEAT_SIZE" />
-		<result property="sQty" column="SEAT_QTY" />
-	</resultMap>
-	
-	<select id="selectShop" resultMap="shopResultSet">
+	<select id="selectShop" resultMap="shopInfoResultSet">
 		select *
 		from shop_info
-		where shop_no = #{sNo}
+		where shop_no = #{shopNo}
 	</select>
 	
-	<select id="selectReserve" resultMap="reserveResultSet">
+	<select id="selectReserve" resultMap="reserveInfoResultSet">
 		select *
 		from reserve_info
-		where reserve_no = #{rNo}
+		where reserve_no = #{reserveNo}
 	</select>
 	
-	<select id="selectMenu" resultMap="menuResultSet">
+	<select id="selectMenu" resultMap="reserveMenuResultSet">
 		select *
-		from v_addPrice
-		where rNo = #{rNo}
-	</select>
-	
-	<select id="selectTable" resultMap="tableResultSet">
-		select *
-		from reserve_table
-		where reserve_no = #{rNo}
+		from reserve_menu
+		where reserve_no = #{reserveNo}
 	</select>
 	
 	<update id="successReserve">
 		update reserve_info
 		set reserve_status = 'Y',
 		    reserve_pay = to_char(sysdate, 'HH24:MI:SS')
-		where reserve_no = #{rNo}
+		where reserve_no = #{reserveNo}
 	</update>
 
    
