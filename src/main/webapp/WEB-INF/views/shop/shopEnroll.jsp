@@ -30,6 +30,10 @@
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
    crossorigin="anonymous"></script>
+   
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=673fc628ebaa83da22c5004efaed383c&libraries=services,clusterer,drawing"></script>
+   
+   
 <style>
 #shopListArea {
    /*    border: 1px solid lightgray; */
@@ -172,52 +176,7 @@
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
-	<!-- text -->
-	<!-- <form action="/action_page.php">
-	  <div class="form-group">
-	    <label for="shop">상호명</label>
-	    <input type="text" class="form-control" placeholder="상호명을 입력하세요." id="shop">
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="address">주소</label>
-	    <input type="text" class="form-control" placeholder="주소를 입력하세요." id="address">
-	  </div>
-	  
-	  
-	  <div class="form-group">
-	    <label for="phone">전화</label>
-	    <input type="number" class="form-control" placeholder="번호를 입력하세요.(-없이 입력해주세요)" id="phone">
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="time">영업시간</label>
-	    <input type="number" class="form-control" placeholder="시간을 입력해주세요." id="time">
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="break">브레이크타임</label>
-	    <input type="number" class="form-control" placeholder="시간을 입력해주세요." id="break">
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="holiday">휴무일</label>
-	    <input type="number" class="form-control" placeholder="휴무일을 입력해주세요." id="holiday">
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="web">웹사이트</label>
-	    <input type="text" class="form-control" placeholder="URL을 입력해주세요." id="web">
-	  </div>
-	  
-	  <div class="form-group form-check">
-	    <label class="form-check-label">
-	      <input class="form-check-input" type="checkbox"> 정보 제공에 동의합니다.
-	    </label>
-	  </div>
-	  <button type="submit" class="btn btn-primary">Submit</button>
-	</form> -->
-	
+<!-- 	<form action= "/bob/Reservation.do" method="post"> -->
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;상호명</p>&nbsp;&nbsp;
 	<div class="input-info">
@@ -232,7 +191,7 @@
 	
 		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;전화</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="number" name="shop" id="shop" placeholder="번호를 입력하세요.">
+		<input class= "cInput" type="number" name="phone" id="phone" placeholder="번호를 입력하세요.">
 		</div>
 		
 		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;영업시간</p>&nbsp;&nbsp;
@@ -242,7 +201,7 @@
 		
 		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;브레이크타임</p>&nbsp;&nbsp;
 	<div class="input-info">
-		<input class= "cInput" type="text" name="break" id="break" placeholder="브레이크타임을 입력하세요.">
+		<input class= "cInput" type="text" name="breaktime" id="breaktime" placeholder="브레이크타임을 입력하세요.">
 		</div>
 		
 		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;휴무일</p>&nbsp;&nbsp;
@@ -260,12 +219,22 @@
    <hr class="line">
    <br><br><br>
    
-   <!-- 메뉴 정보 -->
-   <!-- <div>
-   		<h2 id="menu">&nbsp;&nbsp;&nbsp;&nbsp;메뉴</h2>
-   		<h5 id="menu">&nbsp;&nbsp;&nbsp;&nbsp;메인></h5>
-   		<h5 id="menu">&nbsp;&nbsp;&nbsp;&nbsp;사이드></h5>
-   </div> -->
+   
+   <!-- 좌석 설정 -->
+  <div class="container">
+  	<h2>좌석</h2>
+  	<br><br>
+  	
+  </div>
+   
+   
+   
+   
+   <br><br><br>
+   <hr class="line">
+   <br><br><br>
+   
+   
    
   <div class="container">
   <h2>메뉴</h2>
@@ -339,31 +308,93 @@
    <div class="container">
   <h2>식당 정보</h2>
   <br>
-  <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class= "cInput" type="text" name="address" id="address" placeholder="주소를 입력하세요.">
+  <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width: 350px;" class= "cInput" type="text" name="gpsaddress" id="gpsaddress" placeholder="주소를 입력하세요.">
   <br><br>
+  <button type="button" class="button" id="shopck">입력</button>
  
  	 <div id="map"></div>
  	 <br><br><br>
  	 
  	 <div id="btnP">
- 	 <button type="button" class="button" onclick="reservationShop();" id="enroll">등록하기</button>
- 	 </div>
  	 
+ 	<!--  <input type="submit" value="전송"> -->
+	 <button type="button" class="button" onclick="reservationShop();" id="enroll">등록하기</button>
+ 	 </div>
+ 	
  	 
   </div>
   
+  <!-- </form> -->
+  
+  
   
   <script>
-		function reservationShop(){
+	
+  
+
+  $(function(){
+
+     $("#shopck").click(function(){
+      var gpslocation = $("#gpsaddress").val();   
+      geocoding(gpslocation);
+     })
+       
+  });
+
+  
+  function reservationShop(){
 			location.href= "${ contextPath }/Reservation.do"
 		}
-	</script>
- 
-   
+
+
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = {
+          center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+          level: 3 // 지도의 확대 레벨
+      };  
+
+  // 지도를 생성합니다    
+  var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+  
+  function geocoding(gpslocation){
+     
+     var shop = $("#shop").val();
+
+     // 주소-좌표 변환 객체를 생성합니다
+     var geocoder = new kakao.maps.services.Geocoder();
+
+     // 주소로 좌표를 검색합니다
+     geocoder.addressSearch(gpslocation, function(result, status) {
+
+         // 정상적으로 검색이 완료됐으면 
+          if (status === kakao.maps.services.Status.OK) {
+
+             var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+             // 결과값으로 받은 위치를 마커로 표시합니다
+             var marker = new kakao.maps.Marker({
+                 map: map,
+                 position: coords
+             });
+
+             // 인포윈도우로 장소에 대한 설명을 표시합니다
+              var infowindow = new kakao.maps.InfoWindow({
+                 content: '<div style="width:150px;text-align:center;padding:6px 0;">'+shop+'</div>'
+             });
+             infowindow.open(map, marker);
+
+             // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+             map.setCenter(coords);
+         } 
+     });          
+  }
+
+     
+     </script>
+
+  
+  
 </body>
 </html>
-
-
-
-
 

@@ -1,5 +1,7 @@
 package com.kh.bob.member.controller;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
