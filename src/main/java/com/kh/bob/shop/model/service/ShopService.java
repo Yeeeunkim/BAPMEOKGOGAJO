@@ -49,6 +49,8 @@ public interface ShopService {
 
 
 	/* void insertShop(HashMap<String, Object> data); */
+	
+	
 	// 원태원 끝 ======================================================
 
 }
