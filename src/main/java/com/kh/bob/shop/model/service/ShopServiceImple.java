@@ -1,6 +1,7 @@
 package com.kh.bob.shop.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,19 @@ public class ShopServiceImple implements ShopService {
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
+	
+	@Override
+	public List<String> getShopList() {
+	List<String> ShopList = sDAO.getShopList(sqlSession);
+		return ShopList;
+	}
+
+	@Override
+	public List<Map<String, Object>> getReservationList(int shop_no) {
+		List<Map<String, Object>> ReservationList = sDAO.getReservationList(sqlSession,shop_no);
+		return ReservationList;
+	}
+	
 
 	// 원태원 끝 ======================================================
 

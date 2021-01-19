@@ -1,30 +1,27 @@
 ﻿package com.kh.bob.shop.controller;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bob.shop.model.service.ShopService;
+import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ShopInfo;
 
 
 @Controller
 public class ShopController {
-	
-	@Autowired
-	private ShopService shopService;
 	
   	@Autowired
  	private ShopService sService;
@@ -37,7 +34,7 @@ public class ShopController {
 
 		      int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
 		      
-		      List<Map<String, Object>> reservationList = shopService.getReservationList(shop_no);
+		      List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
 		      
 		      
 		      mv.addObject("reservationList",reservationList);
@@ -72,7 +69,7 @@ public class ShopController {
 			
 			System.out.println("mm test ?  " + shop_no);
 		
-			List<Map<String, Object>> reservationList = shopService.getReservationList(shop_no);
+			List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
 			
 			
 			for(int i=0; i<reservationList.size(); i++) {
@@ -108,7 +105,7 @@ public class ShopController {
 		
 // 		HashMap<String,Object> shopList = new HashMap<String,Object>();
 		
-		List<String> shopList = shopService.getShopList();
+		List<String> shopList = sService.getShopList();
 	
 		mv.addObject("shopList",shopList);
 		mv.setViewName("/shop/shopList");

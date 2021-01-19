@@ -5,8 +5,6 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-	
-
 	<!-- VO 선언단 -->	
 	<typeAliases>
 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>

@@ -1,6 +1,5 @@
 ﻿package com.kh.bob.shop.model.service;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +42,6 @@ public interface ShopService {
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
-	public interface ShopService {
 
 	List<String> getShopList();
 

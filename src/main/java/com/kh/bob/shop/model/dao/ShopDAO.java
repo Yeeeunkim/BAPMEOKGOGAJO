@@ -53,6 +53,7 @@ public class ShopDAO {
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
+	
 	public List<String> getShopList(SqlSessionTemplate sqlSession) {
 		List<String> ShopList = sqlSession.selectList("shopMapper.getShopList");
 		return ShopList;
@@ -63,10 +64,11 @@ public class ShopDAO {
 		return ReservationList;
 	}
 
-
 	/*
 	 * public void insertShop(SqlSessionTemplate sqlSession,HashMap<String, Object>
 	 * data) { sqlSession.insert("shopMapper.insertShop"); }
 	 */
+	
+	
 	// 원태원 끝 ======================================================
 }
