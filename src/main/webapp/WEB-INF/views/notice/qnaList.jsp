@@ -1,147 +1,172 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
-<title>Insert title here</title>
+<link
+	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
+	rel="stylesheet">
+<title>밥먹고가조 QNA</title>
 <style>
-  	/*사이브 메뉴바 높이*/
-	#sideBar{ margin-top:  -550px; text-align: center; color: white;
-       width: 200px; height: 300px; background: white; border: none;}
-       
-  	/*전체*/
-    .outer{
-		width: 600px; min-height:30px;   padding-bottom: 50px; 
-		margin-left: auto; margin:auto; margin-top: 10px; margin-bottom: 50px; font-family: 'Gugi';
-	}
-	
-	/*테이블관련*/
-	table{border: 0px; font-size: 20px; text-align: center;  }
-	#qnaTable{text-align:center;  margin: auto; width: 650px; line-height: 50px; margin-top: 30px; margin-right: 350px;  border-spacing: 0 50px;}
-	#qnaTable th{background: #1D3557; border-bottom: 3px solid lightgray; height: 30px; color:white;}
-	#qnaTable td{border-bottom: 1px solid #1D3557 ; }
-	#searchArea{ margin: auto; width: auto;}
-	
-	/*페이징*/
-	#pageul { text-align:center; margin-top::5px; }
-	.pageli { display:inline; vertical-align:middle;}
-	.pagea { display:-moz-inline-stack;	/*FF2*/ display:inline-block; vertical-align:top; padding:4px; margin-right:3px;
-	width:15px !important; color:#000; font:bold 12px tahoma; border:1px solid #eee; text-align:center;
-	text-decoration:none; width /**/:26px;	/*IE 5.5*/ margin-top: -30px; }
-	 .pagea.now {color:#fff; background-color:#f40; border:1px solid #f40; }
-	.pagea:hover, .pageafocus { color:#fff; border:1px solid #f40; background-color:#f40;}
-	
-	/*하단 검색창 관련*/
-	#searchValue{margin-left: 490px;  width: 260px;  border: none;}
-	#searchBtn{ margin-right: 10px; padding-right:100px;  background: white; border: none; width: 30px; height: 30px;} 
-	
-	/*글쓰기 버튼*/
-	.btn1{ width: 100px; height: 30px; border: none; border-radius: 50px;  background: #F42B03; color:white;  margin-right: 300px;  } 
+.sArea {
+	width: 200px !important;
+	display: inline-block !important;
+}
 
-	
+.bArea {
+	width: 60% !important;
+	display: inline !important;
+	position: relative;
+	top: 80px;
+	margin: auto;
+}
+
+.nBtn{
+	float: right;
+	margin-top: 50px;
+	width: 100px;
+	height: 30px;
+	background: #F42B03;
+	color: white; 
+	border: none;
+	border-radius: 50px; 
+/* 	border: 0px !important; */   
+}
+
+th{border-bottom: 3px solid #1D3557 !important;}
+td{border-bottom: 1px solid #1D3557 !important;}
+
+.aPage{
+	color: black !important;
+}
+
+.aTitle{
+	color: black;
+}
 </style>
 </head>
-<body>
- <c:import url="../common/menubar.jsp" />
-	<div class="outer">
-			<br><br>
-			<br><br>
-			<h1 align="center">QnA ></h1><br><br>
-			<table id="qnaTable">
-				<tr>
-					<th>번호</th>
-					<th>제목 </th>
-					<th>작성자</th>
-					<th>등록일</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>안녕하세요 밥먹고가조 입니다.</td>
-					<td>user01</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>안녕하세요 밥먹고가조 입니다.</td>
-					<td>user01</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>안녕하세요 밥먹고가조 입니다.</td>
-					<td>user01</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>안녕하세요 밥먹고가조 입니다.</td>
-					<td>user01</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>안녕하세요 밥먹고가조 입니다.</td>
-					<td>user01</td>
-					<td>2020.01.01</td>
-				</tr>
-			</table>
+<body style="font-family: 'Gugi';">
+	<c:import url="../common/menubar.jsp" />
+	<br>
+	<br>
+	<h1 style="text-align: center;">QNA></h1>
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="sArea">
+			<c:import url="../common/noticeSidebar.jsp" />
+		</div>
 
-	</div>
-	
-	<!-- 페이징 처리 -->
-		<ul align="center" height="20" id="pageul">
+		<div class="bArea">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="th" scope="col" style="width: 15%">No</th>
+						<th class="th" scope="col" style="width: 45%">Title</th>
+						<th class="th" scope="col" style="width: 20%">Writer</th>
+						<th class="th" scope="col" style="width: 20%">Date</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:if test="${ !empty list }">			
+				<c:forEach var="b" items="${ list }">
+					<tr class="nContents">
+						<td scope="row">${ b.bNo }</td>
+						<td class="nTitle">
+							<c:if test="${ loginUser.member_id eq b.mId || loginUser.member_id eq 'admin'}">
+								<c:url var="qdetail" value="qdetail.no">
+									<c:param name="bNo" value="${ b.bNo }"/>
+									<c:param name="page" value="${ pi.currentPage }"/>
+								</c:url>
+								<a href="${ qdetail }" class="aTitle">${ b.bTitle }</a>
+							</c:if>
+							<c:if test="${ loginUser.member_id ne b.mId && loginUser.member_id ne 'admin'}">
+								<a onclick="noWriter();" class="aTitle">${ b.bTitle }</a>
+							</c:if>
+						</td>
+						<td>${ b.mId }</td>
+						<td>${ b.bWrite }</td>
+					</tr>				
+				</c:forEach>
+				</c:if> 
+				
+				</tbody>
+				
+				<!-- 페이징 처리 -->
+		<tr align="center" height="20" id="buttonTab">
+			<td colspan="6">
+			
+				<!-- [이전] -->
+				<c:if test="${ pi.currentPage <= 1 }">
+					[이전]
+				</c:if>
+				<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="qList.no">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<a class="aPage" href="${ before }">[이전]</a> &nbsp;
+				</c:if>
+				
+				<!-- 페이지 -->
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 					<c:if test="${ p eq pi.currentPage }">
-						<li class="pageli"><a class="pagea">[${ p }]</a></li>
+						<font color="red" size="4"><b>[${ p }]</b></font>
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
-						<c:url var="pagination" value="blist.bo">
+						<c:url var="pagination" value="qList.no">
 							<c:param name="page" value="${ p }"/>
 						</c:url>
-						<li class="pageli"><a href="${ pagination }" class="pagea">${ p }</a></li>&nbsp;
+						<a class="aPage" href="${ pagination }">${ p }</a> &nbsp;
 					</c:if>
 				</c:forEach>
-		</ul>
-	
-	<!-- 검색창, 글쓰기 버튼 -->
-	<div id="searchArea" align="center">
-		<input id="searchValue" type="search" placeholder="검색어를 입력하세요 ">
-		<button onclick="searchBoard();" id="searchBtn"><i class="fa fa-search"></i></button>
-		<button class="btn1" onclick="location.href='qInsertForm.no'">글쓰기</button>
-		<hr style="width: 300px; margin-right: 100px; margin-top: 5px; border-bottom: 3px solid black;">
-	</div>
-    
-     <c:import url="../common/noticeSidebar.jsp" />
-	 <br><br><br><br><br><br><br><br><br>
-     <c:import url="../common/footer.jsp" /> 
-
-   
-	<script type="text/javascript">
-	/*상세*/
-	$(function(){
-					$("#boardTable").find("td").mouseenter(function(){
-						$(this).parents("tr").css({"background":"white", "color":"#F48C06", "cursor":"pointer"});
-					}).mouseout(function(){
-						$(this).parents("tr").css({"background":"none", "color":"black"});
-					}).click(function(){
-						var bId=$(this).parents().children("td").eq(0).text();
-	
-						location.href="selectOne.bo?bId="+bId;
-					});
-				});
-	/*검색*/
-		function searchBoard(){
-			var searchCondition = $("#searchCondition").val();
-			var searchValue = $("#searchValue").val();
+				
+				<!-- [다음] -->
+				<c:if test="${ pi.currentPage >= pi.maxPage }">
+					[다음]
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="qList.no">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<a class="aPage" href="${ after }">[다음]</a>
+				</c:if>
+			</td>
+		</tr>
+				
+			</table>
 			
-			location.href="search.bo?searchCondition="+searchCondition+"&searchValue="+searchValue;
+			<c:if test="${ !empty loginUser.member_id }">
+			<button class="nBtn" onclick="qInsert();">글쓰기</button>
+			</c:if>
+		</div>
+		<div class="col-2"></div>
+	</div>
+
+	<c:import url="../common/footer.jsp" />
+	
+	<script>
+		function qInsert(){
+			location.href = "${ contextPath }/qInsertForm.no"
+		}
+		
+// 		$(function(){
+// 			$('.nContents').mouseenter(function(){
+// 				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
+// 			}).mouseout(function(){
+// 				$(this).css({'color':'black', 'font-weight':'normal'});
+// 			}).click(function(){
+// 				var bNo = $(this).children('td').eq(0).text();
+				
+// 				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
+// 			});
+// 		});
+		
+		function noWriter(){
+			alert("작성자만 접근이 가능합니다.");
 		}
 	</script>
-         
 </body>
 </html>

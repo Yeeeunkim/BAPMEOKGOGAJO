@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="js/jquery-3.5.1.min.js"></script>
+<script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -65,6 +65,8 @@
 					<span class="fTitle"><a href="blist.no">회사소개</a></span>
 					<span class="fTitle"><a href="nList.no">고객센터</a></span>
 					<span class="fTitle"><a href="qList.no">문의하기</a></span>
+					<!-- 결제 화면 연동을 위한 테스트용 -->
+					<span class="fTitle"><a href="resView.sh">결제</a></span>  
 				</div>
 				<hr class="fHr">
 		 		<div class="">

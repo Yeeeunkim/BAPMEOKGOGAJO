@@ -60,55 +60,45 @@
 </style>
 </head>
 <body>
-	<c:import url="../common/header.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
 	<div class="outer">
 		<h2>식당 정보 수정</h2>
-		<form action="" method="post" id="updateForm" name="updateForm">
+		<form action="mInfoUpdate.me" method="post" id="updateForm" name="updateForm">
 			<table align="center">
 				<tr height="70px">
 					<td width="150px">사업자 이름 : </td>
-					<td width="400px"><input type="text" class="input" name="shopName" value=""></td>
-				</tr>
-				<tr height="70px">
-					<td>사업자 번호 : </td>
-					<td><input type="text" class="input" name="businessNum" value=""></td>
+					<td width="400px"><input type="text" class="input" name="member_name" value="${ loginUser.member_name }"></td>
 				</tr>
 				<tr height="70px">
 					<td>아이디</td>
-					<td><input type="text" class="input" name="id" value="" style="background:lightgray;" readonly></td>
+					<td><input type="text" class="input" name="member_id" value="${ loginUser.member_id }" style="background:lightgray;" readonly></td>
 				</tr>
 				<tr height="70px">
-					<td>비밀번호 : </td>
-					<td><input type="text" class="input" name="pwd1" value="" ></td>
-				</tr>
-				<tr height="70px">
-					<td height="70px">비밀번호확인 : </td>
-					<td><input type="text" class="input" name="pwd2" value="" ></td>
+					<td>생년월일 : </td>
+					<td><input type="text" class="input" name="member_birth" value="${ loginUser.member_birth }"  ></td>
 				</tr>
 				<tr height="70px">
 					<td>이메일 : </td>
-					<td><input type="email" class="input" name="email" value=""></td>
+					<td><input type="email" class="input" name="email" value="${ loginUser.email }"></td>
 				</tr>
 				<tr height="70px">
-					<td>홈페이지 주소 : </td>
-					<td><input type="email" class="input" name="email" value=""></td>
-				</tr>
-				<tr height="70px">
-					<td>업체 번호 : </td>
-					<td><input type="email" class="input" name="email" value=""></td>
-				</tr>
-				<tr height="70px">
-					<td>업체 주소 : </td>
-					<td><input type="email" class="input" name="email" value=""></td>
-				</tr>
-				<tr height="300px">
-					<td colspan="2">
-						<img src="resources/images/지도.jpg" height="300px" width="550px">
-					</td>
+					<td>성별 : </td>
+					<c:if test="${ loginUser.gender eq 'M' }">
+						<td>
+							<input type="radio" name="gender" value="M" checked><label>남자</label>
+							<input type="radio" name="gender" value="F" ><label>여자</label>
+						</td>
+					</c:if>
+					<c:if test="${ loginUser.gender eq 'F' }">
+						<td>
+							<input type="radio" name="gender" value="M" ><label>남자</label>
+							<input type="radio" name="gender" value="F" checked><label>여자</label>
+						</td>
+					</c:if>
 				</tr>
 				<tr height="70px">
 					<td>핸드폰 : </td>
-					<td><input type="text" class="input phone" maxlength="11" name="phone" placeholder="핸드폰(-없이 입력해주세요)" value=""><button class="phoneBtn">인증번호 전송</button></td>
+					<td><input type="text" class="input phone" maxlength="11" name="phone" placeholder="핸드폰(-없이 입력해주세요)" value="${ loginUser.phone }"><button class="phoneBtn">인증번호 전송</button></td>
 				</tr>
 				<tr height="70px">
 					<td></td>
@@ -118,7 +108,10 @@
 			
 			<div class="btns" align="center">
 				<input type="submit" id="updateBtn" value="수정 완료">
-				<input type="button" id="deleteBtn" onclick="" value="회원 탈퇴">
+				<c:url var="mdelete" value="mdelete.me">
+					<c:param name="member_id" value="${ loginUser.member_id }"/>
+				</c:url>
+				<input type="button" id="deleteBtn" onclick="location.href='${ mdelete}'" value="회원 탈퇴">
 			</div>		
 		</form>
 	</div>

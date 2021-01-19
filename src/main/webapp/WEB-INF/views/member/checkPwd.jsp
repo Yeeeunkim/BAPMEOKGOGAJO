@@ -51,16 +51,16 @@
 </style>
 </head>
 <body>
-	<c:import url="../common/header.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
 	<div id="outer">
-		<form action="" method="post" id="checkPwd" name="checkPwd">
+		<form action="mInfoPwd.me" method="post" id="checkPwd" name="checkPwd">
 			<h1>회원 정보 수정</h1>
 			<div id=checkPwdOut>
 				<label id="label">회원 정보 수정을 위해 비밀번호를 다시 입력 해주세요.</label><br>
 				<div id="checkPwdMid">
 					<div id="checkPwdIn">
 						<label>비밀번호 : </label>
-						<input type="password" id="pwd" name="pwd">
+						<input type="password" id="member_pwd" name="member_pwd">
 					</div>
 					<br>
 					<input type="submit" id="btn" value="회원 정보 수정">
