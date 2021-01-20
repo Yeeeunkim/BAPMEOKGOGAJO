@@ -18,6 +18,7 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 		<property name="dataSource" ref="dataSource"/>	<!-- ref : DataBase 등록 부분 bean의 id -->
 	</bean>
+	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSession" /> <!-- 매개변수 있는 생성자에 값을 넣는 것을 보여주는 것을 태그로 표현 -->
 	</bean>
@@ -31,4 +32,5 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+
 </beans>

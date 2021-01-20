@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -36,6 +36,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <title>밥먹고가조 공지사항</title>
+
 <style>
 .sArea {
 	width: 200px !important;
@@ -79,6 +80,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 	<br>
 	<br>
 	<h1 style="text-align: center;">공지사항 ></h1>
+
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="sArea">
@@ -160,6 +162,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 			<input type="hidden" name="mId" value='${loginUser.member_id}'>
 			<button class="nBtn" onclick="nInsert();">글쓰기</button>
 			</c:if>
+
 		</div>
 		<div class="col-2"></div>
 	</div>

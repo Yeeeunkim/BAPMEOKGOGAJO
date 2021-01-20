@@ -48,7 +48,7 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String login(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.loginMember(m);
-			
+
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do"; 
@@ -159,7 +159,7 @@ public class MemberController {
 		//m.setMember_pwd(encPwd); 
 		
 		int result = bmService.memberInsert(m);
-		
+
 		if(result > 0) {
 			return "redirect:home.do";
 		}else {
@@ -184,6 +184,7 @@ public class MemberController {
 		}
 	}
 	
+
 	// 수정 아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
@@ -196,7 +197,6 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-	 
 	
 	//일반 마이페이지  
 	@RequestMapping("myPage.me")
@@ -210,39 +210,36 @@ public class MemberController {
 		return "updatePwdForm";
 	}
 	
-	
-	@RequestMapping("mInfoPwdForm.me")
-	public String mCheckPwdForm() {
-		return "checkPwd";
-	}
-	
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.me")
-	public String pwdUpdate(@RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd") String newPwd,
-						HttpSession session) {
-		
+	public String pwdUpdate( @RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd1") String newPwd,
+			HttpSession session) {
 		Member m = bmService.loginMember((Member)session.getAttribute("loginUser"));
-		System.out.println("m :" + m);
+		Member loginUser = bmService.loginMember(m);
 		
-		if(member_pwd == m.getMember_pwd()) {
-			String encNewPwd  = bcrypt.encode(newPwd);
-			System.out.println("encNewPwd : " + encNewPwd);
-
+		if(loginUser != null) {
+			
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("member_id", m.getMember_id());
-			map.put("newPwd", encNewPwd);
-			
-			int result = bmService.updatePwd(map);
+			map.put("newPwd", newPwd);
+			int result = bmService.pwdUpdate(map);
 			
 			if(result > 0) {
 				return "myPage";
 			}else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
-		} else {
-			throw new MemberException("기존 비밀번호가 틀렸습니다.");
+		}else {
+			
+			throw new MemberException("기존 비밀번호 틀렸습니다.");
 		}
 	}
+	
+	@RequestMapping("mInfoPwdForm.me")
+	public String mCheckPwdForm() {
+		return "checkPwd";
+	}
+	
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
@@ -271,8 +268,20 @@ public class MemberController {
 	
 	//사업자 마이페이지 
 	@RequestMapping("shopMypage.me")
-	public String shopMyPageForm() {
-		return "shopMyPage";
+	public String shopMyPageForm(@ModelAttribute ShopInfo si , @ModelAttribute ShopMenu sm, @ModelAttribute ShopSeat ss,  Model model) {
+		int sInfo = bmService.selectSinfo(si);
+		int sMenu = bmService.selectSmenu(sm);
+		
+		System.out.println("si : " + si);
+		System.out.println("sm : " + sm);
+		
+		if(sInfo > 0 || sMenu > 0) {
+			model.addAttribute("si", si);
+			model.addAttribute("sm", sm);
+			return "shopMyPage";
+		}else {
+			throw new MemberException("사업자 마이페이지 조회에 실패하였습니다.");
+		}
 	}
 	
 	@RequestMapping("oInfoPwdForm.me")
@@ -281,7 +290,7 @@ public class MemberController {
 	}
 	
 	//사업자 정보 수정 비밀번호 기능 페이지 
-		@RequestMapping("oInfokPwd.me")
+		@RequestMapping("oInfoPwd.me")
 		public String oCheckPwd(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.infoPwd(m);
 			

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -84,6 +84,7 @@
 		</table>
 		<br>
 <!-- 		<div id="map"></div> -->
+
 		<br><br>
 		<div id="check">
 		<div id="notice">※ 형법 제314조(업무방해)에 의하여<br>

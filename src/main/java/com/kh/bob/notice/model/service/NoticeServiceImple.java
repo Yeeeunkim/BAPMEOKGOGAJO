@@ -1,4 +1,4 @@
-package com.kh.bob.notice.model.service;
+﻿package com.kh.bob.notice.model.service;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class NoticeServiceImple implements NoticeService {
 		int result = 0;
 		// 1. 게시글 추가
 		result = nDAO.insertBoard(sqlSession, board);
-		
+
 		if (result > 0) { // 게시글 추가 성공했다면
 			if (attachment.getSaveName() != null) { // 첨부파일이 있다면
 				attachment.setbNo(board.getbNo());
@@ -125,8 +125,6 @@ public class NoticeServiceImple implements NoticeService {
 	public ArrayList<Board> faqList() {
 		return nDAO.faqList(sqlSession);
 	}
-
-
 
 
 

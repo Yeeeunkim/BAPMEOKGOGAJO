@@ -1,3 +1,4 @@
+﻿<<<<<<< HEAD
 ﻿package com.kh.bob.shop.model.service;
 
 import java.util.HashMap;
@@ -38,6 +39,10 @@ public interface ShopService {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
+
+	int insertShop(ShopInfo si);
+
+	int insertMenu(List<ShopMenu> shopmenu);
 
 	// 신진식 끝 =====================================================
 

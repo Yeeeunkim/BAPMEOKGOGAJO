@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -91,6 +91,8 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					</tr>				
 				</c:forEach>
 				</c:if> 
+
+
 				
 				</tbody>
 				
@@ -138,9 +140,11 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				
 			</table>
 			
+
 			<c:if test="${ !empty loginUser.member_id }">
 			<button class="nBtn" onclick="qInsert();">글쓰기</button>
 			</c:if>
+
 		</div>
 		<div class="col-2"></div>
 	</div>
@@ -162,11 +166,24 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				
 // 				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
 // 			});
-// 		});
+// 		}); 
 		
 		function noWriter(){
 			alert("작성자만 접근이 가능합니다.");
+
 		}
+		
+		$(function(){
+			$('.nContents').mouseenter(function(){
+				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
+			}).mouseout(function(){
+				$(this).css({'color':'black', 'font-weight':'normal'});
+			}).click(function(){
+				var bNo = $(this).children('td').eq(0).text();
+				
+				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
+			});
+		});
 	</script>
 </body>
 </html>

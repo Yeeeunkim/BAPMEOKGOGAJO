@@ -1,16 +1,17 @@
-﻿package com.kh.bob.shop.model.dao;
+﻿﻿package com.kh.bob.shop.model.dao;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
+
 
 @Repository("sDAO")
 public class ShopDAO {
@@ -49,6 +50,17 @@ public class ShopDAO {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
+	
+	public int insertShop(SqlSessionTemplate sqlSession, ShopInfo si) {
+		System.out.println("테스트2:"+si);
+		return sqlSession.insert("shopMapper.insertShop", si);
+	}
+
+	public int insertMenu(SqlSessionTemplate sqlSession, List<ShopMenu> shopmenu) {
+		System.out.println("테스트3:"+shopmenu);
+		return sqlSession.insert("shopMapper.insertMenu", shopmenu);
+	}
+
 
 	// 신진식 끝 =====================================================
 
@@ -71,4 +83,7 @@ public class ShopDAO {
 	
 	
 	// 원태원 끝 ======================================================
+
+	
+
 }

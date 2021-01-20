@@ -175,7 +175,7 @@
                          <div class="card-body">
                           <p class="card-text">뜨끈한 찜닭 - 강남점</p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
-                          <a href="#" class="btn btn-primary">예약하기</a>
+                          <a href="Reservation.do" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
                   </div>

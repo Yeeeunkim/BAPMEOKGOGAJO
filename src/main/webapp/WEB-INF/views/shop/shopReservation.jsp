@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -44,6 +44,7 @@
   margin: auto;
   text-align:center;
 }
+
 .form-group{
    width: 70%;
    height: 30%;
@@ -57,12 +58,10 @@
    margin: 0 auto;
    margin-top: 50px;
 }
-
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -71,28 +70,22 @@
    width: 250px !important;
    height: 50px;
 }
-
 #info{
    position: absolute;
    left: 10%;
 }
-
-
 .input-info{
    display: inline;
 }
-
 .cInput {
    width: 30%;
 }
-
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -104,6 +97,7 @@
 .line{
    width: 60%;
    margin: auto;
+   margin-bottom:50px;
    border: solid 2px gray;
 }
 #menu{
@@ -114,24 +108,27 @@
 .menuPlus{
    display: block !important;
    margin: 0 auto !important;
-      text-align: center;
-      background: #F42B03;
+   text-align: center;
+   background: #F42B03;
    border: 0px;
-      color: white;
+   color: white;
   
 }
 
-#user{
-   display: block; 
-   margin: 0 auto; 
-   width:70px; 
-   height:70px;
-   float:left;
+.user{
+	display: block; 
+	margin: 0 auto; 
+	width:70px; 
+	height:70px;
+	float:left;
 }
-#gps{
-   width: 40px;
-}
- #map{
+
+#user{margin-left:20%}
+
+
+#gps{width: 40px;}
+
+#map{
   top: 20%;
   width: 50%;
   height: 250px;
@@ -140,7 +137,6 @@
   text-align:center;
 } 
 #btnR{
-
   background-color: #F42B03;
   border: none;
   color: white;
@@ -148,7 +144,6 @@
   float: right;
   width: 100px;
   height: 40px;
-
  }
  
  td {
@@ -159,7 +154,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .time{
    margin: auto;
    display: flex;
@@ -184,14 +178,42 @@
   height: 30%;
 } 
 
+#menuP {
+	border-radius: 30px; width:800px; height:400px;
+}
+
+h4,h2{margin-left:8%;}
+
+
+.button{
+  background-color: #F42B03;
+  border: none;
+  color: white;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+}
+
+#review{display:block; margin-left:48%;}
+
+#declare{display:inline-block;margin-left:90%; border-radius:10px; width:70px; height:20px; font-size:10px;}
+
+.image{display:inline-block;}
+.review{display:inline-block; height:20%;}
+
+
+
+
+
+
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 중식</h2>
-          
+          <h2>중식</h2>
 
    <!-- 사진, 지도 폼 -->
    
@@ -202,35 +224,36 @@
 
    
    <div id="info">
-   
-   
-   
       <p id="shopnm">${reservationList[0].SHOP_NAME}</p> <p> [별점]</p>
       <p>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ${reservationList[0].SHOP_PHONE}</p>
       <p>영업시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OPEN} -  ${reservationList[0].SHOP_CLOSE}</p>
       <p>브레이크타임  ${reservationList[0].BREAK_TIME}</p>
       <p>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].HOLIDAY}</p>
       <p>웹사이트  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;식당 홈페이지로 바로가기(아이콘 유무확인)</p>
-      
-      
-      
-      
    </div>
    <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br>
    
 <!--    <div class="btn-group"> -->
        <div class="row">
        <div class="col-3"></div>
-       <div class="col-2">
-         <select class="form-select" aria-label="Default select example">
-            <option value="1" selected="selected">12월 1일</option>
-            <option value="2">12월 2일</option>
-            <option value="3">12월 3일</option>
-            <option value="4">12월 4일</option>
-            <option value="5">12월 5일</option>
-            <option value="6">12월 6일</option>
-         </select>
-         </div>
+	       <div class="col-2">
+	         	<div class="form-group row">
+				  <label for="example-date-input" class="col-2 col-form-label"></label>
+				  <div class="col-10">
+				    <input class="form-control" type="date" id="example-date-input" max="" style=width:200px; >
+				  </div>
+				</div>
+	
+				
+				<script>  /*날짜 범위 제한*/
+				  document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
+				  var today = new Date();
+				  var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
+				  document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+				  document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
+				</script>
+	         </div>
+         
          <div class="col-2">
          <select class="form-select" aria-label="Default select example">
             <option value="1" selected="selected">오후 12:30</option>
@@ -242,8 +265,8 @@
          </select>
          </div><div class="col-2">
          <select class="form-select" aria-label="Default select example">
-            <option value="1" selected="selected">2명</option>
-            <option value="2">1명</option>
+            <option value="1">1명</option>
+            <option value="2" selected="selected">2명</option>
             <option value="3">3명</option>
             <option value="4">4명</option>
             <option value="5">5명</option>
@@ -252,40 +275,7 @@
          </div>
          <div class="col-3"></div>
          </div>
-<!--     </div> -->
-   
-  
-   
-    <!-- <div class="btn-group">
-     <button type="button" class="btn btn-primary">Sony</button>
-     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-       <span class="caret"></span>
-     </button>
-     <div class="dropdown-menu">
-       <a class="dropdown-item" href="#">Tablet</a>
-       <a class="dropdown-item" href="#">Smartphone</a>
-     </div>
-     
-     <button type="button" class="btn btn-primary">Sony</button>
-     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-       <span class="caret"></span>
-     </button>
-     <div class="dropdown-menu">
-       <a class="dropdown-item" href="#">Tablet</a>
-       <a class="dropdown-item" href="#">Smartphone</a>
-     </div>
-     
-     <button type="button" class="btn btn-primary">Sony</button>
-     <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-       <span class="caret"></span>
-     </button>
-     <div class="dropdown-menu">
-       <a class="dropdown-item" href="#">Tablet</a>
-       <a class="dropdown-item" href="#">Smartphone</a>
-     </div>
-   </div> -->
-  
-   
+
    
    
    <br><br><br><br>
@@ -296,16 +286,12 @@
    </div>
    <br><br>
    <hr class="line">
-   <br><br><br>
-   
-   
-   
-   
+  
    
   <div class="container">
   <h2>메뉴</h2>
   <br><br>
-  <h4>&nbsp;&nbsp;&nbsp;메인 ></h4>
+  <h4>메인 ></h4>
    <table class="table table-bordered " id="menu">
        <thead>
          <tr>
@@ -319,10 +305,11 @@
        </tbody>
      </table>
    
-   <br>
-   <br><br><br>
+		
    
    
+   
+
    <h4>&nbsp;&nbsp;&nbsp;사이드</h4>
    <table class="table table-bordered table-sm" id="menu">
        <thead>
@@ -335,6 +322,34 @@
        <tbody id="SidemenuBody">
        </tbody>
      </table>
+    
+    <br><br><br><br> 
+     
+     <h4>음료 ></h4>
+   <table class="table table-bordered table-sm" id="menu">
+       <thead>
+         <tr>
+           <th>메뉴</th>
+           <th>가격</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td>사이다</td>
+           <td>2000원</td>
+         </tr>
+         <tr>
+           <td>콜라</td>
+           <td>2000원</td>
+         </tr>
+         <tr>
+           <td>소주</td>
+           <td>4000원</td>
+         </tr>
+       </tbody>
+     </table>
+     
+     
      
      <br>
      <br><br><br>
@@ -359,13 +374,15 @@
      </div>
    
    
+   
    <br><br>
    <hr class="line">
-   <br><br><br>
+  
    
    <div class="container">
   <h2>식당 정보</h2>
   <br>
+
   <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp; <p id=gpsaddress>${reservationList[0].SHOP_ADDRESS}</p>&nbsp;&nbsp;&nbsp;
   <!-- <input class= "cInput" type="text" name="address" id="address" placeholder="주소를 입력하세요."> -->
   <br><br>
@@ -534,4 +551,22 @@
 </body>
 </html>
 
+	<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
+		
+	<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
 
+	<script>
+		function reviewEnroll(){
+			location.href="ReviewEnrollForm.do"
+		}
+
+		function declareEnroll(){
+			location.href="DeclareEnrollForm.do"
+		}
+	</script>
+
+ 
+ 	<jsp:include page="../common/footer.jsp" />
+ 	  
+</body>
+</html>
