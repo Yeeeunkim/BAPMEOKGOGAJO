@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
+import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 

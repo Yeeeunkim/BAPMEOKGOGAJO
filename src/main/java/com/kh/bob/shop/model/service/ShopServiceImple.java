@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.bob.shop.model.dao.ShopDAO;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 @Service("sService")
 public class ShopServiceImple implements ShopService {
@@ -59,7 +60,15 @@ public class ShopServiceImple implements ShopService {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
+	@Override
+	public int insertShop(ShopInfo si) {
+		return sDAO.insertShop(sqlSession,si);
+	}
 
+	@Override
+	public int insertMenu(List<ShopMenu> shopmenu) {
+		return sDAO.insertMenu(sqlSession,shopmenu);
+	}
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================

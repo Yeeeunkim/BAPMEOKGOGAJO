@@ -46,7 +46,7 @@ public class MemberDAO {
 	public Member findPwd(SqlSessionTemplate sqlSession, Model model) {
 		return sqlSession.selectOne("memberMapper.selectPwd", model);
 	}
-<<<<<<< HEAD
+
 	public int pwdUpdate(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("memberMapper.pwdUpdate", map);

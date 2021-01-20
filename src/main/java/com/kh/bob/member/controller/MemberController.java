@@ -275,7 +275,7 @@ public class MemberController {
 	
 	//사업자 마이페이지 
 	@RequestMapping("shopMypage.me")
-<<<<<<< HEAD
+
 	public String shopMyPageForm(@ModelAttribute ShopInfo si , @ModelAttribute ShopMenu sm, @ModelAttribute ShopSeat ss,  Model model) {
 		int sInfo = bmService.selectSinfo(si);
 		int sMenu = bmService.selectSmenu(sm);
