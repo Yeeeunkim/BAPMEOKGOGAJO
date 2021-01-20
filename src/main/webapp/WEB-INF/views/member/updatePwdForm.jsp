@@ -1,15 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<title>Insert title here</title>
-=======
+
 <title>비밀번호 수정</title>
->>>>>>> master
+
 <style>
 	.outer{
 		width: 70%;
@@ -76,20 +74,19 @@
 				</tr>
 				<tr height="70px">
 					<td>새 비밀번호 </td>
-<<<<<<< HEAD
-					<td><input type="password" class="input" id="newPwd"name="member_newPwd"></td>
-=======
+
+
 					<td><input type="password" class="input" id="newPwd"name="member_newPwd1"></td>
 					<td><label id="pwd1Result"></label></td>
->>>>>>> master
+
 				</tr>
 					 <tr height="70px">
 					<td>새 비밀번호 확인</td>
 					<td><input type="password" class="input" id="newPwCheck" name="member_newPwd2"  ></td>
-<<<<<<< HEAD
-=======
+
+
 					<td><label id="pwd2Result"></label></td>
->>>>>>> master
+
 				</tr> 
 			</table>
 			<br><br><br>
@@ -100,7 +97,8 @@
 	</div>
 	<c:import url="../common/footer.jsp"/>
 	<script>
-<<<<<<< HEAD
+
+
 	$('#newPw').on('keyup', function() {
 		//비밀번호 공백 확인
 		if($("#newPw").val() === ""){
@@ -134,7 +132,7 @@
 	}
 		
 				});
-=======
+
 	$(function(){
 		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
 		
@@ -178,7 +176,7 @@
 			}	
 		});
 	});
->>>>>>> master
+
 	</script>
 </body>
 </html>

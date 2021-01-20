@@ -1,4 +1,4 @@
-package com.kh.bob.member.controller;
+﻿package com.kh.bob.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,6 +28,7 @@ import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopSeat;
 
 
+
 @SessionAttributes("loginUser")
 
 @Controller
@@ -52,6 +53,7 @@ public class MemberController {
 	public String login(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.loginMember(m);
 			System.out.println("loginUser : " + loginUser);
+
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do"; 
@@ -163,6 +165,7 @@ public class MemberController {
 		
 		int result = bmService.memberInsert(m);
 		System.out.println("m : " + m);
+
 		if(result > 0) {
 			return "redirect:home.do";
 		}else {
@@ -207,12 +210,13 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	
+
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";
 	}
 	
+
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.me")
 	public String pwdUpdate( @RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd1") String newPwd,
@@ -232,6 +236,7 @@ public class MemberController {
 			}else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
+
 		}else {
 			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
@@ -242,7 +247,6 @@ public class MemberController {
 	public String mCheckPwdForm() {
 		return "checkPwd";
 	}
-	
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
@@ -271,6 +275,7 @@ public class MemberController {
 	
 	//사업자 마이페이지 
 	@RequestMapping("shopMypage.me")
+<<<<<<< HEAD
 	public String shopMyPageForm(@ModelAttribute ShopInfo si , @ModelAttribute ShopMenu sm, @ModelAttribute ShopSeat ss,  Model model) {
 		int sInfo = bmService.selectSinfo(si);
 		int sMenu = bmService.selectSmenu(sm);

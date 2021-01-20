@@ -1,4 +1,4 @@
-package com.kh.bob.member.model.vo;
+﻿package com.kh.bob.member.model.vo;
 
 import java.sql.Date;
 

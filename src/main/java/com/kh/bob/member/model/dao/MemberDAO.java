@@ -10,6 +10,7 @@ import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
+
 @Repository("bmDAO")
 public class MemberDAO {
 // 김예은 시작 ================================================
@@ -45,6 +46,7 @@ public class MemberDAO {
 	public Member findPwd(SqlSessionTemplate sqlSession, Model model) {
 		return sqlSession.selectOne("memberMapper.selectPwd", model);
 	}
+<<<<<<< HEAD
 	public int pwdUpdate(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("memberMapper.pwdUpdate", map);
@@ -60,9 +62,13 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.selectSmenu", sm);
 	}
 
-	
-	
+	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.update("memberMapper.updatePwd", map);
+	}
 	
 // 김예은 끝 =================================================
+
+
+	
 
 }

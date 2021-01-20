@@ -1,13 +1,23 @@
-﻿package com.kh.bob.shop.model.service;
+package com.kh.bob.shop.model.service;
 
 import java.util.List;
-import java.util.ArrayList;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.bob.shop.model.dao.ShopDAO;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
-import com.kh.bob.shop.model.vo.ShopMenu;
 
-public interface ShopService {
+@Service("sService")
+public class ShopServiceImple implements ShopService {
+	
+	@Autowired
+	private ShopDAO sDAO;
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
 
 	// 강동기 시작 ===============================================
 
@@ -23,27 +33,37 @@ public interface ShopService {
 
 	// 민병욱 시작 =================================================
 
-	// @@@@@테스트용 
-	ShopInfo selectShop(int sNo);
-	ReserveInfo selectReserve(int rNo);
-	List selectMenu(int rNo);
-	List selectTable(int rNo);
-	// @@@@@테스트용 
-	int successReserve(int rNo);
+	// @@@@@테스트용
+	@Override
+	public ShopInfo selectShop(int sNo) {
+		return sDAO.selectShop(sqlSession, sNo);
+	}
+	@Override
+	public ReserveInfo selectReserve(int rNo) {
+		return sDAO.selectReserve(sqlSession, rNo);
+	}
+	@Override
+	public List selectMenu(int rNo) {
+		return sDAO.selectMenu(sqlSession, rNo);
+	}
+	@Override
+	public List selectTable(int rNo) {
+		return sDAO.selectTable(sqlSession, rNo);
+	}
+	// @@@@@테스트용
+	@Override
+	public int successReserve(int rNo) {
+		return sDAO.successReserve(sqlSession, rNo);
+	}
 	
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
-	int insertShop(ShopInfo si);
-
-	int insertMenu(List<ShopMenu> shopmenu);	
-
 
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
 
 	// 원태원 끝 ======================================================
-
 
 }

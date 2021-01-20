@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -11,7 +11,6 @@
 	rel="stylesheet">
 <title>밥먹고가조 FAQ</title>
 <style>
-
 .sArea {
 	width: 200px !important;
 	display: inline-block !important;
@@ -23,11 +22,10 @@
 	position: relative;
 	top: 80px;
 	margin: auto;
-
 }
 
 .check {
-	display: none;
+/* 	display: none; */
 }
 
 .title {
@@ -56,7 +54,6 @@
 	background: #F42B03;
 	color: white;
 	margin-bottom: 50px;
-	margin-left: 10px;
 }
 .hr{
 	background-color: navy;
@@ -80,25 +77,50 @@
 			<c:if test="${ !empty list }">
 				<hr class="hr">
 				<c:forEach var="b" items="${ list }">
-					<input type="checkbox" class="check" id=${ b.bNo }>
+					<input type="checkbox" name="check" class="check" id=${ b.bNo } value=${ b.bNo }>
 						<label for=${ b.bNo } class="title">Q. ${ b.bTitle }</label>
 						<p class="desc">
-			 			<br>A. ${ b.bContents }
+			 			<br>${ b.bContents }
 						</p>
 						<hr class="hr">
 				</c:forEach>
 			</c:if>
 			
-			<c:if test="${ loginUser.member_id eq 'admin' }">
-			<button class="btn1" onclick="location.href='fInsertForm.no'">글쓰기</button>
-			<button class="btn1" onclick="location.href='fDeleteView.no'">삭제하기</button>
-			</c:if>
+			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
+<!-- 		<button class="btn1" onclick="location.href='fInsertForm.no'">글쓰기</button> -->
+			<button class="btn1" onclick="fDelete();">삭제하기</button>
 		</div>
 		<div class="col-2"></div>
 	</div>
-	<div class="row" style="height: 50px;"></div>
+
 	<c:import url="../common/footer.jsp" />
-
-
+	
+	<script>
+		function fDelete(){
+			var check = document.getElementsByName('check');
+			var bNoList = [];
+			for(var i in check){	
+				if(check[i].checked){
+					bNoList.push(check[i].id);
+				}
+			}
+			
+			if(bNoList.length == 0){
+				alert("삭제할 게시물을 체크해주세요.");
+			} else {
+				var bool = confirm('정말 삭제하시겠습니까?');
+				if(bool){
+					$.ajax({
+						url: 'fDelete.no',
+						data: {bNoList:bNoList},
+						success: function(data){
+							alert("게시글" + data + "개 삭제 성공");
+							location.reload();
+						}
+					});
+				}
+			}
+		}
+	</script>
 </body>
 </html>

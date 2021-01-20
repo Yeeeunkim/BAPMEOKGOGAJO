@@ -65,6 +65,8 @@
 					<span class="fTitle"><a href="blist.no">회사소개</a></span>
 					<span class="fTitle"><a href="nList.no">고객센터</a></span>
 					<span class="fTitle"><a href="qList.no">문의하기</a></span>
+					<!-- 결제 화면 연동을 위한 테스트용 -->
+					<span class="fTitle"><a href="resView.sh">결제</a></span>  
 				</div>
 				<hr class="fHr">
 		 		<div class="">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="boardMapper">
 <!-- 강동기 시작 =============================================== -->
@@ -19,7 +19,9 @@
 <!-- 민병욱 시작 ================================================= -->
 
 <!-- 	게시판 ResultSet  -->
-<resultMap type="Board" id="boardResultSet">
+
+	<resultMap type="Board" id="boardResultSet">
+
 		<id property="bNo" column="BOARD_NO"/>
 		<result property="bTitle" column="BOARD_TITLE"/>
 		<result property="bContents" column="BOARD_CONTENTS"/>
@@ -70,7 +72,9 @@
 		order by board_no desc
 	</select>
 	
-	<!--  공지 게시글 추가 -->
+
+	<!--  공지 게시글, QNA, FAQ 추가 -->
+
 	<!-- @@@@@글 작성자 추후 로그인 세션 가져온 후 수정 필요@@@@@ -->
 	<insert id="insertBoard">
 		insert into board_info
@@ -80,7 +84,8 @@
 				sysdate,
 				'Y',
 				#{cateCode},				
-				'test')
+				#{mId})
+
 		<selectKey keyProperty="bNo" resultType="_int" order="AFTER">
 			select seq_bno.currval from dual
 		</selectKey>	<!-- 현재 시퀀스를 가상 테이블에 담아둠 -->
@@ -109,7 +114,8 @@
 		where board_no = #{bNo}
 	</select>
 	
-	<!-- 공지사항, QNA 삭제 -->
+
+	<!-- 공지사항, QNA, FAQ 삭제 -->
 	<update id="deleteBoard">
 		update board_info
 		set board_status = 'N'
@@ -131,7 +137,8 @@
 		where attachment_no = #{aNo}
 	</update>
 	
-	<!-- QNA 게시글 리스트  qnaList-->
+
+	<!-- QNA 게시글 리스트-->
 	<select id="qnaList" resultMap="boardResultSet">
 		select * 
 		from board_info
@@ -142,7 +149,7 @@
 	<!-- QNA 답글 추가 -->
 	<insert id="insertComment">
 		insert into board_comment
-		values(seq_cno.nextval, #{cContents}, sysdate, #{bNo}, 'test')
+		values(seq_cno.nextval, #{cContents}, sysdate, #{bNo}, #{mId})
 	</insert>
 	
 	<!-- QNA 답글 조회 -->
@@ -153,7 +160,15 @@
 		order by comment_no desc
 	</select>
 	
-	
+
+	<!-- FAQ 게시글 리스트 -->
+	<select id="faqList" resultMap="boardResultSet">
+		select * 
+		from board_info
+		where board_status='Y' and cate_code = 2
+		order by board_no desc
+	</select>
+
 	
    
 <!-- 민병욱 끝 ==================================================== -->

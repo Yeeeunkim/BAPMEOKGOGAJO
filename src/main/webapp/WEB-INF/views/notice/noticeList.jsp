@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
 	rel="stylesheet">
-<title>Insert title here</title>
+
 <!-- 부트 스트랩 -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -33,6 +33,12 @@
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
 	crossorigin="anonymous"></script>
+
+<!-- 가독성 -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<title>밥먹고가조 공지사항</title>
+
 <style>
 .sArea {
 	width: 200px !important;
@@ -75,7 +81,9 @@ td{border-bottom: 1px solid #1D3557 !important;}
 	<c:import url="../common/menubar.jsp" />
 	<br>
 	<br>
-	<h1 style="text-align: center;">공지사항></h1>
+
+	<h1 style="text-align: center;">공지사항 ></h1>
+
 	<div class="row">
 		<div class="col-1"></div>
 		<div class="sArea">
@@ -150,12 +158,15 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					<a class="aPage" href="${ after }">[다음]</a>
 				</c:if>
 			</td>
-		</tr>
-				
-			</table>
+
+			</tr>	
+		</table>
 			
-			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
+			<c:if test="${ loginUser.member_id eq 'admin' }">
+			<input type="hidden" name="mId" value='${loginUser.member_id}'>
 			<button class="nBtn" onclick="nInsert();">글쓰기</button>
+			</c:if>
+
 		</div>
 		<div class="col-2"></div>
 	</div>
