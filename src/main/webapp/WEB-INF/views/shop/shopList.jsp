@@ -158,7 +158,7 @@
                       </div>
                   </div>
                 
-            
+             
                  <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
                        <img src="<%= request.getContextPath() %>/resources/images/꼬치.png" class="card-img-top" alt="...">
