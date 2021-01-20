@@ -28,6 +28,8 @@
 <!-- jQuery -->
 
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=673fc628ebaa83da22c5004efaed383c&libraries=services,clusterer,drawing"></script>
+   
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
    crossorigin="anonymous"></script>
@@ -112,27 +114,27 @@
    color: white;
   
 }
-.user{
-	display: block; 
-	margin: 0 auto; 
-	width:70px; 
-	height:70px;
-	float:left;
+
+
+#user{
+   display: block; 
+   margin: 0 auto; 
+   width:70px; 
+   height:70px;
+   float:left;
 }
+#gps{
+   width: 40px;
+}
+ #map{
 
-#user{margin-left:20%}
-
-
-#gps{width: 40px;}
-
-#map{
   top: 20%;
   width: 50%;
   height: 250px;
   background: #C4C4C4;
   margin: auto;
   text-align:center;
-}
+} 
 #btnR{
   background-color: #F42B03;
   border: none;
@@ -152,8 +154,8 @@
   justify-content: center;
 }
 .time{
-	margin: auto;
-	display: flex;
+   margin: auto;
+   display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -166,14 +168,14 @@
   width: 100px;
   height: 40px;
 }
-#map{
-	margin: auto;
-	display: flex;
+ #map{
+   margin: auto;
+   display: flex;
   align-items: center;
   justify-content: center;
   width: 70%;
   height: 30%;
-}
+} 
 
 #menuP {
 	border-radius: 30px; width:800px; height:400px;
@@ -214,18 +216,25 @@ h4,h2{margin-left:8%;}
 
    <!-- 사진, 지도 폼 -->
    
-   <img src="<%= request.getContextPath() %>/resources/images/꼬치.png" id="menuP"/>
+   <img src="<%= request.getContextPath() %>${reservationList[0].IMG_URL}" id="menuP"/>
    
    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
    
 
    
    <div id="info">
-      <h3>장첸 양꼬치 4.7</h3>
-      <h5>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02-790-1108</h5>
-      <h5>영업시간 &nbsp;&nbsp;&nbsp; 월-금 : 10:00 - 22:30</h5>
-      <h5>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 연중무휴</h5>
-      <h5>웹사이트  &nbsp;&nbsp;&nbsp;&nbsp;식당 홈페이지로 바로가기(아이콘 유무확인)</h5>
+
+   
+   
+   
+      <p id="shopnm">${reservationList[0].SHOP_NAME}</p> <p> [별점]</p>
+      <p>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ${reservationList[0].SHOP_PHONE}</p>
+      <p>영업시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OPEN} -  ${reservationList[0].SHOP_CLOSE}</p>
+      <p>브레이크타임  ${reservationList[0].BREAK_TIME}</p>
+      <p>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].HOLIDAY}</p>
+      <p>웹사이트  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;식당 홈페이지로 바로가기(아이콘 유무확인)</p>
+      
+
    </div>
    <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br>
    
@@ -276,17 +285,11 @@ h4,h2{margin-left:8%;}
    
    <br><br><br><br>
    <div class="time">
-   		<p>오전 &nbsp;</p><br>
-   		<button id="timeB">11:00</button>&nbsp;&nbsp;
-   		<button id="timeB">11:30</button>&nbsp;&nbsp;
-   		<button id="timeB">12:00</button>&nbsp;&nbsp;
-   		<button id="timeB">12:30</button>&nbsp;&nbsp;
-   		<button id="timeB">13:00</button>&nbsp;&nbsp;
-   </div><br>
-   <div class="time">
-   		<button id="timeB">12:30</button>&nbsp;&nbsp;
-   		<button id="timeB">14:00</button>&nbsp;&nbsp;
-   		<button id="timeB">17:00</button>&nbsp;&nbsp;
+
+         <button id="timeB">12:30</button>&nbsp;&nbsp;
+         <button id="timeB">14:00</button>&nbsp;&nbsp;
+         <button id="timeB">17:00</button>&nbsp;&nbsp;
+
    </div>
    <br><br>
    <hr class="line">
@@ -301,86 +304,51 @@ h4,h2{margin-left:8%;}
          <tr>
            <th>메뉴</th>
            <th>가격</th>
+           <th>수량</th>
          </tr>
        </thead>
-       <tbody>
-         <tr>
-           <td>ㅁ 양꼬치 200g</td>
-           <td>11000원</td>
-         </tr>
-         <tr>
-           <td>ㅁ 양갈비살꼬치</td>
-           <td>12000원</td>
-         </tr>
-         <tr>
-           <td>ㅁ 새우꼬치(4마리)</td>
-           <td>5000원</td>
-         </tr>
-         
+       <tbody id="MainmenuBody">
+
        </tbody>
      </table>
    
 		
    
    
-   
-   <br><br><br><br>
-   
-   
-   <h4>사이드 ></h4>
+
+   <h4>&nbsp;&nbsp;&nbsp;사이드</h4>
    <table class="table table-bordered table-sm" id="menu">
        <thead>
          <tr>
            <th>메뉴</th>
            <th>가격</th>
+         <th>수량</th>
          </tr>
        </thead>
-       <tbody>
-         <tr>
-           <td>사이다</td>
-           <td>2000원</td>
-         </tr>
-         <tr>
-           <td>콜라</td>
-           <td>2000원</td>
-         </tr>
-         <tr>
-           <td>소주</td>
-           <td>4000원</td>
-         </tr>
-       </tbody>
-     </table>
-    
-    <br><br><br><br> 
-     
-     <h4>음료 ></h4>
-   <table class="table table-bordered table-sm" id="menu">
-       <thead>
-         <tr>
-           <th>메뉴</th>
-           <th>가격</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td>사이다</td>
-           <td>2000원</td>
-         </tr>
-         <tr>
-           <td>콜라</td>
-           <td>2000원</td>
-         </tr>
-         <tr>
-           <td>소주</td>
-           <td>4000원</td>
-         </tr>
+       <tbody id="SidemenuBody">
        </tbody>
      </table>
      
      
      
      <br>
+     <br><br><br>
+      <h4>&nbsp;&nbsp;&nbsp;주류</h4>
+   <table class="table table-bordered table-sm" id="menu">
+       <thead>
+         <tr>
+           <th>메뉴</th>
+           <th>가격</th>
+         <th>수량</th>
+         </tr>
+       </thead>
+       <tbody id="DrinkmenuBody">
+       </tbody>
+     </table>
      </div>
+     
+     
+     
      <div class="row">
      <button type="button" class="button menuPlus" onclick="reservationShop();" id="btnR">예약하기</button>
      </div>
@@ -394,116 +362,173 @@ h4,h2{margin-left:8%;}
    <div class="container">
   <h2>식당 정보</h2>
   <br>
- <p style="margin-top:-12px">
-    <em class="link">
-        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-        </a>
-    </em>
-</p>
-<div id="map" style="width:60%;height:350px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef&libraries=services"></script>
-		<script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		    mapOption = {
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
-		    };  
-		
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption); 
-		
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울특별시 강서구 양천로 24가길 59', function(result, status) {
-		
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-		
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-		
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">식당이름</div>'
-		        });
-		        infowindow.open(map, marker);
-		
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 
-		});    
-		</script>
-		<br>
+  <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp; <p id=gpsaddress>${reservationList[0].SHOP_ADDRESS}</p>&nbsp;&nbsp;&nbsp;
+  <!-- <input class= "cInput" type="text" name="address" id="address" placeholder="주소를 입력하세요."> -->
+  <br><br>
+<div id="map" style="width:1000px;height:400px;"></div>
+  <br><br><br><br>
+ 
+ 
+ 
   </div>
+  
+  <hr class="line">
+  <br><br><br>
+  <div class="container">
+  <h2>리뷰</h2>
+  <br><br>
+  
+  
+  </div>
+  
+  <div class="user">
+     <p>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+     </p>
+     <p>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+     </p>
+     <p>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+     </p>
+     <p>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+     </p>
+        
+  </div>
+  <!-- <script>
+      function reservationShop(){
+         location.href= "${ contextPath }/Reservation.do"
+      }
+   </script> -->
+ 
+ 
+ 
+ <script>
+ 
+ 
 
-  		
-		  <hr class="line">
-	
-		  <div class="container">
-			  <h2>리뷰</h2>
-		  </div>
-  
-		
-		<div id="user">
-				<div class="image"><img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"><br><br><br>user01</div>
-				<div class="review">정말 맛있어요!</div>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-  
+ var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+ var options = { //지도를 생성할 때 필요한 기본 옵션
+    center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+    level: 3 //지도의 레벨(확대, 축소 정도)
+ };
+
+ var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+ 
+ $(document).ready(function() {
+
+    var gpsaddress = $("#gpsaddress").text();
+    var shopnm = $("#shopnm").text();
+
+    function geocoding(gpsaddress){
+         // 주소-좌표 변환 객체를 생성합니다
+         var geocoder = new kakao.maps.services.Geocoder();
+
+         // 주소로 좌표를 검색합니다
+         geocoder.addressSearch(gpsaddress, function(result, status) {
+
+             // 정상적으로 검색이 완료됐으면 
+              if (status === kakao.maps.services.Status.OK) {
+
+                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                 // 결과값으로 받은 위치를 마커로 표시합니다
+                 var marker = new kakao.maps.Marker({
+                     map: map,
+                     position: coords
+                 });
+
+                 // 인포윈도우로 장소에 대한 설명을 표시합니다
+                  var infowindow = new kakao.maps.InfoWindow({
+                     content: '<div style="width:150px;text-align:center;padding:6px 0;">'+shopnm+'</div>'
+                 });
+                 infowindow.open(map, marker);
+    
+                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                 map.setCenter(coords);
+             } 
+         });          
+      } 
+    
+    
+    geocoding(gpsaddress);
+    
+    var html = "";
+    
+ $.ajax({
+               url : "/bob/MainMenu.do",
+                type: "post",
+               dataType: 'json',
+               data : {
+               "SHOP_NO" : <%=request.getParameter("SHOP_NO")%>
+               },
+               success : function(data){
+               
+                  for(var i=0; i<data.MainMenu.length; i++){
+                     
+                     html += "<tr>"
+                     html += "<td>"+data.MainMenu[i].MENU_NAME+"</td>"
+                     html += "<td>"+data.MainMenu[i].MENU_PRICE+"</td>"
+                     html += "<td>"
+                     html += "<select> <option> 0개 </option><option> 1개 </option> <option> 2개 </option><option> 3개 </option><option> 4개 </option><option> 5개 </option><option> 6개 </option><option> 7개 </option><option> 8개 </option><option> 9개 </option><option> 10개 </option> </select>"
+                     html +="</td>"
+                     html += "</tr>"
+                  }
+            
+                  $("#MainmenuBody").html(html);
+            
+                  html = "";
+                  
+                  
+                  for(var i=0; i<data.SideMenu.length; i++){
+                     
+                     html += "<tr>"
+                     html += "<td>"+data.SideMenu[i].MENU_NAME+"</td>"
+                     html += "<td>"+data.SideMenu[i].MENU_PRICE+"</td>"
+                     html += "<td>"
+                     html += "<select> <option> 0개 </option><option> 1개 </option> <option> 2개 </option><option> 3개 </option><option> 4개 </option><option> 5개 </option><option> 6개 </option><option> 7개 </option><option> 8개 </option><option> 9개 </option><option> 10개 </option> </select>"
+                     html +="</td>"
+                     html += "</tr>"
+                  }
+                   $("#SidemenuBody").html(html);
+                   
+                   html = "";
+                   
+                   for(var i=0; i<data.DrinkMenu.length; i++){
+                       
+                       html += "<tr>"
+                       html += "<td>"+data.DrinkMenu[i].MENU_NAME+"</td>"
+                       html += "<td>"+data.DrinkMenu[i].MENU_PRICE+"</td>"
+                       html += "<td>"
+                       html += "<select> <option> 0개 </option><option> 1개 </option> <option> 2개 </option><option> 3개 </option><option> 4개 </option><option> 5개 </option><option> 6개 </option><option> 7개 </option><option> 8개 </option><option> 9개 </option><option> 10개 </option> </select>"
+                       html +="</td>"
+                       html += "</tr>"
+                    }
+                     $("#DrinkmenuBody").html(html);  
+                  
+               },
+               error : function(err){
+               alert("error");
+               }
+            });
+            
+    
+   });
+ 
+
+ </script>
+
+
 
 		<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
 		
 		<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
-
-	<script>
-		function reviewEnroll(){
-			location.href="ReviewEnrollForm.do"
-		}
-
-		function declareEnroll(){
-			location.href="DeclareEnrollForm.do"
-		}
-	</script>
-
  
- 	<jsp:include page="../common/footer.jsp" />
- 	  
+ 
 </body>
 </html>
+
+
+

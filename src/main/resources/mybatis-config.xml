@@ -5,6 +5,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
+	<!-- VO 선언단 -->	
 	<typeAliases>
 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
@@ -16,9 +17,10 @@
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopMenu" alias="ShopMenu"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveMenu" alias="ReserveMenu"/>
-		
 	</typeAliases>
 	 
+	 
+	 <!-- MAPPER 선언단 -->
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
 		<mapper resource="mapper/member-mapper.xml"/>
 		<mapper resource="mapper/board-mapper.xml"/>

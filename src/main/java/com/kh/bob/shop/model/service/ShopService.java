@@ -1,5 +1,13 @@
 ﻿package com.kh.bob.shop.model.service;
 
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -43,6 +51,14 @@ public interface ShopService {
 
 	// 원태원 시작 ====================================================
 
+	List<String> getShopList();
+
+	List<Map<String, Object>> getReservationList(int shop_no);
+
+
+	/* void insertShop(HashMap<String, Object> data); */
+	
+	
 	// 원태원 끝 ======================================================
 
 
