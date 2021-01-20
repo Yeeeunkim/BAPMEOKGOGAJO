@@ -276,6 +276,14 @@ h4,h2{margin-left:8%;}
    
    <br><br><br><br>
    <div class="time">
+   		<p>오전 &nbsp;</p><br>
+   		<button id="timeB">11:00</button>&nbsp;&nbsp;
+   		<button id="timeB">11:30</button>&nbsp;&nbsp;
+   		<button id="timeB">12:00</button>&nbsp;&nbsp;
+   		<button id="timeB">12:30</button>&nbsp;&nbsp;
+   		<button id="timeB">13:00</button>&nbsp;&nbsp;
+   </div><br>
+   <div class="time">
    		<button id="timeB">12:30</button>&nbsp;&nbsp;
    		<button id="timeB">14:00</button>&nbsp;&nbsp;
    		<button id="timeB">17:00</button>&nbsp;&nbsp;

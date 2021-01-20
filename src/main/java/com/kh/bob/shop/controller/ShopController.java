@@ -23,12 +23,12 @@ import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
 @Controller
-public class ShopServlet {
+public class ShopController {
 	
 	   	   
 	   // 신진식 시작 ===================================================
 			@Autowired
-			private ShopService siService;
+			private ShopService sService;
 	
 	
 			@RequestMapping("Reservation.do")
@@ -87,8 +87,8 @@ public class ShopServlet {
 				
 				
 				
-				int shopresult=siService.insertShop(si);
-				int menuresult=siService.insertMenu(shopmenu);
+				int shopresult=sService.insertShop(si);
+				int menuresult=sService.insertMenu(shopmenu);
 				
 				System.out.println("잘들어왔는지:" +shopresult+","+menuresult);
 				
