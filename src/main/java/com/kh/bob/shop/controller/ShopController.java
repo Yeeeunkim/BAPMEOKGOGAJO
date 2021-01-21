@@ -89,17 +89,23 @@ public class ShopController {
 		return "bookingInfo";
 	}
 	
-	// 메뉴바 검색 뷰
+	// 메뉴바 검색
 	@RequestMapping("searchView.sh")
 	public ModelAndView searchView(@RequestParam("searchContents") String searchContents,
 							 ModelAndView mv) {
 		
 		ShopInfo shop = new ShopInfo();
 		shop.setShopName(searchContents);
-		List sList = sService.selectSearchList(shop);
+		List shopList = sService.selectSearchList(shop);
 		
-		mv.addObject("sList", sList);
-		mv.setViewName("searchTest");
+		System.out.println(shopList);
+		
+		if(!shopList.isEmpty()) {
+			mv.addObject("shopList", shopList);
+			mv.setViewName("shopList");
+		} else {
+			throw new ShopException("검색 내용이 없습니다.");
+		}
 		return mv;
 	}
 	
@@ -275,6 +281,7 @@ public class ShopController {
 
 		List<String> shopList = sService.getShopList();
 
+		
 		mv.addObject("shopList", shopList);
 		mv.setViewName("/shop/shopList");
 

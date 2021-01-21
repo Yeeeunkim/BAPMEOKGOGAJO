@@ -191,10 +191,10 @@
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
 				<img id="logo" src="resources/images/logo.png">
-				<a href="">밥먹고 가조</a>
+				<a onclick="location.href='home.do'">밥먹고 가조</a>
 					<span class="searchbar">
           				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
-         				 <a onclick="search();" href="#" class="search_icon"><i class="fas fa-search"></i></a>
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span> 
 			<ul class="navbar_icons" >

@@ -2,7 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="shopMapper">
 
-
+	<resultMap type="ShopInfo" id="shopInfoResultSet">
+		<id property="shopNo" column="SHOP_NO" />
+		<result property="shopName" column="SHOP_NAME" />
+		<result property="shopIntro" column="SHOP_INTRO" />
+		<result property="shopOpen" column="SHOP_OPEN" />
+		<result property="shopClose" column="SHOP_CLOSE" />
+		<result property="shopAddress" column="SHOP_ADDRESS" />
+		<result property="shopPhone" column="SHOP_PHONE" />
+		<result property="shopBreakStart" column="SHOP_BREAK_START" />
+		<result property="shopBreakClose" column="SHOP_BREAK_CLOSE" />
+		<result property="shopOffday" column="SHOP_OFFDAY" />
+		<result property="maxReservationTime" column="MAX_RESERVATION_TIME" />
+		<result property="shopOrigin" column="SHOP_ORIGIN" />
+		<result property="shopRename" column="SHOP_RENAME" />
+		<result property="shopCate" column="SHOP_CATE" />
+		<result property="businessNumber" column="BUSINESS_NUMBER" />
+		<result property="memberId" column="MEMBER_ID" />
+	</resultMap>
 
 <!-- 강동기 시작 =============================================== -->
    
@@ -22,24 +39,7 @@
 <!-- 민병욱 시작 ================================================= -->
 
 	<!-- @@@@@테스트용 -->
-	<resultMap type="ShopInfo" id="shopInfoResultSet">
-		<id property="shopNo" column="SHOP_NO" />
-		<result property="shopName" column="SHOP_NAME" />
-		<result property="shopIntro" column="SHOP_INTRO" />
-		<result property="shopOpen" column="SHOP_OPEN" />
-		<result property="shopClose" column="SHOP_CLOSE" />
-		<result property="shopAddress" column="SHOP_ADDRESS" />
-		<result property="shopPhone" column="SHOP_PHONE" />
-		<result property="shopBreakStart" column="SHOP_BREAK_START" />
-		<result property="shopBreakClose" column="SHOP_BREAK_CLOSE" />
-		<result property="shopOffday" column="SHOP_OFFDAY" />
-		<result property="maxReservationTime" column="MAX_RESERVATION_TIME" />
-		<result property="shopOrigin" column="SHOP_ORIGIN" />
-		<result property="shopRename" column="SHOP_RENAME" />
-		<result property="shopCate" column="SHOP_CATE" />
-		<result property="businessNumber" column="BUSINESS_NUMBER" />
-		<result property="memberId" column="MEMBER_ID" />
-	</resultMap>
+	
 	
 	<resultMap type="ReserveInfo" id="reserveInfoResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
@@ -133,7 +133,7 @@
    
 <!-- 원태원 시작 ==================================================== -->
 
-   <select id="getShopList" resultType="Map">
+   <select id="getShopList" resultMap="shopInfoResultSet">
    
    select * from SHOP_INFO
    

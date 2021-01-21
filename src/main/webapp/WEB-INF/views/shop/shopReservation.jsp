@@ -44,7 +44,6 @@
   margin: auto;
   text-align:center;
 }
-
 .form-group{
    width: 70%;
    height: 30%;
@@ -114,20 +113,15 @@
    color: white;
   
 }
-
 .user{
-	display: block; 
-	margin: 0 auto; 
-	width:70px; 
-	height:70px;
-	float:left;
+   display: block; 
+   margin: 0 auto; 
+   width:70px; 
+   height:70px;
+   float:left;
 }
-
 #user{margin-left:20%}
-
-
 #gps{width: 40px;}
-
 #map{
   top: 20%;
   width: 50%;
@@ -177,14 +171,10 @@
   width: 70%;
   height: 30%;
 } 
-
 #menuP {
-	border-radius: 30px; width:800px; height:400px;
+   border-radius: 30px; width:800px; height:400px;
 }
-
 h4,h2{margin-left:8%;}
-
-
 .button{
   background-color: #F42B03;
   border: none;
@@ -193,20 +183,10 @@ h4,h2{margin-left:8%;}
   width: 100px;
   height: 40px;
 }
-
 #review{display:block; margin-left:48%;}
-
 #declare{display:inline-block;margin-left:90%; border-radius:10px; width:70px; height:20px; font-size:10px;}
-
 .image{display:inline-block;}
 .review{display:inline-block; height:20%;}
-
-
-
-
-
-
-
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -238,23 +218,23 @@ h4,h2{margin-left:8%;}
 <!--    <div class="btn-group"> -->
        <div class="row">
        <div class="col-3"></div>
-	       <div class="col-2">
-	         	<div class="form-group row">
-				  <label for="example-date-input" class="col-2 col-form-label"></label>
-				  <div class="col-10">
-				    <input class="form-control" type="date" id="example-date-input" max="" style=width:200px; >
-				  </div>
-				</div>
-	
-				
-				<script>  /*날짜 범위 제한*/
-				  document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
-				  var today = new Date();
-				  var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
-				  document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-				  document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
-				</script>
-	         </div>
+          <div class="col-2">
+               <div class="form-group row">
+              <label for="example-date-input" class="col-2 col-form-label"></label>
+              <div class="col-10">
+                <input class="form-control" type="date" id="example-date-input" max="" style=width:200px; >
+              </div>
+            </div>
+   
+            
+            <script>  /*날짜 범위 제한*/
+              document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
+              var today = new Date();
+              var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
+              document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+              document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
+            </script>
+            </div>
          
          <div class="col-2">
          <select class="form-select" aria-label="Default select example">
@@ -307,7 +287,7 @@ h4,h2{margin-left:8%;}
        </tbody>
      </table>
    
-	<br><br><br><br>
+   <br><br><br><br>
    
    
    
@@ -402,18 +382,18 @@ h4,h2{margin-left:8%;}
   
   </div>
   
-  <div class="user">
+  <div id="user">
      <p>
-        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
      </p>
      <p>
-        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
      </p>
      <p>
-        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
      </p>
      <p>
-        <img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
+        <img src="<%= request.getContextPath() %>/resources/images/user.png" class="user"> 정말 맛집입니다! <br><br><br><br>
      </p>
         
   </div>
@@ -428,38 +408,29 @@ h4,h2{margin-left:8%;}
  <script>
  
  
-
  var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
  var options = { //지도를 생성할 때 필요한 기본 옵션
     center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
     level: 3 //지도의 레벨(확대, 축소 정도)
  };
-
  var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
  
  $(document).ready(function() {
-
     var gpsaddress = $("#gpsaddress").text();
     var shopnm = $("#shopnm").text();
-
     function geocoding(gpsaddress){
          // 주소-좌표 변환 객체를 생성합니다
          var geocoder = new kakao.maps.services.Geocoder();
-
          // 주소로 좌표를 검색합니다
          geocoder.addressSearch(gpsaddress, function(result, status) {
-
              // 정상적으로 검색이 완료됐으면 
               if (status === kakao.maps.services.Status.OK) {
-
                  var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
                  // 결과값으로 받은 위치를 마커로 표시합니다
                  var marker = new kakao.maps.Marker({
                      map: map,
                      position: coords
                  });
-
                  // 인포윈도우로 장소에 대한 설명을 표시합니다
                   var infowindow = new kakao.maps.InfoWindow({
                      content: '<div style="width:150px;text-align:center;padding:6px 0;">'+shopnm+'</div>'
@@ -539,31 +510,29 @@ h4,h2{margin-left:8%;}
  
  
  
-
  
  
-
  
  
  </script>
+ 
 
 
-	<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
-		
-	<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
+   <button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
+      
+   <button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
 
-	<script>
-		function reviewEnroll(){
-			location.href="ReviewEnrollForm.do"
-		}
-
-		function declareEnroll(){
-			location.href="DeclareEnrollForm.do"
-		}
-	</script>
+   <script>
+      function reviewEnroll(){
+         location.href="ReviewEnrollForm.do"
+      }
+      function declareEnroll(){
+         location.href="DeclareEnrollForm.do"
+      }
+   </script>
 
  
- 	<jsp:include page="../common/footer.jsp" />
- 	  
+    <jsp:include page="../common/footer.jsp" />
+      
 </body>
 </html>

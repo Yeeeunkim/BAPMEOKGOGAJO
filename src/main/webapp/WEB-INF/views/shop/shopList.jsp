@@ -116,11 +116,11 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
                          <div class="card-body">
-                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text"><c:out value="${shopList.shopName}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
-                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary" value="${shopList.SHOP_NAME}">예약하기</a>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-primary" value="${shopList.shopName}">예약하기</a>
                           </div>
                       </div>
                   </div>
@@ -133,11 +133,11 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
                          <div class="card-body">
-                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text"><c:out value="${shopList.shopName}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
-                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary">예약하기</a>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
                   </div>
@@ -151,11 +151,11 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
                          <div class="card-body">
-                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text"><c:out value="${shopList.shopName}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
-                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary">예약하기</a>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
                   </div>
