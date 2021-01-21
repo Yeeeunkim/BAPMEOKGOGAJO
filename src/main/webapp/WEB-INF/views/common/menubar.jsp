@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -201,10 +201,12 @@
 				<li class="menu" onclick="shop();"><a href="#">About</a></li>
 				<li class="menu" onclick="location.href='logoutView.me'" ><a href="#">Logout</a></li> 
 				<c:if test="${ loginUser.auth_code eq '1' }">
-					<li class="menu" onclick="location.href='myPage.me'"><a href="#"><i class="fas fa-user"></i></a></li>
+
+					<li class="menu" onclick="location.href='myPage.me'"><a href=""><i class="fas fa-user"></i></a></li>
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '2'  }">
-					<li class="menu" onclick="location.href='shopMypage.me'"><a href="#"><i class="fas fa-user"></i></a></li>
+					<li class="menu" onclick="location.href='shopMypage.me'"><a href=""><i class="fas fa-user"></i></a></li>
+
 				</c:if>
 				 <li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
 				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 

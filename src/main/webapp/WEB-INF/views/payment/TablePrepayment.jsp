@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -93,6 +93,7 @@
 	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
+
 	 
 	<!-- 지도 API script 부분 -->
 <!-- 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script> -->

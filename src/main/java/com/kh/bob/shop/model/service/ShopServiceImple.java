@@ -1,14 +1,28 @@
 package com.kh.bob.shop.model.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.bob.shop.model.dao.ShopDAO;
+import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 @Service("sService")
 public class ShopServiceImple implements ShopService {
@@ -59,10 +73,33 @@ public class ShopServiceImple implements ShopService {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
+	
+	@Override
+	public int insertShop(ShopInfo si) {
+		return sDAO.insertShop(sqlSession,si);
+	}
+
+	@Override
+	public int insertMenu(List<ShopMenu> shopmenu) {
+		return sDAO.insertMenu(sqlSession,shopmenu);
+	}
 
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
+	
+	@Override
+	public List<String> getShopList() {
+	List<String> ShopList = sDAO.getShopList(sqlSession);
+		return ShopList;
+	}
+
+	@Override
+	public List<Map<String, Object>> getReservationList(int shop_no) {
+		List<Map<String, Object>> ReservationList = sDAO.getReservationList(sqlSession,shop_no);
+		return ReservationList;
+	}
+	
 
 	// 원태원 끝 ======================================================
 

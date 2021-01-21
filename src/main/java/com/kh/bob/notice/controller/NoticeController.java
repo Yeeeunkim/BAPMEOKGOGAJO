@@ -1,11 +1,11 @@
-package com.kh.bob.notice.controller;
+﻿package com.kh.bob.notice.controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -94,8 +94,7 @@ public class NoticeController {
 			HttpServletRequest request) {
 		Attachment attachment = new Attachment();
 
-		System.out.println(board);
-		
+
 		if (uploadFile != null && !uploadFile.isEmpty()) { // 첨부파일이 있다면
 			// 리네임
 			String renameFileName = saveFile(uploadFile, request);
@@ -114,7 +113,7 @@ public class NoticeController {
 		}
 		
 		int result = nService.insertBoard(board, attachment);
-		
+
 		if (result > 0) {
 			return "redirect:nList.no";
 		} else {
@@ -306,7 +305,8 @@ public class NoticeController {
 		// QnA 카테고리 == 1
 		board.setCateCode(1);
 		
-		if (board.getbContents().equals("")) { // QnA 내용이 없으면
+
+		if (board.getbContents().equals("")) { // 공지사항 내용이 없으면
 			board.setbContents(" "); // 공백 추가
 		}
 		
@@ -349,6 +349,7 @@ public class NoticeController {
 	public String addCommnet(@ModelAttribute Comment comment, HttpSession session) {
 		// @@@@@ 수정필요 댓글 작성시 작성자 아이디도 보내야함 @@@@@
 		
+
 		int result = nService.insertComment(comment);
 		
 		if(result > 0) {
@@ -436,8 +437,6 @@ public class NoticeController {
 		}
 	}
 	
-	
-	
 	// FAQ 리스트 뷰
 	@RequestMapping("fList.no")
 	public ModelAndView faqList(ModelAndView mv) {
@@ -459,6 +458,7 @@ public class NoticeController {
 	public String faqInsertView() {
 		return "faqInsertForm";
 	}
+
 	
 	// FAQ 등록 기능
 	@RequestMapping("fInsert.no")

@@ -89,15 +89,17 @@
 <body style="font-family: 'Gugi';">
    <jsp:include page="../common/menubar.jsp" />
 
+ 
+
    <div id="shopListArea">
       <!--       <h1 style="text-align: center;">한식 ></h1> -->
       <select class="form-select" aria-label="Default select example">
-         <option value="1" selected="selected">전체</option>
-         <option value="2">한식</option>
-         <option value="3">양식</option>
-         <option value="4">중식</option>
-         <option value="5">일식</option>
-         <option value="6">분식</option>
+         <option value="" selected="selected" id="all">전체</option>
+         <option value="1" id="korean">한식</option>
+         <option value="2" id="western">양식</option>
+         <option value="3" id="chinese">중식</option>
+         <option value="4" id="japanese">일식</option>
+         <option value="5" id="school">분식</option>
       </select><br><br><br>
       
       <h2>전체</h2>
@@ -107,14 +109,73 @@
            <!-- 식당 영역 -->
            <!-- 식당 1행 -->
            <form>
-               <div class="row">
+           
+<div class="row">
+
+<c:forEach var="shopList" items="${shopList}" varStatus="status" begin="0" end="2" step="1">
+
+     <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary" value="${shopList.SHOP_NAME}">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+</c:forEach>
+           </div>
+<br><br>           
+           
+           <div class="row">
+<c:forEach var="shopList" items="${shopList}" varStatus="status" begin="3" end="5" step="1">
+
+     <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+</c:forEach>
+
+           </div>           
+<br><br>                      
+           
+             <div class="row">
+<c:forEach var="shopList" items="${shopList}" varStatus="status" begin="6" end="8" step="1">
+
+     <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+</c:forEach>
+
+           </div>     
+           
+           
+           
+           <%--     <div class="row">
+               
+               
+               
                  <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
                        <img src="<%= request.getContextPath() %>/resources/images/찜닭.png" class="card-img-top" alt="...">
                          <div class="card-body">
                           <p class="card-text">뜨끈한 찜닭 - 강남점</p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
-                          <a href="#" class="btn btn-primary">예약하기</a>
+                          <a href="Reservation.do" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
                   </div>
@@ -142,11 +203,14 @@
                           </div>
                       </div>
                   </div>
-              </div>
+              </div> --%>
+           
+           
               <br><br>
               
               <!-- 식당 2행 -->
-              <div class="row">
+           
+           <%--    <div class="row">
               <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
                        <img src="<%= request.getContextPath() %>/resources/images/텐동.png" class="card-img-top" alt="...">
@@ -181,11 +245,14 @@
                           </div>
                       </div>
                   </div>
-              </div>
+              </div> --%>
+              
+              
               <br><br>
               
                <!-- 식당 3행 -->
-              <div class="col-4">
+              
+             <%--  <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
                        <img src="<%= request.getContextPath() %>/resources/images/치킨.png" class="card-img-top" alt="...">
                          <div class="card-body">
@@ -194,11 +261,11 @@
                           <a href="#" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
-                  </div>
+                  </div> --%>
            </form> 
       </div>
       
-      
+
      <button type="button" class="button" onclick="enrollShop();">식당 등록</button>
      
      <br><br><br><br><br><br><br><br><br><br>
@@ -227,6 +294,8 @@
 			location.href= "${ contextPath }/shopEnroll.do"
 		}
 	</script>
+	
+	
    
 </body>
 </html>

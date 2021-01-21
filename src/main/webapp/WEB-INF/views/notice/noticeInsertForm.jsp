@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -24,6 +24,7 @@
 	 #content_text {display: block; margin-right: auto; width: 500px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
 	
+
 	#titleInput {
 		outline: none;
 		width: 87%;
@@ -78,6 +79,7 @@
 			
 			<!-- 작성자 보내기 위함 -->
 			<input type="hidden" name="mId" value='${loginUser.member_id}'>
+
 	</form> 	  
    
     <c:import url="../common/footer.jsp"/>

@@ -1,9 +1,11 @@
-package com.kh.bob.shop.model.service;
+﻿package com.kh.bob.shop.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 public interface ShopService {
 
@@ -33,10 +35,22 @@ public interface ShopService {
 
 	// 신진식 시작 ===================================================
 
+	int insertShop(ShopInfo si);
+
+	int insertMenu(List<ShopMenu> shopmenu);
+
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
 
+	List<String> getShopList();
+
+	List<Map<String, Object>> getReservationList(int shop_no);
+
+
+	/* void insertShop(HashMap<String, Object> data); */
+	
+	
 	// 원태원 끝 ======================================================
 
 }
