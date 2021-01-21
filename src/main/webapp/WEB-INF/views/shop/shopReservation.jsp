@@ -217,18 +217,20 @@ h4,h2{margin-left:8%;}
 
    <!-- 사진, 지도 폼 -->
    
-   <img src="<%= request.getContextPath() %>${reservationList[0].IMG_URL}" id="menuP"/>
+   <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${reservationList[0].SHOP_RENAME}" id="menuP"/>
+   
    
    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
    
 
    
    <div id="info">
-      <p id="shopnm">${reservationList[0].SHOP_NAME}</p> <p> [별점]</p>
+      <p id="shopnm">${reservationList[0].SHOP_NAME}</p> 
+      <p> [별점]</p>
       <p>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ${reservationList[0].SHOP_PHONE}</p>
       <p>영업시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OPEN} -  ${reservationList[0].SHOP_CLOSE}</p>
-      <p>브레이크타임  ${reservationList[0].BREAK_TIME}</p>
-      <p>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].HOLIDAY}</p>
+      <p>브레이크타임  ${reservationList[0].SHOP_BREAK_START} - ${reservationList[0].SHOP_BREAK_CLOSE}</p>
+      <p>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OFFDAY}</p>
       <p>웹사이트  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;식당 홈페이지로 바로가기(아이콘 유무확인)</p>
    </div>
    <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br>
@@ -291,7 +293,7 @@ h4,h2{margin-left:8%;}
   <div class="container">
   <h2>메뉴</h2>
   <br><br>
-  <h4>메인 ></h4>
+  <h4>&nbsp;&nbsp;&nbsp;메인 </h4>
    <table class="table table-bordered " id="menu">
        <thead>
          <tr>
@@ -305,7 +307,7 @@ h4,h2{margin-left:8%;}
        </tbody>
      </table>
    
-		
+	<br><br><br><br>
    
    
    
@@ -323,9 +325,8 @@ h4,h2{margin-left:8%;}
        </tbody>
      </table>
     
-    <br><br><br><br> 
      
-     <h4>음료 ></h4>
+    <!--  <h4>음료 ></h4>
    <table class="table table-bordered table-sm" id="menu">
        <thead>
          <tr>
@@ -347,12 +348,11 @@ h4,h2{margin-left:8%;}
            <td>4000원</td>
          </tr>
        </tbody>
-     </table>
+     </table> -->
      
      
      
-     <br>
-     <br><br><br>
+     <br><br><br><br>
       <h4>&nbsp;&nbsp;&nbsp;주류</h4>
    <table class="table table-bordered table-sm" id="menu">
        <thead>

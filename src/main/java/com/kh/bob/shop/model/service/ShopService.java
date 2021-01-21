@@ -1,16 +1,11 @@
-﻿<<<<<<< HEAD
 ﻿package com.kh.bob.shop.model.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
-
-import java.util.List;
-
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 public interface ShopService {
 

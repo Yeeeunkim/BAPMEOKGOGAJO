@@ -1,16 +1,15 @@
-﻿﻿package com.kh.bob.shop.model.dao;
+﻿package com.kh.bob.shop.model.dao;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 
 @Repository("sDAO")

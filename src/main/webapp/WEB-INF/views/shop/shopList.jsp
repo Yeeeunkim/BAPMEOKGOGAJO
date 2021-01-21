@@ -116,7 +116,7 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>${shopList.IMG_URL}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
                          <div class="card-body">
                           <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
@@ -133,7 +133,7 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>${shopList.IMG_URL}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
                          <div class="card-body">
                           <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
@@ -151,7 +151,7 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>${shopList.IMG_URL}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="...">
                          <div class="card-body">
                           <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>

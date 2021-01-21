@@ -1,11 +1,8 @@
 ﻿package com.kh.bob.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bob.member.model.exception.MemberException;
 import com.kh.bob.member.model.service.MemberService;
 import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopSeat;
 
 
 @SessionAttributes("loginUser")
