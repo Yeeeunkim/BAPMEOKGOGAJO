@@ -49,27 +49,6 @@ public class ShopController {
 //		Map<String, Object> menuMap = new HashMap<String, Object>();
 		List mList = sService.selectMenu(rNo);
 		System.out.println(mList);
-		// 예약 자리 정보 가져오기 (좌석) -> 결과 여러개일 수 있으니 list
-//		Map<String, Object> tableMap = sService.selectTable(rNo);
-//		List tList = sService.selectTable(rNo);
-//		System.out.println(tList);
-		
-		// 예약정보 불러오기
-		
-		// @@@@@테스트용 메뉴 정보 불러와서 넘기기 
-//		 List<Map<>>에 담아야 할 것 같음
-//		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-//		Map<String, Object> menuMap = new HashMap<String, Object>();
-		// 예약메뉴 먼저 담기
-//		menuMap.put("rNo", "1");	// 주문번호 1
-//		menuMap.put("mNo", "1");	// 메뉴번호 1
-//		menuMap.put("mQty", "2");		// 수량 2개
-//		menuMap.put("mPrice", 10000);	// 가격 10000원
-//		
-//		menuMap.put("rNo", "1");	// 주문번호 1
-//		menuMap.put("mNo", "2");	// 메뉴번호 1
-//		menuMap.put("mQty", "2");		// 수량 2개
-//		menuMap.put("mPrice", 5000);	// 가격  5000원
 		
 		mv.addObject("shop", shop)
 		  .addObject("reserve", reserve)
