@@ -46,14 +46,14 @@ public class ShopServiceImple implements ShopService {
 	public List selectMenu(int rNo) {
 		return sDAO.selectMenu(sqlSession, rNo);
 	}
-	@Override
-	public List selectTable(int rNo) {
-		return sDAO.selectTable(sqlSession, rNo);
-	}
 	// @@@@@테스트용
 	@Override
 	public int successReserve(int rNo) {
 		return sDAO.successReserve(sqlSession, rNo);
+	}
+	@Override
+	public List selectSearchList(ShopInfo shop) {
+		return sDAO.selectSearchList(sqlSession, shop);
 	}
 	
 	// 민병욱 끝 ====================================================

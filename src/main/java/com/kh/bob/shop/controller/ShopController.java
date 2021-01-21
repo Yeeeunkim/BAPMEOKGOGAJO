@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.bob.shop.model.service.ShopService;
@@ -92,6 +93,20 @@ public class ShopController {
 	@RequestMapping("booking.sh")
 	public String bookingInfoView() {
 		return "bookingInfo";
+	}
+	
+	// 메뉴바 검색 뷰
+	@RequestMapping("searchView.sh")
+	public ModelAndView searchView(@RequestParam("searchContents") String searchContents,
+							 ModelAndView mv) {
+		
+		ShopInfo shop = new ShopInfo();
+		shop.setShopName(searchContents);
+		List sList = sService.selectSearchList(shop);
+		
+		mv.addObject("sList", sList);
+		mv.setViewName("searchTest");
+		return mv;
 	}
 	
 	// 민병욱 끝 ====================================================

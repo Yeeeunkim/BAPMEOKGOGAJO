@@ -25,9 +25,9 @@ public interface ShopService {
 	ShopInfo selectShop(int sNo);
 	ReserveInfo selectReserve(int rNo);
 	List selectMenu(int rNo);
-	List selectTable(int rNo);
 	// @@@@@테스트용 
 	int successReserve(int rNo);
+	List selectSearchList(ShopInfo shop);
 	
 	// 민병욱 끝 ====================================================
 

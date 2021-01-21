@@ -36,11 +36,11 @@ public class ShopDAO {
 	public List selectMenu(SqlSessionTemplate sqlSession, int rNo) {
 		return (ArrayList)sqlSession.selectList("shopMapper.selectMenu", rNo);
 	}
-	public List selectTable(SqlSessionTemplate sqlSession, int rNo) {
-		return (ArrayList)sqlSession.selectList("shopMapper.selectTable", rNo);
-	}
 	public int successReserve(SqlSessionTemplate sqlSession, int rNo) {
 		return sqlSession.update("shopMapper.successReserve", rNo);
+	}
+	public List selectSearchList(SqlSessionTemplate sqlSession, ShopInfo shop) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectSearchList", shop);
 	}
 	
 	// 민병욱 끝 ====================================================

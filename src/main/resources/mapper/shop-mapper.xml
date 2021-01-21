@@ -85,6 +85,28 @@
 		    reserve_pay = to_char(sysdate, 'HH24:MI:SS')
 		where reserve_no = #{reserveNo}
 	</update>
+	
+	<select id="selectSearchList" resultMap="shopInfoResultSet">
+		select *
+		from shop_info
+		where
+			shop_name like '%' || #{shopName} || '%'
+			<if test="shopName != null and shopName.equals('한식')">
+				or shop_cate = 1
+			</if>
+			<if test="shopName != null and shopName.equals('양식')">
+				or shop_cate = 2
+			</if>
+			<if test="shopName != null and shopName.equals('중식')">
+				or shop_cate = 3
+			</if>
+			<if test="shopName != null and shopName.equals('일식')">
+				or shop_cate = 4
+			</if>
+			<if test="shopName != null and shopName.equals('분식')">
+				or shop_cate = 5
+			</if>
+	</select>
 
    
 <!-- 민병욱 끝 ==================================================== -->
