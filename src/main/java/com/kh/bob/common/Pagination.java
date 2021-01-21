@@ -1,6 +1,6 @@
 package com.kh.bob.common;
 
-import com.kh.bob.shop.model.vo.PageInfo;
+import com.kh.bob.notice.model.vo.PageInfo;
 
 public class Pagination {
 	public static PageInfo getPageinfo(int currentPage, int listCount) {

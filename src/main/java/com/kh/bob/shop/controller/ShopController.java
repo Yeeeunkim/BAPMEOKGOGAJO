@@ -26,7 +26,7 @@ import com.kh.bob.common.Pagination;
 import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
-import com.kh.bob.shop.model.vo.PageInfo;
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopReview;
 

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<c:import url="WEB-INF/views/shop/shopReservation.jsp"/>
+<%-- 		<c:import url="WEB-INF/views/shop/shopReservation.jsp"/> --%>
+<%@ include file="WEB-INF/views/home.jsp" %>
 </body>
 </html> 

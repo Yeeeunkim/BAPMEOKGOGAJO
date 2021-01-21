@@ -94,12 +94,12 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">아이디</label> 
-				<input type="text" class="form-control inputForm" id="inputEmail" placeholder="아이디를 입력해주세요">
+				<input type="text" class="form-control inputForm" id="inputEmail" name="member_id"placeholder="아이디를 입력해주세요">
 				<label class="hidden"></label>
 			</div>
 			<div class="mb-4">
 				<label class="form-label inputTilte">이메일</label>
-				<input type="email" class="form-control inputForm" id="inputEmail" placeholder="이메일을 입력해주세요">
+				<input type="email" class="form-control inputForm" id="inputEmail" name="email" placeholder="이메일을 입력해주세요">
 				<label class="hidden"></label>
 			</div>
 			<br>

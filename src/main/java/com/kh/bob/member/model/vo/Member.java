@@ -3,56 +3,56 @@ package com.kh.bob.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	private String memberId;
-	private String memberPwd;
-	private String memberName;
+	private String member_id;
+	private String member_pwd;
+	private String member_name;
 	private String phone;
 	private String email;
-	private char gender;
-	private Date EnrollDate;
-	private char status;
-	private Date birthday;
-	private int memberCode;
+	private String gender;
+	private Date member_enroll;
+	private String member_status;
+	private String member_birth; //db 수정사항말하기
+	private int auth_code;
 	
 	public Member() {}
 
-	public Member(String memberId, String memberPwd, String memberName, String phone, String email, char gender,
-			Date enrollDate, char status, Date birthday, int memberCode) {
+	public Member(String member_id, String member_pwd, String member_name, String phone, String email, String gender,
+			Date member_enroll, String member_status, String member_birth, int auth_code) {
 		super();
-		this.memberId = memberId;
-		this.memberPwd = memberPwd;
-		this.memberName = memberName;
+		this.member_id = member_id;
+		this.member_pwd = member_pwd;
+		this.member_name = member_name;
 		this.phone = phone;
 		this.email = email;
 		this.gender = gender;
-		this.EnrollDate = enrollDate;
-		this.status = status;
-		this.birthday = birthday;
-		this.memberCode = memberCode;
+		this.member_enroll = member_enroll;
+		this.member_status = member_status;
+		this.member_birth = member_birth;
+		this.auth_code = auth_code;
 	}
 
-	public String getMemberId() {
-		return memberId;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
-	public String getMemberPwd() {
-		return memberPwd;
+	public String getMember_pwd() {
+		return member_pwd;
 	}
 
-	public void setMemberPwd(String memberPwd) {
-		this.memberPwd = memberPwd;
+	public void setMember_pwd(String member_pwd) {
+		this.member_pwd = member_pwd;
 	}
 
-	public String getMemberName() {
-		return memberName;
+	public String getMember_name() {
+		return member_name;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
 	public String getPhone() {
@@ -71,52 +71,55 @@ public class Member {
 		this.email = email;
 	}
 
-	public char getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(char gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
-	public Date getEnrollDate() {
-		return EnrollDate;
+	public Date getMember_enroll() {
+		return member_enroll;
 	}
 
-	public void setEnrollDate(Date enrollDate) {
-		this.EnrollDate = enrollDate;
+	public void setMember_enroll(Date member_enroll) {
+		this.member_enroll = member_enroll;
 	}
 
-	public char getStatus() {
-		return status;
+	public String getMember_status() {
+		return member_status;
 	}
 
-	public void setStatus(char status) {
-		this.status = status;
+	public void setMember_status(String member_status) {
+		this.member_status = member_status;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public String getMember_birth() {
+		return member_birth;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setMember_birth(String member_birth) {
+		this.member_birth = member_birth;
 	}
 
-	public int getMemberCode() {
-		return memberCode;
+	public int getAuth_code() {
+		return auth_code;
 	}
 
-	public void setMemberCode(int memberCode) {
-		this.memberCode = memberCode;
+	public void setAuth_code(int auth_code) {
+		this.auth_code = auth_code;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [memberId=" + memberId + ", memberPwd=" + memberPwd + ", memberName=" + memberName + ", phone="
-				+ phone + ", email=" + email + ", gender=" + gender + ", EnrollDate=" + EnrollDate + ", status="
-				+ status + ", birthday=" + birthday + ", memberCode=" + memberCode + "]";
+		return "Member [member_id=" + member_id + ", member_pwd=" + member_pwd + ", member_name=" + member_name
+				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", member_enroll=" + member_enroll
+				+ ", member_status=" + member_status + ", member_birth=" + member_birth + ", auth_code=" + auth_code
+				+ "]";
 	}
+
 	
 	
 }
+

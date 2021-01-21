@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.bob.shop.model.dao.ShopDAO;
-import com.kh.bob.shop.model.vo.PageInfo;
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopReview;
 
