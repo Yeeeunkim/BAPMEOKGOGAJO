@@ -63,11 +63,11 @@
 			<tr>
 				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/images/sushi.png"></td>
 				<td width="150" align="center">가게 :</td>
-				<td>가게에서 직접 주문</td>
+				<td></td>
 			</tr>
 			<tr>
 				<td align="center">메뉴 :</td>
-				<td>스시세상</td>
+				<td>'${ menu } 직접 와서 주문</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약테이블 :</td>
@@ -120,57 +120,44 @@
 		</script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
 	
-	<!-- 약관 동의 script -->
 	<script>
-		function pay(){
-			var no = 0;
-			var check = document.getElementById("check");
-			for(var i = 0; i < payment.elements.length; i++){
-				var check = payment.elements[i];
-				if(check.checked == true){
-					no++;
-				}
-			}
-			if(no == 0){
-				alert('약관에 동의해주세요.');
-				return;
-			}
-			payment.submit();	
+		function pay(amount, name, buyer_name, buyer_email, buyer_phone, buyer_addr, merchant_uid){
 			
-			<!-- i'mport API -->
+			// i'mport API
 			
 			var IMP = window.IMP; 
-		    IMP.init("imp61524169"); // 가맹점점 식별코드
+		    IMP.init("imp61524169"); // 가맹점점 식별코드(고유코드)
 		    
 		    IMP.request_pay({ // param
 		        pg: "html5_inicis",	// 이니시스 결제
 		        pay_method: "card",	// 결제수단
-		        merchant_uid: "ORD20180131-0000011",//
-		        name: "노르웨이 회전 의자",
-		        amount: 64900,
-		        buyer_email: "gildong@gmail.com",
-		        buyer_name: "홍길동",
-		        buyer_tel: "010-4242-4242",
-		        buyer_addr: "서울특별시 강남구 신사동",
-		        buyer_postcode: "01181"
+		        
+		        merchant_uid: merchant_uid,	// 가맹점 결제 고유 식별번호
+		        name: name,	// 주문 대상
+		        amount: amount,	// 결제 금액
+		        buyer_email: buyer_email,	// 주문자 이메일
+		        buyer_name: buyer_name,		// 주문자 이름
+
 		      }, function (rsp) { // callback
 		        if (rsp.success) {
-		            ...,
-		            // 결제 성공 시 로직,
-		            ...
+		        	// 결제 승인 시 로직
+		            var mag = '결제가 완료되었습니다.';
+					msg		            
+		        	
+		        	
 		        } else {
 		            ...,
 		            // 결제 실패 시 로직,
-		            ...
+		            ...,
 		        }
 		      });
 		}
 		
 	</script>
 	
-	  
+	  <!-- 지도 api 라이브러리 -->
 	  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-	  <!-- iamport.payment.js -->
+	  <!-- iamport.payment 라이브러리 -->
 	  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	
 	 

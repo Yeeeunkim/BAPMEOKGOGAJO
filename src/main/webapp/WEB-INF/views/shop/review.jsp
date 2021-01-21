@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/7293f5b137.js" crossorigin="anonymous"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
+
 <style>
 
 	#body{
@@ -57,27 +59,41 @@
 </style>
 </head>
 <body>
-	<c:import url="../common/menubar.jsp"/>
+	<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
 	<br><br>
 	<div id="body">
 		<h1 align="center"><b>리뷰 작성></b></h1>
 		<br><br>
 		
-		<form action="" align="center">
-			<div id="reviewran"><h2><b name="shopName">행복한 찜닭</b> 에 솔찍한 리뷰를 써주세요</h2></div>
+		<form action="reviewinsert.sh" method="post" align="center" enctype="multipart/form-data" id="form">
+			<input type="hidden" name="shopNo" value="1">
+			<div id="reviewran"><h2><b>${ shop.sName }</b> 에 솔찍한 리뷰를 써주세요</h2></div>
 			<br><br>
-			<textarea rows="15" cols="120"></textarea><br><br>
-			<div>
-			<span class="glyphicon glyphicon-plus" id="file" aria-hidden="true"></span>
-			<input type="file"><br><br>
-			</div>
+			<!-- <div class="my-rating">
+			<input type="radio" value="1">
+			<input type="radio" value="2">
+			<input type="radio" value="3">
+			<input type="radio" value="4">
+			<input type="radio" value="5"><br>
+			    1 2 3 4 5 -->
+			<input type="number" min="1" max="5" name="reviewScore">
+			
+			<!-- </div> -->
+			<br><br>
+			<textarea rows="15" cols="90" name="reviewContents" id="content"></textarea><br><br>
+			<input type="file" name="uploadFile"><br><br>
+			
+			
 			<div class="btn">
 				<input type="button" id="cancle" value="취소">
 				<input type="submit" id="send" value="등록">
 			</div>
 		</form>
 	</div>
-	<c:import url="../common/footer.jsp"/>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
+	<script>
+	
+	</script>
 </body>
 </html>

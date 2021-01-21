@@ -27,7 +27,7 @@
    crossorigin="anonymous"></script>
 <!-- jQuery -->
 
-<script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
    crossorigin="anonymous"></script>
@@ -181,6 +181,49 @@
   width: 70%;
   height: 30%;
 }
+.reviewList{
+	margin-left: 200px;
+}
+#user{
+	margin-left: 200px;
+}
+#reviewbtn{
+	margin-left:900px;
+	background-color: #F42B03;
+   	color: white;
+   	border: 1px solid white;
+   	border-radius: 5px;
+	width: 100px;
+	height: 40px;
+}
+#rebottom{
+	padding: 100px;
+}
+.rere{
+	color:orange;
+}
+.reDelete{
+	color:red;
+}
+
+#map{
+		margin-left: 100px;
+		width:900px;
+		height: 500px;
+	}
+	
+.replytextarea{
+	display: none;
+	 
+}
+
+.check{
+	display: none;
+}
+#textareatd{
+	padding: 30px;
+	
+}
 
 </style>
 </head>
@@ -188,7 +231,7 @@
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 중식</h2>
+          <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 중식</h2>
           
 
    <!-- 사진, 지도 폼 -->
@@ -365,10 +408,7 @@
    <div class="container">
   <h2>식당 정보</h2>
   <br>
-  <img src="<%= request.getContextPath() %>/resources/images/gps.png" id="gps"/>&nbsp;&nbsp;서울특별시 강남구 역삼동 남도빌딩 3층&nbsp;&nbsp;&nbsp;
-  <!-- <input class= "cInput" type="text" name="address" id="address" placeholder="주소를 입력하세요."> -->
-  <br><br>
-  <img src="<%= request.getContextPath() %>/resources/images/지도.png" id="map"/>
+ 	<div id="map"></div>
   <br><br><br><br>
  
   </div>
@@ -378,34 +418,199 @@
   <div class="container">
   <h2>리뷰</h2>
   <br><br>
-  
-  
   </div>
   
   <div class="user">
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
-  	<p>
-  		<img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"> 정말 맛집입니다! <br><br><br><br>
-  	</p>
+  
+  	
+  <form>
+  	<table class="reviewList">
+  	<c:forEach var="re" items="${ list }">
+  	<tr>
+  		<td><img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"></td>
+  		<td id="rebottom">${ re.memberId }</td>
+  		<td>${ re.reviewContents }</td>
+  		<c:if test="${!empty re.originalFilename }">
+  		<td><img src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }" width="200" height="200"></td>
+  		</c:if>
   		
+	  		<c:url var="redelete" value="reDelete.sh">
+	  			<c:param name="reNo" value="${ re.reviewNo }"/>
+	  		</c:url>
+	  		
+  		<td id="rereplytd">
+  			<%-- <c:forEach var="rereply" items="${ relist }">
+  			</c:forEach> --%>
+  			<a class="rere" onclcik="reply();">답글</a>
+  			&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a class="reDelete" href="${ redelete }">삭제</a>
+  		</td>
+  	</tr>
+ 		<c:if test="${ empty rereply.reviewNo }">
+   		<tr class="replytextarea">
+   			<td class="tdtd"></td>
+   			<td></td>
+		  	<td><textarea rows="10" cols="70" id="textarea${re.reviewNo}" name="textarea"></textarea></td>
+		  	<td id="textareatd">
+		  			<input type="button" onclick="replysend(${re.reviewNo})" value="답글 등록">
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			<input type="button" class="recancle" value="취소">
+		  		</td>
+		  		<td></td>
+		  		<td></td>
+  	    </tr>
+	  	    <c:if test="${ !empty rereply.reviewNo }">
+	  				<td>사장님 :</td>
+	  				<td id="rereplyTime"></td>
+	  				<td id="rereContents"></td>
+	  		</c:if>
+  	 	</c:if>
+  	</c:forEach>
+   	 <tr>
+  	 	
+  	 </tr> 
+  	
+  	<!-- 페이징 처리 -->
+		<tr align="center" height="20" id="buttonTab">
+			<td colspan="6">
+				<!-- [이전] -->
+				<c:if test="${ pi.currentPage <= 1 }">
+					[이전] &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage > 1 }">
+					<c:url var="before" value="relist.sh">
+						<c:param name="page" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<a href="${ before }">[이전]</a> &nbsp;
+				</c:if>
+				
+				<!-- 페이지 -->
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<font color="red" size="4"><b>[${ p }]</b></font>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="relist.sh">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<a href="${ pagination }">${ p }</a> &nbsp;
+					</c:if>
+				</c:forEach>
+				
+				<!-- [다음] -->
+				<c:if test="${ pi.currentPage >= pi.maxPage }">
+					[다음]
+				</c:if>
+				<c:if test="${ pi.currentPage < pi.maxPage }">
+					<c:url var="after" value="relist.sh">
+						<c:param name="page" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<a href="${ after }">[다음]</a>
+				</c:if>
+			</td>
+		</tr>
+  	</table>
+  </form>
+  	<br><br>
+  	<button id="reviewbtn" onclick="location.href='reinsertForm.sh'">리뷰쓰기</button>
   </div>
   
+  <script>
+  	function reply(){
+  		 $(this).closest('.replytextarea').css({'display':'inline-block', 'margin-left':'300px' });
+  	}
   
+ 	 $('.rere').on('click', function(){
+ 		 console.log($(this).parents('tr').next());
+ 		 $(this).parents('tr').next().css({'display':'inline-block', 'margin-left':'300px' });
+// 		$('.replytextarea').css({'display':'inline-block', 'margin-left':'300px' });
+     });
+  		$('.recancle').on('click', function(){
+  			console.log(this);
+  			$(this).parents('tr').hide();
+//   			$('.replytextarea').css('display','none');
+  		});
+  		
+  		// 리뷰 답변달기
+  	
+   		function replysend(reid){
+  			$(function(){
+  			var textarea = $('#textarea'+reid).val();
+  			//var reid = ${re.reviewNo};
+  			console.log(textarea);
+  			console.log(reid);
+  			$.ajax({
+  				url: 'rereplyinsert.sh',
+  				data: {textarea:textarea, reid:reid},
+  				success: function(data){
+  					console.log(data);
+  					if(data == 'success'){
+  						$('textarea').val('');
+  						getReplyList();
+  					}
+  					
+  				}
+  			});
+  			});
+  		};
+  		
+  		// 리뷰 답글 불러오기
+  		function getReplyList(){
+  			var reviewNo = ${re.reviewNo};
+  			
+  			$.ajax({
+  				url: 'rereplyList.sh',
+  				data : {reviewNo:reviewNo},
+  				success: function(data){
+  					console.log(data);
+  					
+  					var $rereplyTime = $('#rereplyTime');
+  					var $rereContents = $('#rereContents');
+  					
+  					if(data.length > 0){
+  						$rereplyTime.append('${ rereply.reviewTime }');
+  						$rereContents.append('${rereply.replyContents}')
+  					}
+  					
+  				}
+  				
+  			});
+  		} 
+  		
+  		
+  </script>
+  
+  
+  <!-- 지도 API script-->
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script>
+	<script>
+		// 이미지 지도에서 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+		
+		// 이미지 지도에 표시할 마커입니다
+		// 이미지 지도에 표시할 마커는 Object 형태입니다
+		var marker = {
+		    position: markerPosition
+		};
+		
+		var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
+		    staticMapOption = { 
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
+		        level: 3, // 이미지 지도의 확대 레벨
+		        marker: marker // 이미지 지도에 표시할 마커 
+		    };    
+		
+		// 이미지 지도를 생성합니다
+		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+		</script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
   <!-- <script>
       function reservationShop(){
          location.href= "${ contextPath }/Reservation.do"
       }
    </script> -->
- 
-   
+   <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>
 

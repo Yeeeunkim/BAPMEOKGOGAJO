@@ -3,38 +3,36 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- 객체 생성 Root Context: defines shared resources visible to all other web components -->
+	<!-- Root Context: defines shared resources visible to all other web components -->
+   
+   <!-- DataBase 등록 : BasicDataSource -->
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+      <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+      <property name="username" value="BAPMEOKGOGAJO"/>
+      <property name="password" value="BAPMEOKGOGAJO"/>
+      <property name="defaultAutoCommit" value="false"/>
+   </bean>
+   
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="configLocation" value="classpath:mybatis-config.xml"/>
+      <property name="dataSource" ref="dataSource"/>  
+   </bean>
+   
+   <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sqlSession" /> <!-- 매개변수 있는 생성자에 값을 넣는 것을 보여주는 것을 태그로 표현 -->
+   </bean>
+   
+   <!-- 파일 업로드 시 사용할 MultiopartResolver -->
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="100000000"/>
+      <property name="maxInMemorySize" value="100000000"/>
+   </bean>
+   
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"/>
+   </bean>
+   
 	
-	<!-- DateBase 등록 : BasicDataSource클래스 사용할거임, 
-	** 이미 만들어져있는걸 클래스는 어노테이션 불가능해서 xml로 설정해야함 -->
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">ㄴ close라는 소멸 메소드 쓸거야
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="FINAL_PJ"/>
-		<property name="password" value="FINAL_PJ"/>
-		<property name="defaultAutoCommit" value="false"></property>
-	</bean> -->
-	<!-- bean안에있는 클래스를 객체로 만들어서 사용하겠다 -->
 	
-	<!-- sqlSession 빈 등록 -->
-	<!-- <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="classpath:mybatis-config.xml"/>classpath : 큰 resources
-		<property name="dataSource" ref="dataSource"></property>setter로 값 넣음
-	</bean>
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSession"/> 생성자 : 매개변수를 이용해서 값 넣음
-	</bean> -->
-	<!--** 객체에 값 넣는 법
-	     1. 매개변수 있는 생성자로 삽입 =  <constructor-arg>태그 이용
-	     2. setter로  삽입 = <property>태그 이용 
-	     
-	    ** config 파일 만들기 전에 해야하는 것
-	     1. dtd등록 
-	     2. window preference xml catalog -->
-	     
-	 <!-- 파일 업로드 시 사용할 MultipartResolver -->
-	 <!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	 	<property name="maxUploadSize" value="100000000"/>
-	 	<property name="maxInMemorySize" value="100000000"/>
-	 </bean> -->
 </beans>
