@@ -1,5 +1,3 @@
-﻿<<<<<<< HEAD
-
 ﻿package com.kh.bob.shop.controller;
 
 import java.io.File;
@@ -7,7 +5,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -99,13 +100,7 @@ public class ShopController {
 	   // 신진식 시작 ===================================================
 			
 	
-	
-			@RequestMapping("Reservation.do")
-			public String reservationForm() {
 
-				return "shop/shopReservation";
-			}
-			
 			
 			@RequestMapping("shopEnrollAdd.do")
 			public String shopEnrollAdd(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg")  MultipartFile thumbnailImg, HttpServletRequest request
@@ -287,8 +282,6 @@ public String shopEnrollForm() {
 	@RequestMapping("/shop.do")
 	public ModelAndView shopForm(ModelAndView mv) {
 	
-		
-	//		HashMap<String,Object> shopList = new HashMap<String,Object>();
 		
 		List<String> shopList = sService.getShopList();
 	

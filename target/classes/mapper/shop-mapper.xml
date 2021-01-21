@@ -130,12 +130,13 @@
 		,SM.MENU_CATE
 		,SI.SHOP_PHONE
 		,SI.SHOP_ADDRESS
-		,SI.IMG_URL
+		,SI.SHOP_RENAME
 		,SI.SHOP_NAME
 		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
 			WHERE SI.SHOP_NO = #{shop_no}
+   
    </select>
-    
+   
 <!-- 원태원 끝 ====================================================== -->
 
 
