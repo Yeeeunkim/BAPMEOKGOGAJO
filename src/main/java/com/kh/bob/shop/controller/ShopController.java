@@ -220,6 +220,8 @@ public class ShopController {
 		int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
 
 		List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
+		
+		System.out.println(reservationList);
 
 		mv.addObject("reservationList", reservationList);
 		mv.setViewName("/shop/shopReservation");

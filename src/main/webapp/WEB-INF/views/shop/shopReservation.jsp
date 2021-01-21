@@ -546,10 +546,7 @@ h4,h2{margin-left:8%;}
  
  
  </script>
- 
- 
-</body>
-</html>
+
 
 	<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
 		
