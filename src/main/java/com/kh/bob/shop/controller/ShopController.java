@@ -90,23 +90,51 @@ public class ShopController {
 	}
 	
 	// 메뉴바 검색
-	@RequestMapping("searchView.sh")
-	public ModelAndView searchView(@RequestParam("searchContents") String searchContents,
+	@RequestMapping("shopSearch.sh")
+	public ModelAndView shopSearch(@RequestParam("searchContents") String searchContents,
 							 ModelAndView mv) {
 		
 		ShopInfo shop = new ShopInfo();
+		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
 		shop.setShopName(searchContents);
-		List shopList = sService.selectSearchList(shop);
 		
-		System.out.println(shopList);
-		
-		if(!shopList.isEmpty()) {
-			mv.addObject("shopList", shopList);
-			mv.setViewName("shopList");
+		if(!searchContents.equals("") && searchContents != null) {
+			List shopList = sService.selectSearchList(shop);
+			
+			if(!shopList.isEmpty()) {
+				mv.addObject("shopList", shopList);
+				mv.setViewName("shopList");
+			} else {
+				throw new ShopException("검색 내용이 없습니다.");
+			}
 		} else {
 			throw new ShopException("검색 내용이 없습니다.");
 		}
 		return mv;
+	}
+	
+	// 메인페이지 검색
+	@RequestMapping("addressSearch.sh")
+	public ModelAndView addressSearch(@RequestParam("searchContents") String searchContents,
+							ModelAndView mv) {
+		ShopInfo shop = new ShopInfo();
+		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		shop.setShopAddress(searchContents);
+		
+		if(!searchContents.equals("") && searchContents != null) {
+			List shopList = sService.selectAddressSearch(shop);
+			
+			if(!shopList.isEmpty()) {
+				mv.addObject("shopList", shopList);
+				mv.setViewName("shopList");
+			} else {
+				throw new ShopException("검색 내용이 없습니다.");
+			}
+		} else {
+			throw new ShopException("검색 내용이 없습니다.");
+		}
+		return mv;
+		
 	}
 	
 	// 민병욱 끝 ====================================================

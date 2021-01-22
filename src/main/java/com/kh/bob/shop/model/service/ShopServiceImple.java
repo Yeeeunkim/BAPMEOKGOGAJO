@@ -69,6 +69,10 @@ public class ShopServiceImple implements ShopService {
 	public List selectSearchList(ShopInfo shop) {
 		return sDAO.selectSearchList(sqlSession, shop);
 	}
+	@Override
+	public List selectAddressSearch(ShopInfo shop) {
+		return sDAO.selectAddressSearch(sqlSession, shop);
+	}
 	
 	// 민병욱 끝 ====================================================
 
@@ -99,6 +103,7 @@ public class ShopServiceImple implements ShopService {
 		List<Map<String, Object>> ReservationList = sDAO.getReservationList(sqlSession,shop_no);
 		return ReservationList;
 	}
+	
 	
 
 	// 원태원 끝 ======================================================

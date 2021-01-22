@@ -30,6 +30,7 @@ public interface ShopService {
 	// @@@@@테스트용 
 	int successReserve(int rNo);
 	List selectSearchList(ShopInfo shop);
+	List selectAddressSearch(ShopInfo shop);
 	
 	// 민병욱 끝 ====================================================
 
@@ -46,6 +47,7 @@ public interface ShopService {
 	List<String> getShopList();
 
 	List<Map<String, Object>> getReservationList(int shop_no);
+	
 
 
 	/* void insertShop(HashMap<String, Object> data); */

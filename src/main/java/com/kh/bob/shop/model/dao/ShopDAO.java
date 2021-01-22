@@ -45,6 +45,9 @@ public class ShopDAO {
 	public List selectSearchList(SqlSessionTemplate sqlSession, ShopInfo shop) {
 		return (ArrayList)sqlSession.selectList("shopMapper.selectSearchList", shop);
 	}
+	public List selectAddressSearch(SqlSessionTemplate sqlSession, ShopInfo shop) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectAddressSearch", shop);
+	}
 	
 	// 민병욱 끝 ====================================================
 
@@ -74,6 +77,7 @@ public class ShopDAO {
 		List<Map<String, Object>> ReservationList = sqlSession.selectList("shopMapper.getReservationList",shop_no);
 		return ReservationList;
 	}
+	
 
 	/*
 	 * public void insertShop(SqlSessionTemplate sqlSession,HashMap<String, Object>

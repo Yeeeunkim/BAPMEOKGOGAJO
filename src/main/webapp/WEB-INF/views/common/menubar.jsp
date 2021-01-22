@@ -230,8 +230,7 @@
 		
 		function search() {
 			var searchContents = $('#searchInput').val();
-// 			if(searchContents)
-			location.href = "${contextPath}/searchView.sh?searchContents=" + searchContents;
+			location.href = "${contextPath}/shopSearch.sh?searchContents=" + searchContents;
 		}
 	</script>
 </body>
