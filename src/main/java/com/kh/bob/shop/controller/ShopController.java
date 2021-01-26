@@ -268,18 +268,28 @@ public class ShopController {
 
 	}
 
-	@RequestMapping("/shop.do")
-	public ModelAndView shopForm(ModelAndView mv) {
+	@RequestMapping(value = "/shop.do")
+	
+	public @ResponseBody ModelAndView shopForm(ModelAndView mv , HttpServletRequest req) {
 
 		// HashMap<String,Object> shopList = new HashMap<String,Object>();
 
-		List<String> shopList = sService.getShopList();
+		// SHOP_CATE
+		
+		String SHOP_CATE = req.getParameter("SHOP_CATE");
+		
+		
+		List<String> shopList = sService.getShopList(SHOP_CATE);
 
 		mv.addObject("shopList", shopList);
 		mv.setViewName("/shop/shopList");
 
 		return mv;
 	}
+	
+	
+	
+	
 
 	@RequestMapping("/test.do")
 	public void ajaxtext() {

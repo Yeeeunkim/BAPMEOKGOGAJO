@@ -89,8 +89,8 @@ public class ShopServiceImple implements ShopService {
 	// 원태원 시작 ====================================================
 	
 	@Override
-	public List<String> getShopList() {
-	List<String> ShopList = sDAO.getShopList(sqlSession);
+	public List<String> getShopList(String SHOP_CATE) {
+	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE);
 		return ShopList;
 	}
 
@@ -99,7 +99,6 @@ public class ShopServiceImple implements ShopService {
 		List<Map<String, Object>> ReservationList = sDAO.getReservationList(sqlSession,shop_no);
 		return ReservationList;
 	}
-	
 
 	// 원태원 끝 ======================================================
 

@@ -111,12 +111,17 @@
    
 <!-- 원태원 시작 ==================================================== -->
 
-   <select id="getShopList" resultType="Map">
+
+ 	<!-- 첫 LOAD FORM용 -->
+   <select id="getShopList" resultMap="shopInfoResultSet">
    
-   select * from SHOP_INFO
+   SELECT * FROM SHOP_INFO
    
+	   <if test="SHOP_CATE != null or SHOP_CATE eq '' ">
+	   WHERE SHOP_CATE  = #{SHOP_CATE}
+	   </if>
+	   
    </select>
-   
    
    <select id="getReservationList" resultType="Map" parameterType="int">
    
