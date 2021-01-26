@@ -97,6 +97,7 @@ public class ShopController {
 		
 		ShopInfo shop = new ShopInfo();
 		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		// 카테고리 값 들어왔을 때
 		switch(searchContents) {
 			case "한식" :
 				shop.setShopCate(1);
