@@ -68,8 +68,8 @@ public class ShopDAO {
 
 	// 원태원 시작 ====================================================
 	
-	public List<String> getShopList(SqlSessionTemplate sqlSession) {
-		List<String> ShopList = sqlSession.selectList("shopMapper.getShopList");
+	public List<String> getShopList(SqlSessionTemplate sqlSession,String SHOP_CATE) {
+		List<String> ShopList = sqlSession.selectList("shopMapper.getShopList",SHOP_CATE);
 		return ShopList;
 	}
 

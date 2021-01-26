@@ -158,21 +158,20 @@
 
 	
 	<br><br>
-	
   	<span class="dishtype" id="dishtype1" >
-		<img src="<%= request.getContextPath() %>/resources/images/main/한식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1"><img src="<%= request.getContextPath() %>/resources/images/main/한식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype2">
-		<img src="<%= request.getContextPath() %>/resources/images/main/중식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4"><img src="<%= request.getContextPath() %>/resources/images/main/중식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype3">
-		<img src="<%= request.getContextPath() %>/resources/images/main/양식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=2"><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype4">
-		<img src="<%= request.getContextPath() %>/resources/images/main/일식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3"><img src="<%= request.getContextPath() %>/resources/images/main/일식.png"> </a>
 	</span>  
 	
 
