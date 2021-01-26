@@ -96,9 +96,11 @@
          <option value="<%= request.getContextPath() %>/shop.do" selected="selected" id="all">전체</option>
          <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1" id="korean">한식</option>
          <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=2" id="western">양식</option>
-         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3" id="chinese">중식</option>
-         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4" id="japanese">일식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3" id="chinese">일식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4" id="japanese">중식</option>
          <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=5" id="school">분식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=6" id="school">동남아</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=7" id="school">샐러드</option>
       </select><br><br><br>
    </div>
 

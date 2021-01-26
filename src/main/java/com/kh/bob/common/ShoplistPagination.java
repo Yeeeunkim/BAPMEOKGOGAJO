@@ -1,8 +1,9 @@
 package com.kh.bob.common;
 
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 public class ShoplistPagination {
-	public static PageInfo getPageInfo(int currentPage, int listCount) {
+	public static ShoplistPageInfo getPageInfo(int currentPage, int listCount) {
 		
 		int pageLimit = 10;
 		int maxPage;
@@ -19,8 +20,8 @@ public class ShoplistPagination {
 			endPage = maxPage;
 		}
 		
-		PageInfo pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
+		ShoplistPageInfo spi = new ShoplistPageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 		
-		return pi;
+		return spi;
 	}
 }
