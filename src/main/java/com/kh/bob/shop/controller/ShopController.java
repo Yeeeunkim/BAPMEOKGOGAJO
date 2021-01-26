@@ -97,29 +97,28 @@ public class ShopController {
 		
 		ShopInfo shop = new ShopInfo();
 		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
-		
 		switch(searchContents) {
 			case "한식" :
-				searchContents = "1";
+				shop.setShopCate(1);
 				break;
 			case "양식" : 
-				searchContents = "2";
+				shop.setShopCate(2);
 				break;
 			case "중식" : 
-				searchContents = "3";
+				shop.setShopCate(3);
 				break;
 			case "일식" :
-				searchContents = "4";
+				shop.setShopCate(4);
 				break;
 			case "분식" : 
-				searchContents = "5";
+				shop.setShopCate(5);
 				break;
 		}
 		shop.setShopName(searchContents);
 		
 		if(!searchContents.equals("") && searchContents != null) {
 			List shopList = sService.selectSearchList(shop);
-			
+			System.out.println(shopList);
 			if(!shopList.isEmpty()) {
 				mv.addObject("shopList", shopList);
 				mv.setViewName("shopList");
@@ -159,12 +158,6 @@ public class ShopController {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
-
-//	@RequestMapping("Reservation.do")
-//	public String reservationForm() {
-//
-//		return "shop/shopReservation";
-//	}
 
 	@RequestMapping("shopEnrollAdd.do")
 	public String shopEnrollAdd(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg") MultipartFile thumbnailImg,

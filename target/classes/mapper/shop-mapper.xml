@@ -91,24 +91,18 @@
 	<select id="selectSearchList" resultMap="shopInfoResultSet">
 		select *
 		from shop_info
-<!-- 		<where> -->
-<!-- 			<if test='shopName != null and !shopName.equals("")'> -->
 		where
 			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%'
-			or to_char(shop_cate) = #{shopName}
-<!-- 			</if> -->
-<!-- 		</where> -->
+			<if test="shopCate != 0">
+				or to_char(shop_cate) = #{shopCate}
+			</if>
 	</select>
 	
 	<select id="selectAddressSearch" resultMap="shopInfoResultSet">
 		select *
 		from shop_info
 		where
-<!-- 		<where> -->
-<!-- 			<if test="shopAddress != null and !shopAddress.equals('')"> -->
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
-<!-- 			</if> -->
-<!-- 		</where> -->
 	</select>
 
    
@@ -133,6 +127,7 @@
 
    
 <!-- 원태원 시작 ==================================================== -->
+
    <!-- 첫 LOAD FORM용 -->
    <select id="getShopList" resultMap="shopInfoResultSet">
    

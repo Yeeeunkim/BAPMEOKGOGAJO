@@ -1,6 +1,5 @@
 package com.kh.bob.common;
 
-
 public class ShoplistPagination {
 	public static PageInfo getPageInfo(int currentPage, int listCount) {
 		

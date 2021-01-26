@@ -41,15 +41,12 @@
 }
 
 #cardArea {
-	/*    width: 60%; */
 	height: 150px;
 	display: inline-block;
-	/*    text-align: center; */
 	vertical-align: middle;
 	font-weight: bold;
 	position: relative;
 	top: 25px;
-	/*    margin: 0px auto; */
 }
 
 .btn-warning {
@@ -117,8 +114,7 @@
 	<div class="row">
 		<div class="col-lg-9 col-md-10 col-sm-8"></div>
 		<div class="col-lg-1 col-md-1 col-sm-4">
-			<button type="button" class="enrollBtn" onclick="enrollShop();">식당
-				등록</button>
+			<button type="button" class="enrollBtn" onclick="enrollShop();">식당 	등록</button>
 		</div>
 		<div class="col-lg-2 col-md-1"></div>
 
