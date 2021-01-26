@@ -153,6 +153,10 @@
 								reserveNo : reserveNo},
 							success: function(data){
 								console.log(data);
+								location.href = "${pageContext.request.contextPath}/"
+							},
+							error:(x,s,e) =>{
+								console.log("error : ", x , s, e);
 							}
 						})
 						

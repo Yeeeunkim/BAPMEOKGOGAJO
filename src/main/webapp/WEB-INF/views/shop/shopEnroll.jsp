@@ -280,12 +280,12 @@ input {
             </script>
    
    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-   <br><br><br><br><br><br><br><br>
       
       <div class="form-floating">
            <p>가게소개</p>
         <textarea placeholder="가게소개글을 입력해주세요" name="shopIntro" id="floatingTextarea2" style="height:300px; width:50%"></textarea>
-   </div>
+      </div>
+
    
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;사업자 번호</p>&nbsp;&nbsp;

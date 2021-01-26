@@ -9,7 +9,7 @@ public class ShoplistPagination {
 		int maxPage;
 		int startPage;
 		int endPage;
-		int boardLimit = 5;
+		int boardLimit = 10;
 		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		
@@ -20,7 +20,9 @@ public class ShoplistPagination {
 			endPage = maxPage;
 		}
 		
-		ShoplistPageInfo spi = new ShoplistPageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
+
+		ShoplistPageInfo pi = new ShoplistPageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
+
 		
 		return spi;
 	}

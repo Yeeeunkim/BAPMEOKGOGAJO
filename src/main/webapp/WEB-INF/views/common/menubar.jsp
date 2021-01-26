@@ -104,8 +104,7 @@
 			text-align: center;
 		}
 	}
-	
-	
+
 	/*--------------------------------------------------------------------*/
 	
  	.searchbar{
@@ -173,8 +172,8 @@
 				<img id="logo" src="resources/images/logo.png" onclick="location.href='home.do'">
 				<a onclick="location.href='home.do'">밥먹고 가조</a>
 					<span class="searchbar">
-          				 <input class="search_input" type="text" name="" placeholder="Search...">
-         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span>  
 		
@@ -191,10 +190,10 @@
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
 				<img id="logo" src="resources/images/logo.png">
-				<a href="">밥먹고 가조</a>
+				<a onclick="location.href='home.do'">밥먹고 가조</a>
 					<span class="searchbar">
-          				 <input class="search_input" type="text" name="" placeholder="Search...">
-         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span> 
 			<ul class="navbar_icons" >
@@ -213,42 +212,25 @@
 			</ul>
 		</nav>
 	</c:if>
-	
-	
-	
-</div>
-		
-		
+	</div>
+			
 	<script>
-	/*  $(function(){ // document ready
-	      if (!!$('#gnb').offset()) { // make sure "#gnb" element exists
-	        var stickyTop = $('#gnb').offset().top; // returns number 
-	        $(window).scroll(function(){ // scroll event
-	          var windowTop = $(window).scrollTop(); // returns number 
-	          if (stickyTop < windowTop){
-	            $('#gnb').css({ position: 'fixed', top: 0 });
-	          }
-	          else {
-	            $('#gnb').css('position','static');
-	          }
-	        });
-	      }
-	    }); */
-		
-	  
-	    
-	    function shop(){
-			location.href="${ contextPath }/shop.do"
+		function shop() {
+			location.href = "${contextPath }/shop.do"
 		}
-	    
-	    function manager(){
-	    	location.href="${ contextPath }/manager.ma"
-	    }
-	    
-	    function mypage(){
-	    	location.href="${ contextPath}/myPage.me"
-	    }
-	    
+
+		function manager() {
+			location.href = "${contextPath }/manager.ma"
+		}
+
+		function mypage() {
+			location.href = "${contextPath}/myPage.me"
+		}
+		
+		function search() {
+			var searchContents = $('#searchInput').val();
+			location.href = "${contextPath}/shopSearch.sh?searchContents=" + searchContents;
+		}
 	</script>
 </body>
 </html>

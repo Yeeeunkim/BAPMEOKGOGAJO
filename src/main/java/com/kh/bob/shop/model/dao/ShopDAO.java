@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 
 @Repository("sDAO")
@@ -29,22 +31,44 @@ public class ShopDAO {
 
 	// 민병욱 시작 =================================================
 	
-	// @@@@@테스트용 
 	public ShopInfo selectShop(SqlSessionTemplate sqlSession, int sNo) {
 		return sqlSession.selectOne("shopMapper.selectShop", sNo);
 	}
+	
 	public ReserveInfo selectReserve(SqlSessionTemplate sqlSession, int rNo) {
 		return sqlSession.selectOne("shopMapper.selectReserve", rNo);
 	}
+	
 	public List selectMenu(SqlSessionTemplate sqlSession, int rNo) {
 		return (ArrayList)sqlSession.selectList("shopMapper.selectMenu", rNo);
 	}
-	public List selectTable(SqlSessionTemplate sqlSession, int rNo) {
-		return (ArrayList)sqlSession.selectList("shopMapper.selectTable", rNo);
-	}
+	
 	public int successReserve(SqlSessionTemplate sqlSession, int rNo) {
 		return sqlSession.update("shopMapper.successReserve", rNo);
 	}
+
+	public List selectSearchList(SqlSessionTemplate sqlSession, ShopInfo shop, ShoplistPageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("shopMapper.selectSearchList", shop, rowBounds);
+	}
+	
+	public List selectAddressSearch(SqlSessionTemplate sqlSession, ShopInfo shop, ShoplistPageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("shopMapper.selectAddressSearch", shop, rowBounds);
+	}
+	
+	public int getListCount(SqlSessionTemplate sqlSession, ShopInfo shop) {
+		return sqlSession.selectOne("shopMapper.getListCount", shop);
+	}
+	
+	public int getAddressListCount(SqlSessionTemplate sqlSession, ShopInfo shop) {
+		return sqlSession.selectOne("shopMapper.getAddressListCount", shop);
+	}
+	
 	
 	// 민병욱 끝 ====================================================
 
@@ -74,6 +98,12 @@ public class ShopDAO {
 		List<Map<String, Object>> ReservationList = sqlSession.selectList("shopMapper.getReservationList",shop_no);
 		return ReservationList;
 	}
+
+	
+
+	
+	
+	
 
 	/*
 	 * public void insertShop(SqlSessionTemplate sqlSession,HashMap<String, Object>

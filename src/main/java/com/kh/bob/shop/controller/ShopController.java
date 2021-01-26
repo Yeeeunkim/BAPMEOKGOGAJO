@@ -16,15 +16,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.bob.common.ShoplistPagination;
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Controller
 public class ShopController {
@@ -62,41 +66,25 @@ public class ShopController {
 //		Map<String, Object> menuMap = new HashMap<String, Object>();
 		List mList = sService.selectMenu(rNo);
 		System.out.println(mList);
-		// 예약 자리 정보 가져오기 (좌석) -> 결과 여러개일 수 있으니 list
-//		Map<String, Object> tableMap = sService.selectTable(rNo);
-//		List tList = sService.selectTable(rNo);
-//		System.out.println(tList);
+		
+		mv.addObject("shop", shop)
+		  .addObject("reserve", reserve)
+		  .addObject("mList", mList)
+		  .setViewName("paymentView");
 
-		// 예약정보 불러오기
-
-		// @@@@@테스트용 메뉴 정보 불러와서 넘기기
-//		 List<Map<>>에 담아야 할 것 같음
-//		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-//		Map<String, Object> menuMap = new HashMap<String, Object>();
-		// 예약메뉴 먼저 담기
-//		menuMap.put("rNo", "1");	// 주문번호 1
-//		menuMap.put("mNo", "1");	// 메뉴번호 1
-//		menuMap.put("mQty", "2");		// 수량 2개
-//		menuMap.put("mPrice", 10000);	// 가격 10000원
-//		
-//		menuMap.put("rNo", "1");	// 주문번호 1
-//		menuMap.put("mNo", "2");	// 메뉴번호 1
-//		menuMap.put("mQty", "2");		// 수량 2개
-//		menuMap.put("mPrice", 5000);	// 가격  5000원
-
-		mv.addObject("shop", shop).addObject("reserve", reserve).addObject("mList", mList).setViewName("paymentView");
 		return mv;
 	}
 
 	// @@@@테스트 결제 성공 시
 	@RequestMapping("payment.sh")
-	public void successPay(@ModelAttribute ReserveInfo reserve) {
+	@ResponseBody
+	public String successPay(@ModelAttribute ReserveInfo reserve) {
 		System.out.println(reserve);
 		int rNo = reserve.getReserveNo();
 		// @@@@@ 테스트
 		// 결제 성공 시 상태값 Y로 변경
 		int result = sService.successReserve(rNo);
-
+		return "ture";
 	}
 
 	// 예약정보 페이지
@@ -104,16 +92,100 @@ public class ShopController {
 	public String bookingInfoView() {
 		return "bookingInfo";
 	}
-
+	
+	// 메뉴바 검색
+	@RequestMapping("shopSearch.sh")
+	public ModelAndView shopSearch(@RequestParam(value = "page", required = false) Integer page,
+									@RequestParam("searchContents") String searchContents,
+									ModelAndView mv) {
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = page;
+		}
+		
+		ShopInfo shop = new ShopInfo();
+		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		// 카테고리 값 들어왔을 때
+		switch(searchContents) {
+			case "한식" :
+				shop.setShopCate(1);
+				break;
+			case "양식" : 
+				shop.setShopCate(2);
+				break;
+			case "중식" : 
+				shop.setShopCate(3);
+				break;
+			case "일식" :
+				shop.setShopCate(4);
+				break;
+			case "분식" : 
+				shop.setShopCate(5);
+				break;
+		}
+		shop.setShopName(searchContents);
+		
+		int listCount = sService.getListCount(shop);
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
+		if(!searchContents.equals("") && searchContents != null) {
+			List shopList = sService.selectSearchList(shop, pi);
+			
+			System.out.println(shopList);
+			if(!shopList.isEmpty()) {
+				mv.addObject("shopList", shopList)
+				  .addObject("pi", pi)
+				  .addObject("searchContents", searchContents)
+				  .addObject("searchType", "1");
+				mv.setViewName("shopSearchList");
+			} else {
+				throw new ShopException("검색 내용이 없습니다.");
+			}
+		} else {
+			throw new ShopException("검색 내용이 없습니다.");
+		}
+		return mv;
+	}
+	
+	// 메인페이지 검색
+	@RequestMapping("addressSearch.sh")
+	public ModelAndView addressSearch(@RequestParam(value = "page", required = false) Integer page,
+										@RequestParam("searchContents") String searchContents,
+										ModelAndView mv) {
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = page;
+		}
+		
+		ShopInfo shop = new ShopInfo();
+		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		shop.setShopAddress(searchContents);
+		
+		int listCount = sService.getAddressListCount(shop);
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
+		if(!searchContents.equals("") && searchContents != null) {
+			List shopList = sService.selectAddressSearch(shop, pi);
+			
+			if(!shopList.isEmpty()) {
+				mv.addObject("shopList", shopList)
+				  .addObject("pi", pi)
+				  .addObject("searchContents", searchContents)
+				  .addObject("searchType", "2");
+				mv.setViewName("shopSearchList");
+			} else {
+				throw new ShopException("검색 내용이 없습니다.");
+			}
+		} else {
+			throw new ShopException("검색 내용이 없습니다.");
+		}
+		return mv;
+		
+	}
+	
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
-
-//	@RequestMapping("Reservation.do")
-//	public String reservationForm() {
-//
-//		return "shop/shopReservation";
-//	}
 
 	@RequestMapping("shopEnrollAdd.do")
 	public String shopEnrollAdd(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg") MultipartFile thumbnailImg,
@@ -222,6 +294,8 @@ public class ShopController {
 		int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
 
 		List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
+		
+		System.out.println(reservationList);
 
 		mv.addObject("reservationList", reservationList);
 		mv.setViewName("/shop/shopReservation");
@@ -281,6 +355,7 @@ public class ShopController {
 		
 		List<String> shopList = sService.getShopList(SHOP_CATE);
 
+		
 		mv.addObject("shopList", shopList);
 		mv.setViewName("/shop/shopList");
 

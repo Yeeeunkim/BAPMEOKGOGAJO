@@ -39,7 +39,7 @@
 	     z-index: 2; 
 	     text-align: center;
  	 }
-  	
+  	 
 	.container-4{
 	  overflow: hidden;
 	  width: 300px; 
@@ -138,8 +138,8 @@
 				<button id="button">검색</button>
 			</span>  -->
 			
-			<form class="example" action="/action_page.php" style="margin:auto;max-width:500px">
-			  <input type="text" placeholder="건물명,도로명,지번을 입력해 주소를  검색해주세요" name="search">
+			<form class="example" action="addressSearch.sh" style="margin:auto;max-width:500px">
+			  <input type="text" placeholder=" 시, 군, 구, 도로명을 입력해 주소를  검색해주세요" name="searchContents" id="searchInput">
 			  <button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 			
