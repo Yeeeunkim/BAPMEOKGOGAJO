@@ -21,11 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.bob.common.ShoplistPagination;
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Controller
 public class ShopController {
@@ -92,8 +95,13 @@ public class ShopController {
 	
 	// 메뉴바 검색
 	@RequestMapping("shopSearch.sh")
-	public ModelAndView shopSearch(@RequestParam("searchContents") String searchContents,
-							 ModelAndView mv) {
+	public ModelAndView shopSearch(@RequestParam(value = "page", required = false) Integer page,
+									@RequestParam("searchContents") String searchContents,
+									ModelAndView mv) {
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = page;
+		}
 		
 		ShopInfo shop = new ShopInfo();
 		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
@@ -117,12 +125,19 @@ public class ShopController {
 		}
 		shop.setShopName(searchContents);
 		
+		int listCount = sService.getListCount(shop);
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
 		if(!searchContents.equals("") && searchContents != null) {
-			List shopList = sService.selectSearchList(shop);
+			List shopList = sService.selectSearchList(shop, pi);
+			
 			System.out.println(shopList);
 			if(!shopList.isEmpty()) {
-				mv.addObject("shopList", shopList);
-				mv.setViewName("shopList");
+				mv.addObject("shopList", shopList)
+				  .addObject("pi", pi)
+				  .addObject("searchContents", searchContents)
+				  .addObject("searchType", "1");
+				mv.setViewName("shopSearchList");
 			} else {
 				throw new ShopException("검색 내용이 없습니다.");
 			}
@@ -134,18 +149,30 @@ public class ShopController {
 	
 	// 메인페이지 검색
 	@RequestMapping("addressSearch.sh")
-	public ModelAndView addressSearch(@RequestParam("searchContents") String searchContents,
-							ModelAndView mv) {
+	public ModelAndView addressSearch(@RequestParam(value = "page", required = false) Integer page,
+										@RequestParam("searchContents") String searchContents,
+										ModelAndView mv) {
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = page;
+		}
+		
 		ShopInfo shop = new ShopInfo();
 		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
 		shop.setShopAddress(searchContents);
 		
+		int listCount = sService.getAddressListCount(shop);
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
 		if(!searchContents.equals("") && searchContents != null) {
-			List shopList = sService.selectAddressSearch(shop);
+			List shopList = sService.selectAddressSearch(shop, pi);
 			
 			if(!shopList.isEmpty()) {
-				mv.addObject("shopList", shopList);
-				mv.setViewName("shopList");
+				mv.addObject("shopList", shopList)
+				  .addObject("pi", pi)
+				  .addObject("searchContents", searchContents)
+				  .addObject("searchType", "2");
+				mv.setViewName("shopSearchList");
 			} else {
 				throw new ShopException("검색 내용이 없습니다.");
 			}

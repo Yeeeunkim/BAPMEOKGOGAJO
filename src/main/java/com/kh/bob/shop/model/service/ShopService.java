@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 public interface ShopService {
 
@@ -23,14 +24,21 @@ public interface ShopService {
 
 	// 민병욱 시작 =================================================
 
-	// @@@@@테스트용 
 	ShopInfo selectShop(int sNo);
+	
 	ReserveInfo selectReserve(int rNo);
+	
 	List selectMenu(int rNo);
-	// @@@@@테스트용 
+
 	int successReserve(int rNo);
-	List selectSearchList(ShopInfo shop);
-	List selectAddressSearch(ShopInfo shop);
+	
+	List selectSearchList(ShopInfo shop, ShoplistPageInfo pi);
+	
+	List selectAddressSearch(ShopInfo shop, ShoplistPageInfo pi);
+	
+	int getListCount(ShopInfo shop);
+	
+	int getAddressListCount(ShopInfo shop);
 	
 	// 민병욱 끝 ====================================================
 
@@ -47,6 +55,9 @@ public interface ShopService {
 	List<String> getShopList(String SHOP_CATE);
 
 	List<Map<String, Object>> getReservationList(int shop_no);
+
+	
+	
 	
 
 

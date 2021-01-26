@@ -104,6 +104,23 @@
 		where
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
 	</select>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from shop_info
+		where
+			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%'
+			<if test="shopCate != 0">
+				or to_char(shop_cate) = #{shopCate}
+			</if>
+	</select>
+	
+	<select id="getAddressListCount" resultType="_int">
+		select count(*)
+		from shop_info
+		where
+			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
+	</select>
 
    
 <!-- 민병욱 끝 ==================================================== -->

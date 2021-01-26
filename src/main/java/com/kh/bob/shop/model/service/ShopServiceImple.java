@@ -23,6 +23,7 @@ import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Service("sService")
 public class ShopServiceImple implements ShopService {
@@ -66,12 +67,22 @@ public class ShopServiceImple implements ShopService {
 		return sDAO.successReserve(sqlSession, rNo);
 	}
 	@Override
-	public List selectSearchList(ShopInfo shop) {
-		return sDAO.selectSearchList(sqlSession, shop);
+	public List selectSearchList(ShopInfo shop, ShoplistPageInfo pi) {
+		return sDAO.selectSearchList(sqlSession, shop, pi);
 	}
 	@Override
-	public List selectAddressSearch(ShopInfo shop) {
-		return sDAO.selectAddressSearch(sqlSession, shop);
+	public List selectAddressSearch(ShopInfo shop, ShoplistPageInfo pi) {
+		return sDAO.selectAddressSearch(sqlSession, shop, pi);
+	}
+	
+	@Override
+	public int getListCount(ShopInfo shop) {
+		return sDAO.getListCount(sqlSession, shop);
+	}
+	
+	@Override
+	public int getAddressListCount(ShopInfo shop) {
+		return sDAO.getAddressListCount(sqlSession, shop);
 	}
 	
 	// 민병욱 끝 ====================================================
@@ -103,6 +114,9 @@ public class ShopServiceImple implements ShopService {
 		List<Map<String, Object>> ReservationList = sDAO.getReservationList(sqlSession,shop_no);
 		return ReservationList;
 	}
+	
+	
+	
 
 	// 원태원 끝 ======================================================
 
