@@ -91,36 +91,24 @@
 	<select id="selectSearchList" resultMap="shopInfoResultSet">
 		select *
 		from shop_info
-		<where>
-			<if test='shopName != null and !shopName.equals("")'>
+<!-- 		<where> -->
+<!-- 			<if test='shopName != null and !shopName.equals("")'> -->
+		where
 			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%'
-			</if>
-			<if test="shopName != null and shopName.equals('한식')">
-				or shop_cate = 1
-			</if>
-			<if test="shopName != null and shopName.equals('양식')">
-				or shop_cate = 2
-			</if>
-			<if test="shopName != null and shopName.equals('중식')">
-				or shop_cate = 3
-			</if>
-			<if test="shopName != null and shopName.equals('일식')">
-				or shop_cate = 4
-			</if>
-			<if test="shopName != null and shopName.equals('분식')">
-				or shop_cate = 5
-			</if>
-		</where>
+			or to_char(shop_cate) = #{shopName}
+<!-- 			</if> -->
+<!-- 		</where> -->
 	</select>
 	
 	<select id="selectAddressSearch" resultMap="shopInfoResultSet">
 		select *
 		from shop_info
-		<where>
-			<if test="shopAddress != null and !shopAddress.equals('')">
+		where
+<!-- 		<where> -->
+<!-- 			<if test="shopAddress != null and !shopAddress.equals('')"> -->
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
-			</if>
-		</where>
+<!-- 			</if> -->
+<!-- 		</where> -->
 	</select>
 
    

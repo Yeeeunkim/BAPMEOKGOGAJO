@@ -173,17 +173,17 @@ td{border-bottom: 1px solid #1D3557 !important;}
 
 		}
 		
-		$(function(){
-			$('.nContents').mouseenter(function(){
-				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
-			}).mouseout(function(){
-				$(this).css({'color':'black', 'font-weight':'normal'});
-			}).click(function(){
-				var bNo = $(this).children('td').eq(0).text();
+// 		$(function(){
+// 			$('.nContents').mouseenter(function(){
+// 				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
+// 			}).mouseout(function(){
+// 				$(this).css({'color':'black', 'font-weight':'normal'});
+// 			}).click(function(){
+// 				var bNo = $(this).children('td').eq(0).text();
 				
-				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
-			});
-		});
+// 				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
+// 			});
+// 		});
 	</script>
 </body>
 </html>

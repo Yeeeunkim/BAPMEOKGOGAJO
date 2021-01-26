@@ -74,13 +74,14 @@ public class ShopController {
 
 	// @@@@테스트 결제 성공 시
 	@RequestMapping("payment.sh")
-	public void successPay(@ModelAttribute ReserveInfo reserve) {
+	@ResponseBody
+	public String successPay(@ModelAttribute ReserveInfo reserve) {
 		System.out.println(reserve);
 		int rNo = reserve.getReserveNo();
 		// @@@@@ 테스트
 		// 결제 성공 시 상태값 Y로 변경
 		int result = sService.successReserve(rNo);
-
+		return "ture";
 	}
 
 	// 예약정보 페이지
@@ -96,6 +97,24 @@ public class ShopController {
 		
 		ShopInfo shop = new ShopInfo();
 		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		
+		switch(searchContents) {
+			case "한식" :
+				searchContents = "1";
+				break;
+			case "양식" : 
+				searchContents = "2";
+				break;
+			case "중식" : 
+				searchContents = "3";
+				break;
+			case "일식" :
+				searchContents = "4";
+				break;
+			case "분식" : 
+				searchContents = "5";
+				break;
+		}
 		shop.setShopName(searchContents);
 		
 		if(!searchContents.equals("") && searchContents != null) {

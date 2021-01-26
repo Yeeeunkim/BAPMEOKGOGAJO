@@ -28,7 +28,7 @@
 	integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
 	crossorigin="anonymous"></script>
 <!-- jQuery -->
-<script src="${ contextPath }/js/jquery-3.5.1.min.js"></script>
+<%-- <script src="${ contextPath }/js/jquery-3.5.1.min.js"></script> --%>
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
 	crossorigin="anonymous"></script>
@@ -76,7 +76,8 @@ td{border-bottom: 1px solid #1D3557 !important;}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
-	<c:import url="../common/menubar.jsp" />
+<%-- 	<c:import url="../common/menubar.jsp" /> --%>
+<%@ include file="/WEB-INF/views/common/menubar.jsp"%> 
 	<br>
 	<br>
 	<h1 style="text-align: center;">공지사항 ></h1>
@@ -167,7 +168,8 @@ td{border-bottom: 1px solid #1D3557 !important;}
 		<div class="col-2"></div>
 	</div>
 
-	<c:import url="../common/footer.jsp" />
+<%-- 	<c:import url="../common/footer.jsp" /> --%>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
 	<script>
 		function nInsert(){
