@@ -52,8 +52,6 @@
    		where member_id=#{member_id} and email=#{email} and member_status='Y'
    </select>
    
-
-   
    <!-- 회원정보 수정 시 비밀번호 -->
    <select id="infoPwd" resultMap="bMemberResultSet">
    		select *
@@ -82,8 +80,6 @@
 		set member_pwd=#{newPwd}
 		where member_id=#{member_id}
 	</update>
-   
-   
-<!--김예은 끝 ================================================= -->
-  	
+	
+
 </mapper>

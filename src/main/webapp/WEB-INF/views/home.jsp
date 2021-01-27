@@ -62,7 +62,7 @@
 	 
 	
 	/*list*/
-	ul, li {list-style:none;}
+	ul, li {list-style:none;} 
 	a { text-decoration:none; color:inherit;}
 	.list_wrap {width:1200px; margin-left:10%;}
 	.list_wrap ul {font-size:0;}
@@ -118,6 +118,22 @@
 	
 	.card { margin-left:10px;} 
 	.card{display:inline-block; }   
+    
+    /*top버튼 */
+    a#MOVE_TOP_BTN {
+     position: fixed;
+    right: 2%;
+    bottom: 50px;
+    display: none;
+    z-index: 999;
+    width: 40px;
+    height: 30px;
+    background-color: red;
+    font-family: 'Gugi';
+	font-size: 20px; 
+	text-align: center;
+	}  
+
 
 </style>
 <title>Insert title here</title>
@@ -302,10 +318,33 @@
 	<script type="text/javascript">
 	$('.carousel').slick({slidesToShow:5, slidesToScroll:5, dots:true});	
 	
+			
+
 	</script>
+	<!-- top버튼 -->
+	<a id="MOVE_TOP_BTN"  href="home.do">▲</a>
+	
+
 	<br><br>
 	<%@ include file="common/footer.jsp" %>
 
-	
+	<script type="text/javascript">
+	<!-- top버튼 -->
+	$(function(){
+		$(window).scroll(function(){
+			if( $(this).scrollTop() > 200){
+				$('#MOVE_TOP_BTN').fadeIn();
+			}else{
+				$('#MOVE_TOP_BTN').fadeOut();
+			}
+		});
+		$('#MOVE_TOP_BTN').click(function(){
+			$('html, body').animate({
+				scrollTop: 0
+			}, 300);
+			return false;
+		});
+	});
+	</script>
 </body>
 </html>

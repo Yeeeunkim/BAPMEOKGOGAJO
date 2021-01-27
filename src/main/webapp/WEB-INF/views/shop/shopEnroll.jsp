@@ -213,9 +213,9 @@ input {
    <br><br>
    	
    	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
-   		
-   		<%-- <input type="hidden" name="MemberId" value="${ loginUser.id }"> --%>
-   		<input type="hidden" name="MemberId" value="user01">
+   	
+   	 <input type="hidden" name="MemberId" value="${ loginUser.member_id}"> 
+   		<!-- <input type="hidden" name="MemberId" value="user01"> -->
    		
    		
        <select class="form-select" aria-label="Default select example"  id="myselect" name="ShopCate" >
@@ -245,7 +245,7 @@ input {
 		<div class="thumb" id="thumbnail"><img id="thumbImg" width="100%" height="100%"><p id="text">메뉴 썸네일 사진을 등록해주세요.</p></div>
 		
 	
-		<div id="fileArea">
+	<div id="fileArea">
 		<input type="file" id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
 	</div>
 	
@@ -272,7 +272,7 @@ input {
 							reader.readAsDataURL(value.files[0]);
 						}
 					}
-				</script>
+	</script>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		

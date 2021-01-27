@@ -49,7 +49,7 @@
 	<servlet-mapping>
 		<servlet-name>ShopServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>  -->
+	</servlet-mapping>  --> 
 	
 	
 	<!-- 공지사항 관련 -->

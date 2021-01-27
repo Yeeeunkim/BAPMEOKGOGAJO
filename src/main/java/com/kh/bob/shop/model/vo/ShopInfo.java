@@ -2,155 +2,187 @@ package com.kh.bob.shop.model.vo;
 
 public class ShopInfo {
 	
-	private int ShopCate;
-	private int businessNum;
-	private String ShopName;
-	private String ShopPhone;
-	private String OpenTime;
-	private String CloseTime;
-	private String BreakTime;
-	private String Holiday;
-	private String Address;
-	private String MaxReservationTime;
-	private String MemberId;
-	private String ShopOrigin;
-	private String ShopRename;
-	
+	private int shopNo; 				// 식당번호
+	private String shopName; 			// 식당이름
+	private String shopIntro; 			// 식당 소개글
+	private String shopOpen; 			// 오픈시간
+	private String shopClose; 			// 폐점시간
+	private String shopAddress; 		// 식당주소
+	private String shopPhone; 			// 식당연락처
+	private String shopBreakStart; 		// 브레이크타임 시작시간
+	private String shopBreakClose; 		// 브레이크타임 종료시간
+	private String shopOffday;			// 식당 휴무일
+	private String maxReservationTime; 	// 최대예약시간
+	private String shopOrigin; 			// 식당 기존 파일명
+	private String shopRename; 			// 식당 리네임 파일명
+	private int shopCate; 				// 식당 카테고리
+	private int businessNumber; 		// 사업자 번호
+	private String memberId; 			// 회원아이디
+		
 	public ShopInfo() {}
 
-	public ShopInfo(int shopCate, int businessNum, String shopName, String shopPhone, String openTime, String closeTime,
-			String breakTime, String holiday, String address, String maxReservationTime, String memberId,
-			String shopOrigin, String shopRename) {
+	public ShopInfo(int shopNo, String shopName, String shopIntro, String shopOpen, String shopClose,
+			String shopAddress, String shopPhone, String shopBreakStart, String shopBreakClose, String shopOffday,
+			String maxReservationTime, String shopOrigin, String shopRename, int shopCate, int businessNumber,
+			String memberId) {
 		super();
-		ShopCate = shopCate;
-		this.businessNum = businessNum;
-		ShopName = shopName;
-		ShopPhone = shopPhone;
-		OpenTime = openTime;
-		CloseTime = closeTime;
-		BreakTime = breakTime;
-		Holiday = holiday;
-		Address = address;
-		MaxReservationTime = maxReservationTime;
-		MemberId = memberId;
-		ShopOrigin = shopOrigin;
-		ShopRename = shopRename;
+		this.shopNo = shopNo;
+		this.shopName = shopName;
+		this.shopIntro = shopIntro;
+		this.shopOpen = shopOpen;
+		this.shopClose = shopClose;
+		this.shopAddress = shopAddress;
+		this.shopPhone = shopPhone;
+		this.shopBreakStart = shopBreakStart;
+		this.shopBreakClose = shopBreakClose;
+		this.shopOffday = shopOffday;
+		this.maxReservationTime = maxReservationTime;
+		this.shopOrigin = shopOrigin;
+		this.shopRename = shopRename;
+		this.shopCate = shopCate;
+		this.businessNumber = businessNumber;
+		this.memberId = memberId;
 	}
 
-	public int getShopCate() {
-		return ShopCate;
+	public int getShopNo() {
+		return shopNo;
 	}
 
-	public void setShopCate(int shopCate) {
-		ShopCate = shopCate;
-	}
-
-	public int getBusinessNum() {
-		return businessNum;
-	}
-
-	public void setBusinessNum(int businessNum) {
-		this.businessNum = businessNum;
+	public void setShopNo(int shopNo) {
+		this.shopNo = shopNo;
 	}
 
 	public String getShopName() {
-		return ShopName;
+		return shopName;
 	}
 
 	public void setShopName(String shopName) {
-		ShopName = shopName;
+		this.shopName = shopName;
+	}
+
+	public String getShopIntro() {
+		return shopIntro;
+	}
+
+	public void setShopIntro(String shopIntro) {
+		this.shopIntro = shopIntro;
+	}
+
+	public String getShopOpen() {
+		return shopOpen;
+	}
+
+	public void setShopOpen(String shopOpen) {
+		this.shopOpen = shopOpen;
+	}
+
+	public String getShopClose() {
+		return shopClose;
+	}
+
+	public void setShopClose(String shopClose) {
+		this.shopClose = shopClose;
+	}
+
+	public String getShopAddress() {
+		return shopAddress;
+	}
+
+	public void setShopAddress(String shopAddress) {
+		this.shopAddress = shopAddress;
 	}
 
 	public String getShopPhone() {
-		return ShopPhone;
+		return shopPhone;
 	}
 
 	public void setShopPhone(String shopPhone) {
-		ShopPhone = shopPhone;
+		this.shopPhone = shopPhone;
 	}
 
-	public String getOpenTime() {
-		return OpenTime;
+	public String getShopBreakStart() {
+		return shopBreakStart;
 	}
 
-	public void setOpenTime(String openTime) {
-		OpenTime = openTime;
+	public void setShopBreakStart(String shopBreakStart) {
+		this.shopBreakStart = shopBreakStart;
 	}
 
-	public String getCloseTime() {
-		return CloseTime;
+	public String getShopBreakClose() {
+		return shopBreakClose;
 	}
 
-	public void setCloseTime(String closeTime) {
-		CloseTime = closeTime;
+	public void setShopBreakClose(String shopBreakClose) {
+		this.shopBreakClose = shopBreakClose;
 	}
 
-	public String getBreakTime() {
-		return BreakTime;
+	public String getShopOffday() {
+		return shopOffday;
 	}
 
-	public void setBreakTime(String breakTime) {
-		BreakTime = breakTime;
-	}
-
-	public String getHoliday() {
-		return Holiday;
-	}
-
-	public void setHoliday(String holiday) {
-		Holiday = holiday;
-	}
-
-	public String getAddress() {
-		return Address;
-	}
-
-	public void setAddress(String address) {
-		Address = address;
+	public void setShopOffday(String shopOffday) {
+		this.shopOffday = shopOffday;
 	}
 
 	public String getMaxReservationTime() {
-		return MaxReservationTime;
+		return maxReservationTime;
 	}
 
 	public void setMaxReservationTime(String maxReservationTime) {
-		MaxReservationTime = maxReservationTime;
-	}
-
-	public String getMemberId() {
-		return MemberId;
-	}
-
-	public void setMemberId(String memberId) {
-		MemberId = memberId;
+		this.maxReservationTime = maxReservationTime;
 	}
 
 	public String getShopOrigin() {
-		return ShopOrigin;
+		return shopOrigin;
 	}
 
 	public void setShopOrigin(String shopOrigin) {
-		ShopOrigin = shopOrigin;
+		this.shopOrigin = shopOrigin;
 	}
 
 	public String getShopRename() {
-		return ShopRename;
+		return shopRename;
 	}
 
 	public void setShopRename(String shopRename) {
-		ShopRename = shopRename;
+		this.shopRename = shopRename;
+	}
+
+	public int getShopCate() {
+		return shopCate;
+	}
+
+	public void setShopCate(int shopCate) {
+		this.shopCate = shopCate;
+	}
+
+	public int getBusinessNumber() {
+		return businessNumber;
+	}
+
+	public void setBusinessNumber(int businessNumber) {
+		this.businessNumber = businessNumber;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	@Override
 	public String toString() {
-		return "ShopInfo [ShopCate=" + ShopCate + ", businessNum=" + businessNum + ", ShopName=" + ShopName
-				+ ", ShopPhone=" + ShopPhone + ", OpenTime=" + OpenTime + ", CloseTime=" + CloseTime + ", BreakTime="
-				+ BreakTime + ", Holiday=" + Holiday + ", Address=" + Address + ", MaxReservationTime="
-				+ MaxReservationTime + ", MemberId=" + MemberId + ", ShopOrigin=" + ShopOrigin + ", ShopRename="
-				+ ShopRename + "]";
+		return "ShopInfo [shopNo=" + shopNo + ", shopName=" + shopName + ", shopIntro=" + shopIntro + ", shopOpen="
+				+ shopOpen + ", shopClose=" + shopClose + ", shopAddress=" + shopAddress + ", shopPhone=" + shopPhone
+				+ ", shopBreakStart=" + shopBreakStart + ", shopBreakClose=" + shopBreakClose + ", shopOffday="
+				+ shopOffday + ", maxReservationTime=" + maxReservationTime + ", shopOrigin=" + shopOrigin
+				+ ", shopRename=" + shopRename + ", shopCate=" + shopCate + ", businessNumber=" + businessNumber
+				+ ", memberId=" + memberId + "]";
 	}
 
 	
-	
-	
+
+
 }

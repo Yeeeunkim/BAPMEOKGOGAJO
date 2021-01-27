@@ -59,7 +59,7 @@
 		text-align: left;
 	}
 	.menuContent input{
-		width: 600px;
+		width: 500px;
 		border: 0px none;
 	}
 	#reservation{
@@ -133,41 +133,42 @@
 <body  style="font-family: 'Gugi'; ">
 <!-- 사장님 마이페이지 -->
 	<c:import url="../common/menubar.jsp"/>
-	<div class="outer"><br>
-		<h1><c:out value="${ loginUser.member_name}사장님 환영합니다."/></h1><br>
+	<div class="outer"><br><br>
+		<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<c:out value="${ loginUser.member_name}사장님 환영합니다 👨‍🍳"/></h1><br>
 		<div class="inner introduceDiv">
-			<label class="mainLabel">식당 소개글</label>
-			<label class="subLabel">소개글 수정</label><br>
-			<textarea id="introduceArea"></textarea>
-			<div class="saveBtnArea">
+    	  <hr class="line"> 
+			<label class="mainLabel">◼&nbsp식당 소개글</label>
+			<textarea id="introduceArea" readonly>${ si.get("shopIntro") }</textarea>
+			<!--  <div class="saveBtnArea">
 				<button class="saveBtn">저장</button>
-			</div>
-		</div>
+			</div>-->
+		</div><br>
 		<div class="inner menuDiv">
-			<label class="mainLabel">메뉴추가</label>
-			<label class="subLabel">메뉴 정보 수정</label><br>
-			<div class="innerContent">
-				<table class="menuContent">
-					<tr>
-						<td width="90px">메뉴 이름 : </td>
-						<td width="650px"><input type="text"></td>
-					</tr>
-					<tr>
-						<td>가격 : </td>
-						<td><input type="number"></td>
-					</tr>
-					<tr>
-						<td>특이사항 : </td>
-						<td><input type="text"></td>
-					</tr>
-				</table>
-			</div>
-			<div class="saveBtnArea">
+			<label class="mainLabel">◼&nbsp메뉴</label>
+		   <table class="table table-bordered table-sm" id="drinkmenu">
+		   <input type="hidden" name="menuCate" value="1">
+			      <tr>
+			        <td>메인  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sm.get("menuName")}&nbsp&nbsp&nbsp${ sm.get("menuPrice")}원</th>
+			      </tr>
+			</table>
+		 <table class="table table-bordered table-sm" id="drinkmenu">
+		   <input type="hidden" name="menuCate" value="2">
+			      <tr>
+			        <td>사이드  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sms.get("menuName")}&nbsp&nbsp&nbsp${ sms.get("menuPrice")}원</th>
+			      </tr>
+			</table>
+		   <table class="table table-bordered table-sm" id="drinkmenu">
+		   <input type="hidden" name="menuCate" value="3">
+			      <tr>
+			         <td>음료 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ smb.get("menuName")}&nbsp&nbsp&nbsp${ smb.get("menuPrice")}원</th>
+			      </tr>
+			</table>
+			<!--  <div class="saveBtnArea">
 				<button class="saveBtn">저장</button>
-			</div>
-		</div>
+			</div> -->
+		</div><br>
 		<div class="inner reservationDiv">
-			<label class="mainLabel">예약 관리</label>
+			<label class="mainLabel">◼&nbsp예약 관리</label>
 			<label class="subLabel">예약 관리 바로가기</label><br>
 			<table id="reservation">
 				<tr>
@@ -198,21 +199,21 @@
 					</td>
 				</tr>
 			</table>
-		</div>
+		</div><br>
 		<div class="inner reservationSettingDiv">
 			<div class="subDiv">
-				<label class="mainLabel">상차림 예약 비용 설정</label>
+				<label class="mainLabel">◼&nbsp상차림 예약 비용 설정</label>
 				<div class="innerContent">
-					1인당 <input type="number" id="price">원
+					1인당 <input type="number" id="price" value="2000"  style="border: 0; width:  100px;" readonly>원
 				</div>
 			</div>
 			<div class="subDiv">
-				<label class="mainLabel">테이블 이용 시간 설정</label>
+				<label class="mainLabel">◼&nbsp테이블 이용 가능 시간</label>
 				<div class="innerContent">
-					<input type="number" id="time">분
+					최대<input type="number" id="time" value = "60"  style="border: 0; width:  100px;" readonly>분
 				</div>
 			</div>
-			<div class="seatSetting">
+			<!-- <div class="seatSetting">
 				<label class="mainLabel">좌석</label><br>
 				<table class="seatTable">
 					<tr>
@@ -224,50 +225,55 @@
 						<td>6인석 <input type="number" class="seat">보유</td>
 					</tr>
 				</table>
-			</div>
+			</div> -->
 			<div class="subDiv">
-				<label class="mainLabel">가게 운영 시간</label>
+				<label class="mainLabel">◼&nbsp가게 운영 시간</label>
 				<div class="innerContent">
-					<input type="time"> ~ <input type="time">
+					오전&nbsp<input type="number" name="shopOpen" value="${ si.get("shopOpen") }"  style="border: 0; width: 50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopClose" value="${ si.get("shopClose") }"  style="border: 0; width: 50px;" readonly>시
 				</div>
 			</div>
 			<div class="subDiv">
-				<label class="mainLabel">가게 운영 요일</label>
+				<label class="mainLabel">◼&nbsp가게 운영 요일</label>
 				<div class="innerContent">
 					<table id="checkDay">
 						<tr>
-							<td>월</td>
-							<td>화</td>
-							<td>수</td>
-							<td>묵</td>
-							<td>금</td>
-							<td>토</td>
+							<td style="background-color: red;">월</td>
+							<td style="background-color: red;">화</td>
+							<td style="background-color: red;">수</td>
+							<td style="background-color: red;">묵</td>
+							<td style="background-color: red;">금</td>
+							<td style="background-color: red;">토</td>
 							<td>일</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			<div class="subDiv">
-				<label class="mainLabel">브레이크 타임</label>
-				<div class="innerContent">
-					<input type="time"> ~ <input type="time">
+				<label class="mainLabel">◼&nbsp브레이크 타임</label>
+				<div class="innerContent"> 
+					오전&nbsp<input type="number" name="shopBreakStart" value="${ si.get("shopBreakStart") }"  style="border: 0; width:  50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopBreakClose" value="${ si.get("shopBreakClose") }" style="border: 0; width:  50px;"readonly>시 
 				</div>
 			</div>
-		</div>
+		</div><br>
 		<div class="inner">
-			<label class="mainLabel">위치</label>
-			<div class="innerContent">
-				<img src="resources/images/지도.jpg" height="400px" width="700px"><br>
-				<label>주소</label>
+		<p class="pp"></p><p class="pInput">◼&nbsp주소</p>&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;<input type="text" value="📍&nbsp;${ si.get("shopAddress") }" style="border: 0;">
+		
+	   <hr class="line">
+			<div class="updateBtnArea">
+				<c:url var="pwdUpdate" value="mPwdUpdate.me"/>
+				<button class="updateBtn" onclick="location.href='${pwdUpdate}'">비밀번호 변경</button>
+				<c:url var="oinfo" value="oInfoPwdForm.me"/>
+				<button class="updateBtn" onclick="location.href='${oinfo}'">회원 정보 수정</button>
+				<c:url var="shopInfoUp" value="shopUpdateForm.me"/>
+				<button class="updateBtn" onclick="location.href='${shopInfoUp}'" >식당 정보 수정</button>
 			</div>
 		</div>
-		<div class="updateBtnArea">
-			<c:url var="pwdUpdate" value="mPwdUpdate.me"/>
-				<button class="updateBtn" onclick="location.href='${pwdUpdate}'">비밀번호 변경</button>
-			<c:url var="oinfo" value="oInfoPwdForm.me"/>
-			<button class="updateBtn" onclick="location.href='${oinfo}'" >회원 정보 수정</button>
-		</div>
 	</div>
+   
+   <br><br><br>
+  
 	<c:import url="../common/footer.jsp"/>
+	
 </body>
 </html>

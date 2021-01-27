@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="shopMapper">
-
+<mapper  namespace="shopMapper"> 
+	
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{ShopName},#{OpenTime},#{CloseTime},#{Address},#{ShopPhone},#{BreakTime},#{MaxReservationTime},#{ShopOrigin},#{ShopRename},#{ShopCate},#{businessNum},#{MemberId})
 	</insert>
@@ -13,5 +13,189 @@
 		</foreach> 		
 	</insert>	 
 	
+<!--김예은 시작 ================================================= -->
+	<!-- 식당 정보 조회 -->
+    <select id="selectSinfo" resultType ="hashmap" parameterType="hashmap"  >
+		select SHOP_CLOSE        	  as "shopClose",
+		       SHOP_ADDRESS      	  as "shopAddress",
+		       SHOP_BREAK_CLOSE 	  as "shopBreakClose",
+		       SHOP_ORIGIN      	  as "shopOrigin",
+		        SHOP_PHONE 			  as "shopPhone",
+		        SHOP_NAME			  as "shopName",
+		        SHOP_INTRO			  as "shopIntro",
+		        SHOP_OPEN			  as "shopOpen",
+		        SHOP_BREAK_START 	  as "shopBreakStart",
+		        SHOP_NO				  as  "shopNo",
+		        SHOP_OFFDAY		      as	"shopOffday",
+		         MAX_RESERVATION_TIME as "maxReservationTime",
+		         SHOP_CATE			  as "shopCate",
+		         BUSINESS_NUMBER	  as "businessNumber",
+		         MEMBER_ID			  as "memberId",
+		         SHOP_RENAME		  as "shopRename"
+        from shop_info 
+        where MEMBER_ID = #{memberId} 
+	</select>
+	
+	<!-- 식당 메인 메뉴 조회 -->
+    <select id="selectSmenu"  resultType ="hashmap" parameterType="hashmap" >
+		select MENU_NO 			as  "menuNo",
+			   MENU_STATUS   	as  "menuStatus",
+			   MENU_PRICE		as "menuPrice",
+			   SHOP_NO			as "shopNo",
+			    MENU_NAME		as "menuName",
+			    MENU_CATE		as "menuCate"
+		from shop_menu
+		where SHOP_NO=#{shopNo} and MENU_CATE=1
+	</select>
+	
+	<!-- 식당 사이드 메뉴 조회 -->
+	<select id="selectSmenuSide" resultType ="hashmap" parameterType="hashmap" >
+		select MENU_NO 		as  "menuNo",
+			   MENU_STATUS  as  "menuStatus",
+			   MENU_PRICE	as "menuPrice",
+			   SHOP_NO		as "shopNo",
+			    MENU_NAME	as "menuName",
+			    MENU_CATE	as "menuCate"
+		from shop_menu
+		where SHOP_NO=#{shopNo} and MENU_CATE=2
+	</select>
+	
+	<!-- 식당 음료 조회 -->
+	<select id="selectSmenuBeverage" resultType ="hashmap" parameterType="hashmap" >
+		select MENU_NO 		as  "menuNo",
+			   MENU_STATUS  as  "menuStatus",
+			   MENU_PRICE	as "menuPrice",
+			   SHOP_NO		as "shopNo",
+			    MENU_NAME	as "menuName",
+			    MENU_CATE	as "menuCate"
+		from shop_menu
+		where SHOP_NO=#{shopNo} and MENU_CATE=3
+	</select>
+	
+	<!-- 식당 정보 수정-->
+	<update id="updatesi">
+		update shop_info
+   		set SHOP_NAME=#{shopName}, SHOP_INTRO=#{shopIntro}, SHOP_OPEN=#{shopOpen}, 
+   			SHOP_CLOSE=#{shopClose}, SHOP_ADDRESS=#{shopAddress}, SHOP_PHONE=#{shopPhone},  
+   			SHOP_BREAK_START=#{shopBreakStart},  SHOP_BREAK_CLOSE=#{shopBreakClose}, 
+   			SHOP_OFFDAY=#{shopOffday}, MAX_RESERVATION_TIME=#{maxReservationTime}, SHOP_ORIGIN=#{shopOrigin},  SHOP_RENAME=#{shopRename},  BUSINESS_NUMBER=#{businessNumber}
+   		where MEMBER_ID=#{memberId} 
+	</update>
+
+	<!-- 식당 메인메뉴 수정-->
+	<update id="updatesmenu">
+		update SHOP_MENU
+   		set MENU_NAME=#{menuName}, MENU_PRICE=#{menuPrice} 		    
+   		where SHOP_NO=#{shopNo} and MENU_CATE=1
+	</update>
+		
+	<!-- 사용자가 예약한 식당 정보 조회  -->
+	<select id="selectReserveShop"  resultType ="hashmap" parameterType="hashmap">
+		select SHOP_CLOSE        	  as "shopClose",
+		       SHOP_ADDRESS      	  as "shopAddress",
+		       SHOP_BREAK_CLOSE 	  as "shopBreakClose",
+		       SHOP_ORIGIN      	  as "shopOrigin",
+		        SHOP_PHONE 			  as "shopPhone",
+		        SHOP_NAME			  as "shopName",
+		        SHOP_INTRO			  as "shopIntro",
+		        SHOP_OPEN			  as "shopOpen",
+		        SHOP_BREAK_START 	  as "shopBreakStart",
+		        SHOP_NO				  as  "shopNo",
+		        SHOP_OFFDAY		      as	"shopOffday",
+		         MAX_RESERVATION_TIME as "maxReservationTime",
+		         SHOP_CATE			  as "shopCate",
+		         BUSINESS_NUMBER	  as "businessNumber",
+		         MEMBER_ID			  as "memberId",
+		         SHOP_RENAME		  as "shopRename"
+        from shop_info 
+        where SHOP_NO = #{shopNo} 
+	</select>
+	<!-- 예약 내역 조회 -->
+	<select id="selectReserve"  resultType ="hashmap" parameterType="hashmap" >
+		select RESERVE_NO       	as "reserveNo",
+		       RESERVE_TIME     	as "reserveTime",
+		       RESERVE_PEOPLE  		as "reservePeople",
+		       TOTAL_PRICE  		as "totalPrice",
+		       RESERVE_STATUS       as "reserveStatus",
+		        RESERVE_NAME 		as "reserveName",
+		        RESERVE_PHONE		as "reservePhone",
+		        RESERVE_COMMENT		as "reserveComment",
+		        RESERVE_AD			as "reserveAd",
+		        RESERVE_PAY 		as "reservePay",
+		        MEMBER_ID			as  "memberId",
+		         SHOP_NO   			as "shopNo"
+        from RESERVE_INFO
+        where MEMBER_ID = #{memberId} 
+	</select>
+	<!-- 예약 메뉴 조회  -->
+	<select id="selectReserveMenu"  resultType ="hashmap" parameterType="hashmap" >
+		select RESERVE_NO        as "reserveNo",
+		       MENU_NO     		 as "menuNo",
+		       MENU_NAME  		 as "menuName",
+		       MENU_QTY  		 as "MenuQty"
+        from RESERVE_MENU
+        where  RESERVE_NO  = #{reserveNo} 
+	</select>
+	<!-- 예약 리뷰 조회 -->
+	<select id="selectReview"  resultType ="hashmap" parameterType="hashmap" >
+		select REVIEW_NO        	as "reviewNo",
+		       REVIEW_CONTENTS      as "reviewContents",
+		       REVIEW_WRITE  		as "reviewWrite",
+		       REVIEW_SCORE  		as "reviewScore",
+		       SHOP_NO 		 		as "shopNo",
+		       MEMBER_ID  			as "memberId",
+		       ORIGINAL_FILENAME  	as "originalFilename",
+		       RENAME_FILENAME  	as "renameFilename"
+        from SHOP_REVIEW
+        where  MEMBER_ID  = #{memberId} 
+	</select> 
+	
+<!-- 	 식당 사이드 메뉴 수정 
+	 <update id="updateside">
+		update shop_menu
+   		set   MENU_NAME=#{menuName}, MENU_PRICE=#{menuPrice}
+   		where SHOP_NO=#{shopNo} and MENU_CATE=2
+	</update>
+	 
+	식당 음료 수정
+ 	 <update id="updatebever">
+		update shop_menu
+   		set MENU_NAME=#{menuName}, MENU_PRICE=#{menuPrice}
+   		where SHOP_NO=#{shopNo} and MENU_CATE=3
+	</update>  
+	-->
+	
+	<!-- <resultMap type="ShopInfo" id="sinfoResultMap">
+			<id property="shopNo" column="SHOP_NO"/>
+			
+			select SHOP_NO     as shopNO ,
+			       SHOP_NAME   as shopName ,
+			
+			<result property="shopName" column="SHOP_NAME"/>
+			<result property="shopIntro" column="SHOP_INTRO"/>
+			<result property="shopOpen" column="SHOP_OPEN"/>
+			<result property="shopClose" column="SHOP_CLOSE"/>
+			<result property="shopAddress" column="SHOP_ADDRESS"/>
+			<result property="shopPhone" column="SHOP_PHONE"/>
+			<result property="shopBreakStart" column="SHOP_BREAK_START"/>
+			<result property="shopBreakClose" column="SHOP_BREAK_CLOSE"/>
+			<result property="shopOffday" column="SHOP_OFFDAY"/>
+			<result property="maxReservationTime" column="MAX_RESERVATION_TIME"/>
+			<result property="shopOrigin" column="SHOP_ORIGIN"/>
+			<result property="shopRename" column="SHOP_RENAME"/>
+			<result property="shopCate" column="SHOP_CATE"/>
+			<result property="businessNumber" column="BUSINESS_NUMBER"/>
+			<result property="memberId" column="MEMBER_ID"/>
+	</resultMap> -->
+	
+	<!-- <resultMap type="ShopMenu" id="smenuResultMap">
+			<id property="menuNo" column="MENU_NO"/>
+			<id property="menuName" column="MENU_NAME"/>
+			<result property="menuPrice" column="MENU_PRICE"/>
+			<result property="menuStatus" column="MENU_STATUS"/>
+			<result property="menuCate" column="MENU_CATE"/>
+			<result property="shopNo" column="SHOP_NO"/>
+	</resultMap>  -->
+<!--김예은 끝 ================================================= -->
 	
 </mapper>

@@ -5,25 +5,31 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
+@SessionAttributes("loginUser")
+
 @Controller
 public class ShopServlet {
-	
 	   	   
 	   // 신진식 시작 ===================================================
 			@Autowired
@@ -48,7 +54,7 @@ public class ShopServlet {
 				String sideprice[]=request.getParameterValues("SidePrice");
 				String drinkname[]=request.getParameterValues("DrinkName");
 				String drinkprice[]=request.getParameterValues("DrinkPrice");
-				si.setAddress(address1+"/"+address2);
+				si.setShopAddress(address1+"/"+address2);
 				
 				List<ShopMenu> shopmenu=new ArrayList<ShopMenu>();
 				
@@ -77,8 +83,8 @@ public class ShopServlet {
 
 					}
 				}
-				/*test*/
 				
+				/*test*/
 				int shopresult=siService.insertShop(si);
 				int menuresult=siService.insertMenu(shopmenu);
 				
@@ -145,5 +151,6 @@ public class ShopServlet {
 	}	
 	
 	  
-	
+	   // 김예은 시작 ====================================================
+	   // 김예은 끝 ======================================================
 }

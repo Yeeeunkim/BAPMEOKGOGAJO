@@ -59,10 +59,10 @@
 	}
 </style>
 </head>
-<body>
+<body style="font-family: 'Gugi';">
 	<c:import url="../common/menubar.jsp"/>
 	<div class="outer">
-		<h2>식당 정보 수정</h2>
+		<h2 style="text-align: center;">사장님 정보 수정 ></h2>
 		<form action="oInfoUpdate.me" method="post" id="updateForm" name="updateForm">
 			<table align="center">
 				<tr height="70px">
@@ -108,7 +108,7 @@
 			
 			<div class="btns" align="center">
 				<input type="submit" id="updateBtn" value="수정 완료">
-				<c:url var="mdelete" value="mdelete.me">
+				<c:url var="mdelete" value="mdeleteShopForm.me">
 					<c:param name="member_id" value="${ loginUser.member_id }"/>
 				</c:url>
 				<input type="button" id="deleteBtn" onclick="location.href='${ mdelete}'" value="회원 탈퇴">
