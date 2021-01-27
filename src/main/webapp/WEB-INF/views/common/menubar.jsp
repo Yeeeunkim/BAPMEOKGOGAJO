@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -104,8 +104,7 @@
 			text-align: center;
 		}
 	}
-	
-	
+
 	/*--------------------------------------------------------------------*/
 	
  	.searchbar{
@@ -173,8 +172,8 @@
 				<img id="logo" src="resources/images/logo.png" onclick="location.href='home.do'">
 				<a onclick="location.href='home.do'">밥먹고 가조</a>
 					<span class="searchbar">
-          				 <input class="search_input" type="text" name="" placeholder="Search...">
-         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span>  
 		
@@ -191,62 +190,47 @@
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
 				<img id="logo" src="resources/images/logo.png">
-				<a href="">밥먹고 가조</a>
+				<a onclick="location.href='home.do'">밥먹고 가조</a>
 					<span class="searchbar">
-          				 <input class="search_input" type="text" name="" placeholder="Search...">
-         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span> 
 			<ul class="navbar_icons" >
 				<li class="menu" onclick="shop();"><a href="#">About</a></li>
 				<li class="menu" onclick="location.href='logoutView.me'" ><a href="#">Logout</a></li> 
 				<c:if test="${ loginUser.auth_code eq '1' }">
+
 					<li class="menu" onclick="location.href='myPage.me'"><a href=""><i class="fas fa-user"></i></a></li>
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '2'  }">
 					<li class="menu" onclick="location.href='shopMypage.me'"><a href=""><i class="fas fa-user"></i></a></li>
+
 				</c:if>
 				 <li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
 				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 
 			</ul>
 		</nav>
 	</c:if>
-	
-	
-	
-</div>
-		
-		
+	</div>
+			
 	<script>
-	/*  $(function(){ // document ready
-	      if (!!$('#gnb').offset()) { // make sure "#gnb" element exists
-	        var stickyTop = $('#gnb').offset().top; // returns number 
-	        $(window).scroll(function(){ // scroll event
-	          var windowTop = $(window).scrollTop(); // returns number 
-	          if (stickyTop < windowTop){
-	            $('#gnb').css({ position: 'fixed', top: 0 });
-	          }
-	          else {
-	            $('#gnb').css('position','static');
-	          }
-	        });
-	      }
-	    }); */
-		
-	  
-	    
-	    function shop(){
-			location.href="${ contextPath }/shop.do"
+		function shop() {
+			location.href = "${contextPath }/shop.do"
 		}
-	    
-	    function manager(){
-	    	location.href="${ contextPath }/manager.ma"
-	    }
-	    
-	    function mypage(){
-	    	location.href="${ contextPath}/myPage.me"
-	    }
-	    
+
+		function manager() {
+			location.href = "${contextPath }/manager.ma"
+		}
+
+		function mypage() {
+			location.href = "${contextPath}/myPage.me"
+		}
+		
+		function search() {
+			var searchContents = $('#searchInput').val();
+			location.href = "${contextPath}/shopSearch.sh?searchContents=" + searchContents;
+		}
 	</script>
 </body>
 </html>

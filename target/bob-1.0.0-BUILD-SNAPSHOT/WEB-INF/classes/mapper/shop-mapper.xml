@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopMapper">
+
+   <select id="getShopList" resultType="Map">
+   
+   select * from SHOP_INFO
+   
+   </select>
+   
+   
+   <select id="getReservationList" resultType="Map" parameterType="int">
+   
+	SELECT 
+		SI.SHOP_NO
+		,SUBSTR(SI.SHOP_OPEN,1,2)|| ':'  || SUBSTR(SI.SHOP_OPEN,3,4) AS SHOP_OPEN
+		,SUBSTR(SI.SHOP_CLOSE,1,2)|| ':'  || SUBSTR(SI.SHOP_CLOSE,3,4) AS SHOP_CLOSE
+		,SI.HOLIDAY
+		,SM.MENU_NAME
+		,SM.MENU_PRICE
+		,SM.MENU_STATUS
+		,SM.MENU_CATE
+		,SI.SHOP_PHONE
+		,SI.SHOP_ADDRESS
+		,SI.IMG_URL
+		,SI.SHOP_NAME
+		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
+			WHERE SI.SHOP_NO = #{shop_no}
+   
+   </select>
+   
+   
+   
+   
+   
+   
+</mapper>

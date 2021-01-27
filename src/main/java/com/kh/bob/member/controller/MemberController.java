@@ -1,11 +1,8 @@
-package com.kh.bob.member.controller;
+﻿package com.kh.bob.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bob.member.model.exception.MemberException;
 import com.kh.bob.member.model.service.MemberService;
 import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopSeat;
 
 
 @SessionAttributes("loginUser")
@@ -48,7 +48,7 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String login(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.loginMember(m);
-			
+
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do"; 
@@ -159,7 +159,7 @@ public class MemberController {
 		//m.setMember_pwd(encPwd); 
 		
 		int result = bmService.memberInsert(m);
-		
+
 		if(result > 0) {
 			return "redirect:home.do";
 		}else {
@@ -183,7 +183,7 @@ public class MemberController {
 			throw new MemberException("사업자 회원가입에 실패했습니다.");
 		}
 	}
-	
+
 	//아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
@@ -196,7 +196,6 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-
 	
 	//일반 마이페이지  
 	@RequestMapping("myPage.me")
@@ -268,8 +267,20 @@ public class MemberController {
 	
 	//사업자 마이페이지 
 	@RequestMapping("shopMypage.me")
-	public String shopMyPageForm() {
-		return "shopMyPage";
+	public String shopMyPageForm(@ModelAttribute ShopInfo si , @ModelAttribute ShopMenu sm, @ModelAttribute ShopSeat ss,  Model model) {
+		int sInfo = bmService.selectSinfo(si);
+		int sMenu = bmService.selectSmenu(sm);
+		
+		System.out.println("si : " + si);
+		System.out.println("sm : " + sm);
+		
+		if(sInfo > 0 || sMenu > 0) {
+			model.addAttribute("si", si);
+			model.addAttribute("sm", sm);
+			return "shopMyPage";
+		}else {
+			throw new MemberException("사업자 마이페이지 조회에 실패하였습니다.");
+		}
 	}
 	
 	@RequestMapping("oInfoPwdForm.me")

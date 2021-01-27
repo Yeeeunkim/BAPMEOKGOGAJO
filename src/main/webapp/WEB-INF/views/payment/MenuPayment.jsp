@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -57,11 +57,11 @@
 	<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
 	<br><br>
 	<div id="body" align="center">
-	<h1>메뉴 선결제</h1><br><br>
+	<h2>식당 예약</h2><br><br>
 	<form action="payment.do" name="payment">
 		<table id="tableBar">
 			<tr>
-				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/images/sushi.png"></td>
+				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/resources/images/sushi.png"></td>
 				<td width="150" align="center">가게 :</td>
 				<td>가게에서 직접 주문</td>
 			</tr>
@@ -83,7 +83,8 @@
 			</tr>
 		</table>
 		<br>
-		<div id="map"></div>
+<!-- 		<div id="map"></div> -->
+
 		<br><br>
 		<div id="check">
 		<div id="notice">※ 형법 제314조(업무방해)에 의하여<br>
@@ -97,46 +98,47 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
 	<!-- 지도 API script-->
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script>
+<!-- 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script> -->
 	<script>
 		// 이미지 지도에서 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
+// 		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
 		
 		// 이미지 지도에 표시할 마커입니다
 		// 이미지 지도에 표시할 마커는 Object 형태입니다
-		var marker = {
-		    position: markerPosition
-		};
+// 		var marker = {
+// 		    position: markerPosition
+// 		};
 		
-		var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
-		    staticMapOption = { 
-		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
-		        level: 3, // 이미지 지도의 확대 레벨
-		        marker: marker // 이미지 지도에 표시할 마커 
-		    };    
+// 		var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
+// 		    staticMapOption = { 
+// 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
+// 		        level: 3, // 이미지 지도의 확대 레벨
+// 		        marker: marker // 이미지 지도에 표시할 마커 
+// 		    };    
 		
 		// 이미지 지도를 생성합니다
-		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+// 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 		</script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+<!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script> -->
 	
 	<!-- 약관 동의 script -->
 	<script>
-		function pay(){
-			var no = 0;
-			var check = document.getElementById("check");
-			for(var i = 0; < payment.elements.length; i++){
-				var check = payment.elements[i];
-				if(check.checked == true){
-					no++;
-				}
-			}
-			if(no == 0){
-				alert('약관에 동의해주세요.');
-				return;
-			}
-			payment.submit();			
-		}
+// 		function pay(){
+// 			var no = 0;
+// 			var check = document.getElementById("check");
+// 			console.log(pa)
+// 			for(var i = 0; < payment.elements.length; i++){
+// 				var check = payment.elements[i];
+// 				if(check.checked == true){
+// 					no++;
+// 				}
+// 			}
+// 			if(no == 0){
+// 				alert('약관에 동의해주세요.');
+// 				return;
+// 			}
+// 			payment.submit();			
+// 		}
 		
 	</script>
 	

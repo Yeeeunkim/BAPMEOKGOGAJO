@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -9,7 +9,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
 	rel="stylesheet">
-<title>MyPage</title>
+
+<title>밥먹고가조 공지사항</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 
@@ -132,14 +133,16 @@ footer {
 			<c:param name="bNo" value="${board.bNo}" />
 		</c:url>
 
-		<%-- 				<c:if test="${ # }"> --%>
+
+		<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin' }">
 		<tr style="border: none;">
 			<td colspan="2" align="center" style="border: none;">
 				<button class="btn1" onclick="nUpView();" style="position: absolute;">수정하기</button>
 				<button class="btn2" onclick="nDelete();">삭제하기</button>
 			</td style="border: none;">
 		</tr style="border: none;">
-		<%-- 				</c:if> --%>
+		</c:if>
+
 	</table>
 
 

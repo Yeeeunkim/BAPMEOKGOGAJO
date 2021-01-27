@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
-<title>MyPage</title>
+<title>밥먹고가조 공지사항 등록</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
   
@@ -24,15 +24,9 @@
 	 #content_text {display: block; margin-right: auto; width: 500px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
 	
-/* 	#text{ */
-/* 		border: none; */
-/* 	} */
-	
-/* 	#text: hover{ */
-/* 		border: none; */
-/* 	} */
-	
+
 	#titleInput {
+		outline: none;
 		width: 87%;
 		border: 0px solid lightgray;
 	}
@@ -82,6 +76,10 @@
 					</td style="border: none;"> 
 				</tr style="border: none;">
 			</table>
+			
+			<!-- 작성자 보내기 위함 -->
+			<input type="hidden" name="mId" value='${loginUser.member_id}'>
+
 	</form> 	  
    
     <c:import url="../common/footer.jsp"/>

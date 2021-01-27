@@ -8,6 +8,7 @@
 <link
    href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <title>Insert title here</title>
 <style>
 /*  */
@@ -39,7 +40,7 @@
 }
 </style>
 </head>
-<body>
+<body> 
    <div class="sideArea">
       <ul class="ul">
          <li class="lTitle">고객센터</li>
@@ -66,27 +67,6 @@
          location.href = "${ contextPath }/qList.no"
       }
    </script>
-
-   <!--    <div id="section"> -->
-   <!--          <div id="sideBar"> -->
-   <%--              <form action="<%= request.getContextPath() %>/" method="post" id="myForm" name="myForm"> --%>
-   <!--               <input type="submit" id="userUpadteBtn"  style="font-size: 25px;" value="고객센터"> -->
-   <!--                <div id="subMenuDiv"> -->
-   <!--                   <ul> -->
-   <!--                      <li class="subMenuLi"> -->
-   <!--                         <a class="submenuLink" href="nList.no" style="font-size: 20px;">▶ 공지사항</a> -->
-   <!--                      </li><br> -->
-   <!--                      <li class="subMenuLi"> -->
-   <!--                         <a class="submenuLink" href="fList.no" style="font-size: 20px;">▶ FAQ</a> -->
-   <!--                      </li><br> -->
-   <!--                      <li class="subMenuLi"> -->
-   <!--                         <a class="submenuLink" href="qList.no"  style="font-size: 20px;">▶ QNA</a> -->
-   <!--                      </li><br> -->
-   <!--                    </ul> -->
-   <!--                </div> -->
-   <!--             </form>  -->
-   <!--          </div> -->
-   <!--     </div> -->
 
 </body>
 </html>

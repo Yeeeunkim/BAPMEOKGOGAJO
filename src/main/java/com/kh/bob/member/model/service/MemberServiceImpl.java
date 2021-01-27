@@ -1,4 +1,4 @@
-package com.kh.bob.member.model.service;
+﻿package com.kh.bob.member.model.service;
 
 import java.util.HashMap;
 
@@ -9,11 +9,13 @@ import org.springframework.ui.Model;
 
 import com.kh.bob.member.model.dao.MemberDAO;
 import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
+
 
 @Service("bmService")
 public class MemberServiceImpl implements MemberService {
 // 김예은 시작 ================================================
-	   
 
 	@Autowired
 	private MemberDAO bmDAO;
@@ -63,16 +65,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int pwdUpdate(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
 		return bmDAO.pwdUpdate(sqlSession, map);
 	}
 
-	
+	@Override
+	public int selectSinfo(ShopInfo si) {
+		return bmDAO.selectSinfo(sqlSession, si);
+	}
 
-	
-
-
-	
+	@Override
+	public int selectSmenu(ShopMenu sm) {
+		return bmDAO.selectSmenu(sqlSession, sm);
+	}
 
 // 김예은 끝 =================================================
 }
