@@ -114,7 +114,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				<!-- 페이지 -->
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4"><b>[${ p }]</b></font>
+						<font color="orange" size="4"><b>[${ p }]</b></font>
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
