@@ -182,13 +182,13 @@
   height: 30%;
 }
 .reviewList{
-	margin-left: 200px;
+	margin-left: 100px;
 }
 #user{
-	margin-left: 200px;
+	margin-left: 100px;
 }
 #reviewbtn{
-	margin-left:900px;
+	margin-left:800px;
 	background-color: #F42B03;
    	color: white;
    	border: 1px solid white;
@@ -197,7 +197,7 @@
 	height: 40px;
 }
 #rebottom{
-	padding: 100px;
+	padding: 50px;
 }
 .rere{
 	color:orange;
@@ -217,14 +217,20 @@
 	 
 }
 
-.check{
-	display: none;
+#reviewScore{
+	color: #0B0B61;
+	width: 20px;
 }
-#textareatd{
-	padding: 30px;
+#buttonTab{border-left: hidden; border-right: hidden;}
+
+.pi{
+	color:#08088A;
+}
+#usertd{
+	width:10px;
+	height: 10px;
 	
 }
-
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -427,11 +433,22 @@
   	<table class="reviewList">
   	<c:forEach var="re" items="${ list }">
   	<tr>
-  		<td><img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"></td>
+  		<td id="usertd"><img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"></td>
   		<td id="rebottom">${ re.memberId }</td>
+  		<td id="reviewScore">
+  				<c:choose>
+  					<c:when test="${re.reviewScore == 1 }">★<br><span>별로예요😣</span></c:when>
+  					<c:when test="${re.reviewScore == 2 }">★★<br><span>그저그래요🙂</span></c:when>
+  					<c:when test="${re.reviewScore == 3 }">★★★<br><span>괜찮아요😃</span></c:when>
+  					<c:when test="${re.reviewScore == 4 }">★★★★<br><span>좋아요😋</span></c:when>
+  					<c:when test="${re.reviewScore == 5 }">★★★★★<br><span>최고에요😍</span></c:when>
+  					<c:otherwise></c:otherwise>
+  				</c:choose>
+  			</td>
   		<td>${ re.reviewContents }</td>
+  		
   		<c:if test="${!empty re.originalFilename }">
-  		<td><img src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }" width="200" height="200"></td>
+  		<td><img src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }" width="100" height="100"></td>
   		</c:if>
   		
 	  		<c:url var="redelete" value="reDelete.sh">
@@ -449,7 +466,6 @@
  		<c:if test="${ empty rereply.reviewNo }">
    		<tr class="replytextarea">
    			<td class="tdtd"></td>
-   			<td></td>
 		  	<td><textarea rows="10" cols="70" id="textarea${re.reviewNo}" name="textarea"></textarea></td>
 		  	<td id="textareatd">
 		  			<input type="button" onclick="replysend(${re.reviewNo})" value="답글 등록">
@@ -469,10 +485,10 @@
    	 <tr>
   	 	
   	 </tr> 
-  	
+  	</table>
   	<!-- 페이징 처리 -->
-		<tr align="center" height="20" id="buttonTab">
-			<td colspan="6">
+		<div align="center" id="buttonTab">
+			<span>
 				<!-- [이전] -->
 				<c:if test="${ pi.currentPage <= 1 }">
 					[이전] &nbsp;
@@ -481,7 +497,7 @@
 					<c:url var="before" value="relist.sh">
 						<c:param name="page" value="${ pi.currentPage - 1 }"/>
 					</c:url>
-					<a href="${ before }">[이전]</a> &nbsp;
+					<a href="${ before }" class="pi">[이전]</a> &nbsp;
 				</c:if>
 				
 				<!-- 페이지 -->
@@ -494,7 +510,7 @@
 						<c:url var="pagination" value="relist.sh">
 							<c:param name="page" value="${ p }"/>
 						</c:url>
-						<a href="${ pagination }">${ p }</a> &nbsp;
+						<a href="${ pagination }" class="pi">${ p }</a> &nbsp;
 					</c:if>
 				</c:forEach>
 				
@@ -506,20 +522,20 @@
 					<c:url var="after" value="relist.sh">
 						<c:param name="page" value="${ pi.currentPage + 1 }"/>
 					</c:url> 
-					<a href="${ after }">[다음]</a>
+					<a href="${ after }" class="pi">[다음]</a>
 				</c:if>
-			</td>
-		</tr>
-  	</table>
+			</span>
+		</div>
+  	
   </form>
   	<br><br>
-  	<button id="reviewbtn" onclick="location.href='reinsertForm.sh'">리뷰쓰기</button>
+  	<span align="center"><button id="reviewbtn" onclick="location.href='reinsertForm.sh'">리뷰쓰기</button></span>
   </div>
   
   <script>
-  	function reply(){
+  	 function reply(){
   		 $(this).closest('.replytextarea').css({'display':'inline-block', 'margin-left':'300px' });
-  	}
+  	} 
   
  	 $('.rere').on('click', function(){
  		 console.log($(this).parents('tr').next());
@@ -549,7 +565,6 @@
   						$('textarea').val('');
   						getReplyList();
   					}
-  					
   				}
   			});
   			});
@@ -578,6 +593,9 @@
   			});
   		} 
   		
+  		$(function(){
+  			
+  		});
   		
   </script>
   

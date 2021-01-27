@@ -55,6 +55,35 @@
   border: 0;
 		
 	}
+	.reviewScore{
+	 color:black;
+	  background: no-repeat right 0;
+	  font-size: 50px;
+	}
+	.my-rating input[type="radio"]{
+		display: none;
+		background: yellow;
+		
+	}
+	.my-rating input[type="radio"] + sapn{
+		display: inline-block;
+		background: none;
+		border: 1px solid;
+		paddding:10px;
+		
+		
+	}
+	.str{
+		font-size: 70px;
+		 cursor:pointer;
+		 font-weight: 100;
+		  
+	}
+	#shopName{
+		color:red;
+	}
+	
+
     
 </style>
 </head>
@@ -68,24 +97,22 @@
 		<form action="reviewinsert.sh" method="post" align="center" enctype="multipart/form-data" id="form">
 			<input type="hidden" name="shopNo" value="1">
 			<div id="reviewran"><h2><b>${ shop.sName }</b> 에 솔찍한 리뷰를 써주세요</h2></div>
-			<br><br>
-			<!-- <div class="my-rating">
-			<input type="radio" value="1">
-			<input type="radio" value="2">
-			<input type="radio" value="3">
-			<input type="radio" value="4">
-			<input type="radio" value="5"><br>
-			    1 2 3 4 5 -->
-			<input type="number" min="1" max="5" name="reviewScore">
 			
-			<!-- </div> -->
-			<br><br>
+			 <div class="my-rating">
+				<label class="label"><input type="radio" name="reviewScore" value="1"/><span class="str">☆</span></label>
+				<label class="label"><input type="radio" name="reviewScore" value="2"/><span class="str">☆</span></label>
+				<label class="label"><input type="radio" name="reviewScore" value="3"/><span class="str">☆</span></label>
+				<label class="label"><input type="radio" name="reviewScore" value="4"/><span class="str">☆</span></label>
+				<label class="label"><input type="radio" name="reviewScore" value="5"/><span class="str">☆</span><br></label>
+			 </div> 
+				<div id="shopName"></div>
+			<br>
 			<textarea rows="15" cols="90" name="reviewContents" id="content"></textarea><br><br>
 			<input type="file" name="uploadFile"><br><br>
 			
 			
 			<div class="btn">
-				<input type="button" id="cancle" value="취소">
+				<input type="button" id="cancle" onclick="location.href='relist.sh'"value="취소">
 				<input type="submit" id="send" value="등록">
 			</div>
 		</form>
@@ -93,6 +120,47 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 
 	<script>
+	$(function(){
+		$("input:radio[name=reviewScore]").on("click",function(){
+			var value = $(this).val();
+		});
+		$(".label").on("click", function () {
+			  var stars = $(".my-rating");
+			  var input = $(this).find("input");
+			  var value = input.attr("value");
+			  stars.find("span").text("☆").css('color', 'black');
+
+			  for (let i = 0; i < value; i++) {
+			    var span = $(stars.children()[i]).find("span");
+			    span.text("★").css({'color' : '#F7FE2E'});
+			  }
+			  $ratingVal = $('#ratingValue');
+			  
+			  
+			  if(value){
+				 if(value == 1){
+					 $ratingMsg = $ratingVal.text("(1점) 별로예요");
+				 }
+				 else if(value == 2){
+					 $ratingMsg = $ratingVal.text("(2점) 그저그래요");
+				 }
+				 else if(value == 3){
+					 $ratingMsg = $ratingVal.text("(3점) 괜찮아요");
+				 } 
+				 else if(value == 4){
+					 $ratingMsg = $ratingVal.text("(4점) 좋아요");
+				 } 
+				 else if(value == 5){
+					 $ratingMsg = $ratingVal.text("(5점) 최고에요");
+				 } 
+			  }
+			  $ratingVal.css({"font-size": "20px", 'color': "#08088A" });
+			  
+			  
+			});
+		
+		
+	});	
 	
 	</script>
 </body>

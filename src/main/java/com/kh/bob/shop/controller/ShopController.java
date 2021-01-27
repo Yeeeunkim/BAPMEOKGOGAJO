@@ -80,7 +80,7 @@ public class ShopController {
 		int result = sService.insertReview(re);
 
 		if (result > 0) {
-			return "redirect:shopDetail.sh";
+			return "redirect:relist.sh";
 		} else {
 			throw new ShopException("리뷰 등록에 실패하였습니다.");
 		}
@@ -115,10 +115,10 @@ public class ShopController {
 		return renameFileName;
 	}
 	
-	@RequestMapping("shopDetail.sh")
-	public String shopDetail(Model model) {
+	@RequestMapping("relist.sh")
+	public String shopDetail(Model model, @RequestParam(value="page", required=false) Integer page) {
 		int currentPage = 1;
-		Integer page = 1;
+		
 		if (page != null) {
 			currentPage = page;
 		}
@@ -128,10 +128,12 @@ public class ShopController {
 		int listCount = sService.getReListCount(shopNo);
 		
 		PageInfo pi = Pagination.getPageinfo(currentPage, listCount);
+		
 		ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shopNo, pi);
 		
 		if(list != null) {
 			model.addAttribute("list", list);
+			model.addAttribute("pi", pi);
 			return "shopReservation";
 		} else {
 			throw new ShopException("리뷰등록을 실패하였습니다.");
@@ -144,7 +146,7 @@ public class ShopController {
 		int result = sService.deleteReview(reNo);
 		
 		if(result > 0) {
-			return "redirect:shopDetail.sh";
+			return "redirect:relist.sh";
 		} else {
 			throw new ShopException("리뷰 삭제를 실패하였습니다.");
 		}
