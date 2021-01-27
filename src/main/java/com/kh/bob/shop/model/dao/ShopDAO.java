@@ -69,6 +69,22 @@ public class ShopDAO {
 		return sqlSession.selectOne("shopMapper.selectReserveShop", re);
 	}
 
+	public ShopInfo selectMyShop(SqlSessionTemplate sqlSession, String member_id) {
+		return sqlSession.selectOne("shopMapper.selectMyShop", member_id);
+	}
+
+	public List<ShopMenu> selectMyMenu1(SqlSessionTemplate sqlSession, int shopNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectMyMenu1", shopNo);
+	}
+
+	public List<ShopMenu> selectMyMenu2(SqlSessionTemplate sqlSession, int shopNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectMyMenu2", shopNo);
+	}
+
+	public List<ShopMenu> selectMyMenu3(SqlSessionTemplate sqlSession, int shopNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectMyMenu3", shopNo);
+	}
+
 //	public int updateside(SqlSessionTemplate sqlSession, ShopMenu smSmenu) {
 //		// TODO Auto-generated method stub
 //		return sqlSession.update("shopMapper.updateside", smSmenu);

@@ -83,6 +83,27 @@ public class ShopServiceImp implements ShopService{
 		return sDAO.selectReserveShop(sqlSession, re);
 	}
 
+	// ★
+	@Override
+	public ShopInfo selectMyShop(String member_id) {
+		return sDAO.selectMyShop(sqlSession, member_id);
+	}
+
+	@Override
+	public List<ShopMenu> selectMyMenu1(int shopNo) {
+		return sDAO.selectMyMenu1(sqlSession, shopNo);
+	}
+
+	@Override
+	public List<ShopMenu> selectMyMenu2(int shopNo) {
+		return sDAO.selectMyMenu2(sqlSession, shopNo);
+	}
+
+	@Override
+	public List<ShopMenu> selectMyMenu3(int shopNo) {
+		return sDAO.selectMyMenu3(sqlSession, shopNo);
+	}
+
 //	@Override
 //	public int sideUpdate(ShopMenu smSmenu) {
 //		return sDAO.updateside(sqlSession, smSmenu);

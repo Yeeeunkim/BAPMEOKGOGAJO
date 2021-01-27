@@ -2,6 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper  namespace="shopMapper"> 
 	
+	<!-- ★ shopInfo resultMap -->
+	<resultMap type="ShopInfo" id="shopInfoResultSet">
+		<id property="shopNo" column="SHOP_NO" />
+		<result property="shopName" column="SHOP_NAME" />
+		<result property="shopIntro" column="SHOP_INTRO" />
+		<result property="shopOpen" column="SHOP_OPEN" />
+		<result property="shopClose" column="SHOP_CLOSE" />
+		<result property="shopAddress" column="SHOP_ADDRESS" />
+		<result property="shopPhone" column="SHOP_PHONE" />
+		<result property="shopBreakStart" column="SHOP_BREAK_START" />
+		<result property="shopBreakClose" column="SHOP_BREAK_CLOSE" />
+		<result property="shopOffday" column="SHOP_OFFDAY" />
+		<result property="maxReservationTime" column="MAX_RESERVATION_TIME" />
+		<result property="shopOrigin" column="SHOP_ORIGIN" />
+		<result property="shopRename" column="SHOP_RENAME" />
+		<result property="shopCate" column="SHOP_CATE" />
+		<result property="businessNumber" column="BUSINESS_NUMBER" />
+		<result property="memberId" column="MEMBER_ID" />
+	</resultMap>
+	
+	<!-- ★ ShopMenu resultMap -->
+	<resultMap type="ShopMenu" id="reserveMenuResultSet">
+		<id property="menuNo" column="MENU_NO" />
+		<id property="menuName" column="MENU_NAME" />
+		<result property="menuPrice" column="MENU_PRICE" />
+		<result property="menuStatus" column="MENU_STATUS" />
+		<result property="menuCate" column="MENU_CATE" />
+		<result property="shopNo" column="SHOP_NO" />
+	</resultMap>
+	
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{ShopName},#{OpenTime},#{CloseTime},#{Address},#{ShopPhone},#{BreakTime},#{MaxReservationTime},#{ShopOrigin},#{ShopRename},#{ShopCate},#{businessNum},#{MemberId})
 	</insert>
@@ -149,6 +179,43 @@
         from SHOP_REVIEW
         where  MEMBER_ID  = #{memberId} 
 	</select> 
+	
+	
+	
+	<!-- ★ 사업자 아이디로 식당 정보 가져오기 -->
+	<select id="selectMyShop" resultMap="shopInfoResultSet">
+		select *
+		from shop_info
+		where member_id = #{memberId}
+	</select>
+	
+	<!-- ★ 식당번호로 주, 사이드, 음료 메뉴 리스트에 담기  -->
+	<select id="selectMyMenu1" resultMap="reserveMenuResultSet">
+		select *
+		from shop_menu
+		where shop_no = #{shopNo}
+			and menu_cate = 1
+	</select>
+	
+	<select id="selectMyMenu2" resultMap="reserveMenuResultSet">
+		select *
+			from shop_menu
+			where shop_no = #{shopNo}
+				and menu_cate = 2
+	</select>
+	
+	<select id="selectMyMenu3" resultMap="reserveMenuResultSet">
+		select *
+			from shop_menu
+			where shop_no = #{shopNo}
+				and menu_cate = 3
+	</select>
+	
+	
+	
+	
+	
+	
 	
 <!-- 	 식당 사이드 메뉴 수정 
 	 <update id="updateside">

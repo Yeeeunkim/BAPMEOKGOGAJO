@@ -309,39 +309,28 @@ public class MemberController {
 
 	@RequestMapping(value="shopMypage.me" )
 	public ModelAndView shopMyPageForm( HttpSession session, ModelAndView mv) {
-		// ShopInfo si, sm 전달되는 값이  없어서 기는 문제
+		// ★
+		// 1. 마이페이지 들어갈 때 사업자 아이디 추출
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		HashMap<String,Object> paramMap = new HashMap<String,Object>();
+		// 2. 추출한 아이디를 이용해 사업자의 식당 정보 가져오기
+		ShopInfo si = sService.selectMyShop(loginUser.getMember_id());
+		System.out.println(si);
 		
-		paramMap.put("memberId", loginUser.getMember_id());
-		//paramMap.put("name","이름");
+		// 3-1. 가져온 식당정보에서 식당번호로 식당 주 메뉴(menu_cate == 1) 리스트에 담기
+		List<ShopMenu> sm = sService.selectMyMenu1(si.getShopNo());
+		System.out.println(sm);
 		
-		//식당 정보
-		HashMap<String,Object> si = sService.selectSinfo(paramMap);
-		System.out.println("si : " + si);
-		//System.out.println("Result Data : " + si.isEmpty());
-		//System.out.println(si.get("SHOP_CLOSE"));
+		// 3-2. 가져온 식당정보에서 식당번호로 식당 사이드 메뉴(menu_cate == 2) 리스트에 담기
+		List<ShopMenu> sms = sService.selectMyMenu2(si.getShopNo());
+		System.out.println(sms);
 		
-		//ShopInfo shopUser = (ShopInfo) session.getAttribute("memberId");
-		
-		HashMap<String,Object> smMap = new HashMap<String,Object>();
-		
-		smMap.put("shopNo", si.get("shopNo"));
-		
-		//메인 메뉴
-		HashMap<String, Object> sm = sService.selectSmenu(smMap);
-		System.out.println("sm : " + sm);
+		// 3-3. 가져온 식당정보에서 식당번호로 식당 음료 메뉴(menu_cate == 3) 리스트에 담기
+		List<ShopMenu> smb = sService.selectMyMenu3(si.getShopNo());
+		System.out.println(smb);
 		
 
-		//사이드메뉴
-		HashMap<String, Object> sms = sService.selectSmenuSide(smMap);
-		System.out.println("sms : " + sms);
-		
-		//음료수
-		HashMap<String, Object> smb = sService.selectSmenuBeverage(smMap);
-		System.out.println("smb : " + smb);
-		 if(!si.isEmpty() || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
+		if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
 			  
 			 mv.addObject("si", si);
 			 mv.addObject("sm", sm);

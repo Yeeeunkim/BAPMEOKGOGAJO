@@ -39,8 +39,14 @@ public interface ShopService {
 	////사용자가 예약한 식당 정보 조회
 	HashMap<String, Object> selectReserveShop(HashMap<String, Object> re);
 
-	// 식당마이페이지  - 식당정보 죄회
-	ShopInfo selectShop(String member_id);
+	// ★식당마이페이지  - 식당정보 조회
+	ShopInfo selectMyShop(String member_id);
+
+	List<ShopMenu> selectMyMenu1(int shopNo);
+
+	List<ShopMenu> selectMyMenu2(int shopNo);
+
+	List<ShopMenu> selectMyMenu3(int shopNo);
 
 
 //	int sideUpdate(ShopMenu smSmenu);

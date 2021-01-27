@@ -24,9 +24,6 @@
     </bean>
 	
 	
-	
-	
-	
 	<!-- sqlSession 빈 등록 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
