@@ -54,39 +54,14 @@ public class ShopController {
 
 	// 민병욱 시작 =================================================
 
-//	@RequestMapping("resView.sh")
-//	public ModelAndView resView(ModelAndView mv) {
-//
-//		// @@@@@테스트용
-//		// 식당 정보 불러와서 넘기기 (식당이름)
-//		int sNo = 1;
-//		ShopInfo shop = sService.selectShop(sNo);
-//		System.out.println(shop);
-//		// 예약 정보 가져오기 (총 금액, 예약시간) -> 결과 한개의 객체
-//		int rNo = 1;
-//		ReserveInfo reserve = sService.selectReserve(rNo);
-//		System.out.println(reserve);
-//		// 예약 메뉴 가져오기 (주문메뉴) -> 결과 여러개일 수 있으니 list
-////		Map<String, Object> menuMap = new HashMap<String, Object>();
-//		List mList = sService.selectMenu(rNo);
-//		System.out.println(mList);
-//		
-//		mv.addObject("shop", shop)
-//		  .addObject("reserve", reserve)
-//		  .addObject("mList", mList)
-//		  .setViewName("paymentView");
-//
-//		return mv;
-//	}
-
 	// 결제 성공 시
 	@RequestMapping("payment.sh")
 	@ResponseBody
 	public String successPay(@ModelAttribute ReserveInfo reserve) {
 		System.out.println(reserve);
 		int rNo = reserve.getReserveNo();
-		// @@@@@ 테스트
-		// 결제 성공 시 상태값 Y로 변경
+		
+		// 결제 성공 시 상태값 Y로,결제시간 update
 		int result = sService.successReserve(rNo);
 		
 		if(result > 0) {
