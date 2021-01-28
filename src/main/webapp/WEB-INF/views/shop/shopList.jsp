@@ -85,7 +85,6 @@
 <%@ include file="/WEB-INF/views/common/menubar.jsp"%>
    
    <div id="shopListArea">
-      <!--       <h1 style="text-align: center;">한식 ></h1> -->
       <select id="selectMenu" class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
          <option value="<%= request.getContextPath() %>/shop.do" selected="selected" id="all">전체</option>
          <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1" id="korean">한식</option>
