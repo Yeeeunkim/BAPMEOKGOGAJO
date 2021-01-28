@@ -10,7 +10,7 @@
 #searchArea {
 	display: block;
 	width: 100% !important;
-	height: 100px; 
+	height: 100px;
 	padding: 50px;
 	text-align: center;
 	font-weight: bold;
@@ -81,7 +81,12 @@
 	<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
 
 	<div id="searchArea">
-		<p>"${ searchContents }"으로 검색하신 결과입니다.</p>
+		<c:if test="${searchType eq '1'}">
+			<p>"${ searchContents }"&nbsp;검색 결과입니다.</p>
+		</c:if>
+		<c:if test="${searchType eq '2'}">
+			<p>"${ searchContents }"&nbsp;지역의 식당 검색 결과입니다.</p>
+		</c:if>
 	</div>
 
 	<div class="container-fluid">
@@ -135,7 +140,7 @@
 				<!-- 페이지 -->
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4"><b>[${ p }]</b></font>
+						<font color="orange" size="4"><b>[${ p }]</b></font>
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
@@ -182,7 +187,7 @@
 	<div class="row">
 		<div class="col-lg-9 col-md-10 col-sm-8"></div>
 		<div class="col-lg-1 col-md-1 col-sm-4">
-			<button type="button" class="enrollBtn" onclick="enrollShop();">식당 	등록</button>
+<!-- 			<button type="button" class="enrollBtn" onclick="enrollShop();">식당 	등록</button> -->
 		</div>
 		<div class="col-lg-2 col-md-1"></div>
 

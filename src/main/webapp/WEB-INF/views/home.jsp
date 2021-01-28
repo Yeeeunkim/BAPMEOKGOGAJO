@@ -131,13 +131,6 @@
             <h2>밥먹고가조!</h2>
 			<img src="<%= request.getContextPath() %>/resources/images/main/위치.png"  width="50px" height="50px"><br>
 			
-			<!-- <span>
-				<input type="search" id="a">
-			</span>
-			<span>
-				<button id="button">검색</button>
-			</span>  -->
-			
 			<form class="example" action="addressSearch.sh" style="margin:auto;max-width:500px">
 			  <input type="text" placeholder=" 시, 군, 구, 도로명을 입력해 주소를  검색해주세요" name="searchContents" id="searchInput">
 			  <button type="submit"><i class="fa fa-search"></i></button>

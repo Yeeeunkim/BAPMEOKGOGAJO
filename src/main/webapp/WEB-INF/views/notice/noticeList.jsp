@@ -32,9 +32,6 @@
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
 	crossorigin="anonymous"></script>
-<!-- 가독성 -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <title>밥먹고가조 공지사항</title>
 
 <style>
@@ -134,7 +131,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				<!-- 페이지 -->
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4"><b>[${ p }]</b></font>
+						<font color="orange" size="4"><b>[${ p }]</b></font>
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
