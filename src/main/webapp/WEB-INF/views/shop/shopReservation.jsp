@@ -117,11 +117,11 @@
   
 }
 .user{
-	display: block; 
-	margin: 0 auto; 
-	width:70px; 
-	height:70px;
-	float:left;
+   display: block; 
+   margin: 0 auto; 
+   width:70px; 
+   height:70px;
+   float:left;
 }
 #user{margin-left:20%}
 #gps{width: 40px;}
@@ -194,11 +194,11 @@ h4,h2{margin-left:8%;}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>&nbsp;&nbsp;&nbsp;&nbsp;${reservationList[0].SHOP_NAME}</h2>
+          <h2>중식</h2>
 
    <!-- 사진, 지도 폼 -->
    
@@ -223,104 +223,106 @@ h4,h2{margin-left:8%;}
    <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br> <br><br><br>
    
 
-	 <form action="ShopReservation.do" method="post" enctype="Multipart/form-data" onsubmit="return writeBoard();">
-	 
-	  <input type="hidden" name="ShopNo" value="<%=request.getParameter("SHOP_NO")%>"> 
-	   <input type="hidden" name="reservePhone" value="${loginUser.phone}"> 
-	    <input type="hidden" name="reserveName" value="${loginUser.member_name}"> 
-	     <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
-	     <input type="hidden" name="shopName" value="${reservationList[0].SHOP_NAME}">
-	  
-	  
+    <form action="ShopReservation.do" method="post" enctype="Multipart/form-data" onsubmit="return writeBoard();">
+    
+     <input type="hidden" name="ShopNo" value="<%=request.getParameter("SHOP_NO")%>"> 
+      <input type="hidden" name="reservePhone" value="${loginUser.phone}"> 
+       <input type="hidden" name="reserveName" value="${loginUser.member_name}"> 
+        <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+        <input type="hidden" name="shopName" value="${reservationList[0].SHOP_NAME}">
+     
+     
        <div class="row">
        <div class="col-3"></div>
-	       <div class="col-2">
-	         	<div class="form-group row">
-				  <label for="example-date-input" class="col-2 col-form-label"></label>
-				  <div class="col-10">
-				    <input class="form-control" type="date" name="reserveDate" id="example-date-input" max="" style=width:200px; >
-				  </div>
-				</div>
-				
-				<script>  /*날짜 범위 제한*/
-					  document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
-					  var today = new Date();
-					  var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
-					  document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-					  document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
-				</script>
-	         </div>
+          <div class="col-2">
+               <div class="form-group row">
+              <label for="example-date-input" class="col-2 col-form-label"></label>
+              <div class="col-10">
+                <input class="form-control" type="date" name="reserveDate" id="example-date-input" max="" style=width:200px; >
+              </div>
+            </div>
+            
+            <script>  /*날짜 범위 제한*/
+                 document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
+                 var today = new Date();
+                 var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
+                 document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+                 document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
+            </script>
+            </div>
          
        <div class="col-2">
- 		<select class="form-select" aria-label="Default select example" id="time" name="reserveTime">
- 				<option value="0" selected>날짜를 선택해주세요!</option>
-			<c:forEach var="ht" items="${timeList}">
-				 <option value="${ht}" id="${ht}">${ht}</option>
-			</c:forEach>
+       <select class="form-select" aria-label="Default select example" id="time" name="reserveTime">
+             <option value="0" selected>날짜를 선택해주세요!</option>
+         <c:forEach var="ht" items="${timeList}">
+             <option value="${ht}" id="${ht}">${ht}</option>
+         </c:forEach>
          </select>
          
          
- 		 <script>
+        <script>
          function writeBoard(){
-				var a=$("#time").val();
-				if(a==0){
-					alert("시간을 선택해주세요");
-					return false;
-				}else{
-					return true;
-				}
-			}
+            var a=$("#time").val();
+            if(a==0){
+               alert("시간을 선택해주세요");
+               return false;
+            }else{
+               return true;
+            }
+         }
          </script>
         
          
          
           <script> 
-			var date;
-			var shopNo=<%=request.getParameter("SHOP_NO")%>;
+         var date;
+         var shopNo=<%=request.getParameter("SHOP_NO")%>;
  
-			$(function(){
-				var shopNo=<%=request.getParameter("SHOP_NO")%>;
-				
-				window.onload=function(){
-					  console.log(date);
-					  $.ajax({
-			                url : "/bob/reserveDate.do",
-			                type: "post",
-			               dataType: 'json',
-			               data : {shopNo,shopNo},
-			               success : function(data){
-			            	   for(var i=0; i<data.shopreserveTime.length; i++){
-									if(data.shopreserveDate[i]==date){
-										 console.log(data.shopreserveTime[i]);
-										 document.getElementById(data.shopreserveTime[i]).disabled = true;
-									}
-								}
-				           }
-			            });
-				}
+         $(function(){
+            var shopNo=<%=request.getParameter("SHOP_NO")%>;
+            
+            window.onload=function(){
+                 console.log(date);
+                 $.ajax({
+                         url : "/bob/reserveDate.do",
+                         type: "post",
+                        dataType: 'json',
+                        data : {shopNo, shopNo},
+                        success : function(data){
+                           for(var i=0; i<data.shopreserveTime.length; i++){
+                              document.getElementById(data.shopreserveTime[i]).disabled = false;
+                           if(data.shopreserveDate[i]==date){
+                               console.log(data.shopreserveTime[i]);
+                               document.getElementById(data.shopreserveTime[i]).disabled = true;
+                           }
+                        }
+                       }
+                     });
+            }
 
-	         	$('#example-date-input').change(function (){
-	             		date = $('#example-date-input').val();
-						console.log(date);
-						 $.ajax({
-				                url : "/bob/reserveDate.do",
-				                type: "post",
-				               dataType: 'json',
-				               data : {shopNo,shopNo},
-				               success : function(data){
-									for(var i=0; i<data.shopreserveTime.length; i++){
-										if(data.shopreserveDate[i]==date){
-											 console.log(data.shopreserveTime[i]);
-											 document.getElementById(data.shopreserveTime[i]).disabled = true;
-										}
-									}
-				               }
-				            });
-	        		 });
-			});
-			</script>
+               $('#example-date-input').change(function (){
+                      date = $('#example-date-input').val();
+                  console.log(date);
+                   $.ajax({
+                            url : "/bob/reserveDate.do",
+                            type: "post",
+                           dataType: 'json',
+                           data : {shopNo, shopNo},
+                           success : function(data){
+                           for(var i=0; i<data.shopreserveTime.length; i++){
+                              document.getElementById(data.shopreserveTime[i]).disabled = false;
+                              if(data.shopreserveDate[i]==date){
+                                  console.log(data.shopreserveTime[i]);
+                                  document.getElementById(data.shopreserveTime[i]).disabled = true;
+                              }
+                           }
+                           }
+                        });
+                  });
+         });
+         </script>
 
-			</div><div class="col-2">
+         </div><div class="col-2">
          <select class="form-select" aria-label="Default select example" name="reservePeople">
             <option value="1">1명</option>
             <option value="2" selected="selected">2명</option>
@@ -333,8 +335,8 @@ h4,h2{margin-left:8%;}
          <div class="col-3"></div>
          </div>
 
-	  <textarea placeholder="요청사항을 입력해주세요" name="reserveComment" id="floatingTextarea2" style="height:100px; width:30%"></textarea>
-		
+     <textarea placeholder="요청사항을 입력해주세요" name="reserveComment" id="floatingTextarea2" style="height:100px; width:30%"></textarea>
+      
    
    
    <br><br><br><br>
@@ -358,9 +360,11 @@ h4,h2{margin-left:8%;}
 
        </tbody>
      </table>
-
+   
    <br><br><br><br>
-
+   
+   
+   
 
    <h4>&nbsp;&nbsp;&nbsp;사이드</h4>
    <table class="table table-bordered table-sm" id="menu">
@@ -375,6 +379,7 @@ h4,h2{margin-left:8%;}
        </tbody>
      </table>
     
+     
      <br><br><br><br>
       <h4>&nbsp;&nbsp;&nbsp;주류</h4>
    <table class="table table-bordered table-sm" id="menu">
@@ -393,22 +398,14 @@ h4,h2{margin-left:8%;}
      <br>
      
       <div class="row">
-    	<button type="submit" value="submit" class="button menuPlus" id="btnR">예약하기</button> 
+       <button type="submit" value="submit" class="button menuPlus" id="btnR">예약하기</button> 
      </div>
      
      </form>
      
      <div class="row">
-    <!--  <button type="button" class="button menuPlus" onclick="reservationShop()" id="btnR">예약하기</button> -->
      </div>
-   
-   
-   	<!--   <script>
-		   function reservationShop(){
-		         location.href= "ShopReservation.do"
-		      }
-	   </script>  -->
-   
+
    
    
    <br><br>
@@ -453,122 +450,128 @@ h4,h2{margin-left:8%;}
      </p>
         
   </div>
+ 
 
+ 
+ 
+ 
  <script>
-		 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-		 var options = { //지도를 생성할 때 필요한 기본 옵션
-		    center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		    level: 3 //지도의 레벨(확대, 축소 정도)
-		 };
-		 var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-		 
-		 $(document).ready(function() {
-		    var gpsaddress = $("#gpsaddress").text();
-		    var shopnm = $("#shopnm").text();
-		    function geocoding(gpsaddress){
-		         // 주소-좌표 변환 객체를 생성합니다
-		         var geocoder = new kakao.maps.services.Geocoder();
-		         // 주소로 좌표를 검색합니다
-		         geocoder.addressSearch(gpsaddress, function(result, status) {
-		             // 정상적으로 검색이 완료됐으면 
-		              if (status === kakao.maps.services.Status.OK) {
-		                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		                 // 결과값으로 받은 위치를 마커로 표시합니다
-		                 var marker = new kakao.maps.Marker({
-		                     map: map,
-		                     position: coords
-		                 });
-		                 // 인포윈도우로 장소에 대한 설명을 표시합니다
-		                  var infowindow = new kakao.maps.InfoWindow({
-		                     content: '<div style="width:150px;text-align:center;padding:6px 0;">'+shopnm+'</div>'
-		                 });
-		                 infowindow.open(map, marker);
-		    
-		                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		                 map.setCenter(coords);
-		             } 
-		         });          
-		      } 
-		    
-		    
-		    geocoding(gpsaddress);	    
-		 var html = "";
-		    
-		 $.ajax({
-		               url : "/bob/MainMenu.do",
-		                type: "post",
-		               dataType: 'json',
-		               data : {
-		               "SHOP_NO" : <%=request.getParameter("SHOP_NO")%>
-		               },
-		               success : function(data){
-		               
-		                  for(var i=0; i<data.MainMenu.length; i++){
-		                     html += "<tr>"
-		                     html += "<td>"+data.MainMenu[i].MENU_NAME+"</td>"
-		                     html += "<td>"+data.MainMenu[i].MENU_PRICE+"</td>"
-		                     html += "<td>"
-		                     html += "<select name='menuname' class='main'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-		                     html +="</td>"
-		                     html += "</tr>"
-		                  }
-		            
-		                  $("#MainmenuBody").html(html);
-		            
-		                  html = "";
-		                  
-		                  
-		                  for(var i=0; i<data.SideMenu.length; i++){
-		                     
-		                     html += "<tr>"
-		                     html += "<td>"+data.SideMenu[i].MENU_NAME+"</td>"
-		                     html += "<td>"+data.SideMenu[i].MENU_PRICE+"</td>"
-		                     html += "<td>"
-		                     html += "<select name='menuname' class='side'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-		                     html +="</td>"
-		                     html += "</tr>"
-		                  }
-		                   $("#SidemenuBody").html(html);
-		                   
-		                   html = "";
-		                   
-		                   for(var i=0; i<data.DrinkMenu.length; i++){
-		                       
-		                       html += "<tr>"
-		                       html += "<td>"+data.DrinkMenu[i].MENU_NAME+"</td>"
-		                       html += "<td>"+data.DrinkMenu[i].MENU_PRICE+"</td>"
-		                       html += "<td>"
-		                       html += "<select name='menuname' class='drink'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-		                       html +="</td>"
-		                       html += "</tr>"
-		                    }
-		                     $("#DrinkmenuBody").html(html);  
-		                  
-		               },
-		               error : function(err){
-		               alert("error");
-		               }
-		            });
+       var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+       var options = { //지도를 생성할 때 필요한 기본 옵션
+          center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+          level: 3 //지도의 레벨(확대, 축소 정도)
+       };
+       var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+       
+       $(document).ready(function() {
+          var gpsaddress = $("#gpsaddress").text();
+          var shopnm = $("#shopnm").text();
+          function geocoding(gpsaddress){
+               // 주소-좌표 변환 객체를 생성합니다
+               var geocoder = new kakao.maps.services.Geocoder();
+               // 주소로 좌표를 검색합니다
+               geocoder.addressSearch(gpsaddress, function(result, status) {
+                   // 정상적으로 검색이 완료됐으면 
+                    if (status === kakao.maps.services.Status.OK) {
+                       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                       // 결과값으로 받은 위치를 마커로 표시합니다
+                       var marker = new kakao.maps.Marker({
+                           map: map,
+                           position: coords
+                       });
+                       // 인포윈도우로 장소에 대한 설명을 표시합니다
+                        var infowindow = new kakao.maps.InfoWindow({
+                           content: '<div style="width:150px;text-align:center;padding:6px 0;">'+shopnm+'</div>'
+                       });
+                       infowindow.open(map, marker);
+          
+                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                       map.setCenter(coords);
+                   } 
+               });          
+            } 
+          
+          
+          geocoding(gpsaddress);       
+       var html = "";
+          
+       $.ajax({
+                     url : "/bob/MainMenu.do",
+                      type: "post",
+                     dataType: 'json',
+                     data : {
+                     "SHOP_NO" : <%=request.getParameter("SHOP_NO")%>
+                     },
+                     success : function(data){
+                     
+                        for(var i=0; i<data.MainMenu.length; i++){
+                           html += "<tr>"
+                           html += "<td>"+data.MainMenu[i].MENU_NAME+"</td>"
+                           html += "<td>"+data.MainMenu[i].MENU_PRICE+"</td>"
+                           html += "<td>"
+                           html += "<select name='menuname' class='main'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
+                           html +="</td>"
+                           html += "</tr>"
+                        }
+                  
+                        $("#MainmenuBody").html(html);
+                  
+                        html = "";
+                        
+                        
+                        for(var i=0; i<data.SideMenu.length; i++){
+                           
+                           html += "<tr>"
+                           html += "<td>"+data.SideMenu[i].MENU_NAME+"</td>"
+                           html += "<td>"+data.SideMenu[i].MENU_PRICE+"</td>"
+                           html += "<td>"
+                           html += "<select name='menuname' class='side'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
+                           html +="</td>"
+                           html += "</tr>"
+                        }
+                         $("#SidemenuBody").html(html);
+                         
+                         html = "";
+                         
+                         for(var i=0; i<data.DrinkMenu.length; i++){
+                             
+                             html += "<tr>"
+                             html += "<td>"+data.DrinkMenu[i].MENU_NAME+"</td>"
+                             html += "<td>"+data.DrinkMenu[i].MENU_PRICE+"</td>"
+                             html += "<td>"
+                             html += "<select name='menuname' class='drink'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
+                             html +="</td>"
+                             html += "</tr>"
+                          }
+                           $("#DrinkmenuBody").html(html);  
+                        
+                     },
+                     error : function(err){
+                     alert("error");
+                     }
+                  });
 
-		   }); 
+         }); 
  
  </script>
  
-	<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
-		
-	<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
-
-	<script>
-		var shopNo=<%=request.getParameter("SHOP_NO")%>;
-		var shopName=$('#shopnm').text();
  
-		function reviewEnroll(){
-			location.href="ReviewEnrollForm.do"
-		}
-		function declareEnroll(){
-			location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;
-		}
-	</script>
+ 
+   <button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
+      
+   <button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
+
+   <script>
+      var shopNo=<%=request.getParameter("SHOP_NO")%>;
+      var shopName=$('#shopnm').text();
+ 
+      function reviewEnroll(){
+         location.href="ReviewEnrollForm.do"
+      }
+      function declareEnroll(){
+         location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;
+      }
+   </script>
 
  
     <jsp:include page="../common/footer.jsp" />
