@@ -327,7 +327,7 @@ input {
 		
 		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;최대예약시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
+			<input class= "cInput" type="number" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
 		</div>
 		
 		

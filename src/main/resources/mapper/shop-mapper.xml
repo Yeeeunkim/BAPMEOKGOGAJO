@@ -126,7 +126,7 @@
 	</insert>
 	
 	<insert id="insertReserveShopInfo">
-		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'Y',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
+		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
 	
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
