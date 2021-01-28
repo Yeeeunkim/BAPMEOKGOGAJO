@@ -74,14 +74,11 @@
 					<td>새 비밀번호 </td>
 					<td><input type="password" class="input" id="newPwd"name="member_newPwd1"></td>
 					<td><label id="pwd1Result"></label></td>
-
 				</tr>
 					 <tr height="70px">
 					<td>새 비밀번호 확인</td>
 					<td><input type="password" class="input" id="newPwCheck" name="member_newPwd2"  ></td>
-
 					<td><label id="pwd2Result"></label></td>
-
 				</tr> 
 			</table>
 			<br><br><br>

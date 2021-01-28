@@ -244,164 +244,163 @@ input {
            }
         </script>
       
-          
-
-   <!-- 사진, 지도 폼 -->
-      <div class="thumb" id="thumbnail"><img id="thumbImg" width="100%" height="100%"><p id="text">메뉴 썸네일 사진을 등록해주세요.</p></div>
-      
+	<!-- 사진, 지도 폼 -->
+		<div class="thumb" id="thumbnail"><img id="thumbImg" width="100%" height="100%"><p id="text">메뉴 썸네일 사진을 등록해주세요.</p></div>
+		
+	
+		<div id="fileArea">
+		<input type="file" id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
+	</div>
+	
+	<script>
+					$(function(){
+						$("#fileArea").hide();
+						$("#thumbnail").click(function(){
+							$("#thumbnailImg").click();
+						});
+					});
+					
+					function LoadImg(value){
+						if(value.files && value.files[0]){
+							var reader = new FileReader();
+							
+							
+							reader.onload = function(e){								
+								
+									$("#thumbImg").attr("src", e.target.result);
+									$("#text").empty();
+									
+							}
+							
+							reader.readAsDataURL(value.files[0]);
+						}
+					}
+				</script>
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		
+   	<div class="form-floating">
+   		  <p>가게소개</p>
+		  <textarea placeholder="가게소개글을 입력해주세요" name="shopIntro" id="floatingTextarea2" style="height:300px; width:50%"></textarea>
+	</div>
    
       <div id="fileArea">
       <input type="file" id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
    </div>
    
-   <script>
-               $(function(){
-                  $("#fileArea").hide();
-                  $("#thumbnail").click(function(){
-                     $("#thumbnailImg").click();
-                  });
-               });
-               
-               function LoadImg(value){
-                  if(value.files && value.files[0]){
-                     var reader = new FileReader();
-                     
-                     
-                     reader.onload = function(e){                        
-                        
-                           $("#thumbImg").attr("src", e.target.result);
-                           $("#text").empty();
-                           
-                     }
-                     
-                     reader.readAsDataURL(value.files[0]);
-                  }
-               }
-            </script>
-   
-   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      
-      <div class="form-floating">
-           <p>가게소개</p>
-        <textarea placeholder="가게소개글을 입력해주세요" name="shopIntro" id="floatingTextarea2" style="height:300px; width:50%"></textarea>
-      </div>
-
-   
-   
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;사업자 번호</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="text" name="businessNumber" id="businessNum" placeholder="사업자 번호를 입력하세요."  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-      </div> 
+		<div class="input-info">
+			<input class= "cInput" type="text" name="businessNumber" id="businessNum" placeholder="사업자 번호를 입력하세요."  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+		</div> 
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;상호명</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="text" name="shopName" id="ShopName" placeholder="상호명을 입력하세요.">
-      </div>
-   
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;전화</p>&nbsp;&nbsp;
-      <div class="input-info">
-          <input class= "cInput" type=text name="shopPhone" onfocus="OnCheckPhone(this)"  onKeyup="OnCheckPhone(this)" size="14" placeholder="전화번호를 입력하세요.">    
-      </div>
-      <script src="<%= request.getContextPath() %>/resources/js/telephone.js"></script>
-      
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;오픈시간</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="time" name="shopOpen" id="time" placeholder="오픈시간을 입력하세요.">
-      </div>
-      
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;마감시간</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="time" name="shopClose" id="time2" placeholder="마감시간을 입력하세요.">
-      </div>   
-      
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;브레이크타임</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="time" name="shopBreakStart" id="break1" placeholder="브레이크타임을 입력하세요." style="width:210px">&nbsp; ~ &nbsp;         
-         <input class= "cInput" type="time" name="shopBreakClose" id="break2" placeholder="브레이크타임을 입력하세요." style="width:210px">
-      </div><br>
-      
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="time" name="maxReservationTime" id="MaxReservationTime" placeholder="예약마감시간을 입력하세요.">
-      </div>
-      
-      
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;휴무일</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="text" name="shopOffday" id="holiday" placeholder="휴무일을 입력하세요.">
-      </div>
-   
+		<div class="input-info">
+			<input class= "cInput" type="text" name="shopName" id="ShopName" placeholder="상호명을 입력하세요.">
+		</div>
+	
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;전화</p>&nbsp;&nbsp;
+		<div class="input-info">
+			 <input class= "cInput" type=text name="shopPhone" onfocus="OnCheckPhone(this)"  onKeyup="OnCheckPhone(this)" size="14" placeholder="전화번호를 입력하세요."> 	
+		</div>
+		<script src="<%= request.getContextPath() %>/resources/js/telephone.js"></script>
+		
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;오픈시간</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="time" name="shopOpen" id="time" placeholder="오픈시간을 입력하세요.">
+		</div>
+		
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;마감시간</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="time" name="shopClose" id="time2" placeholder="마감시간을 입력하세요.">
+		</div>	
+		
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;브레이크타임</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="time" name="shopBreakStart" id="break1" placeholder="브레이크타임을 입력하세요." style="width:210px">&nbsp; ~ &nbsp;			
+			<input class= "cInput" type="time" name="shopBreakClose" id="break2" placeholder="브레이크타임을 입력하세요." style="width:210px">
+			
+		</div>	
+		
+<!-- 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp; -->
+<!-- 		<div class="input-info"> -->
+<!-- 			<input class= "cInput" type="time" name="maxReservationTime" id="MaxReservationTime" placeholder="예약마감시간을 입력하세요."> -->
+<!-- 		</div> -->
+		
+		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;최대예약시간</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="text" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
+		</div>
+		
+		
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;휴무일</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="text" name="shopOffday" id="holiday" placeholder="휴무일을 입력하세요.">
+		</div>
+	
 
 
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;주소</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="text" id="sample5_address" placeholder="주소" name="address1">
-         <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
-      </div>
-      
-   <p class="pp"></p><p class="pInput">&nbsp;&nbsp;</p>&nbsp;&nbsp;
-      <div class="input-info">
-         <input class= "cInput" type="text" id="sample3_detailAddress" placeholder="상세주소" name="address2">
-         <div id="map" style="width:500px;height:300px;margin-top:10px;display:none"></div>
-      </div>
-      
-      
-      <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-      <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef&libraries=services"></script>
-      <script>
-          var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-              mapOption = {
-                  center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-                  level: 5 // 지도의 확대 레벨
-              };
-      
-          //지도를 미리 생성
-          var map = new daum.maps.Map(mapContainer, mapOption);
-          //주소-좌표 변환 객체를 생성
-          var geocoder = new daum.maps.services.Geocoder();
-          //마커를 미리 생성
-          var marker = new daum.maps.Marker({
-              position: new daum.maps.LatLng(37.537187, 127.005476),
-              map: map
-          });
-      
-      
-          function sample5_execDaumPostcode() {
-              new daum.Postcode({
-                  oncomplete: function(data) {
-                      var addr = data.address; // 최종 주소 변수
-      
-                      // 주소 정보를 해당 필드에 넣는다.
-                      document.getElementById("sample5_address").value = addr;
-                      // 주소로 상세 정보를 검색
-                      geocoder.addressSearch(data.address, function(results, status) {
-                          // 정상적으로 검색이 완료됐으면
-                          if (status === daum.maps.services.Status.OK) {
-      
-                              var result = results[0]; //첫번째 결과의 값을 활용
-      
-                              // 해당 주소에 대한 좌표를 받아서
-                              var coords = new daum.maps.LatLng(result.y, result.x);
-                              // 지도를 보여준다.
-                              mapContainer.style.display = "block";
-                              map.relayout();
-                              // 지도 중심을 변경한다.
-                              map.setCenter(coords);
-                              // 마커를 결과값으로 받은 위치로 옮긴다.
-                              marker.setPosition(coords)
-                          }
-                      });
-                  }
-              }).open();
-          }
-      </script>
-   
-   
-   
-   <br><br><br>
-   <hr class="line">
-   <br><br><br>
-   
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;주소</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="text" id="sample5_address" placeholder="주소" name="address1">
+			<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
+		</div>
+		
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;</p>&nbsp;&nbsp;
+		<div class="input-info">
+			<input class= "cInput" type="text" id="sample3_detailAddress" placeholder="상세주소" name="address2">
+			<div id="map" style="width:500px;height:300px;margin-top:10px;display:none"></div>
+		</div>
+		
+		
+		<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=eb76491df39fadc11ff7c0d5b214d3ef&libraries=services"></script>
+		<script>
+		    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		        mapOption = {
+		            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+		            level: 5 // 지도의 확대 레벨
+		        };
+		
+		    //지도를 미리 생성
+		    var map = new daum.maps.Map(mapContainer, mapOption);
+		    //주소-좌표 변환 객체를 생성
+		    var geocoder = new daum.maps.services.Geocoder();
+		    //마커를 미리 생성
+		    var marker = new daum.maps.Marker({
+		        position: new daum.maps.LatLng(37.537187, 127.005476),
+		        map: map
+		    });
+		
+		
+		    function sample5_execDaumPostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                var addr = data.address; // 최종 주소 변수
+		
+		                // 주소 정보를 해당 필드에 넣는다.
+		                document.getElementById("sample5_address").value = addr;
+		                // 주소로 상세 정보를 검색
+		                geocoder.addressSearch(data.address, function(results, status) {
+		                    // 정상적으로 검색이 완료됐으면
+		                    if (status === daum.maps.services.Status.OK) {
+		
+		                        var result = results[0]; //첫번째 결과의 값을 활용
+		
+		                        // 해당 주소에 대한 좌표를 받아서
+		                        var coords = new daum.maps.LatLng(result.y, result.x);
+		                        // 지도를 보여준다.
+		                        mapContainer.style.display = "block";
+		                        map.relayout();
+		                        // 지도 중심을 변경한다.
+		                        map.setCenter(coords);
+		                        // 마커를 결과값으로 받은 위치로 옮긴다.
+		                        marker.setPosition(coords)
+		                    }
+		                });
+		            }
+		        }).open();
+		    }
+		</script>
    
   <div class="container">
   <h2>메뉴</h2>
@@ -553,13 +552,13 @@ input {
    <br><br>
    
    <div class="container">
-     <div id="btnP">
-        <button type="submit" class="button" value="submit" id="enroll">등록하기</button>
-     </div>
-     <br>
+ 	 <div id="btnP">
+ 		 <button type="submit" class="button" value="submit" id="enroll">등록하기</button>
+ 	 </div>
+ 	 <br>
   </div>
-     
-    </form> 
+  	
+	 </form>
   
 
  

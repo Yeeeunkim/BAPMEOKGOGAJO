@@ -129,7 +129,6 @@
 				</tr>
 
 				</c:if>
-
 <!-- 			</table> -->
 			
 					
@@ -196,7 +195,6 @@
 			$.ajax({
 				url: 'addReply.no',
 				data: {cContents:cContents, bNo:bNo, mId:mId},
-
 				success: function(data){
 					if(data == 'success'){
 						$('#rContent').val('');

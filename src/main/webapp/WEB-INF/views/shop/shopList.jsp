@@ -97,7 +97,6 @@
       </select><br><br><br>
    </div>
 
-
 	<div class="container-fluid">
 		<div class="row" style="min-height: 600px;">
 			<div class="col-lg-8 col-md-10 col-sm-12" id="listArea">

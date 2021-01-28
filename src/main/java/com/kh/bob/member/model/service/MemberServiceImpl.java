@@ -13,6 +13,7 @@ import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
 
+
 @Service("bmService")
 public class MemberServiceImpl implements MemberService {
 // 김예은 시작 ================================================
@@ -78,9 +79,6 @@ public class MemberServiceImpl implements MemberService {
 	public int selectSmenu(ShopMenu sm) {
 		return bmDAO.selectSmenu(sqlSession, sm);
 	}
-
-	
-
 	
 
 // 김예은 끝 =================================================
