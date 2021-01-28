@@ -11,7 +11,6 @@
 	rel="stylesheet">
 
 <title>밥먹고가조 공지사항</title>
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
 
@@ -136,14 +135,12 @@ footer {
 
 
 		<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin' }">
-
 		<tr style="border: none;">
 			<td colspan="2" align="center" style="border: none;">
 				<button class="btn1" onclick="nUpView();" style="position: absolute;">수정하기</button>
 				<button class="btn2" onclick="nDelete();">삭제하기</button>
 			</td style="border: none;">
 		</tr style="border: none;">
-
 		</c:if>
 
 	</table>

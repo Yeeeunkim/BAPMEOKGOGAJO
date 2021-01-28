@@ -38,18 +38,18 @@
 	
 	
 	<!-- shop관련 -->
-	<!--  <servlet>
-		<servlet-name>ShopServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/shop-context.xml</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ShopServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>  --> 
+<!-- 	 <servlet> -->
+<!-- 		<servlet-name>ShopServlet</servlet-name> -->
+<!-- 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<param-name>contextConfigLocation</param-name> -->
+<!-- 			<param-value>/WEB-INF/spring/appServlet/shop-context.xml</param-value> -->
+<!-- 		</init-param> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>ShopServlet</servlet-name> -->
+<!-- 		<url-pattern>*.do</url-pattern> -->
+<!-- 	</servlet-mapping>  -->
 	
 	
 	<!-- 공지사항 관련 -->

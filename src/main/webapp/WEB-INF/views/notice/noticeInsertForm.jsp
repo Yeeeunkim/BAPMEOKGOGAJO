@@ -27,7 +27,6 @@
 
 	#titleInput {
 		outline: none;
-
 		width: 87%;
 		border: 0px solid lightgray;
 	}
@@ -77,7 +76,6 @@
 					</td style="border: none;"> 
 				</tr style="border: none;">
 			</table>
-
 			
 			<!-- 작성자 보내기 위함 -->
 			<input type="hidden" name="mId" value='${loginUser.member_id}'>

@@ -2,7 +2,6 @@
 
 import java.util.HashMap;
 
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kh.bob.member.model.vo.Member;
@@ -35,11 +34,6 @@ public interface MemberService {
 	int selectSinfo(ShopInfo si);
 
 	int selectSmenu(ShopMenu sm);
-
-
-
-
-
 
 
 

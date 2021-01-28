@@ -53,7 +53,6 @@ public class NoticeServiceImple implements NoticeService {
 		// 1. 게시글 추가
 		result = nDAO.insertBoard(sqlSession, board);
 
-
 		if (result > 0) { // 게시글 추가 성공했다면
 			if (attachment.getSaveName() != null) { // 첨부파일이 있다면
 				attachment.setbNo(board.getbNo());
@@ -122,12 +121,10 @@ public class NoticeServiceImple implements NoticeService {
 		return nDAO.selectCommentList(sqlSession, bNo);
 	}
 
-
 	@Override
 	public ArrayList<Board> faqList() {
 		return nDAO.faqList(sqlSession);
 	}
-
 
 
 

@@ -62,13 +62,4 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.selectSmenu", sm);
 	}
 
-	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		return sqlSession.update("memberMapper.updatePwd", map);
-	}
-	
-// 김예은 끝 =================================================
-
-
-	
-
 }

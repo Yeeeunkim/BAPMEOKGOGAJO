@@ -175,7 +175,7 @@
   height: 30%;
 } 
 #menuP {
-	border-radius: 30px; width:800px; height:400px;
+   border-radius: 30px; width:800px; height:400px;
 }
 h4,h2{margin-left:8%;}
 .button{
@@ -198,7 +198,7 @@ h4,h2{margin-left:8%;}
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>중식</h2>
+          <h2>&nbsp;&nbsp;&nbsp;&nbsp;${reservationList[0].SHOP_NAME}</h2>
 
    <!-- 사진, 지도 폼 -->
    
@@ -360,11 +360,9 @@ h4,h2{margin-left:8%;}
 
        </tbody>
      </table>
-   
-	<br><br><br><br>
-   
-   
-   
+
+   <br><br><br><br>
+
 
    <h4>&nbsp;&nbsp;&nbsp;사이드</h4>
    <table class="table table-bordered table-sm" id="menu">
@@ -379,7 +377,6 @@ h4,h2{margin-left:8%;}
        </tbody>
      </table>
     
-     
      <br><br><br><br>
       <h4>&nbsp;&nbsp;&nbsp;주류</h4>
    <table class="table table-bordered table-sm" id="menu">
@@ -458,11 +455,7 @@ h4,h2{margin-left:8%;}
      </p>
         
   </div>
- 
 
- 
- 
- 
  <script>
 		 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		 var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -563,8 +556,6 @@ h4,h2{margin-left:8%;}
  
  </script>
  
- 
- 
 	<button onclick="reviewEnroll()" class="button" id="review">리뷰등록</button>
 		
 	<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
@@ -582,7 +573,7 @@ h4,h2{margin-left:8%;}
 	</script>
 
  
- 	<jsp:include page="../common/footer.jsp" />
- 	  
+    <jsp:include page="../common/footer.jsp" />
+      
 </body>
 </html>

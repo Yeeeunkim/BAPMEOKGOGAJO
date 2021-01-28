@@ -12,7 +12,7 @@
 <title>밥먹고가조 FAQ</title>
 <style>
 
-.sArea {
+.sArea {	
 	width: 200px !important;
 	display: inline-block !important;
 }
@@ -23,7 +23,6 @@
 	position: relative;
 	top: 80px;
 	margin: auto;
-
 }
 
 .check {
@@ -98,7 +97,6 @@
 	</div>
 	<div class="row" style="height: 50px;"></div>
 	<c:import url="../common/footer.jsp" />
-
 
 </body>
 </html>

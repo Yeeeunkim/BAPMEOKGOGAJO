@@ -1,11 +1,8 @@
 ﻿package com.kh.bob.member.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +23,6 @@ import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopSeat;
-
 
 
 @SessionAttributes("loginUser")
@@ -52,7 +48,6 @@ public class MemberController {
 	@RequestMapping("login.me")
 	public String login(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.loginMember(m);
-			System.out.println("loginUser : " + loginUser);
 
 		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
@@ -164,7 +159,6 @@ public class MemberController {
 		//m.setMember_pwd(encPwd); 
 		
 		int result = bmService.memberInsert(m);
-		System.out.println("m : " + m);
 
 		if(result > 0) {
 			return "redirect:home.do";
@@ -202,7 +196,6 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-
 	
 	//일반 마이페이지  
 	@RequestMapping("myPage.me")
@@ -216,7 +209,6 @@ public class MemberController {
 		return "updatePwdForm";
 	}
 	
-
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.me")
 	public String pwdUpdate( @RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd1") String newPwd,
@@ -247,6 +239,7 @@ public class MemberController {
 	public String mCheckPwdForm() {
 		return "checkPwd";
 	}
+
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {

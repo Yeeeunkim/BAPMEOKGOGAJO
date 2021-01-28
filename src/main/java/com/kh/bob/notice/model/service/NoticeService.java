@@ -43,8 +43,6 @@ public interface NoticeService {
 	ArrayList<Comment> selectCommentList(int bNo);
 
 	ArrayList<Board> faqList();
-
-
 	
 	
 	// 민병욱 끝 ====================================================

@@ -1,6 +1,5 @@
 package com.kh.bob.shop.model.exception;
 
-
 public class ShopException extends RuntimeException {
 
 	public ShopException() {}

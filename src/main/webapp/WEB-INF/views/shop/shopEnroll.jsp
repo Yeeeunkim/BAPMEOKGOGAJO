@@ -51,113 +51,113 @@ crossorigin="anonymous"></script>
 }
 
 #thumbImg{
-	border:2px red;
+   border:2px red;
 }
 
 .form-group{
-	width: 70%;
-	height: 30%;
-	margin: auto;
+   width: 70%;
+   height: 30%;
+   margin: auto;
 }
 #enrollArea {
-	/* 	border: 1px solid lightgray; */
-	width: 80%;
-	height: 600px;
-	position: relative;
-	margin: 0 auto;
-	margin-top: 50px;
+   /*    border: 1px solid lightgray; */
+   width: 80%;
+   height: 600px;
+   position: relative;
+   margin: 0 auto;
+   margin-top: 50px;
 }
 
 .enrollDiv {
-	text-align: center;
-	align-content: center;
+   text-align: center;
+   align-content: center;
 }
 
 .enrollBtn {
-	display: block !important;
-	margin: 0 auto !important;
-	background: #F42B03 !important;
-	border: 0px !important;
-	width: 250px !important;
-	height: 50px;
+   display: block !important;
+   margin: 0 auto !important;
+   background: #F42B03 !important;
+   border: 0px !important;
+   width: 250px !important;
+   height: 50px;
 }
 
 .pp {
-	display: inline-block;
-	width: 25%;
+   display: inline-block;
+   width: 25%;
 }
 
 .pInput{
-	display: inline-block;
-	width: 20%;
+   display: inline-block;
+   width: 20%;
 }
 
 .input-info{
-	display: inline;
+   display: inline;
 }
 
 .cInput {
-	width: 30%;
+   width: 30%;
 }
 
 .authBtn {
-	margin: 0 auto !important;
-	background: #F42B03 !important;
-	border: 0px !important;
-	color: white;
+   margin: 0 auto !important;
+   background: #F42B03 !important;
+   border: 0px !important;
+   color: white;
 }
 
 .enrollBtn {
-	display: block !important;
-	margin: 0 auto !important;
-	background: #F42B03 !important;
-	border: 0px !important;
-	width: 250px !important;
-	height: 50px;
+   display: block !important;
+   margin: 0 auto !important;
+   background: #F42B03 !important;
+   border: 0px !important;
+   width: 250px !important;
+   height: 50px;
 }
 .line{
-	width: 60%;
-	margin: auto;
-	border: solid 2px gray;
+   width: 60%;
+   margin: auto;
+   border: solid 2px gray;
 }
 #menu{ 
-	margin: auto;
-	width: 70%;
-	text-align: center;
+   margin: auto;
+   width: 70%;
+   text-align: center;
 }
 #sidemenu{
-	margin: auto;
-	width: 70%;
-	text-align: center;
+   margin: auto;
+   width: 70%;
+   text-align: center;
 }
 
 #drinkmenu{
-	margin: auto;
-	width: 70%;
-	text-align: center;
+   margin: auto;
+   width: 70%;
+   text-align: center;
 }
-	
+   
 .menuPlus, .menuMinus{
-	width:30px;
-	border-radius:10px;
-	text-align: center;
-	background: #F42B03;
-	color: white;
+   width:30px;
+   border-radius:10px;
+   text-align: center;
+   background: #F42B03;
+   color: white;
 }
 .alldelete{
-	width:80px;
-	border-radius:10px;
-	text-align: center;
-	background: #F42B03;
-	color: white;
+   width:80px;
+   border-radius:10px;
+   text-align: center;
+   background: #F42B03;
+   color: white;
 }
 
 #gps{
-	width: 40px;
-	margin-left:30%;
+   width: 40px;
+   margin-left:30%;
 }
 #address{
-	margin-left:10px;
+   margin-left:10px;
 }
 #map{
   top: 20%;
@@ -194,13 +194,13 @@ input {
 
 /*-------------------------------------*/
 .centerText table {
-	margin: auto; 
-	align-content: center;
-	border-collapse: collapse;
+   margin: auto; 
+   align-content: center;
+   border-collapse: collapse;
 }
 
 .centerText table tr td {
-	padding: 5px;
+   padding: 5px;
 }
 
 #thumbnailImg{margin-left:10%;}
@@ -215,13 +215,13 @@ input {
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-   	
-   	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
-   	
+      
+      <form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
+      
     <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
 
-   		
-   		
+         
+         
        <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" selected="selected">--선택해주세요--</option>
          <option value="1">한식</option>
@@ -232,20 +232,18 @@ input {
       </select>
       
         <script>
-  			function writeBoard(){
-  				var a=$("#myselect").val();
-  				var b=${loginUser.member_id};
-  				if(a==0){
-  					alert("카테고리를 선택해주세요"+b);
-  					return false;
-  				}else{
-  					return true;
-  				}
-  			}
-  		</script>
+           function writeBoard(){
+              var a=$("#myselect").val();
+              var b=${loginUser.member_id};
+              if(a==0){
+                 alert("카테고리를 선택해주세요"+b);
+                 return false;
+              }else{
+                 return true;
+              }
+           }
+        </script>
       
-          
-
 	<!-- 사진, 지도 폼 -->
 		<div class="thumb" id="thumbnail"><img id="thumbImg" width="100%" height="100%"><p id="text">메뉴 썸네일 사진을 등록해주세요.</p></div>
 		
@@ -286,6 +284,9 @@ input {
 		  <textarea placeholder="가게소개글을 입력해주세요" name="shopIntro" id="floatingTextarea2" style="height:300px; width:50%"></textarea>
 	</div>
    
+      <div id="fileArea">
+      <input type="file" id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
+   </div>
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;사업자 번호</p>&nbsp;&nbsp;
 		<div class="input-info">
@@ -400,158 +401,151 @@ input {
 		        }).open();
 		    }
 		</script>
-	
-	
-   
-   <br><br><br>
-   <hr class="line">
-   <br><br><br>
-   
    
   <div class="container">
   <h2>메뉴</h2>
   <br><br>
   <h4>&nbsp;&nbsp;&nbsp;메인 ></h4>
    <table class="table table-bordered table-sm" id="menu">
-	    <thead>
-	      <tr>
-	        <th>메뉴</th>
-	        <th>가격</th>
-			<th style="width:10px;"><button type="button" name="menu" class="menuPlus"  onclick="addRow()">+</button></th>
-	      </tr>
-	    </thead>
-  	</table>
-	
-	<br>
-	<!-- <div id="btnP">
-		<button class="alldelete" id="btn-empty">전체삭제</button>
-	</div> -->
-	
-	<script>
-		function addRow() {
-		  // table element 찾기
-		  const table = document.getElementById('menu');
-		  
-		  // 새 행(Row) 추가
-		  const newRow = table.insertRow();
-		  
-		  // 새 행(Row)에 Cell 추가
-		  const newCell1 = newRow.insertCell(0);
-		  const newCell2 = newRow.insertCell(1);
-		  const newCell3 = newRow.insertCell(2);
-		  
-		  
-		  // Cell에 텍스트 추가
-		 /*  newCell1.innerText = '메뉴';
-		  newCell2.innerText = '가격'; */
+       <thead>
+         <tr>
+           <th>메뉴</th>
+           <th>가격</th>
+         <th style="width:10px;"><button type="button" name="menu" class="menuPlus"  onclick="addRow()">+</button></th>
+         </tr>
+       </thead>
+     </table>
+   
+   <br>
+   <!-- <div id="btnP">
+      <button class="alldelete" id="btn-empty">전체삭제</button>
+   </div> -->
+   
+   <script>
+      function addRow() {
+        // table element 찾기
+        const table = document.getElementById('menu');
+        
+        // 새 행(Row) 추가
+        const newRow = table.insertRow();
+        
+        // 새 행(Row)에 Cell 추가
+        const newCell1 = newRow.insertCell(0);
+        const newCell2 = newRow.insertCell(1);
+        const newCell3 = newRow.insertCell(2);
+        
+        
+        // Cell에 텍스트 추가
+       /*  newCell1.innerText = '메뉴';
+        newCell2.innerText = '가격'; */
 
-		  newCell1.innerHTML = '<input type="text" name="MenuName" size="20" style="width:100%; border: 0;">';
-		  newCell2.innerHTML = '<input type="number" name="MenuPrice" size="20" style="width:100%; border: 0;" min="100">';
-		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow(this)">&nbsp;-&nbsp;</button>';
-		}
-		
-		function deleteRow(r) {
-				  var i = r.parentNode.parentNode.rowIndex;
-				  // table element 찾기
-				  const table = document.getElementById('menu');
-				  // 행(Row) 삭제
-				  const newRow = table.deleteRow(i);
-		}
+        newCell1.innerHTML = '<input type="text" name="MenuName" size="20" style="width:100%; border: 0;">';
+        newCell2.innerHTML = '<input type="number" name="MenuPrice" size="20" style="width:100%; border: 0;" min="100">';
+        newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow(this)">&nbsp;-&nbsp;</button>';
+      }
+      
+      function deleteRow(r) {
+              var i = r.parentNode.parentNode.rowIndex;
+              // table element 찾기
+              const table = document.getElementById('menu');
+              // 행(Row) 삭제
+              const newRow = table.deleteRow(i);
+      }
 
-		/* $(function () {
-		    $('#btn-empty').click( function() {
-		        $( '#menu > thead').empty();
-		    });
-		}); */
-		
-	</script>
-	
-	<br><br><br>
-	
-	<h4>&nbsp;&nbsp;&nbsp;사이드 ></h4>
+      /* $(function () {
+          $('#btn-empty').click( function() {
+              $( '#menu > thead').empty();
+          });
+      }); */
+      
+   </script>
+   
+   <br><br><br>
+   
+   <h4>&nbsp;&nbsp;&nbsp;사이드 ></h4>
    <table class="table table-bordered table-sm" id="sidemenu">
-	    <thead>
-	      <tr>
-	        <th>메뉴</th>
-	        <th>가격</th>
-	        <th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
-	      </tr>
-	     </thead>
-  	</table>
-  	<br>
-		<!-- <div id="btnP">
-			<button class="alldelete" id="btn-empty2">전체삭제</button>
-		</div> -->
-	
-		<script>
-		function addRow2() {
-		  // table element 찾기
-		  const table = document.getElementById('sidemenu');
-		  
-		  // 새 행(Row) 추가
-		  const newRow = table.insertRow();
-		  
-		  // 새 행(Row)에 Cell 추가
-		  const newCell1 = newRow.insertCell(0);
-		  const newCell2 = newRow.insertCell(1);
-		  const newCell3 = newRow.insertCell(2);
-		  // Cell에 텍스트 추가
-		  newCell1.innerHTML = '<input type="text" name="SideName" size="20" style="width:100%; border: 0;">';
-		  newCell2.innerHTML = '<input type="number" name="SidePrice" size="20" style="width:100%; border: 0;" min="100">';
-		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow2(this)">&nbsp;-&nbsp;</button>';
-			}
+       <thead>
+         <tr>
+           <th>메뉴</th>
+           <th>가격</th>
+           <th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
+         </tr>
+        </thead>
+     </table>
+     <br>
+      <!-- <div id="btnP">
+         <button class="alldelete" id="btn-empty2">전체삭제</button>
+      </div> -->
+   
+      <script>
+      function addRow2() {
+        // table element 찾기
+        const table = document.getElementById('sidemenu');
+        
+        // 새 행(Row) 추가
+        const newRow = table.insertRow();
+        
+        // 새 행(Row)에 Cell 추가
+        const newCell1 = newRow.insertCell(0);
+        const newCell2 = newRow.insertCell(1);
+        const newCell3 = newRow.insertCell(2);
+        // Cell에 텍스트 추가
+        newCell1.innerHTML = '<input type="text" name="SideName" size="20" style="width:100%; border: 0;">';
+        newCell2.innerHTML = '<input type="number" name="SidePrice" size="20" style="width:100%; border: 0;" min="100">';
+        newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow2(this)">&nbsp;-&nbsp;</button>';
+         }
 
-		function deleteRow2(r) {
-			  var i = r.parentNode.parentNode.rowIndex;
-			  // table element 찾기
-			  const table = document.getElementById('sidemenu');
-			  // 행(Row) 삭제
-			  const newRow = table.deleteRow(i);
-			}
-		
-	</script>
-	
-	
-	<br><br><br>
-	
-	<h4>&nbsp;&nbsp;&nbsp;음료 ></h4>
+      function deleteRow2(r) {
+           var i = r.parentNode.parentNode.rowIndex;
+           // table element 찾기
+           const table = document.getElementById('sidemenu');
+           // 행(Row) 삭제
+           const newRow = table.deleteRow(i);
+         }
+      
+   </script>
+   
+   
+   <br><br><br>
+   
+   <h4>&nbsp;&nbsp;&nbsp;음료 ></h4>
    <table class="table table-bordered table-sm" id="drinkmenu">
-	    <thead>
-	      <tr>
-	        <th>메뉴</th>
-	        <th>가격</th>
-	        <th style="width:10px;"><button type="button" name="drink" class="menuPlus"  onclick="addRow3()">+</button></th>
-	      </tr>
-	     </thead>
-  	</table>
-  	
-  		<script>
-			function addRow3() {
-			  // table element 찾기
-			  const table = document.getElementById('drinkmenu');
-			  
-			  // 새 행(Row) 추가
-			  const newRow = table.insertRow();
-			  
-			  // 새 행(Row)에 Cell 추가
-			  const newCell1 = newRow.insertCell(0);
-			  const newCell2 = newRow.insertCell(1);
-			  const newCell3 = newRow.insertCell(2);
-			  // Cell에 텍스트 추가
-			  newCell1.innerHTML = '<input type="text" name="DrinkName" size="20" style="width:100%; border: 0;">';
-			  newCell2.innerHTML = '<input type="number" name="DrinkPrice" size="20" style="width:100%; border: 0;" min="100">';
-			  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow3(this)">&nbsp;-&nbsp;</button>';
-				}
-	
-			function deleteRow3(r) {
-				  var i = r.parentNode.parentNode.rowIndex;
-				  // table element 찾기
-				  const table = document.getElementById('drinkmenu');
-				  // 행(Row) 삭제
-				  const newRow = table.deleteRow(i);
-				}
-	</script>
-	
+       <thead>
+         <tr>
+           <th>메뉴</th>
+           <th>가격</th>
+           <th style="width:10px;"><button type="button" name="drink" class="menuPlus"  onclick="addRow3()">+</button></th>
+         </tr>
+        </thead>
+     </table>
+     
+        <script>
+         function addRow3() {
+           // table element 찾기
+           const table = document.getElementById('drinkmenu');
+           
+           // 새 행(Row) 추가
+           const newRow = table.insertRow();
+           
+           // 새 행(Row)에 Cell 추가
+           const newCell1 = newRow.insertCell(0);
+           const newCell2 = newRow.insertCell(1);
+           const newCell3 = newRow.insertCell(2);
+           // Cell에 텍스트 추가
+           newCell1.innerHTML = '<input type="text" name="DrinkName" size="20" style="width:100%; border: 0;">';
+           newCell2.innerHTML = '<input type="number" name="DrinkPrice" size="20" style="width:100%; border: 0;" min="100">';
+           newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow3(this)">&nbsp;-&nbsp;</button>';
+            }
+   
+         function deleteRow3(r) {
+              var i = r.parentNode.parentNode.rowIndex;
+              // table element 찾기
+              const table = document.getElementById('drinkmenu');
+              // 행(Row) 삭제
+              const newRow = table.deleteRow(i);
+            }
+   </script>
+   
    
    <br><br>
    <hr class="line">
@@ -564,7 +558,7 @@ input {
  	 <br>
   </div>
   	
-	 </form> 
+	 </form>
   
 
  

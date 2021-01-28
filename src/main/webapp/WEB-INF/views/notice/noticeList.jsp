@@ -9,7 +9,6 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
 	rel="stylesheet">
-
 <!-- 부트 스트랩 -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -29,14 +28,10 @@
 	integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
 	crossorigin="anonymous"></script>
 <!-- jQuery -->
-<script src="${ contextPath }/js/jquery-3.5.1.min.js"></script>
+<%-- <script src="${ contextPath }/js/jquery-3.5.1.min.js"></script> --%>
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
 	crossorigin="anonymous"></script>
-
-<!-- 가독성 -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <title>밥먹고가조 공지사항</title>
 
 <style>
@@ -78,10 +73,10 @@ td{border-bottom: 1px solid #1D3557 !important;}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
-	<c:import url="../common/menubar.jsp" />
+<%-- 	<c:import url="../common/menubar.jsp" /> --%>
+<%@ include file="/WEB-INF/views/common/menubar.jsp"%> 
 	<br>
 	<br>
-
 	<h1 style="text-align: center;">공지사항 ></h1>
 
 	<div class="row">
@@ -136,7 +131,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				<!-- 페이지 -->
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4"><b>[${ p }]</b></font>
+						<font color="orange" size="4"><b>[${ p }]</b></font>
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
@@ -158,7 +153,6 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					<a class="aPage" href="${ after }">[다음]</a>
 				</c:if>
 			</td>
-
 			</tr>	
 		</table>
 			
@@ -171,7 +165,8 @@ td{border-bottom: 1px solid #1D3557 !important;}
 		<div class="col-2"></div>
 	</div>
 
-	<c:import url="../common/footer.jsp" />
+<%-- 	<c:import url="../common/footer.jsp" /> --%>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
 	<script>
 		function nInsert(){

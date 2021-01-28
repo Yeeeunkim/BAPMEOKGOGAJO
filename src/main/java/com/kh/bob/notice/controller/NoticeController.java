@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -93,9 +92,6 @@ public class NoticeController {
 	public String noticeInsert(@ModelAttribute Board board, @RequestParam("uploadFile") MultipartFile uploadFile,
 			HttpServletRequest request) {
 		Attachment attachment = new Attachment();
-
-
-		System.out.println(board);
 
 		if (uploadFile != null && !uploadFile.isEmpty()) { // 첨부파일이 있다면
 			// 리네임
@@ -309,6 +305,7 @@ public class NoticeController {
 
 		if (board.getbContents().equals("")) { // QnA 내용이 없으면
 
+
 			board.setbContents(" "); // 공백 추가
 		}
 		
@@ -438,8 +435,6 @@ public class NoticeController {
 		}
 	}
 	
-	
-	
 	// FAQ 리스트 뷰
 	@RequestMapping("fList.no")
 	public ModelAndView faqList(ModelAndView mv) {
@@ -457,7 +452,6 @@ public class NoticeController {
 	}
 	
 	// FAQ 등록 뷰
-
 	@RequestMapping("fInsertForm.no")
 	public String faqInsertView() {
 		return "faqInsertForm";

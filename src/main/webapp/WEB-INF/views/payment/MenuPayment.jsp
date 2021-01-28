@@ -57,13 +57,11 @@
 	<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
 	<br><br>
 	<div id="body" align="center">
-
 	<h2>식당 예약</h2><br><br>
 	<form action="payment.do" name="payment">
 		<table id="tableBar">
 			<tr>
 				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/resources/images/sushi.png"></td>
-
 				<td width="150" align="center">가게 :</td>
 				<td>가게에서 직접 주문</td>
 			</tr>
@@ -85,10 +83,9 @@
 			</tr>
 		</table>
 		<br>
-
 <!-- 		<div id="map"></div> -->
 
-	<br><br>
+		<br><br>
 		<div id="check">
 		<div id="notice">※ 형법 제314조(업무방해)에 의하여<br>
 				       노쇼문제 발생 시 법적문제가 생길수 있습니다</div><br>
@@ -101,8 +98,8 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	
 	<!-- 지도 API script-->
+<!-- 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script> -->
 
-	<!-- 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script> -->
 	<script>
 		// 이미지 지도에서 마커가 표시될 위치입니다 
 // 		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
@@ -142,8 +139,7 @@
 // 				return;
 // 			}
 // 			payment.submit();			
-// 		}
-		
+// 		}		
 	</script>
 	
 </body>
