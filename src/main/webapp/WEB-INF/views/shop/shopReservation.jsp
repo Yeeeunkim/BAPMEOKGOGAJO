@@ -290,6 +290,7 @@ h4,h2{margin-left:8%;}
 			               data : {shopNo,shopNo},
 			               success : function(data){
 			            	   for(var i=0; i<data.shopreserveTime.length; i++){
+			            		   document.getElementById(data.shopreserveTime[i]).disabled = false;
 									if(data.shopreserveDate[i]==date){
 										 console.log(data.shopreserveTime[i]);
 										 document.getElementById(data.shopreserveTime[i]).disabled = true;
@@ -309,6 +310,7 @@ h4,h2{margin-left:8%;}
 				               data : {shopNo,shopNo},
 				               success : function(data){
 									for(var i=0; i<data.shopreserveTime.length; i++){
+										document.getElementById(data.shopreserveTime[i]).disabled = false;
 										if(data.shopreserveDate[i]==date){
 											 console.log(data.shopreserveTime[i]);
 											 document.getElementById(data.shopreserveTime[i]).disabled = true;
