@@ -128,8 +128,8 @@
    
 <!-- 신진식 시작 =================================================== -->
    
-	<insert id="insertShop">
-		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
+	<insert id="insertReserveShopInfo">
+		insert into shop_info values(SEQ_SRNO.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
 	</insert>
 
 	 <insert id="insertMenu" >
