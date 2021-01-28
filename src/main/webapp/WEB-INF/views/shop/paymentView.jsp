@@ -132,7 +132,7 @@
 					pay_method : 'card',
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : shopName,
-					amount : 10, // totalPrice, //판매 가격
+					amount : totalPrice, //판매 가격
 					buyer_email : 'iamport@siot.do',
 					buyer_name : '구매자이름',
 					buyer_tel : '010-1234-5678',
