@@ -23,7 +23,7 @@ public class ShoplistPagination {
 
 		ShoplistPageInfo pi = new ShoplistPageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 
+		return pi;
 		
-		return spi;
 	}
 }

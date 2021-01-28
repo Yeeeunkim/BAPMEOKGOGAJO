@@ -89,8 +89,11 @@ public class ShopDAO {
 
 	// 원태원 시작 ====================================================
 	
-	public List<String> getShopList(SqlSessionTemplate sqlSession,String SHOP_CATE) {
-		List<String> ShopList = sqlSession.selectList("shopMapper.getShopList",SHOP_CATE);
+	public List<String> getShopList(SqlSessionTemplate sqlSession,String SHOP_CATE, ShoplistPageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		List<String> ShopList = sqlSession.selectList("shopMapper.getShopList",SHOP_CATE, rowBounds);
 		return ShopList;
 	}
 
