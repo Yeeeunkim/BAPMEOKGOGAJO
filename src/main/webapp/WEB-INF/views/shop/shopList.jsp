@@ -116,12 +116,11 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                      <%--  <img src="<%= request.getContextPath() %>/shopuploadFiles/${shopList.SHOP_RENAME}" class="card-img-top" alt="..."> --%>
-                       <img src="<%= request.getContextPath() %>/shopuploadFiles/${shopList.SHOP_IMGURL}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
                          <div class="card-body">
-                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
-                          <p class="card-text">★4.7 | 리뷰n개</p>
-                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary" value="${shopList.SHOP_NAME}">예약하기</a>
+                          <p class="card-text"><c:out value="${shopList.shopName}"/> </p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-primary" value="${shopList.shopName}">예약하기</a>
                           </div>
                       </div>
                   </div>
@@ -134,11 +133,11 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>${shopList.IMG_URL}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
                          <div class="card-body">
-                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
-                          <p class="card-text">★4.6 | 리뷰n개</p>
-                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary">예약하기</a>
+                          <p class="card-text"><c:out value="${shopList.shopName}"/> </p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
                   </div>
@@ -152,11 +151,11 @@
 
      <div class="col-4">
                   <div class="card" style="width: 255px; height: 400px;"> 
-                       <img src="<%= request.getContextPath() %>${shopList.IMG_URL}" class="card-img-top" alt="...">
+                       <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
                          <div class="card-body">
-                          <p class="card-text"><c:out value="${shopList.SHOP_NAME}"/> </p>
+                          <p class="card-text"><c:out value="${shopList.shopName}"/> </p>
                           <p class="card-text">★4.8 | 리뷰n개</p>
-                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.SHOP_NO}" class="btn btn-primary">예약하기</a>
+                          <a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-primary">예약하기</a>
                           </div>
                       </div>
                   </div>
@@ -165,12 +164,88 @@
            </div>     
            
            
-         
+           
+           <%--     <div class="row">
+               
+               
+               
+                 <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/images/찜닭.png" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text">뜨끈한 찜닭 - 강남점</p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="Reservation.do" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+                
+            
+                 <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/images/스시.png" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text">바다 스시- 청담점</p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="#" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  
+                 <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/images/마라탕.png" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text">장첸 마라탕 - 강남점</p>
+                          <p class="card-text">★4.4 | 리뷰n개</p>
+                          <a href="#" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+              </div> --%>
            
            
               <br><br>
               
-             
+              <!-- 식당 2행 -->
+           
+           <%--    <div class="row">
+              <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/images/텐동.png" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text">먹고싶다 텐동 - 역삼점</p>
+                          <p class="card-text">★4.9 | 리뷰n개</p>
+                          <a href="#" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+                
+            
+                 <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/images/꼬치.png" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text">양꼬치구이 - 잠실점</p>
+                          <p class="card-text">★4.3 | 리뷰n개</p>
+                          <a href="#" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  
+                 <div class="col-4">
+                  <div class="card" style="width: 255px; height: 400px;"> 
+                       <img src="<%= request.getContextPath() %>/resources/images/샐러드.png" class="card-img-top" alt="...">
+                         <div class="card-body">
+                          <p class="card-text">아삭 샐러드 - 강남점</p>
+                          <p class="card-text">★4.8 | 리뷰n개</p>
+                          <a href="#" class="btn btn-primary">예약하기</a>
+                          </div>
+                      </div>
+                  </div>
+              </div> --%>
               
               
               <br><br>
@@ -214,13 +289,13 @@
       </div>
    </div>
    
-   	<script>
-		function enrollShop(){
-			location.href= "${ contextPath }/shopEnroll.do"
-		}
-	</script>
-	
-	
+      <script>
+      function enrollShop(){
+         location.href= "${ contextPath }/shopEnroll.do"
+      }
+   </script>
+   
+   
    
 </body>
 </html>

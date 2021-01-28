@@ -320,9 +320,14 @@ input {
 			
 		</div>	
 		
-	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp;
+<!-- 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp; -->
+<!-- 		<div class="input-info"> -->
+<!-- 			<input class= "cInput" type="time" name="maxReservationTime" id="MaxReservationTime" placeholder="예약마감시간을 입력하세요."> -->
+<!-- 		</div> -->
+		
+		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;최대예약시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="time" name="maxReservationTime" id="MaxReservationTime" placeholder="예약마감시간을 입력하세요.">
+			<input class= "cInput" type="text" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
 		</div>
 		
 		

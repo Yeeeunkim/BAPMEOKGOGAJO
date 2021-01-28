@@ -67,34 +67,34 @@
 			<tr>
 				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/resources/images/sushi.png"></td>
 				<td width="150" align="center">가게 :</td>
-				<td id="sName">${ shop.shopName }</td>
+				<td id="sName">${shopname}</td>
 			</tr>
 			<tr>
 				<td align="center">메뉴 :</td>
 				<td>
-					<c:forEach var="m" items="${ mList }">
-						${ m.menuName } - ${ m.menuQty } <br>
+					 <c:forEach var="m" items="${ reservemenu }">
+						${ m.menuName } - ${ m.menuQty }개 <br>
 					</c:forEach>
 				</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약인원 :</td>
 				<td>
-						${ reserve.reservePeople } 명 <br>
+						${ ri.reservePeople } 명 <br>
 				</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약일 :</td>
-				<td>${ reserve.reserveTime }</td>
+				<td>${ ri.reserveDate } ${ ri.reserveTime } </td>
 			</tr>
 			<tr class="red">
 				<td align="center">총금액 :</td>
-				<td id="totalPrice">${ reserve.totalPrice }</td>
+				<td id="totalPrice">${ ri.totalPrice }</td>
 			</tr> 
 		</table>
 		
 		
-		<input type="hidden" id="rNo" value='${ reserve.reserveNo }'>
+		<input type="hidden" id="rNo" value='${reserveNo}'>
 		<br>
 <!-- 		<div id="map"></div> -->
 		<br><br>

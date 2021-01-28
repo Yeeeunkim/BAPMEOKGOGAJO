@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
@@ -46,7 +48,17 @@ public interface ShopService {
 
 	int insertMenu(List<ShopMenu> shopmenu);	
 
-
+	List<ShopMenu> selectShopMenu(int shopNo);
+	
+	int insertDeclare(ShopDeclare sd);
+	
+	int insertReserveShopInfo(ReserveInfo ri);
+	
+	ReserveInfo selectReserveNo(ReserveInfo ri);
+	
+	int insertReserveShopMenu(List<ReserveMenu> reservemenu);
+	
+	ArrayList<ReserveInfo> selectResreveTime(int shopNo);
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
@@ -54,7 +66,12 @@ public interface ShopService {
 	List<String> getShopList();
 
 	List<Map<String, Object>> getReservationList(int shop_no);
-
+	
+	
+	
+	
+	
+	
 
 	/* void insertShop(HashMap<String, Object> data); */
 	

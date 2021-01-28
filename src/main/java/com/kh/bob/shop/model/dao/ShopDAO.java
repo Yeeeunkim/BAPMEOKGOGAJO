@@ -12,6 +12,8 @@ import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 
 
@@ -61,6 +63,36 @@ public class ShopDAO {
 		System.out.println("테스트3:"+shopmenu);
 		return sqlSession.insert("shopMapper.insertMenu", shopmenu);
 	}
+	
+	public List<ShopMenu> selectShopMenu(SqlSessionTemplate sqlSession, int shopno) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectShopMenu", shopno);
+	}
+
+	public int insertDeclare(SqlSessionTemplate sqlSession, ShopDeclare sd) {
+		return sqlSession.insert("shopMapper.insertDeclare", sd);
+	}
+	
+	public int inserReserveShopInfo(SqlSessionTemplate sqlSession, ReserveInfo ri) {
+		return sqlSession.insert("shopMapper.insertReserveShopInfo", ri);
+	}
+	
+	public ReserveInfo selectReserveNo(SqlSessionTemplate sqlSession, ReserveInfo ri) {
+		return sqlSession.selectOne("shopMapper.selectReserveNo", ri);
+	}
+	
+	public ArrayList<ReserveInfo> selectReserveTime(SqlSessionTemplate sqlSession, int shopNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.reserveTime", shopNo);
+	}
+	
+	public int insertReserveShopMenu(SqlSessionTemplate sqlSession, List<ReserveMenu> reservemenu) {
+		System.out.println(reservemenu+"@@@@@@@@@@@@@@@@@!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@2");
+		return sqlSession.insert("shopMapper.insertReserveMenu", reservemenu);
+	}
+	
+	
+
+
+	
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
@@ -75,6 +107,11 @@ public class ShopDAO {
 		return ReservationList;
 	}
 
+
+
+	
+	
+	
 	/*
 	 * public void insertShop(SqlSessionTemplate sqlSession,HashMap<String, Object>
 	 * data) { sqlSession.insert("shopMapper.insertShop"); }
