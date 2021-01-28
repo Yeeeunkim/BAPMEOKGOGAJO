@@ -129,14 +129,8 @@
    
 <!-- 신진식 시작 =================================================== -->
 
-   
-	<insert id="insertReserveShopInfo">
-		insert into shop_info values(SEQ_SRNO.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
-
-
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
-
 	</insert>
 
 	 <insert id="insertMenu" >
@@ -145,8 +139,6 @@
 			VALUES (SEQ_MNO.nextval, #{item.menuName}, #{item.menuPrice}, 'Y', #{item.menuCate},seq_sno.currval)
 		</foreach> 		
 	</insert>	    
-
-
 
 
 	<resultMap type="ShopMenu" id="shopMenuResulSet">
@@ -172,7 +164,14 @@
 	</insert>
 	
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
-		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc
+<!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
+		select *
+		from (
+				select *
+				from reserve_info
+				order by reserve_no desc)
+		where
+			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
 	
 	

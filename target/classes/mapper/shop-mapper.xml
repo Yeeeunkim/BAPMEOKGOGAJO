@@ -141,8 +141,6 @@
 	</insert>	    
 
 
-
-
 	<resultMap type="ShopMenu" id="shopMenuResulSet">
 		<id property="menuNo" column="MENU_NO" />
 		<id property="menuName" column="MENU_NAME" />
@@ -166,7 +164,14 @@
 	</insert>
 	
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
-		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc
+<!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
+		select *
+		from (
+				select *
+				from reserve_info
+				order by reserve_no desc)
+		where
+			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
 	
 	
