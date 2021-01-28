@@ -99,6 +99,7 @@
 	
 	<!-- 지도 API script-->
 <!-- 	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dfaad367d6c098344db683384bda68d"></script> -->
+
 	<script>
 		// 이미지 지도에서 마커가 표시될 위치입니다 
 // 		var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); 
@@ -138,8 +139,7 @@
 // 				return;
 // 			}
 // 			payment.submit();			
-// 		}
-		
+// 		}		
 	</script>
 	
 </body>

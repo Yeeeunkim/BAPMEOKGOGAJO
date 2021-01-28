@@ -9,6 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
@@ -16,7 +18,6 @@ import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Repository("sDAO")
 public class ShopDAO {
-	
 	// 강동기 시작 ===============================================
 
 	// 강동기 끝 ================================================
@@ -73,18 +74,47 @@ public class ShopDAO {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
-	
+
 	public int insertShop(SqlSessionTemplate sqlSession, ShopInfo si) {
 		System.out.println("테스트2:"+si);
 		return sqlSession.insert("shopMapper.insertShop", si);
 	}
 
+
 	public int insertMenu(SqlSessionTemplate sqlSession, List<ShopMenu> shopmenu) {
 		System.out.println("테스트3:"+shopmenu);
 		return sqlSession.insert("shopMapper.insertMenu", shopmenu);
 	}
+	
+	public List<ShopMenu> selectShopMenu(SqlSessionTemplate sqlSession, int shopno) {
+		return (ArrayList)sqlSession.selectList("shopMapper.selectShopMenu", shopno);
+	}
+
+	public int insertDeclare(SqlSessionTemplate sqlSession, ShopDeclare sd) {
+		return sqlSession.insert("shopMapper.insertDeclare", sd);
+	}
+	
+	public int inserReserveShopInfo(SqlSessionTemplate sqlSession, ReserveInfo ri) {
+		return sqlSession.insert("shopMapper.insertReserveShopInfo", ri);
+	}
+	
+	public ReserveInfo selectReserveNo(SqlSessionTemplate sqlSession, ReserveInfo ri) {
+		return sqlSession.selectOne("shopMapper.selectReserveNo", ri);
+	}
+	
+	public ArrayList<ReserveInfo> selectReserveTime(SqlSessionTemplate sqlSession, int shopNo) {
+		return (ArrayList)sqlSession.selectList("shopMapper.reserveTime", shopNo);
+	}
+	
+	public int insertReserveShopMenu(SqlSessionTemplate sqlSession, List<ReserveMenu> reservemenu) {
+		System.out.println(reservemenu+"@@@@@@@@@@@@@@@@@!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@2");
+		return sqlSession.insert("shopMapper.insertReserveMenu", reservemenu);
+	}
+	
+	
 
 
+	
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
@@ -110,7 +140,6 @@ public class ShopDAO {
 		return sqlSession.selectOne("shopMapper.getListCateCount", shop);
 	}
 
-	
 
 	
 	
@@ -123,7 +152,5 @@ public class ShopDAO {
 	
 	
 	// 원태원 끝 ======================================================
-
-	
 
 }

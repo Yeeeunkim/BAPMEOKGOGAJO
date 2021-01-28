@@ -23,7 +23,6 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.memberInsert", m);
 	}
 
-
 	public int checkIdDup(SqlSessionTemplate sqlSession, String member_id) {
 		return sqlSession.selectOne("memberMapper.checkidDup", member_id);
 	}
@@ -63,13 +62,4 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.selectSmenu", sm);
 	}
 
-	
-	
-	
-// 김예은 끝 =================================================
-
-	public int updatePwd(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		return sqlSession.update("memberMapper.updatePwd", map);
-	}
-// 김예은 끝 =================================================
 }

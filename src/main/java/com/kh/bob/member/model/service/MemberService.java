@@ -29,17 +29,11 @@ public interface MemberService {
 
 	Member findPwd(Model model);
 
-
 	int pwdUpdate(HashMap<String, String> map);
 
 	int selectSinfo(ShopInfo si);
 
 	int selectSmenu(ShopMenu sm);
-
-
-
-
-
 
 
 

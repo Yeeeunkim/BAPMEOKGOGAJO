@@ -10,29 +10,32 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.bob.common.ShoplistPagination;
-import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Controller
 public class ShopController {
-
 	@Autowired
 	private ShopService sService;
 
@@ -182,11 +185,104 @@ public class ShopController {
 		return mv;
 		
 	}
-	
+
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
 
+	@RequestMapping("ShopReservation.do")
+	public ModelAndView reservationForm(@ModelAttribute ReserveInfo ri,HttpServletRequest request,ModelAndView mv) {
+		
+		String mainmenu[] =request.getParameterValues("menuname");  //메뉴이름 받아옴
+		String shopname=request.getParameter("shopName");
+		int shopNo=ri.getShopNo();
+		List<ShopMenu> sm=sService.selectShopMenu(shopNo); //식당번호를 통해 식당메뉴 리스트 다 받아오기.
+		List<ReserveMenu> reservemenu = new ArrayList<ReserveMenu>(); //예약메뉴들을 담을 리스트
+
+		int total=0; //총가격  -> 상차림 비용
+		
+		for(int i=0; i<sm.size(); i++) {
+			int menuNo=sm.get(i).getMenuNo();
+			String menuName=sm.get(i).getMenuName();
+			int price=Integer.parseInt(sm.get(i).getMenuPrice());
+			int menucount=Integer.parseInt(mainmenu[i]);
+//			total+=price*menucount;
+			if(menucount!=0) {
+				reservemenu.add(new ReserveMenu(menuNo,menuName,menucount));
+			}
+		}
+		
+		for(int i=0; i<reservemenu.size(); i++) {
+		System.out.println(reservemenu.get(i)+"예약메뉴 갯수 이름 확인합니다.");
+		}
+		
+		
+		total=ri.getReservePeople()*2000;  //인원수 *2000을 상차림 비용
+		ri.setTotalPrice(total);
+		
+		
+		int result=sService.insertReserveShopInfo(ri);
+		ReserveInfo reserveInfo=sService.selectReserveNo(ri);
+		int reserveNo=reserveInfo.getReserveNo();
+		int result2=sService.insertReserveShopMenu(reservemenu);
+		
+		System.out.println(reservemenu+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
+		System.out.println(ri+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2"+reserveNo+"##########################");
+		
+		if(result>0 && result2>0) {
+			mv.addObject("reserveNo",reserveNo);
+			mv.addObject("shopname", shopname);
+			mv.addObject("ri",ri);
+			mv.addObject("reservemenu", reservemenu);
+			mv.setViewName("/shop/paymentView");
+			return mv;
+		}else {
+			throw new ShopException("게시글 등록에 실패하였습니다.");
+		}
+	}
+
+
+	@RequestMapping(value ="/reserveDate.do")
+	@ResponseBody
+	public void getReserveDateInfo(@RequestParam("shopNo") int shopNo, HttpServletResponse response) {
+		
+		System.out.println(shopNo+"********************************");
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		ArrayList<ReserveInfo> reserveTime=sService.selectResreveTime(shopNo);		
+		
+		List <Date>shopreserveDate = new ArrayList();
+		List shopreserveTime = new ArrayList();
+		
+		for(int i=0; i<reserveTime.size(); i++) {
+		System.out.println(reserveTime.get(i).getReserveDate()+"///"+reserveTime.get(i).getReserveTime());
+			shopreserveDate.add(reserveTime.get(i).getReserveDate());
+			shopreserveTime.add(reserveTime.get(i).getReserveTime());
+		}
+		
+		data.put("shopreserveDate", shopreserveDate);
+		data.put("shopreserveTime", shopreserveTime);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		try {
+			gson.toJson(data,response.getWriter());
+		} catch (JsonIOException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(data);
+		
+//		return data;
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("shopEnrollAdd.do")
 	public String shopEnrollAdd(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg") MultipartFile thumbnailImg,
 			HttpServletRequest request, @RequestParam("address1") String address1,
@@ -272,37 +368,103 @@ public class ShopController {
 		return renameFileName;
 
 	}
+	
+	
+	@RequestMapping("DeclareEnrollForm.do")
+	public ModelAndView declareEnrollForm(@RequestParam int shopNo, @RequestParam String shopName,ModelAndView mv) {
+		
+		mv.addObject("shopNo", shopNo);
+		mv.addObject("shopName", shopName);
+		mv.setViewName("/shop/shopDeclareForm");
+		
+		return mv;
+	}
+	
+	@RequestMapping("declare.do")
+	public String declareEnroll(@ModelAttribute ShopDeclare sd) {
+		System.out.println(sd+"testtest");
+		
+		int declareInsert=sService.insertDeclare(sd);
+		
+		if (declareInsert>0) {
+			return "/shop/shopList";
+		} else {
+			throw new ShopException("식당신고 등록에 실패하였습니다.");
+		}
+//		return "/shop/shopList";
+	}
+	
 
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
 
-	@RequestMapping("shopEnroll.do")
-	public String shopEnrollForm() {
-		return "/shop/shopEnroll";
-	}
-
-	//	@RequestMapping("shop.do")
-	//	public String shopForm() {
-	//		return "/shop/shopList";
-	//	}
-
 	@RequestMapping("/Reservation.do")
-	public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
-			ModelAndView mv) {
+   public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
+         ModelAndView mv) {
 
-		int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
+      int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
+      ShopInfo shopInfo = sService.selectShop(shop_no);
+      
+      List<String> timeList = new ArrayList<String>();
 
-		List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
-		
-		System.out.println(reservationList);
 
-		mv.addObject("reservationList", reservationList);
-		mv.setViewName("/shop/shopReservation");
+      
+      String openTime=shopInfo.getShopOpen();
+      String closeTime=shopInfo.getShopClose();
+      String breakStartTime=shopInfo.getShopBreakStart();
+      String breakCloseTime=shopInfo.getShopBreakClose();
+      int minute1 =30;
+      int maxResTime = Integer.parseInt(shopInfo.getMaxReservationTime());
+      
+      LocalTime opentime1 = LocalTime.parse(openTime);  //오픈시간
+      LocalTime closeTime1 = LocalTime.parse(closeTime);  //마감시간
+      LocalTime breakStartTime1 = LocalTime.parse(breakStartTime);  //브레이크 시작시간
+      LocalTime breakCloseTime1 = LocalTime.parse(breakCloseTime);  //브레이크 마감시간
+      
+      int reserveTime=60*maxResTime;
+      
+      breakStartTime1=breakStartTime1.minusMinutes(reserveTime);
+      closeTime1=closeTime1.minusMinutes(reserveTime);
+      
+      System.out.println("변경된 브레이크 시작 시간은?: "+breakStartTime1);
+      
+      for(int i=0; i<100; i++) {
+         String open=opentime1+"";
+         String breaktime=breakStartTime1+"";
+         opentime1=opentime1.plusMinutes(minute1);
+//         System.out.println(open);
+            timeList.add(open);
+         if(open.equals(breaktime)) {
+            break;
+         }
+      }
+      
+      for(int i=0; i<100; i++) {
+         String closetime=closeTime1+"";
+         String breaktime=breakCloseTime1+"";
+         breakCloseTime1=breakCloseTime1.plusMinutes(minute1);
+//         System.out.println(breaktime);
+            timeList.add(breaktime);
+         if(breaktime.equals(closetime)) {
+            break;
+         }
+      }
+      
+      System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+      System.out.println(timeList);
 
-		return mv;
 
-	}
+      List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
+
+      mv.addObject("timeList", timeList);
+      mv.addObject("closeTime1",closeTime1);
+      mv.addObject("reservationList", reservationList);
+      mv.setViewName("/shop/shopReservation");
+
+      return mv;
+
+   }
 
 	@RequestMapping("/MainMenu.do")
 	public @ResponseBody HashMap<String, Object> MainMenu(HttpServletRequest req) {

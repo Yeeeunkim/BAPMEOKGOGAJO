@@ -63,9 +63,12 @@
 		<h1 align="center"><b>식당 신고></b></h1>
 		<br><br>
 		<form action="declare.do" align="center">
-			<div id="reviewran"><h2><b name="shopName">행복한 찜닭</b> 에 신고내용을 써주세요</h2></div>
+			 <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+			 <input type="hidden" name="shopNo" value="${shopNo}"> 
+			  <input type="hidden" name="shopName" value="${shopName}"> 
+			<div id="reviewran"><h2><b>${shopName}</b> 에 신고내용을 써주세요</h2></div>
 			<br><br>
-			<textarea rows="15" cols="120"></textarea><br><br>
+			<textarea rows="15" cols="120" name="shopDeclareComment"></textarea><br><br>
 			<div>
 			</div>
 			<div class="btn">
@@ -73,6 +76,15 @@
 				<input type="submit" id="send" value="등록">
 			</div>
 		</form>
+			
+			<script>
+		$(document).ready(function(){
+			$("#cancle").click(function(){
+				window.history.back();
+			});
+		});
+		</script>
+
 	</div>
 	<c:import url="../common/footer.jsp"/>
 

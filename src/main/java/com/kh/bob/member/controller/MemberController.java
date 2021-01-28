@@ -184,8 +184,7 @@ public class MemberController {
 		}
 	}
 	
-
-	// 수정 아이디 중복검사
+	//아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
 		boolean isUsable = bmService.checkIdDup(member_id) == 0 ? true : false;
@@ -204,7 +203,7 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	//비밀번호 변경
+
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";
@@ -229,6 +228,7 @@ public class MemberController {
 			}else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
+
 		}else {
 			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
@@ -239,7 +239,7 @@ public class MemberController {
 	public String mCheckPwdForm() {
 		return "checkPwd";
 	}
-	
+
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
@@ -268,6 +268,7 @@ public class MemberController {
 	
 	//사업자 마이페이지 
 	@RequestMapping("shopMypage.me")
+
 	public String shopMyPageForm(@ModelAttribute ShopInfo si , @ModelAttribute ShopMenu sm, @ModelAttribute ShopSeat ss,  Model model) {
 		int sInfo = bmService.selectSinfo(si);
 		int sMenu = bmService.selectSmenu(sm);

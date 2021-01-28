@@ -11,7 +11,6 @@ public class Member {
 	private String gender;
 	private Date member_enroll;
 	private String member_status;
-
 	private String member_birth; 
 	private int auth_code;
 	
@@ -119,6 +118,4 @@ public class Member {
 				+ ", member_status=" + member_status + ", member_birth=" + member_birth + ", auth_code=" + auth_code
 				+ "]";
 	}
-
-
 }

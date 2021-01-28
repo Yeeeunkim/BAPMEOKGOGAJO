@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -93,7 +92,6 @@ public class NoticeController {
 	public String noticeInsert(@ModelAttribute Board board, @RequestParam("uploadFile") MultipartFile uploadFile,
 			HttpServletRequest request) {
 		Attachment attachment = new Attachment();
-
 
 		if (uploadFile != null && !uploadFile.isEmpty()) { // 첨부파일이 있다면
 			// 리네임
@@ -304,9 +302,10 @@ public class NoticeController {
 		
 		// QnA 카테고리 == 1
 		board.setCateCode(1);
-		
 
-		if (board.getbContents().equals("")) { // 공지사항 내용이 없으면
+		if (board.getbContents().equals("")) { // QnA 내용이 없으면
+
+
 			board.setbContents(" "); // 공백 추가
 		}
 		
@@ -349,7 +348,6 @@ public class NoticeController {
 	public String addCommnet(@ModelAttribute Comment comment, HttpSession session) {
 		// @@@@@ 수정필요 댓글 작성시 작성자 아이디도 보내야함 @@@@@
 		
-
 		int result = nService.insertComment(comment);
 		
 		if(result > 0) {
