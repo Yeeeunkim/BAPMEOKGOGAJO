@@ -345,9 +345,9 @@ public class ShopController {
 	@RequestMapping("/shop.do")
 	
 	public ModelAndView shopForm(@RequestParam(value="page", required=false) Integer page,
-												ModelAndView mv , 
-												HttpServletRequest req) {
-
+								 @RequestParam(value="SHOP_CATE", required=false) String SHOP_CATE,
+								 ModelAndView mv , 
+								 HttpServletRequest req) {
 		int currentPage = 1;
 	      if(page != null) {
 	         currentPage = page;
@@ -355,15 +355,43 @@ public class ShopController {
 	      
 	    ShopInfo shop = new ShopInfo();
 	      
-	    int listCount = sService.getListCount(shop);
+	    System.out.println(SHOP_CATE);
 	    
+	    int listCount;
+	    if(SHOP_CATE == null) {
+	    	listCount = sService.getListAllCount(shop);
+	    } else {
+	    	switch(SHOP_CATE) {
+		    	case "1" :
+					shop.setShopCate(1);
+					break;
+				case "2" : 
+					shop.setShopCate(2);
+					break;
+				case "3" : 
+					shop.setShopCate(3);
+					break;
+				case "4" :
+					shop.setShopCate(4);
+					break;
+				case "5" : 
+					shop.setShopCate(5);
+					break;
+				case "6" :
+					shop.setShopCate(6);
+					break;
+				case "7" : 
+					shop.setShopCate(7);
+					break; 
+	    	}
+	    	
+	    	listCount = sService.getListCateCount(shop);
+	    }
+	     
 	    
 		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
 		
-		
-		
-		
-		String SHOP_CATE = req.getParameter("SHOP_CATE");
+//		SHOP_CATE = req.getParameter("SHOP_CATE");
 		
 		List<String> shopList = sService.getShopList(SHOP_CATE, pi);
 		
@@ -371,6 +399,7 @@ public class ShopController {
 		if(shopList != null) {
 			mv.addObject("shopList", shopList);
 			mv.addObject("pi", pi);
+			mv.addObject("SHOP_CATE", SHOP_CATE);
 			mv.setViewName("/shop/shopList");
 		} else {
 			throw new ShopException("게시글 전체 조회에 실패했습니다.");
@@ -378,19 +407,7 @@ public class ShopController {
 
 		return mv;
 	}
-	
-//	@RequestMapping("/shop.do")
-//	public ModelAndView shopList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
-//		
-//		int currentPage = 1;
-//	    if(page != null) {
-//	       currentPage = page;
-//	    }
-//		
-//	}
-	
-	
-	
+
 	
 
 	@RequestMapping("/test.do")

@@ -56,6 +56,10 @@ public interface ShopService {
 
 	List<Map<String, Object>> getReservationList(int shop_no);
 
+	int getListAllCount(ShopInfo shop);
+
+	int getListCateCount(ShopInfo shop);
+
 
 	
 	

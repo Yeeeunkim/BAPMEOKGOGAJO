@@ -102,6 +102,14 @@ public class ShopDAO {
 		return ReservationList;
 	}
 
+	public int getListAllCount(SqlSessionTemplate sqlSession, ShopInfo shop) {
+		return sqlSession.selectOne("shopMapper.getListAllCount", shop);
+	}
+
+	public int getListCateCount(SqlSessionTemplate sqlSession, ShopInfo shop) {
+		return sqlSession.selectOne("shopMapper.getListCateCount", shop);
+	}
+
 	
 
 	

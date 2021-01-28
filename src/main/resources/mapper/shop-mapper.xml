@@ -178,6 +178,17 @@
      
    </select>
    
+   <select id="getListAllCount" resultType="_int">
+   		select count(*)
+   		from shop_info
+   </select>
+   
+   <select id="getListCateCount" resultType="_int">
+   		select count(*)
+   		from shop_info
+   		WHERE SHOP_CATE  = #{shopCate}
+   </select>
+   
 <!-- 원태원 끝 ====================================================== -->
 
 
