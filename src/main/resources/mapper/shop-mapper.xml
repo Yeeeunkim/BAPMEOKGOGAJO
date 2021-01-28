@@ -126,7 +126,7 @@
 	</insert>
 	
 	<insert id="insertReserveShopInfo">
-		insert into RESERVE_INFO values(SEQ_RNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'Y',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
+		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'Y',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
 	
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
@@ -137,7 +137,7 @@
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
 			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
-			VALUES (SEQ_RNO.currval, #{item.menuNo}, #{item.menuName},#{item.MenuQty})
+			VALUES (SEQ_SRNO.currval, #{item.menuNo}, #{item.menuName},#{item.MenuQty})
 		</foreach> 	
 	</insert> 
 	
