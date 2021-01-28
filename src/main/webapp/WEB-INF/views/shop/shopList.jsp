@@ -132,9 +132,17 @@
 	               [이전] 
 	            </c:if>
 	            <c:if test="${ pi.currentPage > 1 }">
-	               <c:url var="before" value="shop.do">
-	                  <c:param name="page" value="${ pi.currentPage - 1 }"/>
+	               <c:if test="${ SHOP_CATE ne null }">
+	               <c:url var="before" value="shop.do"> 
+	                  <c:param name="SHOP_CATE" value='<%= request.getParameter("SHOP_CATE") %>'/>
+	                  <c:param name="page" value="${ pi.currentPage - 1 }"/>          
 	               </c:url>
+	               </c:if>
+	               <c:if test="${ SHOP_CATE eq null }">
+	               <c:url var="before" value="shop.do">
+	                  <c:param name="page" value="${ pi.currentPage - 1 }"/>          
+	               </c:url>
+	               </c:if>
 	               <a class="aPage" href="${ before }">[이전]</a> &nbsp;
 	            </c:if>
 	            
@@ -145,9 +153,17 @@
 	               </c:if>
 	               
 	               <c:if test="${ p ne pi.currentPage }">
+	                  <c:if test="${ SHOP_CATE ne null }">
+	                  <c:url var="pagination" value="shop.do">
+	                  	 <c:param name="SHOP_CATE" value='<%= request.getParameter("SHOP_CATE") %>'/>
+	                     <c:param name="page" value="${ p }"/>
+	                  </c:url>
+	                  </c:if>
+	                  <c:if test="${ SHOP_CATE eq null }">
 	                  <c:url var="pagination" value="shop.do">
 	                     <c:param name="page" value="${ p }"/>
 	                  </c:url>
+	                  </c:if>
 	                  <a class="aPage" href="${ pagination }">${ p }</a> &nbsp;
 	               </c:if>
 	            </c:forEach>
@@ -156,10 +172,18 @@
 	            <c:if test="${ pi.currentPage >= pi.maxPage }">
 	               [다음]
 	            </c:if>
-	            <c:if test="${ pi.currentPage < pi.maxPage }">
+	            <c:if test="${ pi.currentPage < pi.maxPage }"> 
+	               <c:if test="${ SHOP_CATE ne null }">
 	               <c:url var="after" value="shop.do">
+	                  <c:param name="SHOP_CATE" value='<%= request.getParameter("SHOP_CATE") %>'/>
 	                  <c:param name="page" value="${ pi.currentPage + 1 }"/>
 	               </c:url> 
+	               </c:if>
+	               <c:if test="${ SHOP_CATE eq null }">
+	               <c:url var="after" value="shop.do">
+	                  <c:param name="page" value="${ pi.currentPage + 1 }"/>
+	               </c:url>
+	               </c:if>
 	               <a class="aPage" href="${ after }">[다음]</a>
 	            </c:if>
 	         </td>

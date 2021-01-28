@@ -114,6 +114,14 @@ public class ShopServiceImple implements ShopService {
 		List<Map<String, Object>> ReservationList = sDAO.getReservationList(sqlSession,shop_no);
 		return ReservationList;
 	}
+	@Override
+	public int getListAllCount(ShopInfo shop) {
+		return sDAO.getListAllCount(sqlSession, shop);
+	}
+	@Override
+	public int getListCateCount(ShopInfo shop) {
+		return sDAO.getListCateCount(sqlSession, shop);
+	}
 	
 	
 	
