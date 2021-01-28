@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,47 +69,121 @@ public class ShopController {
 //		Map<String, Object> menuMap = new HashMap<String, Object>();
 		List mList = sService.selectMenu(rNo);
 		System.out.println(mList);
-		// 예약 자리 정보 가져오기 (좌석) -> 결과 여러개일 수 있으니 list
-//		Map<String, Object> tableMap = sService.selectTable(rNo);
-//		List tList = sService.selectTable(rNo);
-//		System.out.println(tList);
+		
+		mv.addObject("shop", shop)
+		  .addObject("reserve", reserve)
+		  .addObject("mList", mList)
+		  .setViewName("paymentView");
 
-		// 예약정보 불러오기
-
-		// @@@@@테스트용 메뉴 정보 불러와서 넘기기
-//		 List<Map<>>에 담아야 할 것 같음
-//		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-//		Map<String, Object> menuMap = new HashMap<String, Object>();
-		// 예약메뉴 먼저 담기
-//		menuMap.put("rNo", "1");	// 주문번호 1
-//		menuMap.put("mNo", "1");	// 메뉴번호 1
-//		menuMap.put("mQty", "2");		// 수량 2개
-//		menuMap.put("mPrice", 10000);	// 가격 10000원
-//		
-//		menuMap.put("rNo", "1");	// 주문번호 1
-//		menuMap.put("mNo", "2");	// 메뉴번호 1
-//		menuMap.put("mQty", "2");		// 수량 2개
-//		menuMap.put("mPrice", 5000);	// 가격  5000원
-
-		mv.addObject("shop", shop).addObject("reserve", reserve).addObject("mList", mList).setViewName("paymentView");
 		return mv;
 	}
 
 	// @@@@테스트 결제 성공 시
 	@RequestMapping("payment.sh")
-	public void successPay(@ModelAttribute ReserveInfo reserve) {
+	@ResponseBody
+	public String successPay(@ModelAttribute ReserveInfo reserve) {
 		System.out.println(reserve);
 		int rNo = reserve.getReserveNo();
 		// @@@@@ 테스트
 		// 결제 성공 시 상태값 Y로 변경
 		int result = sService.successReserve(rNo);
-
+		return "ture";
 	}
 
 	// 예약정보 페이지
 	@RequestMapping("booking.sh")
 	public String bookingInfoView() {
 		return "bookingInfo";
+	}
+	
+	// 메뉴바 검색
+	@RequestMapping("shopSearch.sh")
+	public ModelAndView shopSearch(@RequestParam(value = "page", required = false) Integer page,
+									@RequestParam("searchContents") String searchContents,
+									ModelAndView mv) {
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = page;
+		}
+		
+		ShopInfo shop = new ShopInfo();
+		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		// 카테고리 값 들어왔을 때
+		switch(searchContents) {
+			case "한식" :
+				shop.setShopCate(1);
+				break;
+			case "양식" : 
+				shop.setShopCate(2);
+				break;
+			case "중식" : 
+				shop.setShopCate(3);
+				break;
+			case "일식" :
+				shop.setShopCate(4);
+				break;
+			case "분식" : 
+				shop.setShopCate(5);
+				break;
+		}
+		shop.setShopName(searchContents);
+		
+		int listCount = sService.getListCount(shop);
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
+		if(!searchContents.equals("") && searchContents != null) {
+			List shopList = sService.selectSearchList(shop, pi);
+			
+//			System.out.println(shopList);
+			if(!shopList.isEmpty()) {
+				mv.addObject("shopList", shopList)
+				  .addObject("pi", pi)
+				  .addObject("searchContents", searchContents)
+				  .addObject("searchType", "1");
+				mv.setViewName("shopSearchList");
+			} else {
+				throw new ShopException("검색 내용이 없습니다.");
+			}
+		} else {
+			throw new ShopException("검색 내용이 없습니다.");
+		}
+		return mv;
+	}
+	
+	// 메인페이지 검색
+	@RequestMapping("addressSearch.sh")
+	public ModelAndView addressSearch(@RequestParam(value = "page", required = false) Integer page,
+										@RequestParam("searchContents") String searchContents,
+										ModelAndView mv) {
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = page;
+		}
+		
+		ShopInfo shop = new ShopInfo();
+		searchContents = searchContents.replaceAll("\\p{Z}", ""); // 공백 없앰
+		shop.setShopAddress(searchContents);
+		
+		int listCount = sService.getAddressListCount(shop);
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
+		if(!searchContents.equals("") && searchContents != null) {
+			List shopList = sService.selectAddressSearch(shop, pi);
+			
+			if(!shopList.isEmpty()) {
+				mv.addObject("shopList", shopList)
+				  .addObject("pi", pi)
+				  .addObject("searchContents", searchContents)
+				  .addObject("searchType", "2");
+				mv.setViewName("shopSearchList");
+			} else {
+				throw new ShopException("검색 내용이 없습니다.");
+			}
+		} else {
+			throw new ShopException("검색 내용이 없습니다.");
+		}
+		return mv;
+		
 	}
 
 	// 민병욱 끝 ====================================================
@@ -341,61 +414,11 @@ public class ShopController {
 			ModelAndView mv) {
 
 		int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
-		ShopInfo shopInfo = sService.selectShop(shop_no);
-		
-		List<String> timeList = new ArrayList<String>();
-
-
-		
-		String openTime=shopInfo.getShopOpen();
-		String closeTime=shopInfo.getShopClose();
-		String breakStartTime=shopInfo.getShopBreakStart();
-		String breakCloseTime=shopInfo.getShopBreakClose();
-		int minute1 =30;
-		int maxResTime = Integer.parseInt(shopInfo.getMaxReservationTime());
-		
-		LocalTime opentime1 = LocalTime.parse(openTime);  //오픈시간
-		LocalTime closeTime1 = LocalTime.parse(closeTime);  //마감시간
-		LocalTime breakStartTime1 = LocalTime.parse(breakStartTime);  //브레이크 시작시간
-		LocalTime breakCloseTime1 = LocalTime.parse(breakCloseTime);  //브레이크 마감시간
-		
-		int reserveTime=60*maxResTime;
-		
-		breakStartTime1=breakStartTime1.minusMinutes(reserveTime);
-		closeTime1=closeTime1.minusMinutes(reserveTime);
-		
-		System.out.println("변경된 브레이크 시작 시간은?: "+breakStartTime1);
-		
-		for(int i=0; i<100; i++) {
-			String open=opentime1+"";
-			String breaktime=breakStartTime1+"";
-			opentime1=opentime1.plusMinutes(minute1);
-//			System.out.println(open);
-				timeList.add(open);
-			if(open.equals(breaktime)) {
-				break;
-			}
-		}
-		
-		for(int i=0; i<100; i++) {
-			String closetime=closeTime1+"";
-			String breaktime=breakCloseTime1+"";
-			breakCloseTime1=breakCloseTime1.plusMinutes(minute1);
-//			System.out.println(breaktime);
-				timeList.add(breaktime);
-			if(breaktime.equals(closetime)) {
-				break;
-			}
-		}
-		
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println(timeList);
-
 
 		List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
+		
+		System.out.println(reservationList);
 
-		mv.addObject("timeList", timeList);
-		mv.addObject("closeTime1",closeTime1);
 		mv.addObject("reservationList", reservationList);
 		mv.setViewName("/shop/shopReservation");
 
@@ -403,7 +426,7 @@ public class ShopController {
 
 	}
 
-	@RequestMapping(value = "/MainMenu.do")
+	@RequestMapping("/MainMenu.do")
 	public @ResponseBody HashMap<String, Object> MainMenu(HttpServletRequest req) {
 
 		System.out.println("req?" + req.getParameter("SHOP_NO"));
@@ -442,17 +465,72 @@ public class ShopController {
 	}
 
 	@RequestMapping("/shop.do")
-	public ModelAndView shopForm(ModelAndView mv) {
-
-		// HashMap<String,Object> shopList = new HashMap<String,Object>();
-
-		List<String> shopList = sService.getShopList();
-
-		mv.addObject("shopList", shopList);
-		mv.setViewName("/shop/shopList");
+	
+	public ModelAndView shopForm(@RequestParam(value="page", required=false) Integer page,
+								 @RequestParam(value="SHOP_CATE", required=false) String SHOP_CATE,
+								 ModelAndView mv , 
+								 HttpServletRequest req) {
+		int currentPage = 1;
+	      if(page != null) {
+	         currentPage = page;
+	    }
+	      
+	    ShopInfo shop = new ShopInfo();
+	      
+	    System.out.println(SHOP_CATE);
+	    
+	    int listCount;
+	    if(SHOP_CATE == null) {
+	    	listCount = sService.getListAllCount(shop);
+	    } else {
+	    	switch(SHOP_CATE) {
+		    	case "1" :
+					shop.setShopCate(1);
+					break;
+				case "2" : 
+					shop.setShopCate(2);
+					break;
+				case "3" : 
+					shop.setShopCate(3);
+					break;
+				case "4" :
+					shop.setShopCate(4);
+					break;
+				case "5" : 
+					shop.setShopCate(5);
+					break;
+				case "6" :
+					shop.setShopCate(6);
+					break;
+				case "7" : 
+					shop.setShopCate(7);
+					break; 
+	    	}
+	    	
+	    	listCount = sService.getListCateCount(shop);
+	    }
+	     
+	    
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
+//		SHOP_CATE = req.getParameter("SHOP_CATE");
+		
+		List<String> shopList = sService.getShopList(SHOP_CATE, pi);
+		
+		
+		if(shopList != null) {
+			mv.addObject("shopList", shopList);
+			mv.addObject("pi", pi);
+			mv.addObject("SHOP_CATE", SHOP_CATE);
+			mv.setViewName("/shop/shopList");
+		} else {
+			throw new ShopException("게시글 전체 조회에 실패했습니다.");
+		}
 
 		return mv;
 	}
+
+	
 
 	@RequestMapping("/test.do")
 	public void ajaxtext() {
