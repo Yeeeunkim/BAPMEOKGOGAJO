@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -70,23 +70,34 @@
 	background: tomato;
 	color: white;
 }
+
+.aPage{
+   color: black !important;
+}
+
+.aTitle{
+   color: black;
+}
 </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
 
-	<div id="shopListArea">
-		<select id="selectMenu" class="form-select"
-			aria-label="Default select example"
-			onchange="if(this.value) location.href=(this.value);">
-			<option value="<%= request.getContextPath() %>/shop.do" selected="selected" id="all">전체</option>
-			<option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1" id="korean">한식</option>
-			<option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=2" id="western">양식</option>
-			<option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3" id="chinese">중식</option>
-			<option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4" id="japanese">일식</option>
-			<option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=5" id="school">분식</option>
-		</select><br><br><br>
-	</div>
+<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
+   
+   <div id="shopListArea">
+      <!--       <h1 style="text-align: center;">한식 ></h1> -->
+      <select id="selectMenu" class="form-select" aria-label="Default select example" onchange="if(this.value) location.href=(this.value);">
+         <option value="<%= request.getContextPath() %>/shop.do" selected="selected" id="all">전체</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1" id="korean">한식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=2" id="western">양식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3" id="chinese">일식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4" id="japanese">중식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=5" id="school">분식</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=6" id="school">동남아</option>
+         <option value="<%= request.getContextPath() %>/shop.do?SHOP_CATE=7" id="school">샐러드</option>
+      </select><br><br><br>
+   </div>
+
 
 	<div class="container-fluid">
 		<div class="row" style="min-height: 600px;">
@@ -110,6 +121,53 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 페이징 처리 -->
+	<table class="table">
+		<tr align="center" height="20" id="buttonTab">
+	         <td colspan="6">
+	         
+	            <!-- [이전] -->
+	            <c:if test="${ pi.currentPage <= 1 }">
+	               [이전] 
+	            </c:if>
+	            <c:if test="${ pi.currentPage > 1 }">
+	               <c:url var="before" value="shop.do">
+	                  <c:param name="page" value="${ pi.currentPage - 1 }"/>
+	               </c:url>
+	               <a class="aPage" href="${ before }">[이전]</a> &nbsp;
+	            </c:if>
+	            
+	            <!-- 페이지 -->
+	            <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+	               <c:if test="${ p eq pi.currentPage }">
+	                  <font color="red" size="4"><b>[${ p }]</b></font>
+	               </c:if>
+	               
+	               <c:if test="${ p ne pi.currentPage }">
+	                  <c:url var="pagination" value="shop.do">
+	                     <c:param name="page" value="${ p }"/>
+	                  </c:url>
+	                  <a class="aPage" href="${ pagination }">${ p }</a> &nbsp;
+	               </c:if>
+	            </c:forEach>
+				
+				<!-- [다음] -->
+	            <c:if test="${ pi.currentPage >= pi.maxPage }">
+	               [다음]
+	            </c:if>
+	            <c:if test="${ pi.currentPage < pi.maxPage }">
+	               <c:url var="after" value="shop.do">
+	                  <c:param name="page" value="${ pi.currentPage + 1 }"/>
+	               </c:url> 
+	               <a class="aPage" href="${ after }">[다음]</a>
+	            </c:if>
+	         </td>
+	      </tr>
+	</table>
+    
+
+
 
 	<div class="row">
 		<div class="col-lg-9 col-md-10 col-sm-8"></div>

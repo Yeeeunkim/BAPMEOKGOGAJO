@@ -20,8 +20,10 @@ public class ShoplistPagination {
 			endPage = maxPage;
 		}
 		
+
 		ShoplistPageInfo pi = new ShoplistPageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
-		
+
 		return pi;
+		
 	}
 }

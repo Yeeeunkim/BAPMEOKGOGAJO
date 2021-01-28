@@ -104,8 +104,8 @@ public class ShopServiceImple implements ShopService {
 	// 원태원 시작 ====================================================
 	
 	@Override
-	public List<String> getShopList(String SHOP_CATE) {
-	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE);
+	public List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi) {
+	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE, pi);
 		return ShopList;
 	}
 

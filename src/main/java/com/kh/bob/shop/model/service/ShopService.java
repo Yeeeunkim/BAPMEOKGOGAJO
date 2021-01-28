@@ -52,9 +52,10 @@ public interface ShopService {
 
 	// 원태원 시작 ====================================================
 
-	List<String> getShopList(String SHOP_CATE);
+	List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi);
 
 	List<Map<String, Object>> getReservationList(int shop_no);
+
 
 	
 	

@@ -131,7 +131,7 @@ public class ShopController {
 		if(!searchContents.equals("") && searchContents != null) {
 			List shopList = sService.selectSearchList(shop, pi);
 			
-			System.out.println(shopList);
+//			System.out.println(shopList);
 			if(!shopList.isEmpty()) {
 				mv.addObject("shopList", shopList)
 				  .addObject("pi", pi)
@@ -304,7 +304,7 @@ public class ShopController {
 
 	}
 
-	@RequestMapping(value = "/MainMenu.do")
+	@RequestMapping("/MainMenu.do")
 	public @ResponseBody HashMap<String, Object> MainMenu(HttpServletRequest req) {
 
 		System.out.println("req?" + req.getParameter("SHOP_NO"));
@@ -342,25 +342,52 @@ public class ShopController {
 
 	}
 
-	@RequestMapping(value = "/shop.do")
+	@RequestMapping("/shop.do")
 	
-	public @ResponseBody ModelAndView shopForm(ModelAndView mv , HttpServletRequest req) {
+	public ModelAndView shopForm(@RequestParam(value="page", required=false) Integer page,
+												ModelAndView mv , 
+												HttpServletRequest req) {
 
-		// HashMap<String,Object> shopList = new HashMap<String,Object>();
-
-		// SHOP_CATE
+		int currentPage = 1;
+	      if(page != null) {
+	         currentPage = page;
+	    }
+	      
+	    ShopInfo shop = new ShopInfo();
+	      
+	    int listCount = sService.getListCount(shop);
+	    
+	    
+		ShoplistPageInfo pi = ShoplistPagination.getPageInfo(currentPage, listCount);
+		
+		
+		
 		
 		String SHOP_CATE = req.getParameter("SHOP_CATE");
 		
+		List<String> shopList = sService.getShopList(SHOP_CATE, pi);
 		
-		List<String> shopList = sService.getShopList(SHOP_CATE);
-
 		
-		mv.addObject("shopList", shopList);
-		mv.setViewName("/shop/shopList");
+		if(shopList != null) {
+			mv.addObject("shopList", shopList);
+			mv.addObject("pi", pi);
+			mv.setViewName("/shop/shopList");
+		} else {
+			throw new ShopException("게시글 전체 조회에 실패했습니다.");
+		}
 
 		return mv;
 	}
+	
+//	@RequestMapping("/shop.do")
+//	public ModelAndView shopList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
+//		
+//		int currentPage = 1;
+//	    if(page != null) {
+//	       currentPage = page;
+//	    }
+//		
+//	}
 	
 	
 	
