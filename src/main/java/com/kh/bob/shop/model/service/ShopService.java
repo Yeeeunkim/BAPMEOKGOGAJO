@@ -1,6 +1,6 @@
 ﻿package com.kh.bob.shop.model.service;
 
-<<<<<<< HEAD
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
