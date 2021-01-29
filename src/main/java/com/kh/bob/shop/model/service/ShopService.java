@@ -1,12 +1,16 @@
 ﻿package com.kh.bob.shop.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
+
 
 public interface ShopService {
 
@@ -43,27 +47,39 @@ public interface ShopService {
 	// 민병욱 끝 ====================================================
 
 	// 신진식 시작 ===================================================
-
 	int insertShop(ShopInfo si);
 
-	int insertMenu(List<ShopMenu> shopmenu);
+	int insertMenu(List<ShopMenu> shopmenu);	
+
+	List<ShopMenu> selectShopMenu(int shopNo);
+	
+	int insertDeclare(ShopDeclare sd);
+	
+	int insertReserveShopInfo(ReserveInfo ri);
+	
+	ReserveInfo selectReserveNo(ReserveInfo ri);
+	
+	int insertReserveShopMenu(List<ReserveMenu> reservemenu);
+	
+	ArrayList<ReserveInfo> selectResreveTime(int shopNo);
 
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
 
-	List<String> getShopList(String SHOP_CATE);
+	List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi);
 
 	List<Map<String, Object>> getReservationList(int shop_no);
 
-	
-	
-	
+	int getListAllCount(ShopInfo shop);
+
+	int getListCateCount(ShopInfo shop);
 
 
 	/* void insertShop(HashMap<String, Object> data); */
 	
 	
 	// 원태원 끝 ======================================================
+
 
 }

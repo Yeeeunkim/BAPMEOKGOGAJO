@@ -43,7 +43,7 @@
 	
 	<resultMap type="ReserveInfo" id="reserveInfoResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
-		<result property="reserveTime" column="RESERVE_TIME" />
+		<result property="reserveDate" column="RESERVE_DATE" />
 		<result property="reservePeople" column="RESERVE_PEOPLE" />
 		<result property="totalPrice" column="TOTAL_PRICE" />
 		<result property="reserveStatus" column="RESERVE_STATUS" />
@@ -54,6 +54,7 @@
 		<result property="reservePay" column="RESERVE_PAY" />
 		<result property="memberId" column="MEMBER_ID" />
 		<result property="shopNo" column="SHOP_NO" />
+		<result property="reserveTime" column="RESERVE_TIME" />
 	</resultMap>
 	
 	<resultMap type="ReserveMenu" id="reserveMenuResultSet">
@@ -127,7 +128,7 @@
    
    
 <!-- 신진식 시작 =================================================== -->
-   
+
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
 	</insert>
@@ -137,8 +138,53 @@
 			INTO shop_menu (menu_no, menu_name, menu_price,menu_status, menu_cate, shop_no)
 			VALUES (SEQ_MNO.nextval, #{item.menuName}, #{item.menuPrice}, 'Y', #{item.menuCate},seq_sno.currval)
 		</foreach> 		
-	</insert>	 
+	</insert>	    
 
+
+	<resultMap type="ShopMenu" id="shopMenuResulSet">
+		<id property="menuNo" column="MENU_NO" />
+		<id property="menuName" column="MENU_NAME" />
+		<result property="menuPrice" column="MENU_PRICE" />
+		<result property="menuStatus" column="MENU_STATUS" />
+		<result property="menuCate" column="MENU_CATE" />
+		<result property="shopNo" column="SHOP_NO" />
+	</resultMap>
+
+
+	<select id="selectShopMenu" resultMap="shopMenuResulSet">
+		select * from shop_menu where shop_no= #{shopNo}
+	</select>
+	
+	<insert id="insertDeclare">
+		insert into shop_declare values(SEQ_DNO.nextval,#{memberId},'Y',#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
+	</insert>
+	
+	<insert id="insertReserveShopInfo">
+		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
+	</insert>
+	
+	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
+<!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
+		select *
+		from (
+				select *
+				from reserve_info
+				order by reserve_no desc)
+		where
+			  shop_no=#{shopNo} and ROWNUM=1	
+	</select>
+	
+	
+	<insert id="insertReserveMenu">
+			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
+			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
+			VALUES (SEQ_SRNO.currval, #{item.menuNo}, #{item.menuName},#{item.MenuQty})
+		</foreach> 	
+	</insert> 
+	
+	<select id="reserveTime" resultMap="reserveInfoResultSet">
+			select * from reserve_info where shop_no=#{shopNo}
+	</select>
 
 <!-- 신진식 끝 ===================================================== -->
 
@@ -165,6 +211,7 @@
 		,SI.SHOP_OFFDAY
 		,SI.SHOP_BREAK_START
         ,SI.SHOP_BREAK_CLOSE
+        ,SI.MAX_RESERVATION_TIME
 		,SM.MENU_NAME
 		,SM.MENU_PRICE
 		,SM.MENU_STATUS
@@ -176,6 +223,18 @@
 		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
 			WHERE SI.SHOP_NO = #{shop_no}
      
+   </select>
+   
+   <select id="getListAllCount" resultType="_int">
+   		select count(*)
+   		from shop_info
+   </select>
+   
+   <select id="getListCateCount" resultType="_int">
+   		select count(*)
+   		from shop_info
+   		WHERE SHOP_CATE  = #{shopCate}
+
    </select>
    
 <!-- 원태원 끝 ====================================================== -->

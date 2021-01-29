@@ -203,7 +203,6 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";
@@ -228,6 +227,7 @@ public class MemberController {
 			}else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
+
 		}else {
 			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
@@ -238,7 +238,7 @@ public class MemberController {
 	public String mCheckPwdForm() {
 		return "checkPwd";
 	}
-	
+
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
@@ -267,6 +267,7 @@ public class MemberController {
 	
 	//사업자 마이페이지 
 	@RequestMapping("shopMypage.me")
+
 	public String shopMyPageForm(@ModelAttribute ShopInfo si , @ModelAttribute ShopMenu sm, @ModelAttribute ShopSeat ss,  Model model) {
 		int sInfo = bmService.selectSinfo(si);
 		int sMenu = bmService.selectSmenu(sm);

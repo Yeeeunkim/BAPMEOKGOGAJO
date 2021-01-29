@@ -23,7 +23,6 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.memberInsert", m);
 	}
 
-
 	public int checkIdDup(SqlSessionTemplate sqlSession, String member_id) {
 		return sqlSession.selectOne("memberMapper.checkidDup", member_id);
 	}

@@ -16,7 +16,7 @@
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveMenu" alias="ReserveMenu"/>
 	</typeAliases>
-	 
+
 	 
 	 <!-- MAPPER 선언단 -->
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->

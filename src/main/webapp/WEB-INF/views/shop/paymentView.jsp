@@ -65,36 +65,38 @@
 	<form action="payment.do" name="payment">
 		<table id="tableBar">
 			<tr>
-				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/resources/images/sushi.png"></td>
+				<td rowspan="5" width="300" height="300">
+					<img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shop.shopRename}" class="image"/>
+				</td>
 				<td width="150" align="center">가게 :</td>
-				<td id="sName">${ shop.shopName }</td>
+				<td id="sName">${shopname}</td>
 			</tr>
 			<tr>
 				<td align="center">메뉴 :</td>
-				<td>
-					<c:forEach var="m" items="${ mList }">
-						${ m.menuName } - ${ m.menuQty } <br>
+				<td style="padding-top: 20px; padding-bottom: 20px;">
+					 <c:forEach var="m" items="${ reservemenu }">
+						${ m.menuName } - ${ m.menuQty }개 <br>
 					</c:forEach>
 				</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약인원 :</td>
 				<td>
-						${ reserve.reservePeople } 명 <br>
+						${ ri.reservePeople } 명 <br>
 				</td>
 			</tr>
 			<tr class="red">
 				<td align="center">예약일 :</td>
-				<td>${ reserve.reserveTime }</td>
+				<td>${ ri.reserveDate } ${ ri.reserveTime } </td>
 			</tr>
 			<tr class="red">
 				<td align="center">총금액 :</td>
-				<td id="totalPrice">${ reserve.totalPrice }</td>
+				<td id="totalPrice">${ ri.totalPrice }</td>
 			</tr> 
 		</table>
 		
 		
-		<input type="hidden" id="rNo" value='${ reserve.reserveNo }'>
+		<input type="hidden" id="rNo" value='${reserveNo}'>
 		<br>
 <!-- 		<div id="map"></div> -->
 		<br><br>
@@ -132,7 +134,7 @@
 					pay_method : 'card',
 					merchant_uid : 'merchant_' + new Date().getTime(),
 					name : shopName,
-					amount : 10, // totalPrice, //판매 가격
+					amount : totalPrice, //판매 가격
 					buyer_email : 'iamport@siot.do',
 					buyer_name : '구매자이름',
 					buyer_tel : '010-1234-5678',
