@@ -198,7 +198,8 @@ h4,h2{margin-left:8%;}
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
-          <h2>중식</h2>
+          <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           ${reservationList[0].SHOP_NAME}</h1>
 
    <!-- 사진, 지도 폼 -->
    
@@ -211,9 +212,8 @@ h4,h2{margin-left:8%;}
   <%--  <%=request.getParameter("SHOP_NO")%> --%>
   <!--${loginUser.member_id}  -->
    
-   <div id="info">
-      <p id="shopnm">${reservationList[0].SHOP_NAME}</p> 
-      <p> [별점]</p>
+   <div id="info"> 
+      <p id="shopnm"> [별점]</p>
       <p>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ${reservationList[0].SHOP_PHONE}</p>
       <p>영업시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OPEN} -  ${reservationList[0].SHOP_CLOSE}</p>
       <p>브레이크타임  ${reservationList[0].SHOP_BREAK_START} - ${reservationList[0].SHOP_BREAK_CLOSE}</p>
@@ -306,7 +306,7 @@ h4,h2{margin-left:8%;}
                    $.ajax({
                             url : "/bob/reserveDate.do",
                             type: "post",
-                           dataType: 'json',
+                            dataType: 'json',
                            data : {shopNo, shopNo},
                            success : function(data){
                            for(var i=0; i<data.shopreserveTime.length; i++){

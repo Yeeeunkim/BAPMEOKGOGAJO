@@ -181,6 +181,7 @@ public class ShopController {
 		int shopNo=ri.getShopNo();
 		List<ShopMenu> sm=sService.selectShopMenu(shopNo); //식당번호를 통해 식당메뉴 리스트 다 받아오기.
 		List<ReserveMenu> reservemenu = new ArrayList<ReserveMenu>(); //예약메뉴들을 담을 리스트
+		ShopInfo shop = sService.selectShop(shopNo);
 
 		int total=0; //총가격  -> 상차림 비용
 		
@@ -216,6 +217,7 @@ public class ShopController {
 			mv.addObject("shopname", shopname);
 			mv.addObject("ri",ri);
 			mv.addObject("reservemenu", reservemenu);
+			mv.addObject("shop", shop);
 			mv.setViewName("/shop/paymentView");
 			return mv;
 		}else {
