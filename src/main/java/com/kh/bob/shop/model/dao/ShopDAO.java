@@ -14,6 +14,15 @@ import com.kh.bob.shop.model.vo.ShopReview;
 @Repository("sDAO")
 public class ShopDAO {
 
+	// 강동기 시작 ===============================================
+
+	// 강동기 끝 ================================================
+
+	// 김예은 시작 ================================================
+
+	// 김예은 끝 =================================================
+
+	// 김하영 시작 ================================================
 	public int getReListCount(SqlSessionTemplate sqlSession, int shopNo) {
 		return sqlSession.selectOne("shopMapper.getReListCount", shopNo);
 	}
@@ -21,7 +30,7 @@ public class ShopDAO {
 	public List<ShopReview> selectReList(SqlSessionTemplate sqlSession, int shopNo, PageInfo pi) {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+
 		return sqlSession.selectList("shopMapper.selectReList", shopNo, rowBounds);
 	}
 
@@ -38,7 +47,21 @@ public class ShopDAO {
 	}
 
 	public ArrayList<ReviewReply> selectReReply(SqlSessionTemplate sqlSession, int reviewNo) {
-		return (ArrayList)sqlSession.selectList("shopMapper.selectReReply", reviewNo );
+		return (ArrayList) sqlSession.selectList("shopMapper.selectReReply", reviewNo);
 	}
+
+	// 김하영 끝 =================================================
+
+	// 민병욱 시작 =================================================
+
+	// 민병욱 끝 ====================================================
+
+	// 신진식 시작 ===================================================
+
+	// 신진식 끝 =====================================================
+
+	// 원태원 시작 ====================================================
+
+	// 원태원 끝 ======================================================
 
 }

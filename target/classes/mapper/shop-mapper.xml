@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="shopMapper">
 
+<!-- 강동기 시작 =============================================== -->
+   
+<!-- 강동기 끝 ================================================ -->
+
+   
+<!--  김예은 시작 ================================================ -->
+ 
+<!--  김예은 끝 ================================================= -->
+
+   
+<!-- 김하영 시작 ================================================ -->
+   
+
 	<select id="getReListCount" resultType="_int">
 		select count(*)
 		from shop_review
@@ -14,6 +27,7 @@
  		where review_status='Y' AND SHOP_NO = #{shopNo}
  		order by review_no desc
  	</select>
+ 	
  	<resultMap type="ShopReview" id="reviewResultSet">
  		<id property="reviewNo" column="REVIEW_NO"/>
  		<result property="reviewContents" column="REVIEW_CONTENTS" />
@@ -46,7 +60,6 @@
  	<select id="selectReReply">
  		select *
  		from review_reply
- 			join shop_review using(review_No)
  		where review_no = #{reviewNo}
  	</select>
  	
@@ -57,4 +70,21 @@
  		<result property="replyTime" column="REPLY_TIME"/>
  		<result property="replyStatus" column="REPLY_STATUS"/>
  	</resultMap>
+ 	
+ <!-- 김하영 끝 ================================================= -->
+
+
+<!-- 민병욱 시작 ================================================= -->
+
+<!-- 민병욱 끝 ==================================================== -->
+   
+   
+<!-- 신진식 시작 =================================================== -->
+
+<!-- 신진식 끝 ===================================================== -->
+
+   
+<!-- 원태원 시작 ==================================================== -->
+
+<!-- 원태원 끝 ====================================================== -->
 </mapper>

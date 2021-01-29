@@ -35,22 +35,30 @@ public class ShopController {
 	@Autowired
 	private ShopService sService;
 
-	@RequestMapping("/Reservation.do")
-	public String reservationForm() {
-		return "/shop/shopReservation";
-	}
+	// 강동기 시작 ===============================================
 
-	@RequestMapping("/shopEnroll.do")
-	public String shopEnrollForm() {
-		return "/shop/shopEnroll";
-	}
+	// 강동기 끝 ================================================
 
-	@RequestMapping("/shop.do")
-	public String shopForm() {
-		return "/shop/shopList";
-	}
+	// 김예은 시작 ================================================
 
+	// 김예은 끝 =================================================
 
+	// 김하영 시작 ================================================
+
+//	@RequestMapping("/Reservation.do")
+//	public String reservationForm() {
+//		return "/shop/shopReservation";
+//	}
+//
+//	@RequestMapping("/shopEnroll.do")
+//	public String shopEnrollForm() {
+//		return "/shop/shopEnroll";
+//	}
+//
+//	@RequestMapping("/shop.do")
+//	public String shopForm() {
+//		return "/shop/shopList";
+//	}
 
 	@RequestMapping("reinsertForm.sh")
 	public String reviewInsertForm() {
@@ -89,7 +97,7 @@ public class ShopController {
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 웹 서버 contextPath를 불러와 폴더의 경로 받아옴(webapp 하위의 resources 폴더)
-		
+
 		String savePath = root + "\\buploadFiles";
 
 		File folder = new File(savePath);
@@ -103,7 +111,7 @@ public class ShopController {
 				+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 
 		String renamePath = folder + "\\" + renameFileName;
-		
+
 		try {
 			file.transferTo(new File(renamePath));
 		} catch (IllegalStateException e) {
@@ -113,24 +121,24 @@ public class ShopController {
 		}
 		return renameFileName;
 	}
-	
+
 	@RequestMapping("relist.sh")
-	public String shopDetail(Model model, @RequestParam(value="page", required=false) Integer page) {
+	public String shopDetail(Model model, @RequestParam(value = "page", required = false) Integer page) {
 		int currentPage = 1;
-		
+
 		if (page != null) {
 			currentPage = page;
 		}
-		
+
 		int shopNo = 1;
-		
+
 		int listCount = sService.getReListCount(shopNo);
-		
+
 		PageInfo pi = Pagination.getPageinfo(currentPage, listCount);
-		
+
 		ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shopNo, pi);
-		
-		if(list != null) {
+
+		if (list != null) {
 			model.addAttribute("list", list);
 			model.addAttribute("pi", pi);
 			return "shopReservation";
@@ -138,67 +146,81 @@ public class ShopController {
 			throw new ShopException("리뷰등록을 실패하였습니다.");
 		}
 	}
-	
+
 	@RequestMapping("reDelete.sh")
 	public String reviewDelete(@RequestParam("reNo") int reNo) {
-		
+
 		int result = sService.deleteReview(reNo);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			return "redirect:relist.sh";
 		} else {
 			throw new ShopException("리뷰 삭제를 실패하였습니다.");
 		}
 	}
-	
+
 	@RequestMapping("rereplySendForm.sh")
 	public String rereplySendForm(@RequestParam("reNo") int reNo, Model model) {
 		model.addAttribute("reNo", reNo);
 		return "rereplySendForm";
 	}
-	
-	
+
 	@RequestMapping("rereplyinsert.sh")
-	public String rereplyinsert(@RequestParam("textarea") String content, @RequestParam("reid") int reid , HttpSession session) {
-	//public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession session) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		//String memberId = loginUser.getMemberId();
+	public String rereplyinsert(@RequestParam("textarea") String content, @RequestParam("reid") int reid,
+			HttpSession session) {
+		// public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession
+		// session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		// String memberId = loginUser.getMemberId();
 		String memberId = "user01";
 		ReviewReply rere = new ReviewReply();
 		rere.setMemberId(memberId);
 		rere.setReviewNo(reid);
 		rere.setReplyContent(content);
-		
+
 		System.out.println(rere);
-		
+
 		int result = sService.insertReReply(rere);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			return "success";
 		} else {
 			throw new ShopException("답글 등록에 실패했습니다.");
 		}
 	}
-	
+
 	@RequestMapping("rereplyList.sh")
-	public void rereplyList(@RequestParam("reid") int reviewNo,HttpServletResponse response) {
+	public void rereplyList(@RequestParam("reid") int reviewNo, HttpServletResponse response) {
 		ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
-		
+
 		response.setContentType("application/json; charset=UTF-8");
-		
+
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		
+
 		try {
 			gson.toJson(rereList, response.getWriter());
 		} catch (JsonIOException | IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/*
 	 * @RequestMapping("rereplySendFome.sh") public String rereplySendFome() {
 	 * return "rereplySendFome"; }
 	 */
-	
+
+	// 김하영 끝 =================================================
+
+	// 민병욱 시작 =================================================
+
+	// 민병욱 끝 ====================================================
+
+	// 신진식 시작 ===================================================
+
+	// 신진식 끝 =====================================================
+
+	// 원태원 시작 ====================================================
+
+	// 원태원 끝 ======================================================
 
 }
