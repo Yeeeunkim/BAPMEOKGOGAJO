@@ -64,7 +64,7 @@ public class NoticeController {
 		board.setCateCode(0);
 		
 		int listCount = nService.getListCount(board);
-		PageInfo pi = Pagination.getPageinfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Board> list = nService.noticeList(pi);
 		
@@ -262,7 +262,7 @@ public class NoticeController {
 		board.setCateCode(1);
 		
 		int listCount = nService.getListCount(board);
-		PageInfo pi = Pagination.getPageinfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Board> list = nService.qnaList(pi);
 

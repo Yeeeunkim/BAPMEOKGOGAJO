@@ -12,9 +12,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,14 +27,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.kh.bob.common.Pagination;
 import com.kh.bob.common.ShoplistPagination;
+import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Controller
@@ -65,7 +72,7 @@ public class ShopController {
 		System.out.println(uploadFile);
 
 		if (uploadFile != null && !uploadFile.isEmpty()) { // 첨부파일이 있다면
-			String renameFileName = saveFile(uploadFile, request);
+			String renameFileName = rSaveFile(uploadFile, request);
 
 			if (renameFileName != null) {
 				re.setRenameFilename(renameFileName);
@@ -83,7 +90,7 @@ public class ShopController {
 
 	}
 
-	private String saveFile(MultipartFile file, HttpServletRequest request) {
+	private String rSaveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 웹 서버 contextPath를 불러와 폴더의 경로 받아옴(webapp 하위의 resources 폴더)
 
@@ -123,7 +130,7 @@ public class ShopController {
 
 		int listCount = sService.getReListCount(shopNo);
 
-		PageInfo pi = Pagination.getPageinfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shopNo, pi);
 

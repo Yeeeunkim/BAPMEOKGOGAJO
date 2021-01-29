@@ -1,10 +1,8 @@
 package com.kh.bob;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Logger;
 
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +21,10 @@ import com.kh.bob.shop.model.service.ShopService;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@Autowired
-	private ShopService sService;
+//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+//	
+//	@Autowired
+//	private ShopService sService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.

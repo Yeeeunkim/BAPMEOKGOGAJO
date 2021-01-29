@@ -8,11 +8,14 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 
@@ -179,4 +182,3 @@ public class ShopDAO {
 	// 원태원 끝 ======================================================
 
 }
->>>>>>> origin/master

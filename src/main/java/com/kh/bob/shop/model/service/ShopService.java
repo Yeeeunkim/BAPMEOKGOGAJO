@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 
@@ -93,4 +96,3 @@ public interface ShopService {
 
 
 }
->>>>>>> origin/master

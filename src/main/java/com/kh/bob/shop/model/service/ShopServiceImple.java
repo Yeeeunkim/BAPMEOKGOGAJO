@@ -1,32 +1,25 @@
 package com.kh.bob.shop.model.service;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.dao.ShopDAO;
-import com.kh.bob.shop.model.exception.ShopException;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
+
 
 
 @Service("sService")
@@ -49,7 +42,35 @@ public class ShopServiceImple implements ShopService {
 	// 김하영 시작 ================================================
 
 	// 김하영 끝 =================================================
+	@Override
+	public int getReListCount(int shopNo) {
+		return sDAO.getReListCount(sqlSession, shopNo);
+	}
 
+	@Override
+	public int insertReview(ShopReview re) {
+		return sDAO.insertReview(sqlSession, re);
+	}
+
+	@Override
+	public List<ShopReview> selectReList(int shopNo, PageInfo pi) {
+		return sDAO.selectReList(sqlSession, shopNo, pi);
+	}
+
+	@Override
+	public int deleteReview(int reNo) {
+		return sDAO.delectReview(sqlSession, reNo);
+	}
+
+	@Override
+	public int insertReReply(ReviewReply rere) {
+		return sDAO.insertReReply(sqlSession, rere);
+	}
+
+	@Override
+	public ArrayList<ReviewReply> selectReReply(int reviewNo) {
+		return sDAO.selectReReply(sqlSession, reviewNo);
+	}
 	// 민병욱 시작 =================================================
 
 	// @@@@@테스트용
@@ -140,7 +161,7 @@ public class ShopServiceImple implements ShopService {
 	
 	@Override
 	public List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi) {
-	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE, pi);
+	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE, pi); 
 		return ShopList;
 	}
 
@@ -157,6 +178,7 @@ public class ShopServiceImple implements ShopService {
 	public int getListCateCount(ShopInfo shop) {
 		return sDAO.getListCateCount(sqlSession, shop);
 	}
+
 	
 
 	// 원태원 끝 ======================================================

@@ -7,11 +7,6 @@
 	
 	<!-- VO 선언단 -->	
 	<typeAliases>
-<!-- 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/> -->
-<!-- 		<typeAlias type="com.kh.bob.board.model.vo.Board" alias="Board"/> -->
- 		<typeAlias type="com.kh.bob.shop.model.vo.ShopInfo" alias="ShopInfo"/>
- 		<typeAlias type="com.kh.bob.shop.model.vo.ShopReview" alias="ShopReview"/>
- 		<typeAlias type="com.kh.bob.shop.model.vo.ReviewReply" alias="ReviewReply"/>
 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
@@ -26,6 +21,8 @@
 		<typeAlias type="com.kh.bob.manager.model.vo.DeclationReple" alias="DeclationReple"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.ShopCategory" alias="ShopCategory"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.CategorySales" alias="CategorySales"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ShopReview" alias="ShopReview"/>
+ 		<typeAlias type="com.kh.bob.shop.model.vo.ReviewReply" alias="ReviewReply"/>
 	</typeAliases>
 	 
 	 
