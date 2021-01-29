@@ -166,7 +166,11 @@
 	</insert>
 	
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
-		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc
+				select * from (
+		select * from reserve_info
+		order by reserve_no desc)
+		where
+		  shop_no=#{shopNo} and ROWNUM=1
 	</select>
 	
 	

@@ -255,7 +255,7 @@ h4,h2{margin-left:8%;}
  		<select class="form-select" aria-label="Default select example" id="time" name="reserveTime">
  				<option value="0" selected>날짜를 선택해주세요!</option>
 			<c:forEach var="ht" items="${timeList}">
-				 <option value="${ht}" id="${ht}">${ht}</option>
+				 <option value="${ht}" id="${ht}" >${ht}</option>
 			</c:forEach>
          </select>
          
@@ -269,6 +269,13 @@ h4,h2{margin-left:8%;}
 				}else{
 					return true;
 				}
+
+				if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
+					alert("메뉴를 선택하세요");
+					return false;
+				}else{
+					return true;
+				}
 			}
          </script>
         
@@ -276,29 +283,28 @@ h4,h2{margin-left:8%;}
          
           <script> 
 			var date;
-			var shopNo=<%=request.getParameter("SHOP_NO")%>;
- 
+			
 			$(function(){
 				var shopNo=<%=request.getParameter("SHOP_NO")%>;
-				
-				window.onload=function(){
-					  console.log(date);
-					  $.ajax({
-			                url : "/bob/reserveDate.do",
-			                type: "post",
-			               dataType: 'json',
-			               data : {shopNo,shopNo},
-			               success : function(data){
-			            	   for(var i=0; i<data.shopreserveTime.length; i++){
-			            		   document.getElementById(data.shopreserveTime[i]).disabled = false;
-									if(data.shopreserveDate[i]==date){
-										 console.log(data.shopreserveTime[i]);
-										 document.getElementById(data.shopreserveTime[i]).disabled = true;
-									}
+				$(document).ready(function() {
+					date = $('#example-date-input').val();
+					console.log(date);
+					$.ajax({
+		                url : "/bob/reserveDate.do",
+		                type: "post",
+		               dataType: 'json',
+		               data : {shopNo,shopNo},
+		               success : function(data){
+							for(var i=0; i<data.shopreserveTime.length; i++){
+								document.getElementById(data.shopreserveTime[i]).disabled = false;
+								if(data.shopreserveDate[i]==date){
+									 console.log(data.shopreserveTime[i]);
+									 document.getElementById(data.shopreserveTime[i]).disabled = true;
 								}
-				           }
-			            });
-				}
+							}
+		               }
+		            });
+				});
 
 	         	$('#example-date-input').change(function (){
 	             		date = $('#example-date-input').val();
@@ -321,7 +327,6 @@ h4,h2{margin-left:8%;}
 	        		 });
 			});
 			</script>
-
 			</div><div class="col-2">
          <select class="form-select" aria-label="Default select example" name="reservePeople">
             <option value="1">1명</option>
@@ -336,7 +341,15 @@ h4,h2{margin-left:8%;}
          </div>
 
 	  <textarea placeholder="요청사항을 입력해주세요" name="reserveComment" id="floatingTextarea2" style="height:100px; width:30%"></textarea>
-		
+		<script>
+			$(function(){
+				$(document).ready(function() {
+							if($('#floatingTextarea2').val()==null){
+								$('#floatingTextarea2').val('요청사항없음');
+							}
+					});
+				});
+		</script> 
    
    
    <br><br><br><br>

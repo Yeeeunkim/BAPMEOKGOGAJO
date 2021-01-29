@@ -226,9 +226,11 @@ input {
          <option value="0" selected="selected">--선택해주세요--</option>
          <option value="1">한식</option>
          <option value="2">양식</option>
-         <option value="3">중식</option>
-         <option value="4">일식</option>
+         <option value="3">일식</option>
+         <option value="4">중식</option>
          <option value="5">분식</option>
+         <option value="6">동남아</option>
+         <option value="7">샐러드</option>
       </select>
       
         <script>
