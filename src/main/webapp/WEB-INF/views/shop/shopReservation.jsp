@@ -453,7 +453,7 @@
 			  		</c:url>
 			  		
 		  		<td id="rereplytd">
-		  			<a class="rere" >답글</a>
+		  			<span class="rere" onclick="rereplySendForm(${re.reviewNo});" >답글</span>
 		  			&nbsp;&nbsp;&nbsp;&nbsp;
 		  			<a class="reDelete" href="${ redelete }">삭제</a>
 		  		</td>
@@ -469,30 +469,10 @@
 	  	</table>
 	  	
 	  	</form><br>
-  	
+  		
   		
   	</c:forEach>
-  	
- 		<%-- <c:if test="${ empty rereply.reviewNo }">
-   		<tr class="replytextarea">
-   			<td class="tdtd"></td>
-		  	<td><textarea rows="10" cols="70" id="textarea${re.reviewNo}" name="textarea"></textarea></td>
-		  	<td id="textareatd">
-		  	<input type = "button" onclick="replysend(${re.reviewNo})" value="답글 등록">
-		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  			<input type="button" class="recancle" value="취소">
-		  		</td>
-		  		<td></td>
-		  		<td></td>
-  	    </tr>
-	  	    <c:if test="${ !empty rereply.reviewNo }">
-	  				<td>사장님 :</td>
-	  				<td id="rereplyTime"></td>
-	  				<td id="rereContents"></td>
-	  		</c:if>
-  	 	</c:if> --%>
-  	
-  	
+
   	
   	<!-- 페이징 처리 -->
 		<div align="center" id="buttonTab">
@@ -540,6 +520,28 @@
   	<span align="center"><button id="reviewbtn" onclick="location.href='reinsertForm.sh'">리뷰쓰기</button></span>
   </div>
   
+    	<script>
+	  	function rereplySendForm(reid){
+	  		window.open('', 'rereplySendForm' ,'width=500, height=300');
+	  		
+	  		var form = document.createElement('form');
+	  		form.action = "rereplySendForm.sh";
+	  		form.method = "post";
+	  		form.target = "rereplySendForm";
+	  		
+	  		var input = document.createElement("input");
+	  		input.type = "hidden";
+	  		input.name = "reNo";
+	  		input.value = reid;
+	  		
+	  		form.appendChild(input);
+	  		
+	  		document.body.appendChild(form);
+	  		form.submit();
+	  		document.body.removeChild(form);
+	  		
+	  	}
+  	</script>
   <script>
   	/*  function reply(){
   		 $(this).closest('.replytextarea').css({'display':'inline-block', 'margin-left':'300px' });
@@ -556,7 +558,7 @@
 //   			$('.replytextarea').css('display','none');
   		}); */
   		
-  	$(function(){
+/*   	$(function(){
   		
   		
   		$('.rere').on('click',function(){
@@ -566,10 +568,10 @@
   		
   		
   		
-  	});
+  	}); */
   		
   		// 리뷰 답변달기
-  	
+/*   	
    		function replysend(reid){
   			$(function(){
   			var textarea = $('#textarea'+reid).val();
@@ -588,7 +590,7 @@
   				}
   			});
   			});
-  		};
+  		}; */
   		
   		// 리뷰 답글 불러오기
   		function getReplyList(reid){
@@ -630,7 +632,7 @@
 		
 		// 이미지 지도에 표시할 마커입니다
 		// 이미지 지도에 표시할 마커는 Object 형태입니다
-		var marker = {
+		/* var marker = {
 		    position: markerPosition
 		};
 		
@@ -638,8 +640,8 @@
 		    staticMapOption = { 
 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
 		        level: 3, // 이미지 지도의 확대 레벨
-		        marker: marker; // 이미지 지도에 표시할 마커 
-		    }
+		        marker: marker;   // 이미지 지도에 표시할 마커 
+		    } */
 		
 		// 이미지 지도를 생성합니다
 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);

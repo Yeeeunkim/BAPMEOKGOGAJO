@@ -153,13 +153,13 @@ public class ShopController {
 	}
 	
 	@RequestMapping("rereplySendForm.sh")
-	public String rereplySendForm() {
+	public String rereplySendForm(@RequestParam("reNo") int reNo, Model model) {
+		model.addAttribute("reNo", reNo);
 		return "rereplySendForm";
 	}
 	
 	
 	@RequestMapping("rereplyinsert.sh")
-	@ResponseBody
 	public String rereplyinsert(@RequestParam("textarea") String content, @RequestParam("reid") int reid , HttpSession session) {
 	//public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
