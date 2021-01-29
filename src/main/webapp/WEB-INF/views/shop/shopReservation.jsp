@@ -197,7 +197,7 @@
 	height: 40px;
 }
 #rebottom{
-	padding: 50px;
+	padding: 30px;
 }
 .rere{
 	color:orange;
@@ -214,7 +214,6 @@
 	
 .replytextarea{
 	display: none;
-	 
 }
 
 #reviewScore{
@@ -428,47 +427,58 @@
   
   <div class="user">
   
-  	
-  <form>
-  	<table class="reviewList">
   	<c:forEach var="re" items="${ list }">
-  	<tr>
-  		<td id="usertd"><img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"></td>
-  		<td id="rebottom">${ re.memberId }</td>
-  		<td id="reviewScore">
-  				<c:choose>
-  					<c:when test="${re.reviewScore == 1 }">★<br><span>별로예요😣</span></c:when>
-  					<c:when test="${re.reviewScore == 2 }">★★<br><span>그저그래요🙂</span></c:when>
-  					<c:when test="${re.reviewScore == 3 }">★★★<br><span>괜찮아요😃</span></c:when>
-  					<c:when test="${re.reviewScore == 4 }">★★★★<br><span>좋아요😋</span></c:when>
-  					<c:when test="${re.reviewScore == 5 }">★★★★★<br><span>최고에요😍</span></c:when>
-  					<c:otherwise></c:otherwise>
-  				</c:choose>
-  			</td>
-  		<td>${ re.reviewContents }</td>
+	  <form>
+	  	<table class="reviewList">
+	  	<tr>
+	  		<td id="usertd"><img src="<%= request.getContextPath() %>/resources/images/user.png" id="user"></td>
+	  		<td id="rebottom">${ re.memberId }<br>${re.reviewWrite}</td>
+	  		<td id="reviewScore">
+	  				<c:choose>
+	  					<c:when test="${re.reviewScore == 1 }">★<br><span>별로예요😣</span></c:when>
+	  					<c:when test="${re.reviewScore == 2 }">★★<br><span>그저그래요🙂</span></c:when>
+	  					<c:when test="${re.reviewScore == 3 }">★★★<br><span>괜찮아요😃</span></c:when>
+	  					<c:when test="${re.reviewScore == 4 }">★★★★<br><span>좋아요😋</span></c:when>
+	  					<c:when test="${re.reviewScore == 5 }">★★★★★<br><span>최고에요😍</span></c:when>
+	  				</c:choose>
+	  			</td>
+		  		<td>${ re.reviewContents }</td>
+		  		
+		  		<c:if test="${!empty re.originalFilename }">
+		  		<td><img src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }" width="100" height="100"></td>
+		  		</c:if>
+		  		
+			  		<c:url var="redelete" value="reDelete.sh">
+			  			<c:param name="reNo" value="${ re.reviewNo }"/>
+			  		</c:url>
+			  		
+		  		<td id="rereplytd">
+		  			<a class="rere" >답글</a>
+		  			&nbsp;&nbsp;&nbsp;&nbsp;
+		  			<a class="reDelete" href="${ redelete }">삭제</a>
+		  		</td>
+	  		</tr>
+	  		<tr class="replytextarea">
+			  	<td>
+			  		<textarea rows="10" cols="70" id="textarea"></textarea>
+			  		<input type="button" value="답글 등록" onclick="replysend(${re.reviewNo})">
+			  		<input type="button" class="recancle" value="취소">
+		  		</td>
+  			
+  			</tr> 
+	  	</table>
+	  	
+	  	</form><br>
+  	
   		
-  		<c:if test="${!empty re.originalFilename }">
-  		<td><img src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }" width="100" height="100"></td>
-  		</c:if>
-  		
-	  		<c:url var="redelete" value="reDelete.sh">
-	  			<c:param name="reNo" value="${ re.reviewNo }"/>
-	  		</c:url>
-	  		
-  		<td id="rereplytd">
-  			<%-- <c:forEach var="rereply" items="${ relist }">
-  			</c:forEach> --%>
-  			<a class="rere" onclcik="reply();">답글</a>
-  			&nbsp;&nbsp;&nbsp;&nbsp;
-  			<a class="reDelete" href="${ redelete }">삭제</a>
-  		</td>
-  	</tr>
- 		<c:if test="${ empty rereply.reviewNo }">
+  	</c:forEach>
+  	
+ 		<%-- <c:if test="${ empty rereply.reviewNo }">
    		<tr class="replytextarea">
    			<td class="tdtd"></td>
 		  	<td><textarea rows="10" cols="70" id="textarea${re.reviewNo}" name="textarea"></textarea></td>
 		  	<td id="textareatd">
-		  			<input type="button" onclick="replysend(${re.reviewNo})" value="답글 등록">
+		  	<input type = "button" onclick="replysend(${re.reviewNo})" value="답글 등록">
 		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		  			<input type="button" class="recancle" value="취소">
 		  		</td>
@@ -480,12 +490,10 @@
 	  				<td id="rereplyTime"></td>
 	  				<td id="rereContents"></td>
 	  		</c:if>
-  	 	</c:if>
-  	</c:forEach>
-   	 <tr>
-  	 	
-  	 </tr> 
-  	</table>
+  	 	</c:if> --%>
+  	
+  	
+  	
   	<!-- 페이징 처리 -->
 		<div align="center" id="buttonTab">
 			<span>
@@ -527,17 +535,17 @@
 			</span>
 		</div>
   	
-  </form>
+ 
   	<br><br>
   	<span align="center"><button id="reviewbtn" onclick="location.href='reinsertForm.sh'">리뷰쓰기</button></span>
   </div>
   
   <script>
-  	 function reply(){
+  	/*  function reply(){
   		 $(this).closest('.replytextarea').css({'display':'inline-block', 'margin-left':'300px' });
-  	} 
+  	}  */
   
- 	 $('.rere').on('click', function(){
+/*   	 $('.rere').on('click', function(){
  		 console.log($(this).parents('tr').next());
  		 $(this).parents('tr').next().css({'display':'inline-block', 'margin-left':'300px' });
 // 		$('.replytextarea').css({'display':'inline-block', 'margin-left':'300px' });
@@ -546,7 +554,19 @@
   			console.log(this);
   			$(this).parents('tr').hide();
 //   			$('.replytextarea').css('display','none');
+  		}); */
+  		
+  	$(function(){
+  		
+  		
+  		$('.rere').on('click',function(){
+  			var reid = ${re.reviewNo};
+  			$(this).parents('tr').window.open('rereplySendForm.sh', reid, 'rereplySendForm' ,'width=800, height=500');
   		});
+  		
+  		
+  		
+  	});
   		
   		// 리뷰 답변달기
   	
@@ -563,7 +583,7 @@
   					console.log(data);
   					if(data == 'success'){
   						$('textarea').val('');
-  						getReplyList();
+  						getReplyList(reid);
   					}
   				}
   			});
@@ -571,12 +591,14 @@
   		};
   		
   		// 리뷰 답글 불러오기
-  		function getReplyList(){
-  			var reviewNo = ${re.reviewNo};
+  		function getReplyList(reid){
+  			/* var reviewNo = ${re.reviewNo}; */
+  			$(function(){
+  				
   			
   			$.ajax({
   				url: 'rereplyList.sh',
-  				data : {reviewNo:reviewNo},
+  				data : {reid:reid},
   				success: function(data){
   					console.log(data);
   					
@@ -591,7 +613,7 @@
   				}
   				
   			});
-  		} 
+  		}); 
   		
   		$(function(){
   			
@@ -616,8 +638,8 @@
 		    staticMapOption = { 
 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
 		        level: 3, // 이미지 지도의 확대 레벨
-		        marker: marker // 이미지 지도에 표시할 마커 
-		    };    
+		        marker: marker; // 이미지 지도에 표시할 마커 
+		    }
 		
 		// 이미지 지도를 생성합니다
 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);

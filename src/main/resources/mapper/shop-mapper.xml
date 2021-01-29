@@ -46,6 +46,7 @@
  	<select id="selectReReply">
  		select *
  		from review_reply
+ 			join shop_review using(review_No)
  		where review_no = #{reviewNo}
  	</select>
  	

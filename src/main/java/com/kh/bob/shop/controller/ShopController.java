@@ -152,6 +152,11 @@ public class ShopController {
 		}
 	}
 	
+	@RequestMapping("rereplySendForm.sh")
+	public String rereplySendForm() {
+		return "rereplySendForm";
+	}
+	
 	
 	@RequestMapping("rereplyinsert.sh")
 	@ResponseBody
@@ -177,7 +182,7 @@ public class ShopController {
 	}
 	
 	@RequestMapping("rereplyList.sh")
-	public void rereplyList(@RequestParam("reviewNo") int reviewNo,HttpServletResponse response) {
+	public void rereplyList(@RequestParam("reid") int reviewNo,HttpServletResponse response) {
 		ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
 		
 		response.setContentType("application/json; charset=UTF-8");
@@ -190,6 +195,11 @@ public class ShopController {
 			e.printStackTrace();
 		}
 	}
+	
+	/*
+	 * @RequestMapping("rereplySendFome.sh") public String rereplySendFome() {
+	 * return "rereplySendFome"; }
+	 */
 	
 
 }
