@@ -52,7 +52,15 @@
    		where member_id=#{member_id} and email=#{email} and member_status='Y'
    </select>
    
+<<<<<<< HEAD
 
+=======
+   <select id="pwdUpdate">
+   		update member_info
+   		set member_pwd=#{member_pwd}
+   		where member_id=#{member_id}
+   </select>
+>>>>>>> origin/Js
    
    <!-- 회원정보 수정 시 비밀번호 -->
    <select id="infoPwd" resultMap="bMemberResultSet">
@@ -77,11 +85,19 @@
    	where member_id=#{member_id}
    </update>
    
+<<<<<<< HEAD
 	<update id="pwdUpdate">
 		update member_info
 		set member_pwd=#{newPwd}
 		where member_id=#{member_id}
 	</update>
+=======
+    <update id="updatePwd">
+  		update member_info
+  		set member_pwd=#{newPwd}
+  		where member_id=#{member_id} and member_pwd=#{member_pwd}
+  	</update>
+>>>>>>> origin/Js
    
    
 <!--김예은 끝 ================================================= -->

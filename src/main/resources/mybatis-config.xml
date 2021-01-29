@@ -10,13 +10,20 @@
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/>
+<<<<<<< HEAD
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopInfo" alias="ShopInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopMenu" alias="ShopMenu"/>
 	</typeAliases>
 	 
 	<mappers>
 		<mapper resource="mapper/shop-mapper.xml"/>
+=======
+	</typeAliases>
+	 
+	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
+		<mapper resource="mapper/member-mapper.xml"/>
+		<mapper resource="mapper/board-mapper.xml"/>
+>>>>>>> origin/Js
 	</mappers>
 	
 </configuration>
-

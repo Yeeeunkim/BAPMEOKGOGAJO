@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>비밀번호 수정</title>
+=======
+<title>Insert title here</title>
+>>>>>>> origin/Js
 <style>
 	.outer{
 		width: 70%;
@@ -72,13 +76,20 @@
 				</tr>
 				<tr height="70px">
 					<td>새 비밀번호 </td>
+<<<<<<< HEAD
 					<td><input type="password" class="input" id="newPwd"name="member_newPwd1"></td>
 					<td><label id="pwd1Result"></label></td>
+=======
+					<td><input type="password" class="input" id="newPwd"name="member_newPwd"></td>
+>>>>>>> origin/Js
 				</tr>
 					 <tr height="70px">
 					<td>새 비밀번호 확인</td>
 					<td><input type="password" class="input" id="newPwCheck" name="member_newPwd2"  ></td>
+<<<<<<< HEAD
 					<td><label id="pwd2Result"></label></td>
+=======
+>>>>>>> origin/Js
 				</tr> 
 			</table>
 			<br><br><br>
@@ -89,6 +100,7 @@
 	</div>
 	<c:import url="../common/footer.jsp"/>
 	<script>
+<<<<<<< HEAD
 	$(function(){
 		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
 		
@@ -132,6 +144,41 @@
 			}	
 		});
 	});
+=======
+	$('#newPw').on('keyup', function() {
+		//비밀번호 공백 확인
+		if($("#newPw").val() === ""){
+			$('#newPwMsg').html('<b>비밀번호는 필수 정보입니다.</b>');
+			chk2 = false;
+		}		         
+		//비밀번호 유효성검사
+		else if(!getPwCheck.test($("#newPw").val()) || $("#newPw").val().length < 6){
+			$('#newPwMsg').html('<b>특수문자 포함 6자 이상 입력하세요</b>');
+			chk2 = false;
+		} else {
+			$('#newPwMsg').html('');
+			chk2 = true;
+		}
+				
+	}); //end of new password
+				
+				
+	//비밀번호 확인
+	$('#newPwCheck').on('keyup', function() {
+		
+		if($("#newPwCheck").val() === "") {
+			$('#newPwMsg').html('<b">비밀번호 확인은 필수 정보입니다.</b>');
+			chk3 = false;
+		} else if( $("#newPw").val() != $("#newPwCheck").val() ) {
+			$('#newPwMsg').html('<b>비밀번호가 일치하지 않습니다.</b>');
+			chk3 = false;
+		} else {
+			$('#newPwMsg').html('');
+			chk3 = true;
+	}
+		
+				});
+>>>>>>> origin/Js
 	</script>
 </body>
 </html>

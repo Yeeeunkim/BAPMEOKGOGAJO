@@ -49,7 +49,11 @@
 
 	<jsp:include page="../common/menubar.jsp" />
 	
+<<<<<<< HEAD
 	<div class="outer"><br>
+=======
+	<div class="outer">
+>>>>>>> origin/Js
 		<h1><c:out value="${ loginUser.member_name}님 환영합니다."/></h1>
 		<div class="mid">
 			<h5>예약 내역 조회</h5>

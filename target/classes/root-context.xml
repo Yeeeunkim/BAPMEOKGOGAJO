@@ -4,9 +4,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DataBase 등록 : BasicDataSource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+=======
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- DateBase 등록 : BasicDataSource클래스 사용할거임, 
+	** 이미 만들어져있는걸 클래스는 어노테이션 불가능해서 xml로 설정해야함 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"><!-- ㄴ close라는 소멸 메소드 쓸거야 -->
+>>>>>>> origin/Js
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="BAPMEOKGOGAJO"/>
@@ -19,8 +26,8 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 		<property name="dataSource" ref="dataSource"/>	<!-- ref : DataBase 등록 부분 bean의 id -->
 	</bean>
-	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+<<<<<<< HEAD
 <<<<<<< HEAD
 		<constructor-arg ref="sqlSession" /> <!-- 매개변수 있는 생성자에 값을 넣는 것을 보여주는 것을 태그로 표현 -->
 	</bean>
@@ -31,6 +38,17 @@
 		<property name="maxInMemorySize" value="100000000"/>
 	</bean>
 	
+=======
+		<constructor-arg ref="sqlSession" /> <!-- 매개변수 있는 생성자에 값을 넣는 것을 보여주는 것을 태그로 표현 -->
+	</bean>
+	
+	<!-- 파일 업로드 시 사용할 MultiopartResolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000"/>
+	</bean>
+	
+>>>>>>> origin/Js
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>

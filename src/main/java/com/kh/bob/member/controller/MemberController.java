@@ -184,7 +184,11 @@ public class MemberController {
 		}
 	}
 	
+<<<<<<< HEAD
 	//아이디 중복검사
+=======
+	// 수정 아이디 중복검사
+>>>>>>> origin/Js
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
 		boolean isUsable = bmService.checkIdDup(member_id) == 0 ? true : false;
@@ -196,7 +200,11 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 
+=======
+	 
+>>>>>>> origin/Js
 	
 	//일반 마이페이지  
 	@RequestMapping("myPage.me")
@@ -204,12 +212,17 @@ public class MemberController {
 		return "myPage";
 	}
 	
+<<<<<<< HEAD
 	
+=======
+	//비밀번호 변경
+>>>>>>> origin/Js
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";
 	}
 	
+<<<<<<< HEAD
 	// 비밀번호 변경
 	@RequestMapping("updatePwd.me")
 	public String pwdUpdate( @RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd1") String newPwd,
@@ -223,12 +236,38 @@ public class MemberController {
 			map.put("member_id", m.getMember_id());
 			map.put("newPwd", newPwd);
 			int result = bmService.pwdUpdate(map);
+=======
+	
+	@RequestMapping("mInfoPwdForm.me")
+	public String mCheckPwdForm() {
+		return "checkPwd";
+	}
+	
+	// 비밀번호 변경
+	@RequestMapping("updatePwd.me")
+	public String pwdUpdate(@RequestParam("member_pwd") String member_pwd, @RequestParam("member_newPwd") String newPwd,
+						HttpSession session) {
+		
+		Member m = bmService.loginMember((Member)session.getAttribute("loginUser"));
+		System.out.println("m :" + m);
+		
+		if(member_pwd == m.getMember_pwd()) {
+			String encNewPwd  = bcrypt.encode(newPwd);
+			System.out.println("encNewPwd : " + encNewPwd);
+
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("member_id", m.getMember_id());
+			map.put("newPwd", encNewPwd);
+			
+			int result = bmService.updatePwd(map);
+>>>>>>> origin/Js
 			
 			if(result > 0) {
 				return "myPage";
 			}else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
+<<<<<<< HEAD
 		}else {
 			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
@@ -240,6 +279,12 @@ public class MemberController {
 		return "checkPwd";
 	}
 	
+=======
+		} else {
+			throw new MemberException("기존 비밀번호가 틀렸습니다.");
+		}
+	}
+>>>>>>> origin/Js
 	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
@@ -278,7 +323,11 @@ public class MemberController {
 	}
 	
 	//사업자 정보 수정 비밀번호 기능 페이지 
+<<<<<<< HEAD
 		@RequestMapping("oInfoPwd.me")
+=======
+		@RequestMapping("oInfokPwd.me")
+>>>>>>> origin/Js
 		public String oCheckPwd(Member m, HttpSession session, Model model) {
 			Member loginUser = bmService.infoPwd(m);
 			

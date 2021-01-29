@@ -27,9 +27,15 @@ public interface MemberService {
 
 	Member findPwd(Model model);
 
+<<<<<<< HEAD
 
 
 	int pwdUpdate(HashMap<String, String> map);
+=======
+	int pwdUpdate(String member_pwd);
+
+	int updatePwd(HashMap<String, String> map);
+>>>>>>> origin/Js
 
 
 

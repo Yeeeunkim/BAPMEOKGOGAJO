@@ -53,7 +53,11 @@
 <body>
 	<c:import url="../common/menubar.jsp"/>
 	<div id="outer">
+<<<<<<< HEAD
 		<form action="oInfoPwd.me" method="post" id="checkPwd" name="checkPwd">
+=======
+		<form action="oInfokPwd.me" method="post" id="checkPwd" name="checkPwd">
+>>>>>>> origin/Js
 			<h1>식당 정보 수정</h1>
 			<div id=checkPwdOut>
 				<label id="label">식당 정보 수정을 위해 비밀번호를 다시 입력 해주세요.</label><br>

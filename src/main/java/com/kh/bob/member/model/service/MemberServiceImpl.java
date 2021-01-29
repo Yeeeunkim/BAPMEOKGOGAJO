@@ -62,6 +62,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public int pwdUpdate(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return bmDAO.pwdUpdate(sqlSession, map);
@@ -70,6 +71,17 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	
+=======
+	public int pwdUpdate(String member_pwd) {
+		return bmDAO.pwdUpate(sqlSession, member_pwd);
+	}
+
+	@Override
+	public int updatePwd(HashMap<String, String> map) {
+		return bmDAO.updatePwd(sqlSession, map);
+	}
+
+>>>>>>> origin/Js
 
 
 	

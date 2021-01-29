@@ -133,8 +133,13 @@
 <body  style="font-family: 'Gugi'; ">
 <!-- 사장님 마이페이지 -->
 	<c:import url="../common/menubar.jsp"/>
+<<<<<<< HEAD
 	<div class="outer"><br>
 		<h1><c:out value="${ loginUser.member_name}사장님 환영합니다."/></h1><br>
+=======
+	<div class="outer">
+		<h1>도대담 회원님, 환영합니다.</h1>
+>>>>>>> origin/Js
 		<div class="inner introduceDiv">
 			<label class="mainLabel">식당 소개글</label>
 			<label class="subLabel">소개글 수정</label><br>
@@ -262,8 +267,11 @@
 			</div>
 		</div>
 		<div class="updateBtnArea">
+<<<<<<< HEAD
 			<c:url var="pwdUpdate" value="mPwdUpdate.me"/>
 				<button class="updateBtn" onclick="location.href='${pwdUpdate}'">비밀번호 변경</button>
+=======
+>>>>>>> origin/Js
 			<c:url var="oinfo" value="oInfoPwdForm.me"/>
 			<button class="updateBtn" onclick="location.href='${oinfo}'" >회원 정보 수정</button>
 		</div>
