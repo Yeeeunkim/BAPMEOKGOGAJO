@@ -27,109 +27,94 @@
  	<div class="sidebar">
 		<header><b>Manager Page</b></header>
 		<ul>
-			<li><a href="#"><i class="fas fa-qrcode">메뉴바</i></a></li>		
-			<li><a href="review.do"><i class="fas fa-pen-fancy">리뷰관리</i></a></li>	
-			<li><a href="#"><i class="fas fa-exclamation-circle">신고식당</i></a></li>	
-			<li><a href="#"><i class="fas fa-signal">통계</i></a></li>	
+<!-- 			<li><a href="#"><i class="fas fa-qrcode">메뉴바</i></a></li>		 -->
+			<li><a href="manager.ma"><i class="fas fa-signal">통계</i></a></li>	
+			<li><a href="shopSearch.ma"><i class="fas fa-pen-fancy">리뷰관리</i></a></li>	
+			<li><a href="declaration.ma"><i class="fas fa-exclamation-circle">신고식당</i></a></li>	
 		</ul>	
 	</div>	 
 	
 	
 		
-		<div class="row">
-		
-		<table id="example-table-3" width="100%" class="table table-bordered table-hover text-center">
-			<thead>
-				<tr>
-					<th>선택</th>
-					<th>No. </th>
-					<th>사용자</th>
-					<th>신고내용</th>
-					<th>신고요청일</th>
-				</tr>
-			</thead>
-			<tbody>				
-				<tr>
-					<td><input type="checkbox" name="user_CheckBox" ></td>
-					<td>1</td>
-					<td>user07</td>
-					<td>맛없어요</td>
-					<td>2020.01.01</td>
-				
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="user_CheckBox" ></td>
-					<td>2</td>
-					<td>user08</td>
-					<td>위생불량</td>
-					<td>2020.01.01</td>
-					
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="user_CheckBox" ></td>
-					<td>4</td>
-					<td>user09</td>
-					<td>넷마블</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="user_CheckBox" ></td>
-					<td>5</td>
-					<td>user09</td>
-					<td>불친절합니다</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="user_CheckBox" ></td>
-					<td>6</td>
-					<td>user09</td>
-					<td>벌레가 나왔어요</td>
-					<td>2020.01.01</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" name="user_CheckBox" ></td>
-					<td>7</td>
-					<td>user09</td>
-					<td>너무 짜요</td>
-					<td>2020.01.01</td>
-				</tr>
-			</tbody>
-		</table>
-		
+	<div class="row">
+		<form action="deleteReview.ma" method="post">
+			<input type="hidden" name="sNo" value="${ sNo }">
+			<table id="example-table-3" width="100%" class="table table-bordered table-hover text-center">
+				<thead>
+					<tr>
+						<th>선택</th>
+						<th>No. </th>
+						<th>사용자</th>
+						<th>리뷰내용</th>
+						<th>신고요청일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="r" items="${ mRList }">
+						<tr class="contentTR">
+							<td><input type="checkbox" name="deleteRNo" value="${ r.rNo }"></td>
+							<td class="contentTD">${ r.rNo }</td>
+							<td class="contentTD">${ r.memberId }</td>
+							<td class="contentTD">${ r.rContents }</td>
+							<td class="contentTD">${ r.rWrite }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<script>
+				$(function(){
+					$('.contentTD').click(function(){
+						var rNo=$(this).parent().children('td').eq(1).text();
+						location.href='rdetail.ma?rNo=' + rNo;
+					});
+				});
+			</script>
 			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">4</a></li>
-			    <li class="page-item"><a class="page-link" href="#">5</a></li>
-			    <li class="page-item"><a class="page-link" href="#">6</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
+				<ul class="pagination">
+					<c:if test="${ pi.currentPage <= 1 }">
+						<li class="page-item">
+							<b class="page-link" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</b>
+						</li>
+					</c:if>
+					<c:if test="${ pi.currentPage > 1 }">
+						<li class="page-item">
+							<a class="page-link" href="review.ma?sNo=${ sNo }&page=${ pi.currentPage - 1 }" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+					</c:if>
+				    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+						<c:if test="${ p eq pi.currentPage }">
+				    		<li class="page-item"><b class="page-link">${ p }</b></li>
+						</c:if>
+						
+						<c:if test="${ p ne pi.currentPage }">
+							<li class="page-item"><a class="page-link" href="review.ma?sNo=${ sNo }&page=${ p }">${ p }</a></li>
+						</c:if>
+					</c:forEach>
+					<c:if test="${ pi.currentPage >= pi.maxPage }">
+						<li class="page-item">
+					      <b class="page-link" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </b>
+					    </li>
+					</c:if>
+					<c:if test="${ pi.currentPage < pi.maxPage }">
+						<li class="page-item">
+				      		<a class="page-link" href="review.ma?sNo=${ sNo }&page=${ pi.currentPage + 1 }" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+				      		</a>
+						</li>
+					</c:if>
+				</ul>
 			</nav>
-			
-			
-			
-			
-			
-		<div class="d-grid gap-2 d-md-block">
-			  <button class="btn btn-primary" type="button">전체선택</button>
-			  <button class="btn btn-primary" type="button">선택삭제</button>
-			  <button class="btn btn-primary" type="button">삭제하기</button>
-		</div>
+				
+			<div class="d-grid gap-2 d-md-block">
+				  <input type="submit" class="btn btn-primary" value="삭제하기">
+			</div>
+		</form>
 	</div>
-	
-
-	
-	
 </body>
 </html>

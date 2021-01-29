@@ -218,50 +218,50 @@
 				});
 			});
 		});
-	$(function(){
-		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
+// 	$(function(){
+// 		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
 	
 		
-		$('#m_pwd').blur(function(){
-			 if(false === reg.test($('#m_pwd').val())){
-				 $('#pwd1Result').text('사용 불가능한 비밀번호입니다.');
-				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#m_pwd').val('');
-		         $('#m_pwd').focus();
-		         return false;
-			 }else if($('#m_pwd').val()==''){
-				 $('#pwd1Result').text('비밀번호를  입력해주세요.');
-				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#m_pwd').val('');
-		         $('#m_pwd').focus();
-		         return false;
-			}else{
-					$('#pwd1Result').text('사용 가능한 비밀번호입니다');
-					$('#pwd1Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
-					return true;
-			}	
-		});
+// 		$('#m_pwd').blur(function(){
+// 			 if(false === reg.test($('#m_pwd').val())){
+// 				 $('#pwd1Result').text('사용 불가능한 비밀번호입니다.');
+// 				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+// 				 $('#m_pwd').val('');
+// 		         $('#m_pwd').focus();
+// 		         return false;
+// 			 }else if($('#m_pwd').val()==''){
+// 				 $('#pwd1Result').text('비밀번호를  입력해주세요.');
+// 				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+// 				 $('#m_pwd').val('');
+// 		         $('#m_pwd').focus();
+// 		         return false;
+// 			}else{
+// 					$('#pwd1Result').text('사용 가능한 비밀번호입니다');
+// 					$('#pwd1Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
+// 					return true;
+// 			}	
+// 		});
 		
-		$('#m_pwd2').blur(function(){
-			 if($('#m_pwd').val() != $('#m_pwd2').val()){
-				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');
-				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#m_pwd2').val('');
-		         $('#m_pwd2').focus();
-		         return false;
-			 }else if($('#m_pwd2').val()==''){
-				 $('#pwd2Result').text('비밀번호를  입력해주세요.');
-				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#m_pwd2').val('');
-		         $('#m_pwd2').focus();
-		         return false;
-			}else{
-					$('#pwd2Result').text('비밀번호가 일치합니다.');
-					$('#pwd2Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
-					return true;
-			}	
-		});
-	});
+// 		$('#m_pwd2').blur(function(){
+// 			 if($('#m_pwd').val() != $('#m_pwd2').val()){
+// 				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');
+// 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+// 				 $('#m_pwd2').val('');
+// 		         $('#m_pwd2').focus();
+// 		         return false;
+// 			 }else if($('#m_pwd2').val()==''){
+// 				 $('#pwd2Result').text('비밀번호를  입력해주세요.');
+// 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+// 				 $('#m_pwd2').val('');
+// 		         $('#m_pwd2').focus();
+// 		         return false;
+// 			}else{
+// 					$('#pwd2Result').text('비밀번호가 일치합니다.');
+// 					$('#pwd2Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
+// 					return true;
+// 			}	
+// 		});
+// 	});
 	
 	/*유효성 검사*/
 	 function validate(){ 

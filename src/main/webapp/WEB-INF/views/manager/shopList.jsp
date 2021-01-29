@@ -37,26 +37,27 @@
 	
 		
 	<div class="row">
+		
 		<table id="example-table-3" width="100%" class="table table-bordered table-hover text-center">
 			<thead>
 				<tr>
 					<th>No. </th>
-					<th>점포명</th>
-					<th>신고내용</th>
-					<th>작성자</th>
-					<th>신고일</th>
-					<th>처리상태</th>
+					<th>점포이름</th>
+					<th>점포주소</th>
+					<th>점표분류</th>
+					<th>사업자번호</th>
+					<th>회원아이디</th>
 				</tr>
 			</thead>
-			<tbody>
-				<c:forEach var="d" items="${ mDList }">
+			<tbody>				
+				<c:forEach var="s" items="${ mSList }">
 					<tr class="contentTR">
-						<td>${ d.dNo }</td>
-						<td>${ d.sName }</td>
-						<td>${ d.dComment }</td>
-						<td>${ d.memberId }</td>
-						<td>${ d.dWrite }</td>
-						<td>${ d.dStatus }</td>
+						<td>${ s.shopNo }</td>
+						<td>${ s.shopName }</td>
+						<td>${ s.shopAddress }</td>
+						<td>${ s.shopCate }</td>
+						<td>${ s.businessNumber }</td>
+						<td>${ s.memberId }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -64,8 +65,8 @@
 		<script>
 			$(function(){
 				$('.contentTR').click(function(){
-					var dNo=$(this).children('td').eq(0).text();
-					location.href='declationDetail.ma?dNo=' + dNo;
+					var sNo=$(this).children('td').eq(0).text();
+					location.href='review.ma?sNo=' + sNo;
 				});
 			});
 		</script>
@@ -80,7 +81,7 @@
 				</c:if>
 				<c:if test="${ pi.currentPage > 1 }">
 					<li class="page-item">
-						<a class="page-link" href="declaration.ma?page=${ pi.currentPage - 1 }" aria-label="Previous">
+						<a class="page-link" href="review.ma?page=${ pi.currentPage - 1 }" aria-label="Previous">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
@@ -91,7 +92,7 @@
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
-						<li class="page-item"><a class="page-link" href="declaration.ma?page=${ p }">${ p }</a></li>
+						<li class="page-item"><a class="page-link" href="review.ma?page=${ p }">${ p }</a></li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${ pi.currentPage >= pi.maxPage }">
@@ -103,7 +104,7 @@
 				</c:if>
 				<c:if test="${ pi.currentPage < pi.maxPage }">
 					<li class="page-item">
-			      		<a class="page-link" href="declaration.ma?page=${ pi.currentPage + 1 }" aria-label="Next">
+			      		<a class="page-link" href="review.ma?page=${ pi.currentPage + 1 }" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
 			      		</a>
 					</li>
