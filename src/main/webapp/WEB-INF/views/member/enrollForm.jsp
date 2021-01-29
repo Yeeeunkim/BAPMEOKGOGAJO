@@ -60,6 +60,7 @@
 	<div id="enrollArea">
 			<h1 style="text-align: center;">회원가입 선택 ></h1><br><br>
 			
+			
 			<div class="row">
 				<div class="col-6 enrollDiv">
 					일반회원<br><br><br><br>

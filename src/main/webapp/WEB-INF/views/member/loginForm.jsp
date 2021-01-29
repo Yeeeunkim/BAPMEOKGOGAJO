@@ -115,7 +115,7 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">아이디</label> 
-				<input type="text" class="form-control inputForm" id="inputId" placeholder="아이디를 입력해주세요" name="memberId">
+				<input type="text" class="form-control inputForm" id="inputId" placeholder="아이디를 입력해주세요" name="member_id">
 				<label class="hidden"></label>
 			</div>
 			<div class="mb-4">

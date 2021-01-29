@@ -2,15 +2,18 @@ package com.kh.bob.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.FormSubmitEvent.MethodType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -28,11 +32,9 @@ import com.kh.bob.member.model.exception.MemberException;
 import com.kh.bob.member.model.service.MemberService;
 import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.model.service.ShopService;
-import com.kh.bob.shop.model.vo.ReserveInfo;
-import com.kh.bob.shop.model.vo.ReserveMenu;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
-import com.kh.bob.shop.model.vo.ShopReview;
+import com.kh.bob.shop.model.vo.ShopSeat;
 
 
 
@@ -115,9 +117,9 @@ public class MemberController {
 
 	// 비밀번호찾기 기능 페이지
 	@RequestMapping("findPwd.me")
-	public String findPwd(@RequestParam String memberId, @RequestParam String email, Model model) {
+	public String findPwd(@RequestParam String member_id, @RequestParam String email, Model model) {
 
-		model.addAttribute("memberId", memberId);
+		model.addAttribute("member_id", member_id);
 		model.addAttribute("email", email);
 
 		Member findPwd = bmService.findPwd(model);
@@ -190,8 +192,8 @@ public class MemberController {
 
 	// 아이디 중복검사
 	@RequestMapping("dupId.me")
-	public void idDuplicateCheck(@RequestParam("memberId") String memberId, HttpServletResponse response) {
-		boolean isUsable = bmService.checkIdDup(memberId) == 0 ? true : false;
+	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
+		boolean isUsable = bmService.checkIdDup(member_id) == 0 ? true : false;
 		System.out.println("isUsable :" + isUsable);
 
 		try {
@@ -208,41 +210,40 @@ public class MemberController {
 		
 		HashMap<String,Object> paramMap = new HashMap<String,Object>();
 		
-		paramMap.put("memberId", loginUser.getMemberId());
+		paramMap.put("memberId", loginUser.getMember_id());
 		//paramMap.put("name","이름");
 		
 		
 		//예약 내역
-		ReserveInfo rei = sService.selectMyReInfo(loginUser.getMemberId());
-		System.out.println("re : " + rei);
-		
-		//사용자가 예약한 예약내역 조회 
-		List<ReserveInfo> re = sService.selectMyrInfo(loginUser.getMemberId());
-		
+		HashMap<String, Object> re = sService.selectReserve(paramMap);
+		System.out.println("reSelect : " + re);
 		
 		//사용자가 예약한 식당 정보 조회
-		List<ShopInfo> sp = sService.selectMyShopPick(rei.getShopNo());
-		System.out.println("sp: "  + sp);
+		re.put("shopNo", re.get("shopNo"));
+		HashMap<String, Object> sp = sService.selectReserveShop(re);
+		System.out.println("sp : " + sp);
 		
 		//예약 메뉴
-		List<ReserveMenu> reme = sService.selectMyReMenu(rei.getReserveNo());	
+		HashMap<String,Object> pmMap = new HashMap<String,Object>();		
+		pmMap.put("reserveNo", re.get("reserveNo"));
+		
+		HashMap<String, Object> reme = sService.selectReserveMenu(pmMap);
 		System.out.println("reme : " + reme);
 		
 		//리뷰
-		List<ShopReview> rev = sService.selectMyReview(loginUser.getMemberId());	
+		HashMap<String, Object> rev = sService.selectReview(paramMap);
 		System.out.println("rev : " + rev);
 		
-		 if(sp != null ||  re!= null || !reme.isEmpty() || !rev.isEmpty() ){ 
-			 mv.addObject("re", re);
+		 if(!sp.isEmpty() || !re.isEmpty() || !reme.isEmpty() || !rev.isEmpty() ){ 
 			 mv.addObject("sp", sp);
+			 mv.addObject("re", re);
 			 mv.addObject("reme", reme);
 			 mv.addObject("rev", rev);
 			 mv.setViewName("myPage");
 			 return mv;
 		 }else { 
-				throw new MemberException("사용자 마이페이지 조회에 실패하였습니다.");
+			 throw new MemberException("일반 마이페이지에 실패했습니다."); 
 		 }
-		 
 	}
 
 	@RequestMapping("mPwdUpdate.me")
@@ -260,7 +261,7 @@ public class MemberController {
 		if (loginUser != null) {
 
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("memberId", m.getMemberId());
+			map.put("member_id", m.getMember_id());
 			map.put("newPwd", newPwd);
 			int result = bmService.pwdUpdate(map);
 
@@ -270,6 +271,7 @@ public class MemberController {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
 		} else {
+
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
 		}
 	}
@@ -307,80 +309,95 @@ public class MemberController {
 
 	@RequestMapping(value="shopMypage.me" )
 	public ModelAndView shopMyPageForm( HttpSession session, ModelAndView mv) {
-		// ★
-				// 1. 마이페이지 들어갈 때 사업자 아이디 추출
-				Member loginUser = (Member) session.getAttribute("loginUser");
-				
-				// 2. 추출한 아이디를 이용해 사업자의 식당 정보 가져오기
-				ShopInfo si = sService.selectMyShop(loginUser.getMemberId());
-				System.out.println(si);
-				
-				// 3-1. 가져온 식당정보에서 식당번호로 식당 주 메뉴(menu_cate == 1) 리스트에 담기
-				List<ShopMenu> sm = sService.selectMyMenu1(si.getShopNo());
-				System.out.println(sm);
-				
-				// 3-2. 가져온 식당정보에서 식당번호로 식당 사이드 메뉴(menu_cate == 2) 리스트에 담기
-				List<ShopMenu> sms = sService.selectMyMenu2(si.getShopNo());
-				System.out.println(sms);
-				
-				// 3-3. 가져온 식당정보에서 식당번호로 식당 음료 메뉴(menu_cate == 3) 리스트에 담기
-				List<ShopMenu> smb = sService.selectMyMenu3(si.getShopNo());
-				System.out.println(smb);
-				
-				//식당이 예약받은 정보들
-				ReserveInfo rinfo = sService.selectRinfo(si.getShopNo());
-				System.out.println("rinfo : " + rinfo);
-				
-				//식당이 예약받은 정보들  - 예약인원, 예약 시간 등
-				List<ReserveInfo> ri = sService.selectReserveInfo(si.getShopNo());
-				System.out.println("ri : " + ri);
-				
-				//식당이 예약받은 정보들  - 예약메뉴
-				List<ReserveMenu> rm = sService.selectReserveMenu(rinfo.getReserveNo());
-				System.out.println("rm : " + rm);
-				
-				if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
-					  
-					 mv.addObject("si", si);
-					 mv.addObject("sm", sm);
-					 mv.addObject("sms", sms);
-					 mv.addObject("smb", smb);
-					 mv.addObject("ri", ri);
-					 mv.addObject("rm", rm);
-					 mv.setViewName("shopMyPage");
-					 return mv;
-				 }else { 
-					 throw new MemberException("사장님 마이페이지에 실패했습니다."); 
-				 }
-			}
-
-	//사업자 식당 정보 수정 리스트
-	@RequestMapping("shopUpdateForm.me")
-	public ModelAndView shopUpateForm(HttpSession session, ModelAndView mv ) {
+		// ShopInfo si, sm 전달되는 값이  없어서 기는 문제
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		ShopInfo si = sService.selectMyShop(loginUser.getMemberId());
+		HashMap<String,Object> paramMap = new HashMap<String,Object>();
 		
-		// 사장님마이페이지 - 메인 
-		List<ShopMenu> sm = sService.selectMyMenu1(si.getShopNo());
+		paramMap.put("memberId", loginUser.getMember_id());
+		//paramMap.put("name","이름");
 		
-		// 사장님마이페이지 - 사이드
-		List<ShopMenu> sms = sService.selectMyMenu2(si.getShopNo());
+		//식당 정보
+		HashMap<String,Object> si = sService.selectSinfo(paramMap);
+		System.out.println("si : " + si);
+		//System.out.println("Result Data : " + si.isEmpty());
+		//System.out.println(si.get("SHOP_CLOSE"));
 		
-		// 사장님마이페이지 - 음료
-		List<ShopMenu> smb = sService.selectMyMenu3(si.getShopNo());
+		//ShopInfo shopUser = (ShopInfo) session.getAttribute("memberId");
+		
+		HashMap<String,Object> smMap = new HashMap<String,Object>();
+		
+		smMap.put("shopNo", si.get("shopNo"));
+		
+		//메인 메뉴
+		HashMap<String, Object> sm = sService.selectSmenu(smMap);
+		System.out.println("sm : " + sm);
+		
 
-		if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
+		//사이드메뉴
+		HashMap<String, Object> sms = sService.selectSmenuSide(smMap);
+		System.out.println("sms : " + sms);
+		
+		//음료수
+		HashMap<String, Object> smb = sService.selectSmenuBeverage(smMap);
+		System.out.println("smb : " + smb);
+		 if(!si.isEmpty() || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
 			  
 			 mv.addObject("si", si);
 			 mv.addObject("sm", sm);
 			 mv.addObject("sms", sms);
 			 mv.addObject("smb", smb);
-			 mv.setViewName("updateShopInfoForm");
+			 mv.setViewName("shopMyPage");
 			 return mv;
 		 }else { 
 			 throw new MemberException("사장님 마이페이지에 실패했습니다."); 
 		 }
+	}
+
+	//사업자 식당 정보 수정 리스트
+	@RequestMapping("shopUpdateForm.me")
+	public String shopUpateForm(HttpSession session, Model model) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		HashMap<String,Object> paramMap = new HashMap<String,Object>();
+		
+		paramMap.put("memberId", loginUser.getMember_id());
+		//paramMap.put("name","이름");
+		
+		HashMap<String,Object> si = sService.selectSinfo(paramMap);
+		System.out.println("si : " + si);
+		//System.out.println("Result Data : " + si.isEmpty());
+		//System.out.println(si.get("SHOP_CLOSE"));
+		
+		//ShopInfo shopUser = (ShopInfo) session.getAttribute("memberId");
+		
+		HashMap<String,Object> smMap = new HashMap<String,Object>();
+		
+		smMap.put("shopNo", si.get("shopNo"));
+		
+		//메인메뉴
+		HashMap<String, Object> sm = sService.selectSmenu(smMap);
+		System.out.println("sm : " + sm);
+		 
+		
+		//사이드메뉴
+		HashMap<String, Object> sms = sService.selectSmenuSide(smMap);
+		System.out.println("sms : " + sms);
+		
+		//음료수
+		HashMap<String, Object> smb = sService.selectSmenuBeverage(smMap);
+		System.out.println("smb : " + smb);
+
+		if(!si.isEmpty() || !sm.isEmpty()){ 
+			  
+			  model.addAttribute("si", si);
+			  model.addAttribute("sm", sm);
+			  model.addAttribute("sms", sms);
+			  model.addAttribute("smb", smb);
+			  return "updateShopInfoForm";
+		 }else { 
+			 throw new MemberException("사장님 마이페이지에 실패했습니다."); 
+		}
 	}
 	
 	// 기존 첨부파일 삭제 메소드
@@ -397,68 +414,70 @@ public class MemberController {
 	
 	//사장님 식당 정보 수정 기능
 	@RequestMapping("shopUpdate.me")
-	public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("menuNo") int menuNo, @RequestParam("shopNo") int shopNo,  @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
-			         HttpSession session, ModelAndView mv){
-//		String menuno[]=request.getParameterValues("menuNo");
-//		String shopno[]=request.getParameterValues("shopNo");
-		String menuname[]=request.getParameterValues("MenuName");
-		String menuprice[]=request.getParameterValues("MenuPrice");
-		String sidename[]=request.getParameterValues("SideName");
-		String sideprice[]=request.getParameterValues("SidePrice");
-		String drinkname[]=request.getParameterValues("DrinkName");
-		String drinkprice[]=request.getParameterValues("DrinkPrice");
+	public ModelAndView shopUpdate(@ModelAttribute("shopInfo") ShopInfo shopInfo, @ModelAttribute("shopMenu") ShopMenu smenu, @ModelAttribute("shopMenu") ShopMenu smSmenu, @ModelAttribute("shopMenu") ShopMenu smBmenu,
+			         @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, HttpSession session, ModelAndView mv){
+		/**
+		 ================================================================================
+		 
+		     public String saveUser(@ModelAttribute("signUpForm") SignUpForm signUpForm, Model model) {
+		     }
+		     
+		     
+		     	<form:form action="saveSignUpForm" cssClass="form-horizontal"	method="post" modelAttribute="signUpForm">
+
+						<div class="form-group">
+							<label for="firstname" class="col-md-3 control-label">First
+								Name</label>
+							<div class="col-md-9">
+								<form:input path="firstName" cssClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class="col-md-3 control-label">Last
+								Name</label>
+							<div class="col-md-9">
+								<form:input path="lastName" cssClass="form-control" />
+							</div>
+						</div>
+	
+		 */
 		
-		
-		
-		List<ShopMenu> shopmenu =new ArrayList<ShopMenu>(si.getShopNo());
-		
-		for(int i=0; i<menuname.length; i++) {
-			System.out.println(menuname[i]+"test1");
-			System.out.println(menuprice[i]+"test1");
-			shopmenu.add(new ShopMenu( menuname[i],menuprice[i], 1));
-		}
-		for(int i=0; i<sidename.length; i++) {
-			System.out.println(sidename[i]+"test2");
-			System.out.println(sideprice[i]+"test2");
-			shopmenu.add(new ShopMenu( sidename[i], sideprice[i], 2));
-		}
-		for(int i=0; i<drinkname.length; i++) {
-			System.out.println(drinkname[i]+"test3");
-			System.out.println(drinkprice[i]+"test3");
-			shopmenu.add(new ShopMenu(drinkname[i],drinkprice[i], 3));
-		}
+		Enumeration<String> enums = request.getParameterNames();
+		while (enums.hasMoreElements()) {
+			String string = (String) enums.nextElement();
+			
+			System.out.println("Key:" + string + " / value:" + request.getParameter(string));
+			System.out.println("shopInfoUpdate : " + shopInfo);
+			System.out.println("shopMenuUpdate : " + smenu);
 			
 			if(thumbnailImg != null && !thumbnailImg.isEmpty()) {//첨부파일이 있다면
-				if (si.getShopRename() != null) { // 기존에 넣었던 파일이 있다면
-					deleteFile(si.getShopRename(), request);
+				if (shopInfo.getShopRename() != null) { // 기존에 넣었던 파일이 있다면
+					deleteFile(shopInfo.getShopRename(), request);
 				}
 				String renameFileName = saveFile(thumbnailImg, request);
 				
 				if(renameFileName != null) {
-					si.setShopRename(renameFileName);
-					si.setShopOrigin(thumbnailImg.getOriginalFilename());
+					shopInfo.setShopRename(renameFileName);
+					shopInfo.setShopOrigin(thumbnailImg.getOriginalFilename());
 				}
 			}
 			
-			int siResult = sService.sinfoUpdate(si);
-			int smResult = sService.smenuUpdate(shopmenu);
-//			int smsResult = sService.sideUpdate(sms);
-//			int smbResult = sService.beverUpate(smb);
-			
+	
+			int si = sService.sinfoUpdate(shopInfo);
+			int sm = sService.smenuUpdate(smenu);
+//			int sms = sService.sideUpdate(smSmenu);
+//			int smb = sService.beverUpate(smBmenu);
+			//System.out.println("사이드메뉴 수정 : " + sms);
 			System.out.println("siUpdate" + si);
-			System.out.println("smUpdate" + shopmenu);
-//			System.out.println("smsUpdate" + sms);
-//			System.out.println("smbUpdate" + smb);
-			
-		 if(siResult > 0 || smResult > 0 ){ 
+			System.out.println("smUpdate" + sm);
+		 if(si > 0 || sm > 0 ){ 
 			  mv.addObject("si", si);
-//			  mv.addObject("shopmenu", shopmenu);
-//			  mv.addObject("sms", sms);
-//			  mv.addObject("smb", smb);
+			  mv.addObject("sm", sm);
+			 // mv.addObject("sms", sms);
+			 // mv.addObject("smb", smb);
 			  mv.setViewName("redirect:shopMypage.me"); 
-		 }else { 
-			 throw new MemberException("사장님 마이페이지 수정에 실패했습니다."); 
 		 }
+		}
 		return mv;
 	}
 	//1)
@@ -538,8 +557,8 @@ public class MemberController {
 		return "deleteMemberForm";
 	}
 	@RequestMapping("mdelete.me")
-	public String deleteMember(@RequestParam("memberId") String memberId, SessionStatus status) {
-		int result = bmService.deleteMember(memberId);
+	public String deleteMember(@RequestParam("member_id") String member_id, SessionStatus status) {
+		int result = bmService.deleteMember(member_id);
 
 		if (result > 0) {
 			status.setComplete();
@@ -560,8 +579,8 @@ public class MemberController {
 		return "deleteShopForm";
 	}
 	@RequestMapping("sdelete.me")
-	public String deleteShop(@RequestParam("memberId") String memberId, SessionStatus status) {
-		int result = bmService.deleteMember(memberId);
+	public String deleteShop(@RequestParam("member_id") String member_id, SessionStatus status) {
+		int result = bmService.deleteMember(member_id);
 
 		if (result > 0) {
 			status.setComplete();
@@ -570,6 +589,7 @@ public class MemberController {
 			throw new MemberException("사업자 회원탈퇴에 실패하였습니다");
 		}
 	}
+	
 	
 	// 김예은 끝 =================================================
 }

@@ -48,6 +48,7 @@
 <body style="font-family: 'Gugi'; " >
 
 	<jsp:include page="../common/menubar.jsp" />
+	
 	<div class="outer"><br><br>
 		<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<c:out value="${ loginUser.member_name}님 환영합니다  🙌 ‍"/></h1>
 		<div class="mid">
@@ -59,29 +60,40 @@
 					<tr height="5px">
 					</tr>
 					<tr height="30px">
-					<c:forEach var="re" items="${ re }">
-						<td width="100px">📌 ${ re.reserveTime }</td>
-					</c:forEach>
+						<td width="100px">📌 ${ re.get("reserveTime") }</td>
 					</tr>
 					<tr height="30px">
-					<c:forEach var="sp" items="${ sp }">
-						<td rowspan="3" width="160px"> <img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/shopuploadFiles/${ sp.shopRename }"></td>
-						<td width="500px">식당명&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ sp.shopName }</td>
-					</c:forEach>
+						<td rowspan="3" width="160px"> <img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/shopuploadFiles/${ sp.get("shopRename") }"></td>
+						<td width="500px">가게&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ sp.get("shopName") }</td>
+						<td width="100px"><div class="status">예약중</div></td>
 					</tr>
 					<tr height="30px">
-					<c:forEach var="reme" items="${ reme }">
-						<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ reme.menuName }</td>
-						</c:forEach>
-						<td><div class="cancelBtn" >예약취소</div></td>
+						<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ reme.get("menuName") }</td>
+						<td><div class="cancelBtn">예약취소</div></td>
+					
 					</tr>
 					<tr height="30px">
-					<c:forEach var="re" items="${ re }">
-						<td>총 결제 금액 :  ${ re.totalPrice }원</td>
-					</c:forEach>
+						<td>총 결제 금액 :  ${ re.get("totalPrice") }원</td>
 					</tr>
 					<tr height="30px">
 						<td width="200px"></td>
+					</tr>
+					<tr height="30px">
+						<td width="100px">📌 ${ re.get("reserveTime") }</td>
+					</tr>
+					<tr height="30px">
+						<td rowspan="3" width="160px"> <img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/shopuploadFiles/${ sp.get("shopRename") }"></td>
+						<td width="500px">가게&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ sp.get("shopName") }</td>
+						<td width="100px"><div class="status">예약중</div></td>
+					</tr>
+					<tr height="30px">
+						<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ reme.get("menuName") }</td>
+						<td><div class="cancelBtn">예약취소</div></td>
+					
+					</tr>
+					<tr height="30px">
+						<td>총 결제 금액 :  ${ re.get("totalPrice") }원</td>
+						<td>예약한 시간 :  ${ re.get("reserveTime") }</td>
 					</tr>
 					<tr height="5px">
 					</tr>
@@ -95,22 +107,14 @@
 					</tr>
 					<tr height="30px">
 					<td rowspan="3" width="160px"><img src="resources/images/파스타.jpg" height="140px" width="160px"></td>
-					<c:forEach var="rev" items="${ rev }">
-						<td width="500px">리뷰내용: ${ rev.reviewContents }</td>
-						</c:forEach>
+						<td width="500px">리뷰내용: ${ rev.get("reviewContents") }</td>
 					</tr>
 					<tr height="30px">
-					<c:forEach var="sp" items="${ sp }">
-						<td width="500px">리뷰식당: ${ sp.shopName}</td>
-					</c:forEach>
-					<c:forEach var="rev" items="${ rev }">
-						<td width="100px">작성일 : ${ rev.reviewWrite }</td>
-					</c:forEach>
+						<td width="500px">리뷰식당: ${ sp.get("shopName") }</td>
+						<td width="100px">작성일 : ${ rev.get("reviewWrite") }</div></td>
 					</tr>
 					<tr height="30px">
-					<c:forEach var="rev" items="${ rev }">
-						<td width="100px">리뷰점수 : ${ rev.reviewScore }점</td>
-					</c:forEach>
+						<td width="100px">리뷰점수 : ${ rev.get("reviewScore") }점</div></td>
 					</tr>
 					<tr height="5px">
 					</tr>

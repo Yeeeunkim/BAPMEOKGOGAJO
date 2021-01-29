@@ -56,11 +56,11 @@
 		<form action="oInfoPwd.me" method="post" id="checkPwd" name="checkPwd">
 			<h1 style="text-align: center;">식당 정보 수정 ></h1>
 			<div id=checkPwdOut>
-				<label id="label" >식당 정보 수정을 위해 아이디를 다시 입력 해주세요.</label><br>
+				<label id="label" >식당 정보 수정을 위해 비밀번호를 다시 입력 해주세요.</label><br>
 				<div id="checkPwdMid">
 					<div id="checkPwdIn"><br>
-						<label>아이디 : </label>
-						<input type="text" id="memberId" name="memberId">
+						<label>비밀번호 : </label>
+						<input type="password" id="member_pwd" name="member_pwd">
 					</div>
 					<br>
 					<input type="submit" id="btn" value="회원 정보 수정">
