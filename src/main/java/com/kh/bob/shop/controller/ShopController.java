@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -24,9 +23,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.bob.common.Pagination;
 import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.exception.ShopException;
 import com.kh.bob.shop.model.service.ShopService;
-import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopReview;
 
@@ -201,5 +200,6 @@ public class ShopController {
 	 * return "rereplySendFome"; }
 	 */
 	
+	//test
 
 }
