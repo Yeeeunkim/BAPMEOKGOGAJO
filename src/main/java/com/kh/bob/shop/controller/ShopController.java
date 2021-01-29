@@ -200,6 +200,5 @@ public class ShopController {
 	 * return "rereplySendFome"; }
 	 */
 	
-	//test
 
 }
