@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
 <title>밥먹고가조 QNA</title>
-
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script> -->
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
@@ -23,10 +22,7 @@
 	#qnaTable {text-align: left;  margin: auto; width: 800px;  margin-top: 45px; }
 	#qnaTable th{border-bottom: 3px solid #1D3557;}
 	#qnaTable td{border-bottom: 1px solid #1D3557;}
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'hayoung' of https://github.com/Yeeeunkim/BAPMEOKGOGAJO.git
 	#content_text {display: block; margin-right: auto; width: 800px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
 	
@@ -73,11 +69,9 @@
 				<th></th>
 				<th></th>
 				<tr>
-<<<<<<< HEAD
+
 					<th>&nbsp제목&nbsp&nbsp <input type="text" id="text" name="bTitle"  value="${board.bTitle}" style="width: 87%;"></th>
-=======
-					<th>&nbsp제목&nbsp&nbsp <input type="text" id="text" name="bTitle"  value="${board.bTitle}""></th>
->>>>>>> branch 'hayoung' of https://github.com/Yeeeunkim/BAPMEOKGOGAJO.git
+
 					<th></th>
 					<th></th>
 				</tr>
@@ -109,13 +103,11 @@
 				</th>
 			</tr>
 			
-<<<<<<< HEAD
+
 				<!-- 관리자만 답변 가능-->
 				<c:if test="${ loginUser.member_id eq 'admin' }">
 				<input type="hidden" id="admin" name="mId" value='${loginUser.member_id}'>
-=======
-			<!-- @@@@@답변 테이블 : 추후 작성자와 관리자만 볼 수 있게 조건 넣어야 함 @@@@@-->
->>>>>>> branch 'hayoung' of https://github.com/Yeeeunkim/BAPMEOKGOGAJO.git
+
 <!-- 			<table class="replyTable"> -->
 				<tr>
 					<th>
@@ -125,23 +117,18 @@
 					</th>
 					
 				</tr>
-<<<<<<< HEAD
+
 				</c:if>
 				<!-- 작성자만 볼 수 있음-->
 				<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin'}">
+
 				<tr>
 					<td id="commentTd">&nbsp답변<br>
 					<textarea rows="5" cols="111" id="cContents" style="font-family: ' Gugi;" readonly="readonly">${comment.cContents}</textarea>
 					</td>
 				</tr>
+
 				</c:if>
-=======
-				<tr>
-					<td id="commentTd">&nbsp답변<br>
-					<textarea rows="5" cols="111" id="cContents" style="font-family: ' Gugi;" readonly="readonly">${comment.cContents}</textarea>
-					</td>
-				</tr>
->>>>>>> branch 'hayoung' of https://github.com/Yeeeunkim/BAPMEOKGOGAJO.git
 <!-- 			</table> -->
 			
 					
@@ -156,25 +143,18 @@
 					<c:param name="page" value="${page}"/>
 				</c:url>
 				
-<<<<<<< HEAD
+
 			<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin' }">
+
 			<tr style="border: none;">
 				<td colspan="2" align="center" style="border: none;">
 						<button class="btn1" onclick="location.href='${ qupView }'" style="position: absolute;">수정하기</button>
 						<button class="btn2" onclick="qDelete();">삭제하기</button>
 				</td style="border: none;"> 
 			</tr style="border: none;">
+
 			</c:if>
-=======
-<%-- 				<c:if test="${ # }"> --%>
-			<tr style="border: none;">
-				<td colspan="2" align="center" style="border: none;">
-						<button class="btn1" onclick="location.href='${ qupView }'" style="position: absolute;">수정하기</button>
-						<button class="btn2" onclick="qDelete();">삭제하기</button>
-				</td style="border: none;"> 
-			</tr style="border: none;">
-<%-- 				</c:if> --%>
->>>>>>> branch 'hayoung' of https://github.com/Yeeeunkim/BAPMEOKGOGAJO.git
+
 		</table> 
 	  
    
@@ -208,20 +188,13 @@
 				
 		$('#rSubmit').on('click', function(){
 			var cContents = $('#rContent').val();
-<<<<<<< HEAD
+
 			var bNo = ${board.bNo};
 			var mId = $('#admin').val();
 			
 			$.ajax({
 				url: 'addReply.no',
 				data: {cContents:cContents, bNo:bNo, mId:mId},
-=======
-			var bNo = ${ board.bNo};
-			
-			$.ajax({
-				url: 'addReply.no',
-				data: {cContents:cContents, bNo:bNo},
->>>>>>> branch 'hayoung' of https://github.com/Yeeeunkim/BAPMEOKGOGAJO.git
 				success: function(data){
 					if(data == 'success'){
 						$('#rContent').val('');

@@ -39,7 +39,7 @@
 	     z-index: 2; 
 	     text-align: center;
  	 }
-  	
+  	 
 	.container-4{
 	  overflow: hidden;
 	  width: 300px; 
@@ -131,15 +131,8 @@
             <h2>밥먹고가조!</h2>
 			<img src="<%= request.getContextPath() %>/resources/images/main/위치.png"  width="50px" height="50px"><br>
 			
-			<!-- <span>
-				<input type="search" id="a">
-			</span>
-			<span>
-				<button id="button">검색</button>
-			</span>  -->
-			
-			<form class="example" action="/action_page.php" style="margin:auto;max-width:500px">
-			  <input type="text" placeholder="건물명,도로명,지번을 입력해 주소를  검색해주세요" name="search">
+			<form class="example" action="addressSearch.sh" style="margin:auto;max-width:500px">
+			  <input type="text" placeholder=" 시, 군, 구, 도로명을 입력해 주소를  검색해주세요" name="searchContents" id="searchInput">
 			  <button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 			
@@ -158,21 +151,20 @@
 
 	
 	<br><br>
-	
   	<span class="dishtype" id="dishtype1" >
-		<img src="<%= request.getContextPath() %>/resources/images/main/한식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1"><img src="<%= request.getContextPath() %>/resources/images/main/한식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype2">
-		<img src="<%= request.getContextPath() %>/resources/images/main/중식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4"><img src="<%= request.getContextPath() %>/resources/images/main/중식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype3">
-		<img src="<%= request.getContextPath() %>/resources/images/main/양식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=2"><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype4">
-		<img src="<%= request.getContextPath() %>/resources/images/main/일식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3"><img src="<%= request.getContextPath() %>/resources/images/main/일식.png"> </a>
 	</span>  
 	
 

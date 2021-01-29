@@ -48,17 +48,16 @@
 	    border-radius:4px;
     }
 	
-	footer{ background:#1D3557;  margin-top: 50px; bottom: 0px; left: 0px; width: 100%; height: 400px; color: white; }
+	footer{ background:#1D3557;  margin-top: 50px; bottom: 0px; left: 0px; width: 100% !important; height: 400px; color: white; }
 	#flogo{ width: 110px; height: 60px; margin-top: 15px;} 
-/*  	.lrDiv{ width: 21%;} */
 	.fTitle{ width: 90px; text-align: right; margin-top: 55px; margin-right: 10px; float: left;}
 	.fHr{ width: 100%;}
 </style>
 </head>
 <body>
 	<footer>
-		<div id="fArea" class="row">
-			<div class="lrDiv col-2"></div>
+		<div id="fArea" class="row" style="width: 100% !important;">
+			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="row">
 					<img id="flogo" src="resources/images/logo.png">
@@ -104,9 +103,7 @@
 				</tr>
 				</div>
 			</div>
-			<div class="lrDiv col-2">
-				
-			</div>
+			<div class="col-2"></div> 
 		</div>
 	</footer>
 </body>

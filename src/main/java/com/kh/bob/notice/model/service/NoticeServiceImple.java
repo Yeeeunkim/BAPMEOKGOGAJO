@@ -1,4 +1,4 @@
-package com.kh.bob.notice.model.service;
+﻿package com.kh.bob.notice.model.service;
 
 import java.util.ArrayList;
 
@@ -121,6 +121,10 @@ public class NoticeServiceImple implements NoticeService {
 		return nDAO.selectCommentList(sqlSession, bNo);
 	}
 
+	@Override
+	public ArrayList<Board> faqList() {
+		return nDAO.faqList(sqlSession);
+	}
 
 
 

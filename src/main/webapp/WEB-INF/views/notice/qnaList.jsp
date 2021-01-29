@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -9,30 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
 	rel="stylesheet">
-<title>Insert title here</title>
-<!-- 부트 스트랩 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-	integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
-	integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
-	crossorigin="anonymous"></script>
-<!-- jQuery -->
-<script src="${ contextPath }/js/jquery-3.5.1.min.js"></script>
-<!-- 폰트 -->
-<script src="https://kit.fontawesome.com/7293f5b137.js"
-	crossorigin="anonymous"></script>
+<title>밥먹고가조 QNA</title>
 <style>
 .sArea {
 	width: 200px !important;
@@ -98,17 +75,23 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					<tr class="nContents">
 						<td scope="row">${ b.bNo }</td>
 						<td class="nTitle">
-							<c:url var="qdetail" value="qdetail.no">
-								<c:param name="bNo" value="${ b.bNo }"/>
-								<c:param name="page" value="${ pi.currentPage }"/>
-							</c:url>
-							<a href="${ qdetail }" class="aTitle">${ b.bTitle }</a>
+							<c:if test="${ loginUser.member_id eq b.mId || loginUser.member_id eq 'admin'}">
+								<c:url var="qdetail" value="qdetail.no">
+									<c:param name="bNo" value="${ b.bNo }"/>
+									<c:param name="page" value="${ pi.currentPage }"/>
+								</c:url>
+								<a href="${ qdetail }" class="aTitle">${ b.bTitle }</a>
+							</c:if>
+							<c:if test="${ loginUser.member_id ne b.mId && loginUser.member_id ne 'admin'}">
+								<a onclick="noWriter();" class="aTitle">${ b.bTitle }</a>
+							</c:if>
 						</td>
 						<td>${ b.mId }</td>
 						<td>${ b.bWrite }</td>
 					</tr>				
 				</c:forEach>
-				</c:if>
+				</c:if> 
+
 				
 				</tbody>
 				
@@ -130,7 +113,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				<!-- 페이지 -->
 				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4"><b>[${ p }]</b></font>
+						<font color="orange" size="4"><b>[${ p }]</b></font>
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
@@ -156,8 +139,10 @@ td{border-bottom: 1px solid #1D3557 !important;}
 				
 			</table>
 			
-			<!-- @@@@@버튼 : 관리자만 보이게 추후 수정 필요@@@@@ -->
+
+			<c:if test="${ !empty loginUser.member_id }">
 			<button class="nBtn" onclick="qInsert();">글쓰기</button>
+			</c:if>
 		</div>
 		<div class="col-2"></div>
 	</div>
@@ -169,17 +154,10 @@ td{border-bottom: 1px solid #1D3557 !important;}
 			location.href = "${ contextPath }/qInsertForm.no"
 		}
 		
-		$(function(){
-			$('.nContents').mouseenter(function(){
-				$(this).css({'color':'orange', 'font-weight':'bold', 'cursor':'pointer'});
-			}).mouseout(function(){
-				$(this).css({'color':'black', 'font-weight':'normal'});
-			}).click(function(){
-				var bNo = $(this).children('td').eq(0).text();
-				
-				location.href="qdetail.no?bNo=" + bNo + '&page=' + ${pi.currentPage};
-			});
-		});
+		function noWriter(){
+			alert("작성자만 접근이 가능합니다.");
+		}
+
 	</script>
 </body>
 </html>
