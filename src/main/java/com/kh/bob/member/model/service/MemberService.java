@@ -18,13 +18,13 @@ public interface MemberService {
 
 	Member findId(Model model);
 
-	int checkIdDup(String member_id);
+	int checkIdDup(String memberId);
 
 	Member infoPwd(Member m);
 
 	int minfoUpdate(Member m);
 
-	int deleteMember(String member_id);
+	int deleteMember(String memberId);
 
 	Member findPwd(Model model);
 

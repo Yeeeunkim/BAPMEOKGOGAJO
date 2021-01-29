@@ -22,8 +22,8 @@ public class MemberDAO {
 		return sqlSession.insert("memberMapper.memberInsert", m);
 	}
 
-	public int checkIdDup(SqlSessionTemplate sqlSession, String member_id) {
-		return sqlSession.selectOne("memberMapper.checkidDup", member_id);
+	public int checkIdDup(SqlSessionTemplate sqlSession, String memberId) {
+		return sqlSession.selectOne("memberMapper.checkidDup", memberId);
 	}
 
 	public Member infoPwd(SqlSessionTemplate sqlSession, Member m) {
@@ -34,8 +34,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.minfoUpdate", m);
 	}
 
-	public int deleteMember(SqlSessionTemplate sqlSession, String member_id) {
-		return sqlSession.update("memberMapper.deleteMember", member_id);
+	public int deleteMember(SqlSessionTemplate sqlSession, String memberId) {
+		return sqlSession.update("memberMapper.deleteMember", memberId);
 	}
 
 	public Member findId(SqlSessionTemplate sqlSession, Model model) {

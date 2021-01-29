@@ -3,7 +3,7 @@ package com.kh.bob.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	private String member_id;
+	private String memberId;
 	private String member_pwd;
 	private String member_name;
 	private String phone;
@@ -16,10 +16,10 @@ public class Member {
 	
 	public Member() {}
 
-	public Member(String member_id, String member_pwd, String member_name, String phone, String email, String gender,
+	public Member(String memberId, String member_pwd, String member_name, String phone, String email, String gender,
 			Date member_enroll, String member_status, String member_birth, int auth_code) {
 		super();
-		this.member_id = member_id;
+		this.memberId = memberId;
 		this.member_pwd = member_pwd;
 		this.member_name = member_name;
 		this.phone = phone;
@@ -31,12 +31,12 @@ public class Member {
 		this.auth_code = auth_code;
 	}
 
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public String getMember_pwd() {
@@ -113,7 +113,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [member_id=" + member_id + ", member_pwd=" + member_pwd + ", member_name=" + member_name
+		return "Member [memberId=" + memberId + ", member_pwd=" + member_pwd + ", member_name=" + member_name
 				+ ", phone=" + phone + ", email=" + email + ", gender=" + gender + ", member_enroll=" + member_enroll
 				+ ", member_status=" + member_status + ", member_birth=" + member_birth + ", auth_code=" + auth_code
 				+ "]";

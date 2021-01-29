@@ -43,8 +43,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 아이디 중복검사
 	@Override
-	public int checkIdDup(String member_id) {
-		return  bmDAO.checkIdDup(sqlSession, member_id);
+	public int checkIdDup(String memberId) {
+		return  bmDAO.checkIdDup(sqlSession, memberId);
 	}
 
 	//일반 회원정보 수정 기능 
@@ -55,8 +55,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	//일반, 사업자 탈퇴
 	@Override
-	public int deleteMember(String member_id) {
-		return bmDAO.deleteMember(sqlSession, member_id);
+	public int deleteMember(String memberId) {
+		return bmDAO.deleteMember(sqlSession, memberId);
 	}
 	
 	//아이디 찾기 

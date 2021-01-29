@@ -241,17 +241,28 @@ crossorigin="anonymous"></script>
    
    <br><br>
    	
-   	<form action="shopUpdate.me" method="post" enctype="Multipart/form-data"  modelAttribute="shopInfo"  modelAttribute="shopMenu" > <!-- enctype="Multipart/form-data" --> 
+   	<form action="shopUpdate.me" method="post" enctype="Multipart/form-data"   >
    	
-   	 <input type="hidden" name="memberId" value="${ loginUser.member_id}"> 
-   	 <input type="hidden" name="shopNo" value="${ si.get("shopNo")}"> 
-   	 <input type="hidden" name="menuNo" value="${ sm.get("menuNo")}"> 
-   	 <input type="hidden" name="shopNo" value="${ sm.get("shopNo")}"> 
-   	 <input type="hidden" name="menuStatus" value="${ sm.get("menuStatus")}"> 
-   	 <input type="hidden" name="shopOrigin" value="${ si.get("shopOrigin") }">  	
-   	 <input type="hidden" name="shopRename" value="${ si.get("shopRename") }">  	
-   	 <%-- <input type="hidden" name="menuCate" value="${ sm.get("menuCate") }">  --%> 	
-   	
+   	 <input type="hidden" name="memberId" value="${ loginUser.memberId}"> 
+   	 <input type="hidden" name="shopOrigin" value="${ si.shopOrigin }">
+   	 <input type="hidden" name="shopRename" value="${ si.shopRename }">
+    <c:forEach var="sm" items="${ sm }">
+	   	<input type="hidden" name="menuNo" value="${ sm.menuNo }">
+	   	<input type="hidden" name="menuStatus" value="${ sm.menuStatus }">
+	   	<input type="hidden" name="shopNo" value="${ sm.shopNo }">
+	   	<input type="hidden" name="menuCate" value="${ sm.menuCate }">
+	 </c:forEach>
+   <%--  <c:forEach var="sms" items="${ sms }">
+    	<input type="hidden" name="menuNo" value="${ sms.menuNo }">
+	   	<input type="hidden" name="menuStatus" value="${ sms.menuStatus }">
+	   	<input type="hidden" name="menuCate" value="${ sms.menuCate }">
+   </c:forEach>
+    <c:forEach var="smb" items="${ smb }">
+    	<input type="hidden" name="menuNo" value="${ smb.menuNo }">
+	   	<input type="hidden" name="menuStatus" value="${ smb.menuStatus }">
+	   	<input type="hidden" name="menuCate" value="${ smb.menuCate }">
+   </c:forEach> --%>
+   
      <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" >--선택해주세요--</option>
          <option value="1" selected="selected">한식</option>
@@ -279,13 +290,13 @@ crossorigin="anonymous"></script>
 	<!-- 사진 -->
 	<div class="thumb" id="thumbnail">
 		 <img id="thumbImg" width="100%" height="100%"
-			  src="${ contextPath }/resources/shopuploadFiles/${ si.get("shopRename") }">
+			  src="${ contextPath }/resources/shopuploadFiles/${ si.shopRename }">
 	</div>
 		
 	
 	<div id="fileArea">
-		<input type="file" href="${ contextPath }/resources/shopuploadFiles/${ si.get("shopRename")}" 
-			download="${ si.get("shopOrigin") }"  id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
+		<input type="file" href="${ contextPath }/resources/shopuploadFiles/${ si.shopRename }
+			download="${ si.shopOrigin }"  id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
 		 <br>
 	</div>
 	
@@ -320,61 +331,61 @@ crossorigin="anonymous"></script>
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;사업자 번호</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text"  value="${ si.get("businessNumber") }" name="businessNumber" id="businessNum"   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+			<input class= "cInput" type="text"  value="${ si.businessNumber }" name="businessNumber" id="businessNum"   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 		</div> 
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;상호명</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopName" id="ShopName" value="${ si.get("shopName") }">
+			<input class= "cInput" type="text" name="shopName" id="ShopName" value="${ si.shopName }">
 		</div>
 	
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;전화</p>&nbsp;&nbsp;
 		<div class="input-info">
-			 <input class= "cInput" type="text" name="shopPhone" onfocus="OnCheckPhone(this)"  onKeyup="OnCheckPhone(this)" size="14" value="${ si.get("shopPhone") }"> 	
+			 <input class= "cInput" type="text" name="shopPhone" onfocus="OnCheckPhone(this)"  onKeyup="OnCheckPhone(this)" size="14" value="${ si.shopPhone }"> 	
 		</div>
 		<script src="<%= request.getContextPath() %>/resources/js/telephone.js"></script>
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;오픈시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopOpen" id="time" value="${ si.get("shopOpen") }">
+			<input class= "cInput" type="text" name="shopOpen" id="time" value="${ si.shopOpen }">
 		</div>
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;마감시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopClose" id="time2" value="${ si.get("shopClose") }">
+			<input class= "cInput" type="text" name="shopClose" id="time2" value="${ si.shopClose }">
 		</div>	
 		
 		
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;브레이크타임 시작 시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopBreakStart" id="break" value="${ si.get("shopBreakStart") }">
+			<input class= "cInput" type="text" name="shopBreakStart" id="break" value="${ si.shopBreakStart }">
 		</div>
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;브레이크타임 끝 시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopBreakClose" id="break" value="${ si.get("shopBreakClose") }">
+			<input class= "cInput" type="text" name="shopBreakClose" id="break" value="${ si.shopBreakClose }">
 		</div>
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="maxReservationTime" id="MaxReservationTime" value="${ si.get("maxReservationTime") }">
+			<input class= "cInput" type="text" name="maxReservationTime" id="MaxReservationTime" value="${ si.maxReservationTime }">
 		</div>
 		
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;휴무일</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopOffday" id="holiday" value="${ si.get("shopOffday") }">
+			<input class= "cInput" type="text" name="shopOffday" id="holiday" value="${ si.shopOffday }">
 		</div>
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;식당 소개</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="shopIntro" id="holiday" value="${ si.get("shopIntro") }">
+			<input class= "cInput" type="text" name="shopIntro" id="holiday" value="${ si.shopIntro }">
 		</div>
 	
 
 
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;주소</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" id="sample5_address" placeholder="주소" name="shopAddress" value="${ si.get("shopAddress") }">
+			<input class= "cInput" type="text" id="sample5_address" placeholder="주소" name="shopAddress" value="${ si.shopAddress }">
 			<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
 		</div>
 	<!-- 	
@@ -440,25 +451,26 @@ crossorigin="anonymous"></script>
    <br><br><br>
    <hr class="line">
    <br><br><br>
-   
+
    
   <div class="container">
   <h2>메뉴</h2>
   <br><br>
   <h4>&nbsp;&nbsp;&nbsp;메인 ></h4>
    <table class="table table-bordered table-sm" id="menu" > 
-   <input type="hidden" name="menuCate" value="1">
 	    <thead>
 	      <tr>
 	        <th>메뉴</th>
 	        <th>가격</th>
 			<th style="width:10px;"><button type="button" name="menu" class="menuPlus"  onclick="addRow()">+</button></th>
 	      </tr>
+	      <c:forEach var="sm" items="${ sm }">
 	      <tr>
-	      	<th><input type="text" name="menuName"  value="${ sm.get("menuName")}" size="20" style="width:100%; border: 0;"></th>
-	        <th><input type="number" name="menuPrice"  value="${ sm.get("menuPrice")}" size="20" style="width:100%; border: 0;" min="100"></th>
-	      	<th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
+		      	<th><input type="text" name="MenuName"  value="${ sm.menuName}" size="20" style="width:100%; border: 0;"></th>
+		        <th><input type="number" name="MenuPrice"  value="${ sm.menuPrice}" size="20" style="width:100%; border: 0;" min="100"></th>
+		      	<th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow()">+</button></th>
 	      </tr>
+	      </c:forEach>
 	    </thead>
   	</table>
 	
@@ -485,8 +497,8 @@ crossorigin="anonymous"></script>
 		 /*  newCell1.innerText = '메뉴';
 		  newCell2.innerText = '가격'; */
 
-		  newCell1.innerHTML = '<input type="text"  size="20" style="width:100%; border: 0;">';
-		  newCell2.innerHTML = '<input type="number" size="20" style="width:100%; border: 0;" min="100">';
+		  newCell1.innerHTML = '<input type="text"  name="MenuName"  size="20" style="width:100%; border: 0;">';
+		  newCell2.innerHTML = '<input type="number"  name="MenuPrice" size="20" style="width:100%; border: 0;" min="100">';
 		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow(this)">&nbsp;-&nbsp;</button>';
 		}
 		
@@ -516,11 +528,13 @@ crossorigin="anonymous"></script>
 	        <th>가격</th>
 	        <th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
 	      </tr>
+	      <c:forEach var="sms" items="${ sms }">
 	      <tr>
-	      	<th><input type="text" name="sideName"  value="${ sms.get("menuName")}" size="20" style="width:100%; border: 0;"></th>
-	        <th><input type="number" name="sidePrice"  value="${ sms.get("menuPrice")}" size="20" style="width:100%; border: 0;" min="100"></th>
-	      	<th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
+		      	<th><input type="text" name="SideName"  value="${ sms.menuName}" size="20" style="width:100%; border: 0;"></th>
+		        <th><input type="number" name="SidePrice"  value="${ sms.menuPrice}" size="20" style="width:100%; border: 0;" min="100"></th>
+		      	<th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
 	      </tr>
+	      </c:forEach>
 	     </thead>
   	</table>
   	<br>
@@ -568,11 +582,13 @@ crossorigin="anonymous"></script>
 	        <th>가격</th>
 	        <th style="width:10px;"><button type="button" name="drink" class="menuPlus"  onclick="addRow3()">+</button></th>
 	      </tr>
+	      <c:forEach var="smb" items="${ smb }">
 	      <tr>
-	      	<th><input type="text" name="drinkName"  value="${ smb.get("menuName")}" size="20" style="width:100%; border: 0;"></th>
-	        <th><input type="number" name="drinkPrice"  value="${ smb.get("menuPrice")}"size="20" style="width:100%; border: 0;" min="100"></th>
-	      	<th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow2()">+</button></th>
+		      	<th><input type="text" name="DrinkName"  value="${ smb.menuName }" size="20" style="width:100px;   border: 0;"></th>
+		        <th><input type="number" name="DrinkPrice"  value="${ smb.menuPrice}" size="20" style="width:100px; border: 0;" min="100"></th>
+		      	<th style="width:10px;"><button type="button" name="side" class="menuPlus"  onclick="addRow3()">+</button></th>
 	      </tr>
+	      </c:forEach>
 	     </thead>
   	</table>
   	

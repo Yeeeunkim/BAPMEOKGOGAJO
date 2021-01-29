@@ -5,7 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DataBase 등록 : BasicDataSource -->
-	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="BAPMEOKGOGAJO"/>
@@ -13,7 +13,7 @@
 		<property name="defaultAutoCommit" value="false"/>
 	</bean>
 	
-	 <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+	<!--  <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
         <constructor-arg ref="dataSourceSpied" />
         <property name="logFormatter">
             <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
@@ -21,7 +21,7 @@
                 <property name="sqlPrefix" value="SQL         :  "/>
             </bean>
         </property>
-    </bean>
+    </bean> -->
 	
 	
 	

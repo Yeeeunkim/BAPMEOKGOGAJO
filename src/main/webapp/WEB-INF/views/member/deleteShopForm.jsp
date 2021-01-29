@@ -64,7 +64,7 @@
 						<table align="center">
 							<tr height="70px">
 								<td width="100px">아이디 : </td>
-								<td width="300px"><input type="text" class="input" name="member_id"></td>
+								<td width="300px"><input type="text" class="input" name="memberId"></td>
 							</tr>
 							<tr height="70px">
 								<td>비밀번호 : </td>

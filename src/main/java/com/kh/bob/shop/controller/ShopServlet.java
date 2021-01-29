@@ -45,7 +45,7 @@ public class ShopServlet {
 			
 			@RequestMapping("shopEnrollAdd.do")
 			public String shopEnrollAdd(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg")  MultipartFile thumbnailImg, HttpServletRequest request
-										,@RequestParam("address1") String address1, @RequestParam("address2") String address2, @RequestParam("MemberId") String MemberId) {
+										,@RequestParam("address1") String address1, @RequestParam("address2") String address2, @RequestParam("memberId") String memberId) {
 				
 				
 				String menuname[]=request.getParameterValues("MenuName");
