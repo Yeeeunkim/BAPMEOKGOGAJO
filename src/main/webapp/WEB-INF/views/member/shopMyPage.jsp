@@ -138,7 +138,7 @@
 		<div class="inner introduceDiv">
     	  <hr class="line"> 
 			<label class="mainLabel">◼&nbsp식당 소개글</label>
-			<textarea id="introduceArea" readonly>${ si.get("shopIntro") }</textarea>
+			<textarea id="introduceArea" readonly>${ si.shopIntro }</textarea>
 			<!--  <div class="saveBtnArea">
 				<button class="saveBtn">저장</button>
 			</div>-->
@@ -148,19 +148,31 @@
 		   <table class="table table-bordered table-sm" id="drinkmenu">
 		   <input type="hidden" name="menuCate" value="1">
 			      <tr>
-			        <td>메인  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sm.get("menuName")}&nbsp&nbsp&nbsp${ sm.get("menuPrice")}원</th>
+			      	<td>
+			      	<c:forEach var="sm" items="${ sm }">
+			        	메인 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sm.menuName }&nbsp&nbsp&nbsp${ sm.menuPrice }원<br>
+			        </c:forEach>
+			        </td>
 			      </tr>
 			</table>
 		 <table class="table table-bordered table-sm" id="drinkmenu">
 		   <input type="hidden" name="menuCate" value="2">
 			      <tr>
-			        <td>사이드  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sms.get("menuName")}&nbsp&nbsp&nbsp${ sms.get("menuPrice")}원</th>
+			      	<td>
+			      	<c:forEach var="sms" items="${ sms }">
+			       		사이드  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sms.menuName}&nbsp&nbsp&nbsp${ sms.menuPrice }원<br>
+			        </c:forEach>
+			        </td>
 			      </tr>
 			</table>
 		   <table class="table table-bordered table-sm" id="drinkmenu">
 		   <input type="hidden" name="menuCate" value="3">
 			      <tr>
-			         <td>음료 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ smb.get("menuName")}&nbsp&nbsp&nbsp${ smb.get("menuPrice")}원</th>
+			      	<td>
+			      	 <c:forEach var="smb" items="${ smb }">
+			         	음료 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ smb.menuName}&nbsp&nbsp&nbsp${ smb.menuPrice}원<br>
+			         </c:forEach>
+			         </td>
 			      </tr>
 			</table>
 			<!--  <div class="saveBtnArea">
@@ -169,34 +181,20 @@
 		</div><br>
 		<div class="inner reservationDiv">
 			<label class="mainLabel">◼&nbsp예약 관리</label>
-			<label class="subLabel">예약 관리 바로가기</label><br>
 			<table id="reservation">
 				<tr>
-					<td width="100px">113.</td>
-					<td width="330px">해물짬뽕라면2 크림라면1</td>
-					<td width="170px"><div class="reservationSeat">4인석 16:00</div></td>
+				<c:forEach var="rm" items="${ rm }">
+				<c:forEach var="ri" items="${ ri }">
+					<td width="100px">${ ri.reserveNo }</td>
+					<td width="330px">${ rm.menuName }</td>
+					<td width="170px"><div class="reservationSeat">${ri.reservePeople}명 &nbsp ${ ri.reserveTime }</div></td>
 					<td	width="100px">
 						<div>
-							<div class="approvedBtn" id="approved">승인</div>
-							<div class="approvedBtn" id="reject">거절</div>
+							<div class="status">결재완료</div>
 						</div>
 					</td>
-				</tr>
-				<tr>
-					<td>112.</td>
-					<td>해물짬뽕라면2 크림라면1</td>
-					<td><div class="reservationSeat">2인석 15:30</div></td>
-					<td>
-						<div class="status">결재완료</div>
-					</td>
-				</tr>
-				<tr>
-					<td>111.</td>
-					<td>해물짬뽕라면2 크림라면1</td>
-					<td><div class="reservationSeat">4인석 12:00</div></td>
-					<td>
-						<div class="status">결재완료</div>
-					</td>
+				</c:forEach>
+				</c:forEach>
 				</tr>
 			</table>
 		</div><br>
@@ -229,7 +227,7 @@
 			<div class="subDiv">
 				<label class="mainLabel">◼&nbsp가게 운영 시간</label>
 				<div class="innerContent">
-					오전&nbsp<input type="number" name="shopOpen" value="${ si.get("shopOpen") }"  style="border: 0; width: 50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopClose" value="${ si.get("shopClose") }"  style="border: 0; width: 50px;" readonly>시
+					오전&nbsp<input type="number" name="shopOpen" value="${ si.shopOpen }"  style="border: 0; width: 50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopClose" value="${ si.shopClose }"  style="border: 0; width: 50px;" readonly>시
 				</div>
 			</div>
 			<div class="subDiv">
@@ -251,18 +249,16 @@
 			<div class="subDiv">
 				<label class="mainLabel">◼&nbsp브레이크 타임</label>
 				<div class="innerContent"> 
-					오전&nbsp<input type="number" name="shopBreakStart" value="${ si.get("shopBreakStart") }"  style="border: 0; width:  50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopBreakClose" value="${ si.get("shopBreakClose") }" style="border: 0; width:  50px;"readonly>시 
+					오전&nbsp<input type="number" name="shopBreakStart" value="${ si.shopBreakStart }"  style="border: 0; width:  50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopBreakClose" value="${ si.shopBreakClose }" style="border: 0; width:  50px;"readonly>시 
 				</div>
 			</div>
 		</div><br>
 		<div class="inner">
 		<p class="pp"></p><p class="pInput">◼&nbsp주소</p>&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;<input type="text" value="📍&nbsp;${ si.get("shopAddress") }" style="border: 0;">
+			&nbsp;&nbsp;&nbsp;<input type="text" value="📍&nbsp;${ si.shopAddress }" style="border: 0;">
 		
 	   <hr class="line">
 			<div class="updateBtnArea">
-				<c:url var="pwdUpdate" value="mPwdUpdate.me"/>
-				<button class="updateBtn" onclick="location.href='${pwdUpdate}'">비밀번호 변경</button>
 				<c:url var="oinfo" value="oInfoPwdForm.me"/>
 				<button class="updateBtn" onclick="location.href='${oinfo}'">회원 정보 수정</button>
 				<c:url var="shopInfoUp" value="shopUpdateForm.me"/>

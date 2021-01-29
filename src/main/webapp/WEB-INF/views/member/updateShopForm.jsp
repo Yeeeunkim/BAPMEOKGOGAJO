@@ -71,7 +71,7 @@
 				</tr>
 				<tr height="70px">
 					<td>아이디</td>
-					<td><input type="text" class="input" name="member_id" value="${ loginUser.member_id }" style="background:lightgray;" readonly></td>
+					<td><input type="text" class="input" name="memberId" value="${ loginUser.memberId }" style="background:lightgray;" readonly></td>
 				</tr>
 				<tr height="70px">
 					<td>생년월일 : </td>
@@ -109,7 +109,7 @@
 			<div class="btns" align="center">
 				<input type="submit" id="updateBtn" value="수정 완료">
 				<c:url var="mdelete" value="mdeleteShopForm.me">
-					<c:param name="member_id" value="${ loginUser.member_id }"/>
+					<c:param name="memberId" value="${ loginUser.memberId }"/>
 				</c:url>
 				<input type="button" id="deleteBtn" onclick="location.href='${ mdelete}'" value="회원 탈퇴">
 			</div>		

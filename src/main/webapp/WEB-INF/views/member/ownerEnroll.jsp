@@ -126,7 +126,7 @@
 			
 			<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;아이디</p>&nbsp;&nbsp;
 			<div class="input-info">
-				<input class= "cInput" type="text" name="member_id" id="o_id" placeholder="아이디를 입력하세요.">
+				<input class= "cInput" type="text" name="memberId" id="o_id" placeholder="아이디를 입력하세요.">
 				<span class="guide ok">사용 가능한 아이디입니다.</span>
 				<span class="guide error">사용 불가능한 아이디입니다.</span>
 				<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
@@ -205,7 +205,7 @@
 			
 			$.ajax({
 				url: 'dupId.me',
-				data: {member_id:memberId},
+				data: {memberId:memberId},
 				success:  function(data){
 					if(data == 'true'){
 						$('.guide.error').hide();

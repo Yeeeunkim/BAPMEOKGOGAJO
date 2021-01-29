@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.bob.shop.model.dao.ShopDAO;
+import com.kh.bob.shop.model.vo.ReserveInfo;
+import com.kh.bob.shop.model.vo.ReserveMenu;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopReview;
 
 @Service("sService")
 public class ShopServiceImp implements ShopService{
@@ -31,67 +34,92 @@ public class ShopServiceImp implements ShopService{
 		return sDAO.insertMenu(sqlSession,shopmenu);
 	}
 	//김예은 시작 =============================================
-	//식당 정보 조회 
-	@Override
-	public HashMap<String,Object> selectSinfo(HashMap<String,Object> paramMap) {
-		return sDAO.selectSinfo(sqlSession, paramMap);
-	}
-	//식당 메인 메뉴 조회
-	@Override
-	public HashMap<String, Object> selectSmenu(HashMap<String, Object> smMap) {
-		return sDAO.selectSmenu(sqlSession, smMap);
-	}
-	//식당 사이드 메뉴 조회 
-	@Override
-	public HashMap<String, Object> selectSmenuSide(HashMap<String, Object> smMap) {
-		return sDAO.selectSmenuSide(sqlSession, smMap);
-	}
-	//식당 음료  조회
-	@Override
-	public HashMap<String, Object> selectSmenuBeverage(HashMap<String, Object> smMap) {
-		return sDAO.selectSmenuBeverage(sqlSession, smMap);
-	}
+		//사장님마이페이지 - 식당 정보 조회
+		@Override
+		public ShopInfo selectMyShop(String member_id) {
+			return sDAO.selectMyShop(sqlSession, member_id);
+		}
+		// 사장님마이페이지 - 메인 
+		@Override
+		public List<ShopMenu> selectMyMenu1(int shopNo) {
+			return sDAO.selectMyMenu1(sqlSession, shopNo);
+		}
+
+		// 사장님마이페이지 - 사이드
+		@Override
+		public List<ShopMenu> selectMyMenu2(int shopNo) {
+			return sDAO.selectMyMenu2(sqlSession, shopNo);
+		}
+		
+		// 사장님마이페이지 - 음료
+		@Override
+		public List<ShopMenu> selectMyMenu3(int shopNo) {
+			return sDAO.selectMyMenu3(sqlSession, shopNo);
+		}
+		//사장님마이페이지 - 예약받은 정보들
+		@Override
+		public ReserveInfo selectRinfo(int shopNo) {
+			return sDAO.selectRinfo(sqlSession, shopNo);
+		}
+		//사장님마이페이지 - 예약받은 인원수, 시간
+		@Override
+		public List<ReserveInfo> selectReserveInfo(int shopNo) {
+			return sDAO.selectReserveInfo(sqlSession, shopNo);
+		}
+		//사장님마이페이지 - 예약받은 메뉴
+		@Override
+		public List<ReserveMenu> selectReserveMenu(int reserveNo) {
+			return sDAO.selectReserveMenu(sqlSession, reserveNo);
+		}
+		
+
+		//사용자마이페이지  - 예약내역 조회
+		@Override
+		public ReserveInfo selectMyReInfo(String memberId) {
+			return sDAO.selectMyReInfo(sqlSession, memberId);
+		}
+		//사용자마이페이지  - 사용자가 선택한 식당정보
+		@Override
+		public List<ShopInfo> selectMyShopPick(int shopNo) {
+			return sDAO.selectMyShopPick(sqlSession, shopNo);
+		}
+		//사용자마이페이지  - 사용자가 선택한 메뉴
+		@Override
+		public List<ReserveMenu> selectMyReMenu(int reserveNo) {
+			return sDAO.selectMyReMenu(sqlSession, reserveNo);
+		}
 	
+		//사용자마이페이지  - 사용자 리뷰
+		@Override
+		public List<ShopReview> selectMyReview(String memberId) {
+			return sDAO.selectMyReview(sqlSession, memberId);
+		}
 
-	@Override
-	public int sinfoUpdate(ShopInfo shopInfo) {
-		return sDAO.updatesi(sqlSession, shopInfo);
-	}
+		//사장님마이페이지 식당수정 - 식당 정보
+		@Override
+		public int sinfoUpdate(ShopInfo si) {
+			return sDAO.sinfoUpdate(sqlSession, si);
+		}
 
-	@Override
-	public int smenuUpdate(ShopMenu smenu) {
-		return sDAO.updatesmenu(sqlSession, smenu);
-	}
+		//사장님마이페이지 식당수정- 식당 메뉴
+		@Override
+		public int smenuUpdate(List<ShopMenu> shopmenu) {
+			return sDAO.smenuUpdate(sqlSession, shopmenu);
+		}
 
-	@Override
-	public HashMap<String, Object> selectReserve(HashMap<String, Object> pMap) {
-		return sDAO.selectReserve(sqlSession, pMap);
-	}
+		@Override
+		public List<ReserveInfo> selectMyrInfo(String memberId) {
+			// TODO Auto-generated method stub
+			return sDAO.selectMyrInfo(sqlSession, memberId);
+		}
 
-	@Override
-	public HashMap<String, Object> selectReserveMenu(HashMap<String, Object> pmMap) {
-		return sDAO.selectReserveMenu(sqlSession, pmMap);
-	}
 
-	@Override
-	public HashMap<String, Object> selectReview(HashMap<String, Object> pMap) {
-		return sDAO.selectReview(sqlSession, pMap);
-	}
 
-	@Override
-	public HashMap<String, Object> selectReserveShop(HashMap<String, Object> re) {
-		return sDAO.selectReserveShop(sqlSession, re);
-	}
 
-//	@Override
-//	public int sideUpdate(ShopMenu smSmenu) {
-//		return sDAO.updateside(sqlSession, smSmenu);
-//	}
-//
-//	@Override
-//	public int beverUpate(ShopMenu smBmenu) {
-//		return sDAO.updatebever(sqlSession, smBmenu);
-//	}
+
+
+
+
 
 
 
