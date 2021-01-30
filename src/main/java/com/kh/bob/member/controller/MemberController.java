@@ -222,7 +222,7 @@ public class MemberController {
 		
 		//사용자가 예약한 식당 정보 조회
 		List<ShopInfo> sp = sService.selectMyShopPick(rei.getShopNo());
-		System.out.println("sp: "  + sp);
+		System.out.println("sp: "  + sp); 
 		
 		//예약 메뉴
 		List<ReserveMenu> reme = sService.selectMyReMenu(rei.getReserveNo());	
@@ -232,7 +232,8 @@ public class MemberController {
 		List<ShopReview> rev = sService.selectMyReview(loginUser.getMemberId());	
 		System.out.println("rev : " + rev);
 		
-		 if(sp != null ||  re!= null || !reme.isEmpty() || !rev.isEmpty() ){ 
+		 if(rei != null || sp != null ||  re!= null || !reme.isEmpty() || !rev.isEmpty() ){ 
+			 mv.addObject("rei", rei);
 			 mv.addObject("re", re);
 			 mv.addObject("sp", sp);
 			 mv.addObject("reme", reme);
@@ -265,7 +266,7 @@ public class MemberController {
 			int result = bmService.pwdUpdate(map);
 
 			if (result > 0) {
-				return "myPage";
+				return "redirect:home.do";
 			} else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
@@ -299,7 +300,7 @@ public class MemberController {
 		System.out.println(m);
 		if (result > 0) {
 			model.addAttribute("loginUser", m);
-			return "myPage";
+			return "redirect:home.do";
 		} else { 
 			throw new MemberException("일반회원 정보 수정에 실패하였습니다.");
 		}
@@ -461,13 +462,6 @@ public class MemberController {
 		 }
 		return mv;
 	}
-	//1)
-	//수정안된 si안에 있는걸 get하는거랑 
-	//수정된  siUp안에 있는 걸 get하게 되면 jsp화면을 재사용이 어렵지 않을까?
-	
-	//2)
-	//만약 식당 메인 메뉴가 2개 이상이면 어떻게 해야할까?
-	//Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2
 	
 	//파일 이름 날짜로 수정하는 과정
 		public String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -527,7 +521,7 @@ public class MemberController {
 		
 		if (result > 0) {
 			model.addAttribute("loginUser", m);
-			return "shopMyPage";
+			return "redirect:home.do";
 		} else {
 			throw new MemberException("일반회원 정보 수정에 실패하였습니다.");
 		}

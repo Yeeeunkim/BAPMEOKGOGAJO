@@ -98,7 +98,7 @@
 				</tr>
 				<tr height="70px">
 					<td>핸드폰 : </td>
-					<td><input type="text" class="input phone" maxlength="11" name="phone" placeholder="핸드폰(-없이 입력해주세요)" value="${ loginUser.phone }"><button class="phoneBtn">인증번호 전송</button></td>
+					<td><input type="text" class="input phone" maxlength="11" name="phone" placeholder="핸드폰(-없이 입력해주세요)" value="${ loginUser.phone }">
 				</tr>
 			</table>
 			
@@ -108,7 +108,11 @@
 					<c:param name="memberId" value="${ loginUser.memberId }"/>
 				</c:url>
 				<input type="button" id="deleteBtn" onclick="location.href='${ mdelete}'" value="회원 탈퇴">
-			</div>		
+			</div>	
+			<input type="hidden" name="member_pwd" value="${ loginUser.member_pwd }">	
+			<input type="hidden" name="member_status" value="${ loginUser.member_status }">	
+			<input type="hidden" name="member_enroll" value="${ loginUser.member_enroll }">	
+			<input type="hidden" name="auth_code" value="${ loginUser.auth_code }">	
 		</form>
 	</div>
 	<c:import url="../common/footer.jsp"/>

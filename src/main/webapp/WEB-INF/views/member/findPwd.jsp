@@ -249,7 +249,7 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">비밀번호</label> 
-				<input type="text" class="form-control inputForm" id="inputPwd" readonly="readonly" value="${ findPwd.member_pwd }">
+				<input type="text" class="form-control inputForm" id="inputPwd" readonly="readonly" style="background-color: black;" value="${ findPwd.member_pwd }">
 				<label class="hidden"></label>
 			</div>
 			</div>

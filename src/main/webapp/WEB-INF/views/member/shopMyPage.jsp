@@ -137,6 +137,7 @@
 		<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<c:out value="${ loginUser.member_name}사장님 환영합니다 👨‍🍳"/></h1><br>
 		<div class="inner introduceDiv">
     	  <hr class="line"> 
+			<label class="mainLabel"><b style="font-size: 30px; color: navy;" >🏠&nbsp${ si.shopName }</b>&nbsp</label><br><br>
 			<label class="mainLabel">◼&nbsp식당 소개글</label>
 			<textarea id="introduceArea" readonly>${ si.shopIntro }</textarea>
 			<!--  <div class="saveBtnArea">
