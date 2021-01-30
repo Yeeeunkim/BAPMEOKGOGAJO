@@ -100,10 +100,6 @@
 					<td>핸드폰 : </td>
 					<td><input type="text" class="input phone" maxlength="11" name="phone" placeholder="핸드폰(-없이 입력해주세요)" value="${ loginUser.phone }"><button class="phoneBtn">인증번호 전송</button></td>
 				</tr>
-					 <tr height="70px">
-					<td>인증번호: </td>
-					<td><input type="text" class="input phone" maxlength="6" name="phoneCheck" placeholder="인증번호" value=""><button class="phoneBtn">인증번호 확인</button></td>
-				</tr> 
 			</table>
 			
 			<div class="btns" align="center">

@@ -174,11 +174,6 @@
 			<button class="authBtn">인증</button>
 		</div><br><br>
 		
-		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;인증번호</p>&nbsp;&nbsp;
-		<div class="input-info">
-			<input class= "cInput" type="text" name="phoneAuth" id="phoneAuth" placeholder="인증번호">
-			<button class="authBtn">확인</button>
-		</div><br><br>
 		<p class="pp"></p><p class="pInput"><b>*</b>&nbsp;&nbsp;성별</p>&nbsp;&nbsp;
 			<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;🧑&nbsp;남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;👩 여
