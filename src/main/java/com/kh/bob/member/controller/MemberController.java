@@ -512,7 +512,7 @@ public class MemberController {
 			throw new MemberException("비밀번호 오류");
 		}
 	}
-
+	
 	// 사업자 회원정보 수정 기능 페이지
 	@RequestMapping("oInfoUpdate.me")
 	public String oinfoUpdate(@ModelAttribute Member m, Model model) {
