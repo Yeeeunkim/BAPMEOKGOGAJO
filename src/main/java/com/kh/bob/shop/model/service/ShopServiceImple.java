@@ -16,7 +16,7 @@ import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
 
 @Service("sService")
-public class ShopServiceImp implements ShopService{
+public class ShopServiceImple implements ShopService{
 
 	@Autowired
 	private ShopDAO sDAO;

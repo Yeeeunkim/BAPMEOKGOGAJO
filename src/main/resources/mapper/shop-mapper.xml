@@ -183,27 +183,7 @@
    			where SHOP_NO=#{item.shopNo} 
 	  </foreach>
 	</update>
-	
-<!-- 	<update id="smenuUpdate">
-		<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
-			INTO shop_menu (menu_no, menu_name, menu_price,menu_status, menu_cate, shop_no)
-			VALUES (SEQ_MNO.nextval, #{item.MenuName}, #{item.MenuPrice}, 'Y', #{item.MenuCate},seq_sno.currval)
-		</foreach> 	
-	</update> -->
-	
- 	<!--  식당 사이드 메뉴 수정  -->
-<!-- 	<update id="sideUpdate" >
-		update shop_menu
-   		set   MENU_NAME=#{menuName}, MENU_PRICE=#{menuPrice}
-   		where SHOP_NO=#{shopNo} and MENU_CATE=2
-	</update>  -->
-	 
-	<!-- 식당 음료 수정 -->
-   <!--  <update id="beverUpate" >
-		update  shop_menu
-   		set 	MENU_NAME=#{menuName}, MENU_PRICE=#{menuPrice}
-   		where 	SHOP_NO=#{shopNo} and MENU_CATE=3
-	</update>   -->
+
 
 
 <!--김예은 끝 ================================================= -->
