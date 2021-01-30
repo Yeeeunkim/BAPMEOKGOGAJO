@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <style>
 	
-	p,h4{font-family: 'Gugi';} 
+	p,h4,h5{font-family: 'Gugi';} 
 	
 	 .img{height:70vh;background-size: cover;margin:0;font-family:'Gugi';
 	 	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url("<%= request.getContextPath() %>/resources/images/main/main.png");}
@@ -118,7 +118,10 @@
 	
 	.card { margin-left:10px;} 
 	.card{display:inline-block; }   
-
+	.item1:hover {
+	cursor: pointer;
+	border: 1px solid black;
+}
 </style>
 <title>Insert title here</title>
 </head>
@@ -178,10 +181,11 @@
 	<div class="list_wrap">
 		<ul>
 			<c:forEach var="hs" items="${ hsList }">
-				<li class="item item1"> 
+				<li class="item item1 hsContent">
+					<input type="hidden" class="sNo" value="${ hs.sNo }">
 					<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
 					<div class="cont">
-						<strong>${ hs.sName }</strong>
+						<h5>${ hs.sName }</h5>
 						<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;${ hs.avgScore }</p>
 						<p>${ hs.sIntro }</p>
 					</div>
@@ -189,6 +193,14 @@
 			</c:forEach>
 		</ul>
 	</div>
+	<script>
+	$(function(){
+		$('.hsContent').click(function(){
+			var sNo=$(this).children('.sNo').val();
+			location.href='Reservation.do?SHOP_NO=' + sNo;
+		});
+	});
+	</script>
 	
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
