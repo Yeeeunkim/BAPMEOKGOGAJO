@@ -1,4 +1,4 @@
-package com.kh.bob.notice.model.service;
+﻿package com.kh.bob.notice.model.service;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,7 @@ public interface NoticeService {
 
 	ArrayList<Comment> selectCommentList(int bNo);
 
+	ArrayList<Board> faqList();
 	
 	
 	// 민병욱 끝 ====================================================

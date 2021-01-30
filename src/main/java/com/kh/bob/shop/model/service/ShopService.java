@@ -1,23 +1,29 @@
-package com.kh.bob.shop.model.service;
+﻿package com.kh.bob.shop.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+
+import com.kh.bob.shop.model.vo.ShopReview;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
-import com.kh.bob.shop.model.vo.ShopReview;
+import com.kh.bob.shop.model.vo.ShoplistPageInfo;
+
+
 
 public interface ShopService {
 
-	int insertShop(ShopInfo si);
+	// 강동기 시작 ===============================================
 
-	int insertMenu(List<ShopMenu> shopmenu);
-//김예은 시작 =============================================
+	// 강동기 끝 ================================================
 
-
+	// 김예은 시작 ================================================
+	
 	// 식당마이페이지  - 식당정보 조회
 	ShopInfo selectMyShop(String member_id);
 	
@@ -62,27 +68,68 @@ public interface ShopService {
 	int smenuUpdate(List<ShopMenu> shopmenu);
 
 
+	// 김예은 끝 =================================================
 
+	// 김하영 시작 ================================================
 
+	// 김하영 끝 =================================================
 
+	// 민병욱 시작 =================================================
 
-
-//	int sideUpdate(List<ShopMenu> sms);
-//
-//	int beverUpate(List<ShopMenu> smb);
-
-
-
-
-
-
-
-
-
+	ShopInfo selectShop(int sNo);
 	
+	ReserveInfo selectReserve(int rNo);
+	
+	List selectMenu(int rNo);
+
+	int successReserve(int rNo);
+	
+	List selectSearchList(ShopInfo shop, ShoplistPageInfo pi);
+	
+	List selectAddressSearch(ShopInfo shop, ShoplistPageInfo pi);
+	
+	int getListCount(ShopInfo shop);
+	
+	int getAddressListCount(ShopInfo shop);
+	
+	// 민병욱 끝 ====================================================
+
+	// 신진식 시작 ===================================================
+	int insertShop(ShopInfo si);
+
+	int insertMenu(List<ShopMenu> shopmenu);	
+
+	List<ShopMenu> selectShopMenu(int shopNo);
+	
+	int insertDeclare(ShopDeclare sd);
+	
+	int insertReserveShopInfo(ReserveInfo ri);
+	
+	ReserveInfo selectReserveNo(ReserveInfo ri);
+	
+	int insertReserveShopMenu(List<ReserveMenu> reservemenu);
+	
+	ArrayList<ReserveInfo> selectResreveTime(int shopNo);
+
+	// 신진식 끝 =====================================================
+
+	// 원태원 시작 ====================================================
+
+	List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi);
+
+	List<Map<String, Object>> getReservationList(int shop_no);
+
+	int getListAllCount(ShopInfo shop);
+
+	int getListCateCount(ShopInfo shop);
+
+
+	/* void insertShop(HashMap<String, Object> data); */
+	
+	
+	// 원태원 끝 ======================================================
 
 
 
-//김예은 끝 =============================================
 
 }

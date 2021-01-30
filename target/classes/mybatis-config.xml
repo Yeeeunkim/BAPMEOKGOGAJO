@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 	<settings><!-- 기본세팅 설정 -->
@@ -6,11 +6,14 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" /><!-- shopRename _ 단어와 단어사이를 대문자로 변환 및 _ 제거-->
 	</settings>
 	
+	<!-- VO 선언단 -->	
 	<typeAliases>
 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Attachment" alias="Attachment"/>
-		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/> 
+
+		<typeAlias type="com.kh.bob.notice.model.vo.Comment" alias="Comment"/>
+
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopInfo" alias="ShopInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopMenu" alias="ShopMenu"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
@@ -19,14 +22,21 @@
 		
 		<!-- <typeAlias type="com.kh.bob.common.LowerKeyMap" alias="lowerKeyMap"/> -->
 		
-		
-		
+		<typeAlias type="com.kh.bob.manager.model.vo.ManageReview" alias="ManageReview"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.ManageShopInfo" alias="ManageShopInfo"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.ManageDeclaration" alias="ManageDeclaration"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.DeclationReple" alias="DeclationReple"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.ShopCategory" alias="ShopCategory"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.CategorySales" alias="CategorySales"/>
 	</typeAliases>
 	 
-	<mappers>
+	 
+	 <!-- MAPPER 선언단 -->
+	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
+		<mapper resource="mapper/member-mapper.xml"/>
+		<mapper resource="mapper/board-mapper.xml"/>
 		<mapper resource="mapper/shop-mapper.xml"/>
-		<mapper resource="mapper/board-mapper.xml"/>  
-		 <mapper resource="mapper/member-mapper.xml"/> 
+		<mapper resource="mapper/manager-mapper.xml"/>
 	</mappers>
 	
 </configuration>

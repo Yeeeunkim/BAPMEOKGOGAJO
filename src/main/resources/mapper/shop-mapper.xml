@@ -1,21 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper  namespace="shopMapper"> 
-	
-	<insert id="insertShop">
-		insert into shop_info values(seq_sno.nextval,#{ShopName},#{OpenTime},#{CloseTime},#{Address},#{ShopPhone},#{BreakTime},#{MaxReservationTime},#{ShopOrigin},#{ShopRename},#{ShopCate},#{businessNum},#{MemberId})
-	</insert>
 
-	 <insert id="insertMenu" >
-		<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
-			INTO shop_menu (menu_no, menu_name, menu_price,menu_status, menu_cate, shop_no)
-			VALUES (SEQ_MNO.nextval, #{item.MenuName}, #{item.MenuPrice}, 'Y', #{item.MenuCate},seq_sno.currval)
-		</foreach> 		
-	</insert>	 
-	
+<mapper namespace="shopMapper">
+
+	<resultMap type="ShopInfo" id="shopInfoResultSet">
+		<id property="shopNo" column="SHOP_NO" />
+		<result property="shopName" column="SHOP_NAME" />
+		<result property="shopIntro" column="SHOP_INTRO" />
+		<result property="shopOpen" column="SHOP_OPEN" />
+		<result property="shopClose" column="SHOP_CLOSE" />
+		<result property="shopAddress" column="SHOP_ADDRESS" />
+		<result property="shopPhone" column="SHOP_PHONE" />
+		<result property="shopBreakStart" column="SHOP_BREAK_START" />
+		<result property="shopBreakClose" column="SHOP_BREAK_CLOSE" />
+		<result property="shopOffday" column="SHOP_OFFDAY" />
+		<result property="maxReservationTime" column="MAX_RESERVATION_TIME" />
+		<result property="shopOrigin" column="SHOP_ORIGIN" />
+		<result property="shopRename" column="SHOP_RENAME" />
+		<result property="shopCate" column="SHOP_CATE" />
+		<result property="businessNumber" column="BUSINESS_NUMBER" />
+		<result property="memberId" column="MEMBER_ID" />
+	</resultMap>
+
+<!-- 강동기 시작 =============================================== -->
+   
+<!-- 강동기 끝 ================================================ -->
+
+ 
 <!--김예은 시작 ================================================= -->
 	<!-- ★ shopInfo resultMap -->
-	<resultMap type="ShopInfo" id="shopInfoResultSet">
+	<resultMap type="ShopInfo" id="mshopInfoResultSet">
 		<id property="shopNo" column="SHOP_NO" />
 		<result property="shopName" column="SHOP_NAME" />
 		<result property="shopIntro" column="SHOP_INTRO" />
@@ -35,7 +49,7 @@
 	</resultMap>
 	
 	<!-- ★ ShopMenu resultMap -->
-	<resultMap type="ShopMenu" id="shopMenuResultSet">
+	<resultMap type="ShopMenu" id="mshopMenuResultSet">
 		<id property="menuNo" column="MENU_NO" />
 		<id property="menuName" column="MENU_NAME" />
 		<result property="menuPrice" column="MENU_PRICE" />
@@ -45,7 +59,7 @@
 	</resultMap>
 	
 	<!-- ReserveInfo resultMap -->
-	<resultMap type="ReserveInfo" id="ReserveInfoResultSet">
+	<resultMap type="ReserveInfo" id="mReserveInfoResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
 		<result property="reserveDate" column="RESERVE_DATE" />
 		<result property="reservePeople" column="RESERVE_PEOPLE" />
@@ -62,7 +76,7 @@
 	</resultMap>
 	
 	<!-- ReserveMenu resultMap -->
-	<resultMap type="ReserveMenu" id="ReserveMenuResultSet">
+	<resultMap type="ReserveMenu" id="mReserveMenuResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
 		<id property="menuNo" column="MENU_NO" />
 		<result property="menuName" column="MENU_NAME" />
@@ -70,7 +84,7 @@
 	</resultMap>
 	
 	<!-- ShopReview resultMap -->
-	<resultMap type="ShopReview" id="ShopReviewResultSet">
+	<resultMap type="ShopReview" id="mShopReviewResultSet">
 		<id property="reviewNo" column="REVIEW_NO" />
 		<result property="reviewContents" column="REVIEW_CONTENTS" />
 		<result property="reviewWrite" column="REVIEW_WRITE" />
@@ -82,83 +96,83 @@
 	</resultMap>
 	
 	<!-- 사장님마이페이지 - 사업자 아이디로 식당 정보 가져오기 -->
-	<select id="selectMyShop" resultMap="shopInfoResultSet">
+	<select id="selectMyShop" resultMap="mshopInfoResultSet">
 		select *
 		from shop_info
 		where member_id = #{memberId}
 	</select>
 	
 	<!-- 사장님마이페이지 - 식당번호로 주, 사이드, 음료 메뉴 리스트에 담기  -->
-	<select id="selectMyMenu1" resultMap="shopMenuResultSet">
+	<select id="selectMyMenu1" resultMap="mshopMenuResultSet">
 		select *
 		from shop_menu
 		where shop_no = #{shopNo}
 			and menu_cate = 1
 	</select>
 	
-	<select id="selectMyMenu2" resultMap="shopMenuResultSet">
+	<select id="selectMyMenu2" resultMap="mshopMenuResultSet">
 		select *
 			from shop_menu
 			where shop_no = #{shopNo}
 				and menu_cate = 2
 	</select>
 	
-	<select id="selectMyMenu3" resultMap="shopMenuResultSet">
+	<select id="selectMyMenu3" resultMap="mshopMenuResultSet">
 		select *
 			from shop_menu
 			where shop_no = #{shopNo}
 				and menu_cate = 3
 	</select>
 	<!-- 사장님마이페이지 - 예약받은 정보들 -->		
-	<select id="selectRinfo" resultMap="ReserveInfoResultSet">
+	<select id="selectRinfo" resultMap="mReserveInfoResultSet">
 		select *
 		from reserve_info
 		where shop_no=#{shoNo}
 	</select>
 	
 	<!-- 사장님마이페이지 - 예약받은 인원수, 시간 -->
-	<select id="selectReserveInfo"  resultMap="ReserveInfoResultSet"> 
+	<select id="selectReserveInfo"  resultMap="mReserveInfoResultSet"> 
 		select *
 		from reserve_info
 		where shop_no=#{shopNo}
 	</select>
 	
 	<!-- 사장님마이페이지 - 예약받은 메뉴 -->
-	<select id="selectReserveMenu"  resultMap="ReserveMenuResultSet">
+	<select id="selectReserveMenu"  resultMap="mReserveMenuResultSet">
 		select *
 		from reserve_menu
 		where reserve_no=#{reserveNo}
 	</select>
 	
 	<!--  -->
-	<select id="selectMyrInfo"  resultMap="ReserveInfoResultSet" >
+	<select id="selectMyrInfo"  resultMap="mReserveInfoResultSet" >
 		select *
 		from reserve_info
 		 where MEMBER_ID = #{memberId}
 	</select>
 	<!-- 사용자마이페이지  - 예약내역 조회 -->
-	<select id="selectMyReInfo"  resultMap="ReserveInfoResultSet" >
+	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
 		select *
         from RESERVE_INFO
         where MEMBER_ID = #{memberId}
 	</select>
 	
 	<!-- 사용자마이페이지  - 사용자가 선택한 식당정보  -->
-	<select id="selectMyShopPick"  resultMap="shopInfoResultSet">
+	<select id="selectMyShopPick"  resultMap="mshopInfoResultSet">
 		select *
         from SHOP_INFO 
         where SHOP_NO = #{shopNo} 
 	</select>
 	
 	<!-- 사용자마이페이지  - 사용자가 선택한 메뉴 -->
-	<select id="selectMyReMenu" resultMap="ReserveMenuResultSet">
+	<select id="selectMyReMenu" resultMap="mReserveMenuResultSet">
 		select * 
         from RESERVE_MENU
         where  RESERVE_NO  = #{reserveNo} 
 	</select>
 	
 	<!--사용자마이페이지  - 사용자 리뷰-->
-	<select id="selectMyReview"  resultMap="ShopReviewResultSet" >
+	<select id="selectMyReview"  resultMap="mShopReviewResultSet" >
 		select *
         from SHOP_REVIEW
         where  MEMBER_ID  = #{memberId} 
@@ -187,5 +201,220 @@
 
 
 <!--김예은 끝 ================================================= -->
+
+
+   
+<!-- 김하영 시작 ================================================ -->
+   
+<!-- 김하영 끝 ================================================= -->
+
+
+<!-- 민병욱 시작 ================================================= -->
+
+	<!-- @@@@@테스트용 -->
 	
+	
+	<resultMap type="ReserveInfo" id="reserveInfoResultSet">
+		<id property="reserveNo" column="RESERVE_NO" />
+		<result property="reserveDate" column="RESERVE_DATE" />
+		<result property="reservePeople" column="RESERVE_PEOPLE" />
+		<result property="totalPrice" column="TOTAL_PRICE" />
+		<result property="reserveStatus" column="RESERVE_STATUS" />
+		<result property="reserveName" column="RESERVE_NAME" />
+		<result property="reservePhone" column="RESERVE_PHONE" />
+		<result property="reserveComment" column="RESERVE_COMMENT" />
+		<result property="reserveAd" column="RESERVE_AD" />
+		<result property="reservePay" column="RESERVE_PAY" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="shopNo" column="SHOP_NO" />
+		<result property="reserveTime" column="RESERVE_TIME" />
+	</resultMap>
+	
+	<resultMap type="ReserveMenu" id="reserveMenuResultSet">
+		<id property="reserveNo" column="RESERVE_NO" />
+		<id property="menuNo" column="MENU_NO" />
+		<id property="menuName" column="MENU_NAME" />
+		<result property="MenuQty" column="MENU_QTY" />
+	</resultMap>
+	
+	<select id="selectShop" resultMap="shopInfoResultSet">
+		select *
+		from shop_info
+		where shop_no = #{shopNo}
+	</select>
+	
+	<select id="selectReserve" resultMap="reserveInfoResultSet">
+		select *
+		from reserve_info
+		where reserve_no = #{reserveNo}
+	</select>
+	
+	<select id="selectMenu" resultMap="reserveMenuResultSet">
+		select *
+		from reserve_menu
+		where reserve_no = #{reserveNo}
+	</select>
+	
+	<update id="successReserve">
+		update reserve_info
+		set reserve_status = 'Y',
+		    reserve_pay = to_char(sysdate, 'HH24:MI:SS')
+		where reserve_no = #{reserveNo}
+	</update>
+	
+	<select id="selectSearchList" resultMap="shopInfoResultSet">
+		select *
+		from shop_info
+		where
+			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%'
+			<if test="shopCate != 0">
+				or to_char(shop_cate) = #{shopCate}
+			</if>
+	</select>
+	
+	<select id="selectAddressSearch" resultMap="shopInfoResultSet">
+		select *
+		from shop_info
+		where
+			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from shop_info
+		where
+			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%'
+			<if test="shopCate != 0">
+				or to_char(shop_cate) = #{shopCate}
+			</if>
+	</select>
+	
+	<select id="getAddressListCount" resultType="_int">
+		select count(*)
+		from shop_info
+		where
+			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
+	</select>
+
+   
+<!-- 민병욱 끝 ==================================================== -->
+   
+   
+<!-- 신진식 시작 =================================================== -->
+
+
+	<insert id="insertShop">
+		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
+	</insert>
+
+	 <insert id="insertMenu" >
+		<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
+			INTO shop_menu (menu_no, menu_name, menu_price,menu_status, menu_cate, shop_no)
+			VALUES (SEQ_MNO.nextval, #{item.menuName}, #{item.menuPrice}, 'Y', #{item.menuCate},seq_sno.currval)
+		</foreach> 		
+	</insert>	    
+
+
+	<resultMap type="ShopMenu" id="shopMenuResulSet">
+		<id property="menuNo" column="MENU_NO" />
+		<id property="menuName" column="MENU_NAME" />
+		<result property="menuPrice" column="MENU_PRICE" />
+		<result property="menuStatus" column="MENU_STATUS" />
+		<result property="menuCate" column="MENU_CATE" />
+		<result property="shopNo" column="SHOP_NO" />
+	</resultMap>
+
+
+	<select id="selectShopMenu" resultMap="shopMenuResulSet">
+		select * from shop_menu where shop_no= #{shopNo}
+	</select>
+	
+	<insert id="insertDeclare">
+		insert into shop_declare values(SEQ_DNO.nextval,#{memberId},'Y',#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
+	</insert>
+	
+	<insert id="insertReserveShopInfo">
+		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
+	</insert>
+	
+
+	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
+<!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
+		select *
+		from (
+				select *
+				from reserve_info
+				order by reserve_no desc)
+		where
+			  shop_no=#{shopNo} and ROWNUM=1	
+	</select>
+
+	
+	
+	<insert id="insertReserveMenu">
+			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
+			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
+			VALUES (SEQ_SRNO.currval, #{item.menuNo}, #{item.menuName},#{item.MenuQty})
+		</foreach> 	
+	</insert> 
+	
+	<select id="reserveTime" resultMap="reserveInfoResultSet">
+			select * from reserve_info where shop_no=#{shopNo}
+	</select>
+
+<!-- 신진식 끝 ===================================================== -->
+
+   
+<!-- 원태원 시작 ==================================================== -->
+
+   <!-- 첫 LOAD FORM용 -->
+   <select id="getShopList" resultMap="shopInfoResultSet">
+   
+   SELECT * FROM SHOP_INFO
+   
+	   <if test="SHOP_CATE != null or SHOP_CATE eq '' ">
+	   WHERE SHOP_CATE  = #{SHOP_CATE}
+	   </if>
+	   
+   </select>
+   
+   <select id="getReservationList" resultType="Map" parameterType="int">
+   
+		SELECT 
+		SI.SHOP_NO
+		,SI.SHOP_OPEN
+		,SI.SHOP_CLOSE
+		,SI.SHOP_OFFDAY
+		,SI.SHOP_BREAK_START
+        ,SI.SHOP_BREAK_CLOSE
+        ,SI.MAX_RESERVATION_TIME
+		,SM.MENU_NAME
+		,SM.MENU_PRICE
+		,SM.MENU_STATUS
+		,SM.MENU_CATE
+		,SI.SHOP_PHONE
+		,SI.SHOP_ADDRESS
+		,SI.SHOP_NAME
+		,SI.SHOP_RENAME
+		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
+			WHERE SI.SHOP_NO = #{shop_no}
+     
+   </select>
+   
+   <select id="getListAllCount" resultType="_int">
+   		select count(*)
+   		from shop_info
+   </select>
+   
+   <select id="getListCateCount" resultType="_int">
+   		select count(*)
+   		from shop_info
+   		WHERE SHOP_CATE  = #{shopCate}
+
+   </select>
+   
+<!-- 원태원 끝 ====================================================== -->
+
+
+
 </mapper>

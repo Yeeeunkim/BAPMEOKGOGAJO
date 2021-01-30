@@ -17,7 +17,9 @@ public class ShopInfo {
 	private String shopRename; 			// 식당 리네임 파일명
 	private int shopCate; 				// 식당 카테고리
 	private int businessNumber; 		// 사업자 번호
-	private String memberId; 			// 회원아이디
+
+	private String memberId; 				// 회원아이디
+
 		
 	public ShopInfo() {}
 
@@ -181,8 +183,5 @@ public class ShopInfo {
 				+ ", shopRename=" + shopRename + ", shopCate=" + shopCate + ", businessNumber=" + businessNumber
 				+ ", memberId=" + memberId + "]";
 	}
-
-	
-
 
 }
