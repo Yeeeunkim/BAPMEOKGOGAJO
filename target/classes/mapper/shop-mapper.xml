@@ -47,7 +47,7 @@
 	<!-- ReserveInfo resultMap -->
 	<resultMap type="ReserveInfo" id="ReserveInfoResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
-		<result property="reserveTime" column="RESERVE_TIME" />
+		<result property="reserveDate" column="RESERVE_DATE" />
 		<result property="reservePeople" column="RESERVE_PEOPLE" />
 		<result property="totalPrice" column="TOTAL_PRICE" />
 		<result property="reserveStatus" column="RESERVE_STATUS" />
@@ -58,6 +58,7 @@
 		<result property="reservePay" column="RESERVE_PAY" />
 		<result property="memberId" column="MEMBER_ID" />
 		<result property="shopNo" column="SHOP_NO" />
+		<result property="reserveTime" column="RESERVE_TIME" />
 	</resultMap>
 	
 	<!-- ReserveMenu resultMap -->

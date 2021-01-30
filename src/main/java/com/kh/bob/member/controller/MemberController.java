@@ -524,6 +524,7 @@ public class MemberController {
 	public String oinfoUpdate(@ModelAttribute Member m, Model model) {
 		int result = bmService.minfoUpdate(m);
 		System.out.println(m);
+		
 		if (result > 0) {
 			model.addAttribute("loginUser", m);
 			return "shopMyPage";
