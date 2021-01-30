@@ -53,9 +53,9 @@
 </style>
 </head>
 <body>
-	<c:import url="../common/header.jsp"/>
+	<c:import url="../common/menubar.jsp"/>
 	<div id="outer">
-		<form action="" method="post" id="checkPwd" name="checkPwd">
+		<form action="mdelete.me" method="post" id="checkPwd" name="checkPwd">
 			<h1>회원 탈퇴</h1>
 			<div id=checkPwdOut>
 				<label id="label">회원 탈퇴를 위해 아이디와 비밀번호를 다시 입력 해주세요.</label><br>
@@ -64,11 +64,11 @@
 						<table align="center">
 							<tr height="70px">
 								<td width="100px">아이디 : </td>
-								<td width="300px"><input type="text" class="input" name="id"></td>
+								<td width="300px"><input type="text" class="input" name="member_id"></td>
 							</tr>
 							<tr height="70px">
 								<td>비밀번호 : </td>
-								<td><input type="text" class="input" name="pwd"></td>
+								<td><input type="text" class="input" name="member_pwd"></td>
 							</tr>
 						</table>
 					</div>

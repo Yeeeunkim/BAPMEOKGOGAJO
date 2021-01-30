@@ -114,7 +114,7 @@ span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
 			<h1 style="text-align: center;">일반 회원가입 ></h1>
 			<br>
 			<br>
-			<div class="row">
+			<%-- <div class="row">
 				<div class="col-3"></div>
 				<div class="col-3 enrollDiv">
 					<img src="<%= request.getContextPath() %>/resources/images/naver.png"
@@ -126,8 +126,8 @@ span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
 						style="width: 150px; height: 35px;">
 				</div>
 				<div class="col-3"></div>
-			</div><br><br><br>
-		<p><b style="color: red;">*</b>&nbsp;&nbsp;은 필수 입력란 입니다.</p><br><br>
+			</div> --%><br><br><br>
+		<p><b style="color: red;">💡&nbsp;*</b>&nbsp;&nbsp;은 필수 입력란 입니다.</p><br><br>
 		
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;이름</p>&nbsp;&nbsp;
 		<div class="input-info">
@@ -211,8 +211,8 @@ span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
 			<button class="authBtn">확인</button>
 		</div><br><br>
 		<p class="pp"></p><p class="pInput"><b>*</b>&nbsp;&nbsp;성별</p>&nbsp;&nbsp;
-			<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;여자
+			<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;🧑&nbsp;남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;👩 여
 		<br><br><br>
 		
 <<<<<<< HEAD
@@ -231,13 +231,13 @@ span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
 	$(function(){
 			
 			$('#m_id').on('keyup', function(){
-				var memberId = $(this).val().trim();//현재 내꺼 가져오기
+				var memberId = $('#m_id').val().trim();//현재 내꺼 가져오기
 			
 				if(memberId.length < 6){
 					$('.guide').hide();
 					$('#idDuplicateCheck').val(0); //0이면 중복확인 안된 상태
 				}
-				
+
 				$.ajax({
 					url: 'dupId.me',
 					data: {member_id:memberId},
@@ -255,6 +255,7 @@ span.guide{display: none; font-size: 12px; top: 12px; right: 10px;}
 				});
 			});
 		});
+		
 	$(function(){
 		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
 	

@@ -125,7 +125,7 @@
 				<h1 style="text-align: center;">사업자 회원가입 ></h1>
 				<br>
 				<br>
-			<p><b style="color: red;">*</b>&nbsp;&nbsp;은 필수 입력란 입니다.</p><br><br>
+			<p><b style="color: red;">💡&nbsp;*</b>&nbsp;&nbsp;은 필수 입력란 입니다.</p><br><br>
 			
 			<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;사업자명</p>&nbsp;&nbsp;
 			<div class="input-info">
@@ -189,8 +189,8 @@
 			</div><br><br>
 			
 			<p class="pp"></p><p class="pInput"><b>*</b>&nbsp;&nbsp;성별</p>&nbsp;&nbsp;
-					<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;여자
+					<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;👨‍🍳 &nbsp;남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;👩‍🍳 &nbsp;여
 				<br><br><br>
 				
 			<button type="submit" name="auth_code"  value="2" class="btn btn-primary enrollBtn" onclick="return validate();"> 가입하기 </button>

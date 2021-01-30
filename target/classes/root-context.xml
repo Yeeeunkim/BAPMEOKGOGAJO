@@ -5,6 +5,7 @@
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DataBase 등록 : BasicDataSource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -14,6 +15,11 @@
 	** 이미 만들어져있는걸 클래스는 어노테이션 불가능해서 xml로 설정해야함 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"><!-- ㄴ close라는 소멸 메소드 쓸거야 -->
 >>>>>>> origin/Js
+=======
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- DataBase 등록 : BasicDataSource -->
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="BAPMEOKGOGAJO"/>
@@ -21,12 +27,24 @@
 		<property name="defaultAutoCommit" value="false"/>
 	</bean>
 	
+	 <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSourceSpied" />
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE" />
+                <property name="sqlPrefix" value="SQL         :  "/>
+            </bean>
+        </property>
+    </bean>
+	
+	
 	<!-- sqlSession 빈 등록 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 		<property name="dataSource" ref="dataSource"/>	<!-- ref : DataBase 등록 부분 bean의 id -->
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 		<constructor-arg ref="sqlSession" /> <!-- 매개변수 있는 생성자에 값을 넣는 것을 보여주는 것을 태그로 표현 -->
@@ -39,10 +57,12 @@
 	</bean>
 	
 =======
+=======
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 		<constructor-arg ref="sqlSession" /> <!-- 매개변수 있는 생성자에 값을 넣는 것을 보여주는 것을 태그로 표현 -->
 	</bean>
 	
-	<!-- 파일 업로드 시 사용할 MultiopartResolver -->
+		<!-- 파일 업로드 시 사용할 MultiopartResolver -->	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000000"/>
 		<property name="maxInMemorySize" value="100000000"/>
@@ -52,4 +72,5 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+
 </beans>

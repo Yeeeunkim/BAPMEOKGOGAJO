@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kh.bob.member.model.vo.Member;
-
+import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 public interface MemberService {
 // 김예은 시작 ================================================
@@ -28,6 +29,7 @@ public interface MemberService {
 	Member findPwd(Model model);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 	int pwdUpdate(HashMap<String, String> map);
@@ -36,6 +38,14 @@ public interface MemberService {
 
 	int updatePwd(HashMap<String, String> map);
 >>>>>>> origin/Js
+=======
+	int pwdUpdate(HashMap<String, String> map);
+
+
+
+
+
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 
 
 

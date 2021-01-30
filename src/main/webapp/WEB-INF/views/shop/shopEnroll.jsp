@@ -163,12 +163,77 @@
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
+<<<<<<< HEAD
           <h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 한식</h2>
           
 
 	<!-- 사진, 지도 폼 -->
 	<div class="thumb">메뉴 썸네일 사진을 등록해주세요.</div>
 	
+=======
+   	
+   	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
+   	
+   	 <input type="hidden" name="MemberId" value="${ loginUser.member_id}"> 
+   		<!-- <input type="hidden" name="MemberId" value="user01"> -->
+   		
+   		
+       <select class="form-select" aria-label="Default select example"  id="myselect" name="ShopCate" >
+         <option value="0" selected="selected">--선택해주세요--</option>
+         <option value="1">한식</option>
+         <option value="2">양식</option>
+         <option value="3">중식</option>
+         <option value="4">일식</option>
+         <option value="5">분식</option>
+      </select>
+      
+        <script>
+  			function writeBoard(){
+  				var a=$("#myselect").val();
+  				if(a==0){
+  					alert("카테고리를 선택해주세요");
+  					return false;
+  				}else{
+  					return true;
+  				}
+  			}
+  		</script>
+      
+          
+
+	<!-- 사진, 지도 폼 -->
+		<div class="thumb" id="thumbnail"><img id="thumbImg" width="100%" height="100%"><p id="text">메뉴 썸네일 사진을 등록해주세요.</p></div>
+		
+	
+	<div id="fileArea">
+		<input type="file" id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
+	</div>
+	
+	<script>
+					$(function(){
+						$("#fileArea").hide();
+						$("#thumbnail").click(function(){
+							$("#thumbnailImg").click();
+						});
+					});
+					
+					function LoadImg(value){
+						if(value.files && value.files[0]){
+							var reader = new FileReader();
+							
+							
+							reader.onload = function(e){								
+								
+									$("#thumbImg").attr("src", e.target.result);
+									$("#text").empty();
+									
+							}
+							
+							reader.readAsDataURL(value.files[0]);
+						}
+					}
+	</script>
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	

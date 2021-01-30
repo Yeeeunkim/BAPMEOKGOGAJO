@@ -53,6 +53,7 @@
    </select>
    
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
    <select id="pwdUpdate">
@@ -62,6 +63,8 @@
    </select>
 >>>>>>> origin/Js
    
+=======
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
    <!-- 회원정보 수정 시 비밀번호 -->
    <select id="infoPwd" resultMap="bMemberResultSet">
    		select *
@@ -91,6 +94,7 @@
 		set member_pwd=#{newPwd}
 		where member_id=#{member_id}
 	</update>
+<<<<<<< HEAD
 =======
     <update id="updatePwd">
   		update member_info
@@ -102,4 +106,8 @@
    
 <!--김예은 끝 ================================================= -->
   	
+=======
+	
+
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 </mapper>

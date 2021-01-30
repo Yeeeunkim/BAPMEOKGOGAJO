@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beansProjectDescription>
 	<version>1</version>
+<<<<<<< HEAD
 	<pluginVersion><![CDATA[3.9.16.202012221225-CI-B2753]]></pluginVersion>
 <<<<<<< HEAD
 
 =======
 >>>>>>> origin/Js
+=======
+	<pluginVersion><![CDATA[3.9.14.202009150957-RELEASE]]></pluginVersion>
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 	<configSuffixes>
 		<configSuffix><![CDATA[xml]]></configSuffix>
 	</configSuffixes>
@@ -17,7 +21,6 @@
 		<config>src/main/webapp/WEB-INF/spring/appServlet/aspect-context.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/spring/appServlet/manager-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/notice-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/member-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

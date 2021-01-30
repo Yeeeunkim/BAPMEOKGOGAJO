@@ -170,14 +170,13 @@
 	<c:if test="${ empty sessionScope.loginUser }">
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
-				<img id="logo" src="resources/images/logo.png" onclick="location.href='home.do'">
-				<a onclick="location.href='home.do'">밥먹고 가조</a>
+				<img id="logo" src="resources/images/logo.png" href="home.do">
+				<a href="home.do">밥먹고 가조</a>
 					<span class="searchbar">
           				 <input class="search_input" type="text" name="" placeholder="Search...">
          				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
        				 </span>
 			</span>  
-		
 			<ul class="navbar_icons" >
 				<li class="menu" onclick="shop();"><a href="#">About</a></li>
 			     <li class="menu" onclick="location.href='loginView.me'" ><a href="#">Login</a></li> 
@@ -185,13 +184,14 @@
 			</ul>
 		</nav>
 	</c:if>
-	
+
+
 	<!-- 로그인 성공 -->
 	<c:if test="${ !empty sessionScope.loginUser }">
 		<nav class="navbar" id="gnb">
 			<span class="navbar_logo">
-				<img id="logo" src="resources/images/logo.png">
-				<a href="">밥먹고 가조</a>
+				<img id="logo" src="resources/images/logo.png" href="home.do">
+				<a href="home.do">밥먹고 가조</a>
 					<span class="searchbar">
           				 <input class="search_input" type="text" name="" placeholder="Search...">
          				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
@@ -201,10 +201,10 @@
 				<li class="menu" onclick="shop();"><a href="#">About</a></li>
 				<li class="menu" onclick="location.href='logoutView.me'" ><a href="#">Logout</a></li> 
 				<c:if test="${ loginUser.auth_code eq '1' }">
-					<li class="menu" onclick="location.href='myPage.me'"><a href=""><i class="fas fa-user"></i></a></li>
+					<li class="menu" ><a href="myPage.me"><i class="fas fa-user"></i></a></li>
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '2'  }">
-					<li class="menu" onclick="location.href='shopMypage.me'"><a href=""><i class="fas fa-user"></i></a></li>
+					<li class="menu" ><a href="shopMypage.me"><i class="fas fa-user"></i></a></li>
 				</c:if>
 				 <li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
 				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 
@@ -212,7 +212,7 @@
 		</nav>
 	</c:if>
 	
-	
+
 	
 </div>
 		

@@ -50,42 +50,86 @@
 	<jsp:include page="../common/menubar.jsp" />
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<div class="outer"><br>
 =======
 	<div class="outer">
 >>>>>>> origin/Js
 		<h1><c:out value="${ loginUser.member_name}님 환영합니다."/></h1>
+=======
+	<div class="outer"><br><br>
+		<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<c:out value="${ loginUser.member_name}님 환영합니다  🙌 ‍"/></h1>
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 		<div class="mid">
-			<h5>예약 내역 조회</h5>
-			<div class="inner">
+		 <hr class="line"> 
+			<!-- <div class="inner"> -->
+			<h5>◼&nbsp예약 내역</h5>
+			 <hr class="line"> 
 				<table>
+					<tr height="5px">
+					</tr>
 					<tr height="30px">
-						<td rowspan="3" width="160px"><img src="resources/images/파스타.jpg" height="80px" width="130px"></td>
-						<td width="500px">가게 : TEST파스타</td>
+						<td width="100px">📌 ${ re.get("reserveTime") }</td>
+					</tr>
+					<tr height="30px">
+						<td rowspan="3" width="160px"> <img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/shopuploadFiles/${ sp.get("shopRename") }"></td>
+						<td width="500px">가게&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ sp.get("shopName") }</td>
 						<td width="100px"><div class="status">예약중</div></td>
 					</tr>
 					<tr height="30px">
-						<td>메뉴 : 토마토파스타1 알리오올리오1</td>
+						<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ reme.get("menuName") }</td>
 						<td><div class="cancelBtn">예약취소</div></td>
+					
 					</tr>
 					<tr height="30px">
-						<td>총금액 : 24400원</td>
-						<td>2020-11-28</td>
+						<td>총 결제 금액 :  ${ re.get("totalPrice") }원</td>
 					</tr>
 					<tr height="30px">
-						<td rowspan="3" width="160px"><img src="resources/images/파스타.jpg" height="80px" width="130px"></td>
-						<td>가게 : TEST파스타</td>
-						<td><div class="status">예약중</div></td>
+						<td width="200px"></td>
 					</tr>
 					<tr height="30px">
-						<td>메뉴 : 토마토파스타1 알리오올리오1</td>
+						<td width="100px">📌 ${ re.get("reserveTime") }</td>
+					</tr>
+					<tr height="30px">
+						<td rowspan="3" width="160px"> <img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/shopuploadFiles/${ sp.get("shopRename") }"></td>
+						<td width="500px">가게&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ sp.get("shopName") }</td>
+						<td width="100px"><div class="status">예약중</div></td>
+					</tr>
+					<tr height="30px">
+						<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ reme.get("menuName") }</td>
 						<td><div class="cancelBtn">예약취소</div></td>
+					
 					</tr>
 					<tr height="30px">
-						<td>총금액 : 24400원</td>
-						<td>2020-11-28</td>
+						<td>총 결제 금액 :  ${ re.get("totalPrice") }원</td>
+						<td>예약한 시간 :  ${ re.get("reserveTime") }</td>
+					</tr>
+					<tr height="5px">
 					</tr>
 				</table>
+		 <hr class="line"> 
+			<h5>◼&nbsp리뷰 내역 </h5>
+			 <hr class="line"> 
+				<table>
+					<tr height="10px">
+					<td width="100px">
+					</tr>
+					<tr height="30px">
+					<td rowspan="3" width="160px"><img src="resources/images/파스타.jpg" height="140px" width="160px"></td>
+						<td width="500px">리뷰내용: ${ rev.get("reviewContents") }</td>
+					</tr>
+					<tr height="30px">
+						<td width="500px">리뷰식당: ${ sp.get("shopName") }</td>
+						<td width="100px">작성일 : ${ rev.get("reviewWrite") }</div></td>
+					</tr>
+					<tr height="30px">
+						<td width="100px">리뷰점수 : ${ rev.get("reviewScore") }점</div></td>
+					</tr>
+					<tr height="5px">
+					</tr>
+				</table>
+				<div class="inner"> 
+				 <hr class="line"> 
 				<c:url var="pwdUpdate" value="mPwdUpdate.me"/>
 				<button class="updateBtn" onclick="location.href='${pwdUpdate}'">비밀번호 변경</button>
 				<c:url var="myinfo" value="mInfoPwdForm.me"/>

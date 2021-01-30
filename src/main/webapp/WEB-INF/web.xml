@@ -34,7 +34,12 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
+<<<<<<< HEAD
 	</servlet-mapping>
+=======
+	</servlet-mapping>  --> 
+	
+>>>>>>> bf7c5cc75749aa70050d87e525be9fd4976f49be
 	
 	<!-- 공지사항 관련 -->
 	 <servlet>
