@@ -77,16 +77,5 @@ public class MemberServiceImpl implements MemberService {
 		return bmDAO.pwdUpdate(sqlSession, map);
 	}
 
-
-
-	
-
-	
-
-	
-
-
-	
-
 // 김예은 끝 =================================================
 }

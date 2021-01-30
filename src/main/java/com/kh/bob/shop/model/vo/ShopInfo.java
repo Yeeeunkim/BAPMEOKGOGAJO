@@ -181,8 +181,4 @@ public class ShopInfo {
 				+ ", shopRename=" + shopRename + ", shopCate=" + shopCate + ", businessNumber=" + businessNumber
 				+ ", memberId=" + memberId + "]";
 	}
-
-	
-
-
 }

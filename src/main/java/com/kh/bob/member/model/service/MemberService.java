@@ -30,16 +30,5 @@ public interface MemberService {
 
 	int pwdUpdate(HashMap<String, String> map);
 
-
-
-
-
-
-
-
-
-
-
-
 // 김예은 끝 =================================================
 }

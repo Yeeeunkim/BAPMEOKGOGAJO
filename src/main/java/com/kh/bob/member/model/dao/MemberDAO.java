@@ -49,11 +49,6 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.pwdUpdate", map);
 	}
 
-
-
-	
-	
-	
 // 김예은 끝 =================================================
 
 }
