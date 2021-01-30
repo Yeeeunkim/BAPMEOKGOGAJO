@@ -177,93 +177,60 @@
 	
 	<div class="list_wrap">
 		<ul>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
+			<c:forEach var="hs" items="${ hsList }">
+				<li class="item item1"> 
+					<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
+					<div class="cont">
+						<strong>${ hs.sName }</strong>
+						<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;${ hs.avgScore }</p>
+						<p>${ hs.sIntro }</p>
+					</div>
+				</li>
+			</c:forEach>
 		</ul>
 	</div>
 	
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">4</a></li>
-			    <li class="page-item"><a class="page-link" href="#">5</a></li>
-			    <li class="page-item"><a class="page-link" href="#">6</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:if test="${ pi.currentPage <= 1 }">
+				<li class="page-item">
+					<b class="page-link" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</b>
+				</li>
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<li class="page-item">
+					<a class="page-link" href="home.do?page=${ pi.currentPage - 1 }" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>
+		    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+		    		<li class="page-item"><b class="page-link">${ p }</b></li>
+				</c:if>
+				
+				<c:if test="${ p ne pi.currentPage }">
+					<li class="page-item"><a class="page-link" href="home.do?page=${ p }">${ p }</a></li>
+				</c:if>
+			</c:forEach>
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				<li class="page-item">
+			      <b class="page-link" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
-			      </a>
+			      </b>
 			    </li>
-			  </ul>
-			</nav>
+			</c:if>
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<li class="page-item">
+		      		<a class="page-link" href="home.do?page=${ pi.currentPage + 1 }" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+		      		</a>
+				</li>
+			</c:if>
+		</ul>
+	</nav>
 	
 	
 	

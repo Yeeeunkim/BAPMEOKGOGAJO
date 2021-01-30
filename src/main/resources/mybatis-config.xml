@@ -21,6 +21,7 @@
 		<typeAlias type="com.kh.bob.manager.model.vo.DeclationReple" alias="DeclationReple"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.ShopCategory" alias="ShopCategory"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.CategorySales" alias="CategorySales"/>
+		<typeAlias type="com.kh.bob.home.model.vo.HomeShopList" alias="HomeShopList"/>
 	</typeAliases>
 	 
 	 
@@ -30,6 +31,7 @@
 		<mapper resource="mapper/board-mapper.xml"/>
 		<mapper resource="mapper/shop-mapper.xml"/>
 		<mapper resource="mapper/manager-mapper.xml"/>
+		<mapper resource="mapper/home-mapper.xml"/>
 	</mappers>
 	
 </configuration>
