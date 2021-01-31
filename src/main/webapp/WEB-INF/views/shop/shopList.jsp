@@ -112,6 +112,7 @@
 										★4.8 | 리뷰n개<br></p>
 									<a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-warning">예약하기</a>
 								</div>
+								
 							</div>
 						</div>
 					</c:forEach>

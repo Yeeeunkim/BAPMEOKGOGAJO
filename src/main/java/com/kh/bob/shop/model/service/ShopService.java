@@ -28,7 +28,7 @@ public interface ShopService {
 	// 김하영 시작 ================================================
 	int getReListCount(int shopNo);
 
-	List<ShopReview> selectReList(int shopNo, PageInfo pi);
+	List<ShopReview> selectReList(int shop_no, PageInfo pi);
 
 	int insertReview(ShopReview re);
 
@@ -87,6 +87,8 @@ public interface ShopService {
 	int getListAllCount(ShopInfo shop);
 
 	int getListCateCount(ShopInfo shop);
+
+	
 
 
 	/* void insertShop(HashMap<String, Object> data); */

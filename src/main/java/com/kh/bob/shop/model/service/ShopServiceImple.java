@@ -43,8 +43,8 @@ public class ShopServiceImple implements ShopService {
 
 	// 김하영 끝 =================================================
 	@Override
-	public int getReListCount(int shopNo) {
-		return sDAO.getReListCount(sqlSession, shopNo);
+	public int getReListCount(int shop_no) {
+		return sDAO.getReListCount(sqlSession, shop_no);
 	}
 
 	@Override
@@ -178,6 +178,8 @@ public class ShopServiceImple implements ShopService {
 	public int getListCateCount(ShopInfo shop) {
 		return sDAO.getListCateCount(sqlSession, shop);
 	}
+
+	
 
 	
 

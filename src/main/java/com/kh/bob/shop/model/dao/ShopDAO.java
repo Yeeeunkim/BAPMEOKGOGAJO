@@ -30,8 +30,8 @@ public class ShopDAO {
 	// 김예은 끝 =================================================
 
 	// 김하영 시작 ================================================
-	public int getReListCount(SqlSessionTemplate sqlSession, int shopNo) {
-		return sqlSession.selectOne("shopMapper.getReListCount", shopNo);
+	public int getReListCount(SqlSessionTemplate sqlSession, int shop_no) {
+		return sqlSession.selectOne("shopMapper.getReListCount", shop_no);
 	}
 
 	public List<ShopReview> selectReList(SqlSessionTemplate sqlSession, int shopNo, PageInfo pi) {

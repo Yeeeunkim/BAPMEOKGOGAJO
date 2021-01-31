@@ -95,9 +95,9 @@
 		<br><br>
 		
 		<form action="reviewinsert.sh" method="post" align="center" enctype="multipart/form-data" id="form">
-			<input type="hidden" name="shopNo" value="1">
-			<div id="reviewran"><h2><b>${ shop.sName }</b> 에 솔찍한 리뷰를 써주세요</h2></div>
-			
+			<input type="hidden" name="shopNo" value="${shopNo}">
+			<div id="reviewran"><h2><b>${shopName}</b> 에 솔찍한 리뷰를 써주세요</h2></div>
+			<input type="hidden"name="memberId" value="${memberId}">
 			 <div class="my-rating">
 				<label class="label"><input type="radio" name="reviewScore" value="1"/><span class="str">☆</span></label>
 				<label class="label"><input type="radio" name="reviewScore" value="2"/><span class="str">☆</span></label>
@@ -105,14 +105,14 @@
 				<label class="label"><input type="radio" name="reviewScore" value="4"/><span class="str">☆</span></label>
 				<label class="label"><input type="radio" name="reviewScore" value="5"/><span class="str">☆</span><br></label>
 			 </div> 
-				<div id="shopName"></div>
+				<div id="ratingValue"></div>
 			<br>
 			<textarea rows="15" cols="90" name="reviewContents" id="content"></textarea><br><br>
 			<input type="file" name="uploadFile"><br><br>
 			
 			
 			<div class="btn">
-				<input type="button" id="cancle" onclick="location.href='relist.sh'"value="취소">
+				<input type="button" id="cancle" onclick="replysend(reviewinsert.sh)"value="취소">
 				<input type="submit" id="send" value="등록">
 			</div>
 		</form>
@@ -158,6 +158,7 @@
 			  
 			  
 			});
+		
 		
 		
 	});	
