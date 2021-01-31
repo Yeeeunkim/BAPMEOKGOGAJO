@@ -19,6 +19,7 @@
 .sidebar ul li:hover a{padding-left:50px;}
 .row {width:100%; padding-left:15%; padding-top:5%}
 .pagination {margin-left:35%;}
+.contentTR:hover {cursor: pointer;}
 </style>
 </head>
 <body>
@@ -42,7 +43,7 @@
 			<table id="example-table-3" width="100%" class="table table-bordered table-hover text-center">
 				<thead>
 					<tr>
-						<th>선택</th>
+						<th width="50px">선택</th>
 						<th>No. </th>
 						<th>사용자</th>
 						<th>리뷰내용</th>

@@ -51,26 +51,24 @@
 	  color:#D8D8D8;
 	  font-style: italic;
 	}
-
-	
+	.center{text-align: center;}
+	.category{display: inline-block; width: 1400px; text-align: center;}
 	.dishtype{position:relative; display:inline-block; padding:1%; }
-	#dishtype1{margin-left:100px;}
 	.dishtype img{width:300px; height:400px; }
 	.dishtype .text { position:absolute;top:30px;size:50;}
 	
-	.pagination	{ margin-left:40%;}
-	 
+	 .page_navigation{display:inline-block;text-align: center;}
 	
 	/*list*/
 	ul, li {list-style:none;}
 	a { text-decoration:none; color:inherit;}
-	.list_wrap {width:1200px; margin-left:10%;}
+	.list_wrap {display: inline-block; width:1300px;}
 	.list_wrap ul {font-size:0;}
-	.list_wrap .item {display:inline-block; width:20%; margin-left:5%; margin-top:0.2%;}
+	.list_wrap .item {display:inline-block; width:280px; margin-left:2%; margin-top:0.2%;}
 	.list_wrap .item:nth-child(-n+4){margin-top:0;}
 	.list_wrap .item:nth-child(4n-3){margin-left:0;}
-	.list_wrap .item .image {width:120%; height:160px;  background-position:50% 50%; background-size:cover; }
-	.list_wrap .item .cont {padding:20px; width:120%;}
+	.list_wrap .item .image {width:100%; height:160px;  background-position:50% 50%; background-size:cover; }
+ 	.list_wrap .item .cont {padding:20px;}
 	.list_wrap .item strong a {display:block; margin:0 0 10px 0; font-size:16px; letter-spacing: -1px;}
 	.list_wrap .item p {font-size:13px; letter-spacing:-1px;}	
 	.go{display:inline-block; margin-top:10px; padding:5px 10px; background: #eee; font-size:13px; letter-spacing:-1px;} 
@@ -122,6 +120,7 @@
 	cursor: pointer;
 	border: 1px solid black;
 }
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -154,6 +153,8 @@
 
 	
 	<br><br>
+	<div class="center">
+	<div class="category">
   	<span class="dishtype" id="dishtype1" >
 		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1"><img src="<%= request.getContextPath() %>/resources/images/main/한식.png"> </a>
 	</span>
@@ -169,16 +170,30 @@
 	<span class="dishtype" id="dishtype4">
 		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3"><img src="<%= request.getContextPath() %>/resources/images/main/일식.png"> </a>
 	</span>  
+	<br>
+	<span class="dishtype" id="dishtype5">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=5"><img src="<%= request.getContextPath() %>/resources/images/main/분식.png"> </a>
+	</span>
 	
-
-
+	<span class="dishtype" id="dishtype6">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=6"><img src="<%= request.getContextPath() %>/resources/images/main/동남아.png"> </a>
+	</span>
+	
+	<span class="dishtype" id="dishtype7">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=7"><img src="<%= request.getContextPath() %>/resources/images/main/샐러드.png"> </a>
+	</span>
+	
+	<span class="dishtype" id="dishtype8">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=8"><img src="<%= request.getContextPath() %>/resources/images/main/카페_디저트.png"> </a>
+	</span>
+	</div>
 
 	 
 	<br><br>
-	<h4  style="text-align:center">평점이 높은 인기식당></h4><br>
 	
 	
 	<div class="list_wrap">
+	<h4  style="text-align:center">평점이 높은 인기식당></h4><br>
 		<ul>
 			<c:forEach var="hs" items="${ hsList }">
 				<li class="item item1 hsContent">
@@ -201,8 +216,8 @@
 		});
 	});
 	</script>
-	
-	<nav aria-label="Page navigation example">
+	<br>
+	<div class="page_navigation">
 		<ul class="pagination">
 			<c:if test="${ pi.currentPage <= 1 }">
 				<li class="page-item">
@@ -242,7 +257,7 @@
 				</li>
 			</c:if>
 		</ul>
-	</nav>
+	</div>
 	
 	
 	
@@ -268,6 +283,7 @@
 		  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png" width="200px">item 2</div>
 		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
 		</div>
+	</div>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.15/slick.min.js'></script>
 	<script type="text/javascript">
