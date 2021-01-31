@@ -19,7 +19,6 @@ public class ReserveInfo {
 	
 	public ReserveInfo() {}
 
-
 	
 
 	public ReserveInfo(Date reserveDate, String reserveTime, int reservePeople, String reserveName, String reservePhone,
@@ -172,4 +171,5 @@ public class ReserveInfo {
 				+ reserveComment + ", reserveAd=" + reserveAd + ", reservePay=" + reservePay + ", memberId=" + memberId
 				+ ", shopNo=" + shopNo + "]";
 	}
+
 }

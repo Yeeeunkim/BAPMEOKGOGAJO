@@ -43,22 +43,22 @@
 		<header><b>Manager Page</b></header>
 		<ul>
 			<!-- <li><a href="#"><i class="fas fa-qrcode">메뉴바</i></a></li>	 -->	
-			<li><a href="review.ma"><i class="fas fa-pen-fancy">리뷰관리</i></a></li>	
-			<li><a href="#"><i class="fas fa-exclamation-circle">신고식당</i></a></li>	
-			<li><a href="#"><i class="fas fa-signal">통계</i></a></li>	
+			<li><a href="manager.ma"><i class="fas fa-signal">통계</i></a></li>	
+			<li><a href="shopSearch.ma"><i class="fas fa-pen-fancy">리뷰관리</i></a></li>	
+			<li><a href="declaration.ma"><i class="fas fa-exclamation-circle">신고식당</i></a></li>	
 		</ul>	
 	</div>	
 	
-	<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-    		통계카테고리
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <li><button class="dropdown-item" type="button">음식점별</button></li>
-    <li><button class="dropdown-item" type="button">올해 음식</button></li>
-    <li><button class="dropdown-item" type="button">20대 인기 메뉴</button></li>
-  </ul>
-</div>
+<!-- 	<div class="dropdown"> -->
+<!--   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--     		통계카테고리 -->
+<!--   </button> -->
+<!--   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"> -->
+<!--     <li><button class="dropdown-item" type="button">음식점별</button></li> -->
+<!--     <li><button class="dropdown-item" type="button">올해 음식</button></li> -->
+<!--     <li><button class="dropdown-item" type="button">20대 인기 메뉴</button></li> -->
+<!--   </ul> -->
+<!-- </div> -->
 	
 		
 	<div class="container">
@@ -76,10 +76,18 @@
 		var barChart =new Chart(myChartOne,{
 			type:'bar',
 			data:{
-				labels:['디저트','일식','중식','양식','한식','동남아','분식','카페'],
+				labels:[
+					<c:forEach var="cs" items="${ cs }">
+						"${ cs.shopCategory }",
+					</c:forEach>
+					],
 				datasets:[{
 					label:'음식 카테고리 매출',
-					data:[200,500,110,500,500,400,660,500],
+					data:[
+						<c:forEach var="cs" items="${ cs }">
+							${ cs.sales },
+						</c:forEach>
+						],
 					/* backgroundColor:'red' */
 				}]
 			}

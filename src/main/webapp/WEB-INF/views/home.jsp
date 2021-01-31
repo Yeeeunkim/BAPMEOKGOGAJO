@@ -24,7 +24,7 @@
 <meta charset="UTF-8">
 <style>
 	
-	p,h4{font-family: 'Gugi';} 
+	p,h4,h5{font-family: 'Gugi';} 
 	
 	 .img{height:70vh;background-size: cover;margin:0;font-family:'Gugi';
 	 	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url("<%= request.getContextPath() %>/resources/images/main/main.png");}
@@ -39,7 +39,7 @@
 	     z-index: 2; 
 	     text-align: center;
  	 }
-  	
+  	 
 	.container-4{
 	  overflow: hidden;
 	  width: 300px; 
@@ -51,26 +51,24 @@
 	  color:#D8D8D8;
 	  font-style: italic;
 	}
-
-	
+	.center{text-align: center;}
+	.category{display: inline-block; width: 1400px; text-align: center;}
 	.dishtype{position:relative; display:inline-block; padding:1%; }
-	#dishtype1{margin-left:100px;}
 	.dishtype img{width:300px; height:400px; }
 	.dishtype .text { position:absolute;top:30px;size:50;}
 	
-	.pagination	{ margin-left:40%;}
-	 
+	 .page_navigation{display:inline-block;text-align: center;}
 	
 	/*list*/
 	ul, li {list-style:none;} 
 	a { text-decoration:none; color:inherit;}
-	.list_wrap {width:1200px; margin-left:10%;}
+	.list_wrap {display: inline-block; width:1300px;}
 	.list_wrap ul {font-size:0;}
-	.list_wrap .item {display:inline-block; width:20%; margin-left:5%; margin-top:0.2%;}
+	.list_wrap .item {display:inline-block; width:280px; margin-left:2%; margin-top:0.2%;}
 	.list_wrap .item:nth-child(-n+4){margin-top:0;}
 	.list_wrap .item:nth-child(4n-3){margin-left:0;}
-	.list_wrap .item .image {width:120%; height:160px;  background-position:50% 50%; background-size:cover; }
-	.list_wrap .item .cont {padding:20px; width:120%;}
+	.list_wrap .item .image {width:100%; height:160px;  background-position:50% 50%; background-size:cover; }
+ 	.list_wrap .item .cont {padding:20px;}
 	.list_wrap .item strong a {display:block; margin:0 0 10px 0; font-size:16px; letter-spacing: -1px;}
 	.list_wrap .item p {font-size:13px; letter-spacing:-1px;}	
 	.go{display:inline-block; margin-top:10px; padding:5px 10px; background: #eee; font-size:13px; letter-spacing:-1px;} 
@@ -118,6 +116,7 @@
 	
 	.card { margin-left:10px;} 
 	.card{display:inline-block; }   
+
     
     /*top버튼 */
     a#MOVE_TOP_BTN {
@@ -135,6 +134,11 @@
 	}   
 
 
+	.item1:hover {
+	cursor: pointer;
+	border: 1px solid black;
+}
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -147,15 +151,8 @@
             <h2>밥먹고가조!</h2>
 			<img src="<%= request.getContextPath() %>/resources/images/main/위치.png"  width="50px" height="50px"><br>
 			
-			<!-- <span>
-				<input type="search" id="a">
-			</span>
-			<span>
-				<button id="button">검색</button>
-			</span>  -->
-			
-			<form class="example" action="/action_page.php" style="margin:auto;max-width:500px">
-			  <input type="text" placeholder="건물명,도로명,지번을 입력해 주소를  검색해주세요" name="search">
+			<form class="example" action="addressSearch.sh" style="margin:auto;max-width:500px">
+			  <input type="text" placeholder=" 시, 군, 구, 도로명을 입력해 주소를  검색해주세요" name="searchContents" id="searchInput">
 			  <button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 			
@@ -174,120 +171,111 @@
 
 	
 	<br><br>
-	
+	<div class="center">
+	<div class="category">
   	<span class="dishtype" id="dishtype1" >
-		<img src="<%= request.getContextPath() %>/resources/images/main/한식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=1"><img src="<%= request.getContextPath() %>/resources/images/main/한식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype2">
-		<img src="<%= request.getContextPath() %>/resources/images/main/중식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=4"><img src="<%= request.getContextPath() %>/resources/images/main/중식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype3">
-		<img src="<%= request.getContextPath() %>/resources/images/main/양식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=2"><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"> </a>
 	</span>
 	
 	<span class="dishtype" id="dishtype4">
-		<img src="<%= request.getContextPath() %>/resources/images/main/일식.png">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=3"><img src="<%= request.getContextPath() %>/resources/images/main/일식.png"> </a>
 	</span>  
+	<br>
+	<span class="dishtype" id="dishtype5">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=5"><img src="<%= request.getContextPath() %>/resources/images/main/분식.png"> </a>
+	</span>
 	
-
-
+	<span class="dishtype" id="dishtype6">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=6"><img src="<%= request.getContextPath() %>/resources/images/main/동남아.png"> </a>
+	</span>
+	
+	<span class="dishtype" id="dishtype7">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=7"><img src="<%= request.getContextPath() %>/resources/images/main/샐러드.png"> </a>
+	</span>
+	
+	<span class="dishtype" id="dishtype8">
+		<a href="<%= request.getContextPath() %>/shop.do?SHOP_CATE=8"><img src="<%= request.getContextPath() %>/resources/images/main/카페_디저트.png"> </a>
+	</span>
+	</div>
 
 	 
 	<br><br>
-	<h4  style="text-align:center">평점이 높은 인기식당></h4><br>
 	
 	
 	<div class="list_wrap">
+	<h4  style="text-align:center">평점이 높은 인기식당></h4><br>
 		<ul>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
-			<li class="item item1"> 
-				<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
-				<div class="cont">
-					<strong>제목이 들어갑니다.</strong>
-					<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;4.4</p>
-					<p>이 식당은 이러한 식당입니다.</p>
-				</div>
-			</li>
+			<c:forEach var="hs" items="${ hsList }">
+				<li class="item item1 hsContent">
+					<input type="hidden" class="sNo" value="${ hs.sNo }">
+					<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
+					<div class="cont">
+						<h5>${ hs.sName }</h5>
+						<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;${ hs.avgScore }</p>
+						<p>${ hs.sIntro }</p>
+					</div>
+				</li>
+			</c:forEach>
 		</ul>
 	</div>
-	
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">4</a></li>
-			    <li class="page-item"><a class="page-link" href="#">5</a></li>
-			    <li class="page-item"><a class="page-link" href="#">6</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
+	<script>
+	$(function(){
+		$('.hsContent').click(function(){
+			var sNo=$(this).children('.sNo').val();
+			location.href='Reservation.do?SHOP_NO=' + sNo;
+		});
+	});
+	</script>
+	<br>
+	<div class="page_navigation">
+		<ul class="pagination">
+			<c:if test="${ pi.currentPage <= 1 }">
+				<li class="page-item">
+					<b class="page-link" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</b>
+				</li>
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<li class="page-item">
+					<a class="page-link" href="home.do?page=${ pi.currentPage - 1 }" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+			</c:if>
+		    <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+		    		<li class="page-item"><b class="page-link">${ p }</b></li>
+				</c:if>
+				
+				<c:if test="${ p ne pi.currentPage }">
+					<li class="page-item"><a class="page-link" href="home.do?page=${ p }">${ p }</a></li>
+				</c:if>
+			</c:forEach>
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				<li class="page-item">
+			      <b class="page-link" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
-			      </a>
+			      </b>
 			    </li>
-			  </ul>
-			</nav>
+			</c:if>
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<li class="page-item">
+		      		<a class="page-link" href="home.do?page=${ pi.currentPage + 1 }" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+		      		</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
 	
 	
 	
@@ -313,6 +301,7 @@
 		  <div><img src="<%= request.getContextPath() %>/resources/images/main/한식.png" width="200px">item 2</div>
 		  <div><img src="<%= request.getContextPath() %>/resources/images/main/양식.png"  width="200px">item 3</div>
 		</div>
+	</div>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.15/slick.min.js'></script>
 	<script type="text/javascript">

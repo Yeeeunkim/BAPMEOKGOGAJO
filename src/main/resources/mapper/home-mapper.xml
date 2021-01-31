@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="homeMapper">
+
+	<resultMap type="HomeShopList" id="homeShopListResultSet">
+		<id property="sNo" column="SHOP_NO" /> 
+		<result property="sName" column="SHOP_NAME" /> 
+		<result property="sIntro" column="SHOP_INTRO" /> 
+		<result property="sOrigin" column="SHOP_ORIGIN" /> 
+		<result property="sRename" column="SHOP_RENAME" />
+		<result property="avgScore" column="AVG_SCORE" /> 
+	</resultMap>
+	
+	<select id="getHomeShopListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM(SELECT SHOP_NO, SHOP_NAME, SHOP_INTRO, SHOP_ORIGIN, SHOP_RENAME, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE
+			FROM SHOP_INFO
+			FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+			GROUP BY SHOP_NO, SHOP_NAME, SHOP_INTRO, SHOP_ORIGIN, SHOP_RENAME
+			ORDER BY AVG_SCORE DESC)
+	</select>
+	
+	<select id="selectHomeShopList" resultMap="homeShopListResultSet">
+		SELECT SHOP_NO, SHOP_NAME, SHOP_INTRO, SHOP_ORIGIN, SHOP_RENAME, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE
+		FROM SHOP_INFO
+		FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+		GROUP BY SHOP_NO, SHOP_NAME, SHOP_INTRO, SHOP_ORIGIN, SHOP_RENAME
+		ORDER BY AVG_SCORE DESC
+	</select>
+	
+</mapper>

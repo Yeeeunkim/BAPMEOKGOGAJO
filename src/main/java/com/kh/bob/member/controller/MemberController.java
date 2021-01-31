@@ -1,14 +1,15 @@
-package com.kh.bob.member.controller;
+﻿package com.kh.bob.member.controller;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -27,12 +28,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bob.member.model.exception.MemberException;
 import com.kh.bob.member.model.service.MemberService;
 import com.kh.bob.member.model.vo.Member;
+
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
+import com.kh.bob.shop.model.vo.ShopSeat;
 
 
 
@@ -61,9 +64,10 @@ public class MemberController {
 	// 로그인 기능 페이지
 	@RequestMapping("login.me")
 	public String login(Member m, HttpSession session, Model model) {
+
 		Member loginUser = bmService.loginMember(m);
-		System.out.println("loginUser : " + loginUser);
-		if (loginUser != null) {
+
+		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do";
 		} else {
@@ -164,8 +168,8 @@ public class MemberController {
 		m.setMember_birth(year + "/" + month + "/" + date);
 
 		int result = bmService.memberInsert(m);
-		System.out.println("m : " + m);
-		if (result > 0) {
+
+		if(result > 0) {
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("일반 회원가입에 실패했습니다.");
@@ -188,7 +192,8 @@ public class MemberController {
 		}
 	}
 
-	// 아이디 중복검사
+
+	//아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("memberId") String memberId, HttpServletResponse response) {
 		boolean isUsable = bmService.checkIdDup(memberId) == 0 ? true : false;
@@ -200,8 +205,8 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-
-	// 일반 마이페이지
+	
+	//일반 마이페이지 
 	@RequestMapping("myPage.me")
 	public ModelAndView myPageForm(HttpSession session, ModelAndView mv) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
@@ -270,7 +275,9 @@ public class MemberController {
 			} else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
-		} else {
+
+		}else {
+			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
 		}
 	}
@@ -280,7 +287,8 @@ public class MemberController {
 		return "checkPwd";
 	}
 
-	// 일반 정보 수정 비밀번호 기능 페이지
+
+	//일반 정보 수정 비밀번호 기능 페이지 
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
 		Member loginUser = bmService.infoPwd(m);
@@ -461,7 +469,7 @@ public class MemberController {
 			 throw new MemberException("사장님 마이페이지 수정에 실패했습니다."); 
 		 }
 		return mv;
-	}
+
 	
 	//파일 이름 날짜로 수정하는 과정
 		public String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -549,11 +557,13 @@ public class MemberController {
 	public String deleteShopinfo() {
 		return "shopNullPage";
 	}
+
 	//사업자  탈퇴
 	@RequestMapping("mdeleteShopForm.me")
 	public String deleteShopForm() {
 		return "deleteShopForm";
 	}
+
 	@RequestMapping("sdelete.me")
 	public String deleteShop(@RequestParam("memberId") String memberId, SessionStatus status) {
 		int result = bmService.deleteMember(memberId);

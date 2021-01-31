@@ -8,6 +8,13 @@ public class ReserveMenu {
 	
 	public ReserveMenu() {}
 
+	public ReserveMenu(int menuNo, String menuName, int menuQty) {
+		super();
+		this.menuNo = menuNo;
+		this.menuName = menuName;
+		MenuQty = menuQty;
+	}
+
 	public ReserveMenu(int reserveNo, int menuNo, String menuName, int menuQty) {
 		super();
 		this.reserveNo = reserveNo;

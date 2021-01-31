@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="shopMapper">
@@ -25,7 +25,6 @@
 <!-- 강동기 시작 =============================================== -->
    
 <!-- 강동기 끝 ================================================ -->
-
  
 <!--김예은 시작 ================================================= -->
 	<!-- ★ shopInfo resultMap -->  
@@ -301,8 +300,6 @@
    
    
 <!-- 신진식 시작 =================================================== -->
-
-
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
 	</insert>
@@ -337,7 +334,6 @@
 		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
 	
-
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
 		select *
@@ -349,8 +345,6 @@
 			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
 
-	
-	
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
 			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
