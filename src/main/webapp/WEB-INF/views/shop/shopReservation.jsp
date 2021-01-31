@@ -370,7 +370,7 @@ h4,h2{margin-left:8%;}
    <br><br><br><br>
 
 
-   <h4>&nbsp;&nbsp;&nbsp;사이드</h4>
+   <h4>&nbsp;&nbsp;&nbsp;사이드</h4> 
    <table class="table table-bordered table-sm" id="menu">
        <thead>
          <tr>
