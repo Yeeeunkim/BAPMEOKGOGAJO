@@ -269,13 +269,6 @@ h4,h2{margin-left:8%;}
 				}else{
 					return true;
 				}
-
-				if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
-					alert("메뉴를 선택하세요");
-					return false;
-				}else{
-					return true;
-				}
 			}
          </script>
         
@@ -296,7 +289,7 @@ h4,h2{margin-left:8%;}
 		               data : {shopNo,shopNo},
 		               success : function(data){
 							for(var i=0; i<data.shopreserveTime.length; i++){
-								document.getElementById(data.shopreserveTime[i]).disabled = false;
+								/* document.getElementById(data.shopreserveTime[i]).disabled = false; */
 								if(data.shopreserveDate[i]==date){
 									 console.log(data.shopreserveTime[i]);
 									 document.getElementById(data.shopreserveTime[i]).disabled = true;

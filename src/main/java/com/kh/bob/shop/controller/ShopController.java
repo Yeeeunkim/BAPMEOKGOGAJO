@@ -399,6 +399,11 @@ public class ShopController {
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
+	  
+	@RequestMapping("shopEnroll.do")
+	   public String shopEnrollForm() {
+	      return "/shop/shopEnroll";
+	   }
 
 	@RequestMapping("/Reservation.do")
    public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
