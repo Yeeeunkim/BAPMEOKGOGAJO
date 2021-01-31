@@ -335,7 +335,7 @@ h4,h2{margin-left:8%;}
          <div class="col-3"></div>
          </div>
 
-     <textarea placeholder="요청사항을 입력해주세요" name="reserveComment" id="floatingTextarea2" style="height:100px; width:30%"></textarea>
+    <textarea placeh older="요청사항을 입력해주세요" name="reserveComment" id="floatingTextarea2" style="height:100px; width:30%"></textarea>
       
    
    
