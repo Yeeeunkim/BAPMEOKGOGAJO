@@ -218,7 +218,7 @@ input {
       
       <form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
       
-    <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+    <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 
          
          
@@ -234,7 +234,7 @@ input {
         <script>
            function writeBoard(){
               var a=$("#myselect").val();
-              var b=${loginUser.member_id};
+              var b=${loginUser.memberId};
               if(a==0){
                  alert("카테고리를 선택해주세요"+b);
                  return false;

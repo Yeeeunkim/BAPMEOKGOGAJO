@@ -134,7 +134,7 @@ footer {
 		</c:url>
 
 
-		<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin' }">
+		<c:if test="${ loginUser.memberId eq board.mId || loginUser.memberId eq 'admin' }">
 		<tr style="border: none;">
 			<td colspan="2" align="center" style="border: none;">
 				<button class="btn1" onclick="nUpView();" style="position: absolute;">수정하기</button>

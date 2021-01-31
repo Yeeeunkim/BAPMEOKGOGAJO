@@ -78,7 +78,7 @@
 			</table>
 			
 			<!-- 작성자 보내기 위함 -->
-			<input type="hidden" name="mId" value='${loginUser.member_id}'>
+			<input type="hidden" name="mId" value='${loginUser.memberId}'>
 
 	</form> 	  
    

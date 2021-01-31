@@ -200,7 +200,6 @@
 
 
 <!--김예은 끝 ================================================= -->
-
    
 <!-- 김하영 시작 ================================================ -->
    
@@ -344,7 +343,6 @@
 		where
 			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
-	
 	
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">

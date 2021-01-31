@@ -55,8 +55,7 @@
 				</tr>
 				<tr>
 					<th>&nbsp&nbsp작성자&nbsp&nbsp&nbsp&nbsp
-					<input type="text" id="writerInput" readonly="readonly" name="mId" value='${loginUser.member_id}'></th>
-
+					<input type="text" id="writerInput" readonly="readonly" name="mId" value='${loginUser.memberId}'></th>
 				</tr>
 				<tr>
 					<div id="fileArea">

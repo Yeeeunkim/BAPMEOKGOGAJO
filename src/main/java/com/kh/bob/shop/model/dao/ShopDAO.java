@@ -1,7 +1,6 @@
 ﻿package com.kh.bob.shop.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +13,7 @@ import com.kh.bob.shop.model.vo.ReserveMenu;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
+import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 
