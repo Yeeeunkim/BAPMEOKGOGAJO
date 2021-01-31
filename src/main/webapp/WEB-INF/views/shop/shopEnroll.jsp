@@ -218,7 +218,7 @@ input {
       
       <form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
       
-    <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+    <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 
          
          
@@ -234,7 +234,7 @@ input {
         <script>
            function writeBoard(){
               var a=$("#myselect").val();
-              var b=${loginUser.member_id};
+              var b=${loginUser.memberId};
               if(a==0){
                  alert("카테고리를 선택해주세요"+b);
                  return false;
@@ -319,7 +319,7 @@ input {
 			<input class= "cInput" type="time" name="shopBreakStart" id="break1" placeholder="브레이크타임을 입력하세요." style="width:210px">&nbsp; ~ &nbsp;			
 			<input class= "cInput" type="time" name="shopBreakClose" id="break2" placeholder="브레이크타임을 입력하세요." style="width:210px">
 			
-		</div>	
+		</div>	<br>
 		
 <!-- 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp; -->
 <!-- 		<div class="input-info"> -->
@@ -329,7 +329,7 @@ input {
 		<p class="pp"></p><p class="pInput">&nbsp;&nbsp;최대예약시간</p>&nbsp;&nbsp;
 		<div class="input-info">
 			<input class= "cInput" type="text" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
-		</div>
+		</div><br>
 		
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;휴무일</p>&nbsp;&nbsp;

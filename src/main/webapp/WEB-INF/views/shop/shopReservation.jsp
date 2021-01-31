@@ -317,6 +317,7 @@ h4, h2 {
 </style>
 </head>
 <body style="font-family: 'Gugi';">
+<<<<<<< HEAD
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<jsp:include page="../common/menubar.jsp" />
@@ -430,6 +431,75 @@ h4, h2 {
 
 
 				<script>
+=======
+   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+   <jsp:include page="../common/menubar.jsp" />
+   
+   <br><br>
+          <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           ${reservationList[0].SHOP_NAME}</h1>
+
+   <!-- 사진, 지도 폼 -->
+   
+   <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${reservationList[0].SHOP_RENAME}" id="menuP"/>
+   
+   
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   
+
+  <%--  <%=request.getParameter("SHOP_NO")%> --%>
+  <!--${loginUser.memberId}  -->
+   
+   <div id="info"> 
+      <p id="shopnm"> [별점]</p>
+      <p>전화  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ${reservationList[0].SHOP_PHONE}</p>
+      <p>영업시간 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OPEN} -  ${reservationList[0].SHOP_CLOSE}</p>
+      <p>브레이크타임  ${reservationList[0].SHOP_BREAK_START} - ${reservationList[0].SHOP_BREAK_CLOSE}</p>
+      <p>예약마감시간  ${closeTime1}</p>
+      <p>휴무일  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ${reservationList[0].SHOP_OFFDAY}</p>
+   </div>
+   <br><br><br>  <br><br><br>  <br><br><br>  <br><br><br> <br><br><br>
+   
+
+    <form action="ShopReservation.do" method="post" enctype="Multipart/form-data" onsubmit="return writeBoard();">
+    
+     <input type="hidden" name="ShopNo" value="<%=request.getParameter("SHOP_NO")%>"> 
+      <input type="hidden" name="reservePhone" value="${loginUser.phone}"> 
+       <input type="hidden" name="reserveName" value="${loginUser.member_name}"> 
+        <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
+        <input type="hidden" name="shopName" value="${reservationList[0].SHOP_NAME}">
+     
+      
+       <div class="row">
+       <div class="col-3"></div>
+          <div class="col-2">
+               <div class="form-group row">
+              <label for="example-date-input" class="col-2 col-form-label"></label>
+              <div class="col-10">
+                <input class="form-control" type="date" name="reserveDate" id="example-date-input" max="" style=width:200px; >
+              </div>
+            </div>
+            
+            <script>  /*날짜 범위 제한*/
+                 document.getElementById('example-date-input').value = new Date().toISOString().substring(0, 10);
+                 var today = new Date();
+                 var maxday=today.setDate(today.getDate() + 7); // 7일 더하여 setting
+                 document.getElementById('example-date-input').max = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+                 document.getElementById('example-date-input').min =new Date().toISOString().substring(0, 10);
+            </script>
+            </div>
+         
+       <div class="col-2">
+       <select class="form-select" aria-label="Default select example" id="time" name="reserveTime">
+             <option value="0" selected>날짜를 선택해주세요!</option>
+         <c:forEach var="ht" items="${timeList}">
+             <option value="${ht}" id="${ht}">${ht}</option>
+         </c:forEach>
+         </select>
+         
+         
+        <script>
+>>>>>>> master
          function writeBoard(){
 				var a=$("#time").val();
 				if(a==0){

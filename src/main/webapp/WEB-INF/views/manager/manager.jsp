@@ -49,16 +49,16 @@
 		</ul>	
 	</div>	
 	
-	<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-    		통계카테고리
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <li><button class="dropdown-item" type="button">음식점별</button></li>
-    <li><button class="dropdown-item" type="button">올해 음식</button></li>
-    <li><button class="dropdown-item" type="button">20대 인기 메뉴</button></li>
-  </ul>
-</div>
+<!-- 	<div class="dropdown"> -->
+<!--   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!--     		통계카테고리 -->
+<!--   </button> -->
+<!--   <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"> -->
+<!--     <li><button class="dropdown-item" type="button">음식점별</button></li> -->
+<!--     <li><button class="dropdown-item" type="button">올해 음식</button></li> -->
+<!--     <li><button class="dropdown-item" type="button">20대 인기 메뉴</button></li> -->
+<!--   </ul> -->
+<!-- </div> -->
 	
 		
 	<div class="container">

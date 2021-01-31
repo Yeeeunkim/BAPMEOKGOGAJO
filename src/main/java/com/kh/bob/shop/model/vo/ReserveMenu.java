@@ -7,8 +7,6 @@ public class ReserveMenu {
 	private int MenuQty;		// 메뉴수량
 	
 	public ReserveMenu() {}
-	
-	
 
 	public ReserveMenu(int menuNo, String menuName, int menuQty) {
 		super();
@@ -16,8 +14,6 @@ public class ReserveMenu {
 		this.menuName = menuName;
 		MenuQty = menuQty;
 	}
-
-
 
 	public ReserveMenu(int reserveNo, int menuNo, String menuName, int menuQty) {
 		super();

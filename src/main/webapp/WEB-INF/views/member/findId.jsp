@@ -248,7 +248,7 @@
 			<br><br>
 			<div class="mb-4">
 				<label class="form-label inputTilte">아이디</label> 
-				<input type="text" class="form-control inputForm" id="inputId" readonly="readonly" value="${ findId.member_id }">
+				<input type="text" class="form-control inputForm" id="inputId" readonly="readonly" value="${ findId.memberId }">
 				<label class="hidden"></label>
 			</div>
 			</div>

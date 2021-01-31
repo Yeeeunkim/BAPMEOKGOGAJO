@@ -88,7 +88,7 @@
 				</c:forEach>
 			</c:if>
 			
-			<c:if test="${ loginUser.member_id eq 'admin' }">
+			<c:if test="${ loginUser.memberId eq 'admin' }">
 			<button class="btn1" onclick="location.href='fInsertForm.no'">글쓰기</button>
 			<button class="btn1" onclick="location.href='fDeleteView.no'">삭제하기</button>
 			</c:if>
