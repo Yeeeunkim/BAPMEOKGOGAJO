@@ -15,13 +15,23 @@
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopMenu" alias="ShopMenu"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveMenu" alias="ReserveMenu"/>
-	</typeAliases>	 
+		<typeAlias type="com.kh.bob.manager.model.vo.ManageReview" alias="ManageReview"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.ManageShopInfo" alias="ManageShopInfo"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.ManageDeclaration" alias="ManageDeclaration"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.DeclationReple" alias="DeclationReple"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.ShopCategory" alias="ShopCategory"/>
+		<typeAlias type="com.kh.bob.manager.model.vo.CategorySales" alias="CategorySales"/>
+		<typeAlias type="com.kh.bob.home.model.vo.HomeShopList" alias="HomeShopList"/>
+	</typeAliases>
+	 
 	 
 	 <!-- MAPPER 선언단 -->
 	<mappers><!-- DB쿼리문 담을 mapper파일 등록 태그-->
 		<mapper resource="mapper/member-mapper.xml"/>
 		<mapper resource="mapper/board-mapper.xml"/>
 		<mapper resource="mapper/shop-mapper.xml"/>
+		<mapper resource="mapper/manager-mapper.xml"/>
+		<mapper resource="mapper/home-mapper.xml"/>
 	</mappers>
 	
 </configuration>

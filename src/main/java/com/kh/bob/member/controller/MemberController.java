@@ -183,7 +183,7 @@ public class MemberController {
 			throw new MemberException("사업자 회원가입에 실패했습니다.");
 		}
 	}
-	
+
 	//아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("member_id") String member_id, HttpServletResponse response) {
@@ -203,7 +203,6 @@ public class MemberController {
 		return "myPage";
 	}
 	
-
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";

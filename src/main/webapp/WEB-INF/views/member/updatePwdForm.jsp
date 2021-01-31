@@ -89,7 +89,6 @@
 	</div>
 	<c:import url="../common/footer.jsp"/>
 	<script>
-
 	$('#newPw').on('keyup', function() {
 		//비밀번호 공백 확인
 		if($("#newPw").val() === ""){
@@ -109,20 +108,27 @@
 				
 				
 	//비밀번호 확인
-	$('#newPwCheck').on('keyup', function() {
-		
-		if($("#newPwCheck").val() === "") {
-			$('#newPwMsg').html('<b">비밀번호 확인은 필수 정보입니다.</b>');
-			chk3 = false;
-		} else if( $("#newPw").val() != $("#newPwCheck").val() ) {
-			$('#newPwMsg').html('<b>비밀번호가 일치하지 않습니다.</b>');
-			chk3 = false;
-		} else {
-			$('#newPwMsg').html('');
-			chk3 = true;
-	}
-		
-				});
+	$('#newPwCheck').on('keyup', function() {		
+		$('#newPwd').blur(function(){
+			 if(false === reg.test($('#newPwd').val())){
+				 $('#pwd1Result').text('사용 불가능한 비밀번호입니다.');
+				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+				 $('#newPwd').val('');
+		         $('#newPwd').focus();
+		         return false;
+			 }else if($('#newPwd').val()==''){
+				 $('#pwd1Result').text('비밀번호를  입력해주세요.');
+				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
+				 $('#newPwd').val('');
+		         $('#newPwd').focus();
+		         return false;
+			}else{
+					$('#pwd1Result').text('사용 가능한 비밀번호입니다');
+					$('#pwd1Result').css({'color':'blue','float':'center','display':'inline-block', 'font-size' : '12px'});  
+					return true;
+			}	
+		});
+	});
 
 	$(function(){
 		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
@@ -147,6 +153,7 @@
 			}	
 		});
 		
+
 		$('#newPwCheck').blur(function(){
 			 if($('#newPwd').val() != $('#newPwCheck').val()){
 				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');

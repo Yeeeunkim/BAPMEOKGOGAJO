@@ -35,7 +35,5 @@ public interface MemberService {
 
 	int selectSmenu(ShopMenu sm);
 
-
-
 // 김예은 끝 =================================================
 }

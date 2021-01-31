@@ -62,4 +62,6 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.selectSmenu", sm);
 	}
 
+// 김예은 끝 =================================================
+
 }

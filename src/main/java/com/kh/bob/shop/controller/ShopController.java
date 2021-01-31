@@ -68,9 +68,7 @@ public class ShopController {
 			return "ture";
 		} else {
 			throw new ShopException("결제 실패");
-		}
-		
-		
+		}	
 	}
 
 	// 예약정보 페이지

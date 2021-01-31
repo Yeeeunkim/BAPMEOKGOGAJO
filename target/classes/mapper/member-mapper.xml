@@ -80,12 +80,13 @@
 		set member_pwd=#{newPwd}
 		where member_id=#{member_id}
 	</update>
-	
+
    	<select id="selectSinfo">
    		select *
    		from shop_info
    		where member_id=#{member_id}
    </select>
+
    
    <select id="selectSmenu">
    		select *
