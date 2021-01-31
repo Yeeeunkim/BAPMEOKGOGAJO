@@ -6,7 +6,7 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" /><!-- shopRename _ 단어와 단어사이를 대문자로 변환 및 _ 제거-->
 	</settings>
 	
-	<!-- VO 선언단 -->	
+	<!-- VO 선언단 -->	 
 	<typeAliases>
 		<typeAlias type="com.kh.bob.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.bob.notice.model.vo.Board" alias="Board"/>
