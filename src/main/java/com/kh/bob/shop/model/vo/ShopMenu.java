@@ -17,6 +17,15 @@ public class ShopMenu {
 		this.menuCate = menuCate;
 	}
 
+	public ShopMenu(String menuName, String menuPrice, int menuCate, int shopNo) {
+		super();
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+		this.menuCate = menuCate;
+		this.shopNo = shopNo;
+	}
+
+
 	public ShopMenu(int menuNo, String menuName, String menuPrice, char menuStatus, int menuCate, int shopNo) {
 		super();
 		this.menuNo = menuNo;

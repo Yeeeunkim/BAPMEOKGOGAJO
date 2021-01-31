@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="shopMapper">
 
 	<resultMap type="ShopInfo" id="shopInfoResultSet">
@@ -24,11 +25,181 @@
 <!-- 강동기 시작 =============================================== -->
    
 <!-- 강동기 끝 ================================================ -->
-
-   
-<!--  김예은 시작 ================================================ -->
  
-<!--  김예은 끝 ================================================= -->
+<!--김예은 시작 ================================================= -->
+	<!-- ★ shopInfo resultMap -->  
+	<resultMap type="ShopInfo" id="mshopInfoResultSet">
+		<id property="shopNo" column="SHOP_NO" />
+		<result property="shopName" column="SHOP_NAME" />
+		<result property="shopIntro" column="SHOP_INTRO" />
+		<result property="shopOpen" column="SHOP_OPEN" />
+		<result property="shopClose" column="SHOP_CLOSE" />
+		<result property="shopAddress" column="SHOP_ADDRESS" />
+		<result property="shopPhone" column="SHOP_PHONE" />
+		<result property="shopBreakStart" column="SHOP_BREAK_START" />
+		<result property="shopBreakClose" column="SHOP_BREAK_CLOSE" />
+		<result property="shopOffday" column="SHOP_OFFDAY" />
+		<result property="maxReservationTime" column="MAX_RESERVATION_TIME" />
+		<result property="shopOrigin" column="SHOP_ORIGIN" />
+		<result property="shopRename" column="SHOP_RENAME" />
+		<result property="shopCate" column="SHOP_CATE" />
+		<result property="businessNumber" column="BUSINESS_NUMBER" />
+		<result property="memberId" column="MEMBER_ID" />
+	</resultMap>
+	
+	<!-- ★ ShopMenu resultMap -->
+	<resultMap type="ShopMenu" id="mshopMenuResultSet">
+		<id property="menuNo" column="MENU_NO" />
+		<id property="menuName" column="MENU_NAME" />
+		<result property="menuPrice" column="MENU_PRICE" />
+		<result property="menuStatus" column="MENU_STATUS" />
+		<result property="menuCate" column="MENU_CATE" />
+		<result property="shopNo" column="SHOP_NO" />
+	</resultMap>
+	
+	<!-- ReserveInfo resultMap -->
+	<resultMap type="ReserveInfo" id="mReserveInfoResultSet">
+		<id property="reserveNo" column="RESERVE_NO" />
+		<result property="reserveDate" column="RESERVE_DATE" />
+		<result property="reservePeople" column="RESERVE_PEOPLE" />
+		<result property="totalPrice" column="TOTAL_PRICE" />
+		<result property="reserveStatus" column="RESERVE_STATUS" />
+		<result property="reserveName" column="RESERVE_NAME" />
+		<result property="reservePhone" column="RESERVE_PHONE" />
+		<result property="reserveComment" column="RESERVE_COMMENT" />
+		<result property="reserveAd" column="RESERVE_AD" />
+		<result property="reservePay" column="RESERVE_PAY" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="shopNo" column="SHOP_NO" />
+		<result property="reserveTime" column="RESERVE_TIME" />
+	</resultMap>
+	
+	<!-- ReserveMenu resultMap -->
+	<resultMap type="ReserveMenu" id="mReserveMenuResultSet">
+		<id property="reserveNo" column="RESERVE_NO" />
+		<id property="menuNo" column="MENU_NO" />
+		<result property="menuName" column="MENU_NAME" />
+		<result property="MenuQty" column="MENU_QTY" />
+	</resultMap>
+	
+	<!-- ShopReview resultMap -->
+	<resultMap type="ShopReview" id="mShopReviewResultSet">
+		<id property="reviewNo" column="REVIEW_NO" />
+		<result property="reviewContents" column="REVIEW_CONTENTS" />
+		<result property="reviewWrite" column="REVIEW_WRITE" />
+		<result property="reviewScore" column="REVIEW_SCORE" />
+		<result property="shopNo" column="SHOP_NO" />
+		<result property="memberId" column="MEMBER_ID" />
+		<result property="originalFilename" column="ORIGINAL_FILENAME" />
+		<result property="renameFilename" column="RENAME_FILENAME" />
+	</resultMap>
+	
+	<!-- 사장님마이페이지 - 사업자 아이디로 식당 정보 가져오기 -->
+	<select id="selectMyShop" resultMap="mshopInfoResultSet">
+		select *
+		from shop_info
+		where member_id = #{memberId}
+	</select>
+	
+	<!-- 사장님마이페이지 - 식당번호로 주, 사이드, 음료 메뉴 리스트에 담기  -->
+	<select id="selectMyMenu1" resultMap="mshopMenuResultSet">
+		select *
+		from shop_menu
+		where shop_no = #{shopNo}
+			and menu_cate = 1
+	</select>
+	
+	<select id="selectMyMenu2" resultMap="mshopMenuResultSet">
+		select *
+			from shop_menu
+			where shop_no = #{shopNo}
+				and menu_cate = 2
+	</select>
+	
+	<select id="selectMyMenu3" resultMap="mshopMenuResultSet">
+		select *
+			from shop_menu
+			where shop_no = #{shopNo}
+				and menu_cate = 3
+	</select>
+	<!-- 사장님마이페이지 - 예약받은 정보들 -->		
+	<select id="selectRinfo" resultMap="mReserveInfoResultSet">
+		select *
+		from reserve_info
+		where shop_no=#{shoNo}
+	</select>
+	
+	<!-- 사장님마이페이지 - 예약받은 인원수, 시간 -->
+	<select id="selectReserveInfo"  resultMap="mReserveInfoResultSet"> 
+		select *
+		from reserve_info
+		where shop_no=#{shopNo}
+	</select>
+	
+	<!-- 사장님마이페이지 - 예약받은 메뉴 -->
+	<select id="selectReserveMenu"  resultMap="mReserveMenuResultSet">
+		select *
+		from reserve_menu
+		where reserve_no=#{reserveNo}
+	</select>
+	
+	<!--  -->
+	<select id="selectMyrInfo"  resultMap="mReserveInfoResultSet" >
+		select *
+		from reserve_info
+		 where MEMBER_ID = #{memberId}
+	</select>
+	<!-- 사용자마이페이지  - 예약내역 조회 -->
+	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
+		select *
+        from RESERVE_INFO
+        where MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- 사용자마이페이지  - 사용자가 선택한 식당정보  -->
+	<select id="selectMyShopPick"  resultMap="mshopInfoResultSet">
+		select *
+        from SHOP_INFO 
+        where SHOP_NO = #{shopNo} 
+	</select>
+	
+	<!-- 사용자마이페이지  - 사용자가 선택한 메뉴 -->
+	<select id="selectMyReMenu" resultMap="mReserveMenuResultSet">
+		select * 
+        from RESERVE_MENU
+        where  RESERVE_NO  = #{reserveNo} 
+	</select>
+	
+	<!--사용자마이페이지  - 사용자 리뷰-->
+	<select id="selectMyReview"  resultMap="mShopReviewResultSet" >
+		select *
+        from SHOP_REVIEW
+        where  MEMBER_ID  = #{memberId} 
+	</select> 
+	
+	
+	 <!--사장님마이페이지 식당수정 - 식당 정보 -->
+	<update id="sinfoUpdate" >
+		update shop_info
+   		set SHOP_NAME=#{shopName}, SHOP_INTRO=#{shopIntro}, SHOP_OPEN=#{shopOpen}, 
+   			SHOP_CLOSE=#{shopClose}, SHOP_ADDRESS=#{shopAddress}, SHOP_PHONE=#{shopPhone},  
+   			SHOP_BREAK_START=#{shopBreakStart},  SHOP_BREAK_CLOSE=#{shopBreakClose}, 
+   			SHOP_OFFDAY=#{shopOffday}, MAX_RESERVATION_TIME=#{maxReservationTime}, SHOP_ORIGIN=#{shopOrigin},  SHOP_RENAME=#{shopRename},  BUSINESS_NUMBER=#{businessNumber}
+   		where MEMBER_ID=#{memberId} 
+	</update>
+
+	<!-- 사장님마이페이지 식당수정- 식당 메뉴 -->
+    <update id="smenuUpdate" >
+	  <foreach item="item" collection="list" separator=";" open="DECLARE BEGIN" close="; END;">
+		update SHOP_MENU
+   			set  MENU_NAME=#{item.menuName}, MENU_PRICE=#{item.menuPrice} , MENU_CATE=#{item.menuCate}
+   			where SHOP_NO=#{item.shopNo} 
+	  </foreach>
+	</update>
+
+
+
+<!--김예은 끝 ================================================= -->
 
    
 <!-- 김하영 시작 ================================================ -->

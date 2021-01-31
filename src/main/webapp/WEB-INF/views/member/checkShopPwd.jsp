@@ -14,24 +14,24 @@
 	}
 	#checkPwdOut{
 		width: 500px;
-		margin: 25% auto;
+		margin: 10% auto;
 	}
 	#checkPwdMid{
 		display: inline-block;
 		text-align: center;
 	}
+	#label{
+		margin-top:20px; 
+		text-align: center;
+		color: #F42B03;
+	}
 	#checkPwdIn{
-		margin-top: 5px;
+		margin-top: 25px;
 		display: inline-block;
 		border: 1px solid black;
 		width: 500px;
 		height: 100px;
 		text-align: center;
-	}
-	#label{
-		margin-top: 30px;
-		align: left;
-		color: #F42B03;
 	}
 	#pwd{
 		margin-top: 30px;
@@ -50,17 +50,17 @@
 	}
 </style>
 </head>
-<body>
+<body style="font-family: 'Gugi'; ">
 	<c:import url="../common/menubar.jsp"/>
 	<div id="outer">
 		<form action="oInfoPwd.me" method="post" id="checkPwd" name="checkPwd">
-			<h1>식당 정보 수정</h1>
+			<h1 style="text-align: center;">식당 정보 수정 ></h1>
 			<div id=checkPwdOut>
-				<label id="label">식당 정보 수정을 위해 비밀번호를 다시 입력 해주세요.</label><br>
+				<label id="label" >식당 정보 수정을 위해 아이디를 다시 입력 해주세요.</label><br>
 				<div id="checkPwdMid">
-					<div id="checkPwdIn">
-						<label>비밀번호 : </label>
-						<input type="password" id="member_pwd" name="member_pwd">
+					<div id="checkPwdIn"><br>
+						<label>아이디 : </label>
+						<input type="text" id="memberId" name="memberId">
 					</div>
 					<br>
 					<input type="submit" id="btn" value="회원 정보 수정">

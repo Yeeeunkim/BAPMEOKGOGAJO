@@ -3,6 +3,7 @@
 <configuration>
 	<settings><!-- 기본세팅 설정 -->
 		<setting name="jdbcTypeForNull" value="NULL"/>
+		<setting name="mapUnderscoreToCamelCase" value="true" /><!-- shopRename _ 단어와 단어사이를 대문자로 변환 및 _ 제거-->
 	</settings>
 	
 	<!-- VO 선언단 -->	
@@ -15,6 +16,8 @@
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopMenu" alias="ShopMenu"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveMenu" alias="ReserveMenu"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ShopReview" alias="ShopReview"/>	
+		<!-- <typeAlias type="com.kh.bob.common.LowerKeyMap" alias="lowerKeyMap"/> -->
 		<typeAlias type="com.kh.bob.manager.model.vo.ManageReview" alias="ManageReview"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.ManageShopInfo" alias="ManageShopInfo"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.ManageDeclaration" alias="ManageDeclaration"/>
