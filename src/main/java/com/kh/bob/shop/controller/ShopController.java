@@ -58,30 +58,34 @@ public class ShopController {
 
 	// 김하영 시작 ================================================
 	@RequestMapping("reinsertForm.sh")
-	public ModelAndView reviewInsertForm(ModelAndView mv, HttpServletRequest request, HttpSession session) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		ShopInfo shopInfo = (ShopInfo)session.getAttribute("shopInfo");
-		String memberId = loginUser.getMemberId();
+	public ModelAndView reviewInsertForm(@RequestParam("shopNo") int shopNo, HttpSession session,
+									ModelAndView mv,HttpServletRequest request) {
+		Member member = (Member)session.getAttribute("loginUser");
+		String memberId = member.getMemberId();
+		
+		ShopInfo shopInfo = sService.selectShop(shopNo);
 		String shopName = shopInfo.getShopName();
-		int shopNo = Integer.parseInt(request.getParameter("SHOP_NO"));
 		
-		System.out.println(memberId);
-		System.out.println(shopName);
-		System.out.println(shopNo);
-		
+		mv.addObject("shopNo", shopNo);
 		mv.addObject("memberId", memberId);
 		mv.addObject("shopName", shopName);
-		mv.addObject("shopNo", shopNo);
 		mv.setViewName("review");
 		return mv;
 	}
 
 	@RequestMapping("reviewinsert.sh")
 	public String reviewInsert(@ModelAttribute ShopReview re, @RequestParam("uploadFile") MultipartFile uploadFile,
-			HttpServletRequest request, HttpSession session) {
-		 Member loginUser = (Member)session.getAttribute("loginUser");
-		String memberId = loginUser.getMemberId();
+			HttpServletRequest request, @RequestParam("shopNo") int shopNo) {
+		// Member loginUser = (Member)session.getAttribute("loginUser");
+		// String memberId = loginUser.getMemberId();
+//		String memberId = "user01";
 		
+		System.out.println("test"+re);
+		System.out.println("test"+shopNo);
+		
+		re.setShopNo(shopNo);
+		String memberId=request.getParameter("memberId");
+		System.out.println(memberId+"확인@@@@");
 		re.setMemberId(memberId);
 
 		System.out.println(uploadFile);
@@ -98,7 +102,7 @@ public class ShopController {
 		int result = sService.insertReview(re);
 
 		if (result > 0) {
-			return "redirect:Reservation.do?SHOP_NO=";
+			return "redirect:Reservation.do?SHOP_NO="+shopNo;
 		} else {
 			throw new ShopException("리뷰 등록에 실패하였습니다.");
 		}
@@ -132,17 +136,18 @@ public class ShopController {
 		}
 		return renameFileName;
 	}
-
 	/*
 	 * @RequestMapping("relist.sh") public String shopDetail(Model
-	 * model, @RequestParam(value = "page", required = false) Integer page) { int
-	 * currentPage = 1;
+	 * model, @RequestParam(value = "page", required = false) Integer page,
+	 * HttpServletRequest request) {
+	 * int currentPage = 1;
 	 * 
-	 * if (page != null) { currentPage = page; }
+	 * if (page != null) { currentPage = page; } // int shopNo =
+	 * Integer.parseInt((String) param.get("ShopNo"));
 	 * 
-	 * int shopNo = 1;
+	 * // System.out.println(shopNo+"@@@@@@@@@@@@@@@@@@@@22$$$$$$$$$$$4444");
 	 * 
-	 * int listCount = sService.getReListCount(shopNo);
+	 * int shopNo = 1; int listCount = sService.getReListCount(shopNo);
 	 * 
 	 * PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 	 * 
@@ -151,16 +156,17 @@ public class ShopController {
 	 * 
 	 * if (list != null) { model.addAttribute("list", list);
 	 * model.addAttribute("pi", pi); return "shopReservation"; } else { throw new
-	 * ShopException("리뷰등록을 실패하였습니다."); } }
+	 * ShopException("리뷰 리스트 가져오기를 실패하였습니다."); } }
 	 */
 
 	@RequestMapping("reDelete.sh")
-	public String reviewDelete(@RequestParam("reNo") int reNo ,@RequestParam("shopNo") int shopNo) {
+	public String reviewDelete(@RequestParam("reNo") int reNo, @RequestParam("shopNo") int shopNo) {
 
+		
 		int result = sService.deleteReview(reNo);
 
 		if (result > 0) {
-			return "redirect:Reservation.do?SHOP_NO=";
+			return "redirect:Reservation.do?SHOP_NO="+shopNo;
 		} else {
 			throw new ShopException("리뷰 삭제를 실패하였습니다.");
 		}
@@ -174,12 +180,12 @@ public class ShopController {
 
 	@RequestMapping("rereplyinsert.sh")
 	public String rereplyinsert(@RequestParam("textarea") String content, @RequestParam("reid") int reid,
-			HttpSession session) {
+			HttpSession session, Model model) {
 		// public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession
 		// session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		 String memberId = loginUser.getMemberId();
 		
+		String memberId = loginUser.getMemberId();
 		ReviewReply rere = new ReviewReply();
 		rere.setMemberId(memberId);
 		rere.setReviewNo(reid);
@@ -190,7 +196,8 @@ public class ShopController {
 		int result = sService.insertReReply(rere);
 
 		if (result > 0) {
-			return "success";
+			model.addAttribute("rereply", result);
+			return "Reservation.do";
 		} else {
 			throw new ShopException("답글 등록에 실패했습니다.");
 		}

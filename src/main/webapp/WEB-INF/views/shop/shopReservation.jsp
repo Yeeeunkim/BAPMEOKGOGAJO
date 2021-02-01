@@ -252,7 +252,7 @@ h4,h2{margin-left:8%;}
    
 
   <%--  <%=request.getParameter("SHOP_NO")%> --%>
-  <!--${loginUser.member_id}  -->
+  <!--${loginUser.memberId}  -->
    
    <div id="info">
       <p id="shopnm">${reservationList[0].SHOP_NAME}</p> 
@@ -271,7 +271,7 @@ h4,h2{margin-left:8%;}
 	  <input type="hidden" name="ShopNo" value="<%=request.getParameter("SHOP_NO")%>"> 
 	   <input type="hidden" name="reservePhone" value="${loginUser.phone}"> 
 	    <input type="hidden" name="reserveName" value="${loginUser.member_name}"> 
-	     <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+	     <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 	     <input type="hidden" name="shopName" value="${reservationList[0].SHOP_NAME}">
 	  
 	  
@@ -766,10 +766,13 @@ h4,h2{margin-left:8%;}
 		   }); 
  
  </script>
- 
+ 	<form action="reinsertForm.sh" method="post" encType="multipart/form-data">
+      <input type="hidden" name="shopNo" value="<%=request.getParameter("SHOP_NO")%>">
+   <span align="center"><button type="submit" id="reviewbtn" >리뷰등록</button></span>
+   </form>
 	
-	<button id="reviewbtn" onclick="review();">리뷰등록</button>
-	<span align="center"><button id="reviewbtn" onclick="location.href='reinsertForm.sh?shopNo='<%=request.getParameter("SHOP_NO")%>">리뷰등록</button></span>
+	
+	
 		
 	<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
 
@@ -777,9 +780,9 @@ h4,h2{margin-left:8%;}
 		var shopNo=<%=request.getParameter("SHOP_NO")%>;
 		var shopName=$('#shopnm').text();
  		
-		function review(){
+		<%-- function review(){
 			location.href= 'reinsertForm.sh?shopNo='<%=request.getParameter("SHOP_NO")%>;
-		}
+		} --%>
 		
 		function declareEnroll(){
 			location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;

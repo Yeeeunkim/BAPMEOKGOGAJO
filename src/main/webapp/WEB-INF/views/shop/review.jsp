@@ -95,8 +95,8 @@
 		<br><br>
 		
 		<form action="reviewinsert.sh" method="post" align="center" enctype="multipart/form-data" id="form">
-			<input type="hidden" name="memberId">
-			<input type="hidden" name="shopNo">
+			<input type="hidden" name="memberId" value="${ memberId }">
+			<input type="hidden" name="shopNo" value="${ shopNo }">
 			<div id="reviewran"><h2><b>${ shopName }</b> 에 솔찍한 리뷰를 써주세요</h2></div>
 			
 			 <div class="my-rating">
