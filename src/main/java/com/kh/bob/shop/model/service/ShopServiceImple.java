@@ -8,9 +8,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.dao.ShopDAO;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
@@ -119,9 +121,37 @@ public class ShopServiceImple implements ShopService {
 	// 김예은 끝 =================================================
 
 	// 김하영 시작 ================================================
+	@Override
+	public int getReListCount(int shop_no) {
+		return sDAO.getReListCount(sqlSession, shop_no);
+	}
 
+	@Override
+	public int insertReview(ShopReview re) {
+		return sDAO.insertReview(sqlSession, re);
+	}
+
+	@Override
+	public List<ShopReview> selectReList(int shopNo, PageInfo pi) {
+		return sDAO.selectReList(sqlSession, shopNo, pi);
+	}
+
+	@Override
+	public int deleteReview(int reNo) {
+		return sDAO.delectReview(sqlSession, reNo);
+	}
+
+	@Override
+	public int insertReReply(ReviewReply rere) {
+		return sDAO.insertReReply(sqlSession, rere);
+	}
+
+	@Override
+	public ArrayList<ReviewReply> selectReReply(int reviewNo) {
+		return sDAO.selectReReply(sqlSession, reviewNo);
+	}
 	// 김하영 끝 =================================================
-
+	
 	// 민병욱 시작 =================================================
 
 	@Override
@@ -214,7 +244,9 @@ public class ShopServiceImple implements ShopService {
 
 	@Override
 	public List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi) {
-		List<String> ShopList = sDAO.getShopList(sqlSession, SHOP_CATE, pi);
+
+	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE, pi); 
+
 		return ShopList;
 	}
 
@@ -233,6 +265,7 @@ public class ShopServiceImple implements ShopService {
 	public int getListCateCount(ShopInfo shop) {
 		return sDAO.getListCateCount(sqlSession, shop);
 	}
+
 
 	// 원태원 끝 ======================================================
 
