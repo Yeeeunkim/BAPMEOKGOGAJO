@@ -6,14 +6,14 @@
   			<!--암호화 전 로그인 방식 -->
   		select *
   		from MEMBER_INFO
-  		where member_id=#{member_id}
+  		where MEMBER_ID=#{memberId}
   		      and member_pwd=#{member_pwd}
   		      and member_status='Y' 
   		      
   	</select>
   	
   	<resultMap type="Member" id="bMemberResultSet">
-  		<id property="member_id" column="MEMBER_ID"/>
+  		<id property="memberId" column="MEMBER_ID"/>
   		<result property="member_pwd" column="MEMBER_PWD"/>
   		<result property="member_name" column="MEMBER_NAME"/>
   		<result property="phone" column="PHONE"/>
@@ -27,7 +27,7 @@
 
   	<insert id="memberInsert"  >
   		insert into member_info
-  		values(#{member_id}, #{member_pwd}, #{member_name}, #{phone}, #{email},
+  		values(#{memberId}, #{member_pwd}, #{member_name}, #{phone}, #{email},
   				 #{gender}, sysdate, default, #{member_birth}, #{auth_code})
   	</insert>
    
@@ -35,7 +35,7 @@
    <select id="checkidDup"  resultType="_int">
   		select count(*)
   		from member_info
-  		where member_id=#{member_id}
+  		where MEMBER_ID=#{memberId}
   	</select>
   	
    <!-- 아이디 찾기 -->
@@ -49,7 +49,7 @@
    <select id="selectPwd" resultMap="bMemberResultSet">
    		select *
    		from member_info
-   		where member_id=#{member_id} and email=#{email} and member_status='Y'
+   		where MEMBER_ID=#{memberId} and email=#{email} and member_status='Y'
    </select>
 
    <!-- 회원정보 수정 시 비밀번호 -->
@@ -57,7 +57,7 @@
    		select *
   		from MEMBER_INFO
   		where
-  			  member_pwd=#{member_pwd}
+  			  MEMBER_ID=#{memberId}
   		      and member_status='Y' 
    </select>
    
@@ -66,33 +66,22 @@
    		update member_info
    		set member_name=#{member_name}, phone=#{phone}, email=#{email}, 
    			gender=#{gender}, member_birth=#{member_birth}, member_status=default
-   		where member_id=#{member_id}
+   		where MEMBER_ID=#{memberId}
    </update>
    
    <update id="deleteMember">
    	update member_info
    	set member_status='N'
-   	where member_id=#{member_id}
+   	where MEMBER_ID=#{memberId}
    </update>
    
 	<update id="pwdUpdate">
 		update member_info
 		set member_pwd=#{newPwd}
-		where member_id=#{member_id}
+		where MEMBER_ID=#{memberId}
 	</update>
-	
-   	<select id="selectSinfo">
-   		select *
-   		from shop_info
-   		where member_id=#{member_id}
-   </select>
-   
-   <select id="selectSmenu">
-   		select *
-   		from shop_menu
-   		where menu_no=#{menu_no}
-   </select>
+
 
 <!--김예은 끝 ================================================= -->
-  	
+
 </mapper>

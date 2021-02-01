@@ -65,13 +65,15 @@
 	<form action="payment.do" name="payment">
 		<table id="tableBar">
 			<tr>
-				<td rowspan="5" width="300" height="300"><img class="image" src="<%= request.getContextPath() %>/resources/images/sushi.png"></td>
+				<td rowspan="5" width="300" height="300">
+					<img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shop.shopRename}" class="image"/>
+				</td>
 				<td width="150" align="center">가게 :</td>
 				<td id="sName">${shopname}</td>
 			</tr>
 			<tr>
 				<td align="center">메뉴 :</td>
-				<td>
+				<td style="padding-top: 20px; padding-bottom: 20px;">
 					 <c:forEach var="m" items="${ reservemenu }">
 						${ m.menuName } - ${ m.menuQty }개 <br>
 					</c:forEach>

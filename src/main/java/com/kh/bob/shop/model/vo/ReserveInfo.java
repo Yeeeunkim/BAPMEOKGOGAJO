@@ -18,9 +18,6 @@ public class ReserveInfo {
 	private int shopNo;				// 식당번호
 	
 	public ReserveInfo() {}
-	
-	
-	
 
 	public ReserveInfo(Date reserveDate, String reserveTime, int reservePeople, String reserveName, String reservePhone,
 			int shopNo) {
@@ -172,6 +169,4 @@ public class ReserveInfo {
 				+ reserveComment + ", reserveAd=" + reserveAd + ", reservePay=" + reservePay + ", memberId=" + memberId
 				+ ", shopNo=" + shopNo + "]";
 	}
-
-	
 }

@@ -59,11 +59,11 @@
 	}
 </style>
 </head>
-<body>
+<body style="font-family: 'Gugi';">
 	<c:import url="../common/menubar.jsp"/>
 	<div class="outer">
-		<h2>식당 정보 수정</h2>
-		<form action="mInfoUpdate.me" method="post" id="updateForm" name="updateForm">
+		<h2 style="text-align: center;">사장님 정보 수정 ></h2>
+		<form action="oInfoUpdate.me" method="post" id="updateForm" name="updateForm">
 			<table align="center">
 				<tr height="70px">
 					<td width="150px">사업자 이름 : </td>
@@ -71,7 +71,7 @@
 				</tr>
 				<tr height="70px">
 					<td>아이디</td>
-					<td><input type="text" class="input" name="member_id" value="${ loginUser.member_id }" style="background:lightgray;" readonly></td>
+					<td><input type="text" class="input" name="memberId" value="${ loginUser.memberId }" style="background:lightgray;" readonly></td>
 				</tr>
 				<tr height="70px">
 					<td>생년월일 : </td>
@@ -100,16 +100,12 @@
 					<td>핸드폰 : </td>
 					<td><input type="text" class="input phone" maxlength="11" name="phone" placeholder="핸드폰(-없이 입력해주세요)" value="${ loginUser.phone }"><button class="phoneBtn">인증번호 전송</button></td>
 				</tr>
-				<tr height="70px">
-					<td></td>
-					<td><input type="text" class="input phone" maxlength="6" name="phoneCheck" placeholder="인증번호" value=""><button class="phoneBtn">인증번호 확인</button></td>
-				</tr>
 			</table>
 			
 			<div class="btns" align="center">
 				<input type="submit" id="updateBtn" value="수정 완료">
-				<c:url var="mdelete" value="mdelete.me">
-					<c:param name="member_id" value="${ loginUser.member_id }"/>
+				<c:url var="mdelete" value="mdeleteShopForm.me">
+					<c:param name="memberId" value="${ loginUser.memberId }"/>
 				</c:url>
 				<input type="button" id="deleteBtn" onclick="location.href='${ mdelete}'" value="회원 탈퇴">
 			</div>		

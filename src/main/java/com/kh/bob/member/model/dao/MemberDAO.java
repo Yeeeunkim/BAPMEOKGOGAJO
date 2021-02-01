@@ -10,7 +10,6 @@ import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
-
 @Repository("bmDAO")
 public class MemberDAO {
 // 김예은 시작 ================================================
@@ -48,18 +47,8 @@ public class MemberDAO {
 	}
 
 	public int pwdUpdate(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.update("memberMapper.pwdUpdate", map);
 	}
-
-	public int selectSinfo(SqlSessionTemplate sqlSession, ShopInfo si) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("memberMapper.selectSinfo", si);
-	}
-
-	public int selectSmenu(SqlSessionTemplate sqlSession, ShopMenu sm) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("memberMapper.selectSmenu", sm);
-	}
+// 김예은 끝 =================================================
 
 }

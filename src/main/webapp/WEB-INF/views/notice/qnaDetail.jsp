@@ -105,8 +105,8 @@
 			
 
 				<!-- 관리자만 답변 가능-->
-				<c:if test="${ loginUser.member_id eq 'admin' }">
-				<input type="hidden" id="admin" name="mId" value='${loginUser.member_id}'>
+				<c:if test="${ loginUser.memberId eq 'admin' }">
+				<input type="hidden" id="admin" name="mId" value='${loginUser.memberId}'>
 
 <!-- 			<table class="replyTable"> -->
 				<tr>
@@ -120,7 +120,7 @@
 
 				</c:if>
 				<!-- 작성자만 볼 수 있음-->
-				<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin'}">
+				<c:if test="${ loginUser.memberId eq board.mId || loginUser.memberId eq 'admin'}">
 
 				<tr>
 					<td id="commentTd">&nbsp답변<br>
@@ -144,7 +144,7 @@
 				</c:url>
 				
 
-			<c:if test="${ loginUser.member_id eq board.mId || loginUser.member_id eq 'admin' }">
+			<c:if test="${ loginUser.memberId eq board.mId || loginUser.memberId eq 'admin' }">
 
 			<tr style="border: none;">
 				<td colspan="2" align="center" style="border: none;">

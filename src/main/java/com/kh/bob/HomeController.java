@@ -1,45 +1,45 @@
 package com.kh.bob;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.ArrayList;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- * 빈 생성 방법
- * 방법1. 객체 + controller성향을 띄는 
- * 방법2. XML
- */
+import com.kh.bob.common.Pagination;
+import com.kh.bob.home.model.exception.HomeException;
+import com.kh.bob.home.model.service.HomeService;
+import com.kh.bob.home.model.vo.HomeShopList;
+import com.kh.bob.notice.model.vo.PageInfo;
+
 @Controller
 public class HomeController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET) //@RequestMapping : 핸들러 매핑 (요청url과 컨트롤러를 매핑)
-//	@RequestMapping(value = "home.do", method = RequestMethod.GET) //@RequestMapping : 핸들러 매핑 (요청url과 컨트롤러를 매핑)
-//								ㄴ 위치 지정
-	public String home(Locale locale, Model model) {
-//		logger.info("Welcome home! The client locale is {}.", locale);
-//		
-//		Date date = new Date();
-//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//		
-//		String formattedDate = dateFormat.format(date);
-//		
-//		model.addAttribute("serverTime", formattedDate );
+	@Autowired
+	private HomeService hService;
+
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	public ModelAndView home(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = hService.getHomeShopListCount();
 		
-		return "home";
-		//ModelAndView : 내가보낼 view와 값 같이 보냄
-		//컨트롤러가 반환값을 view에 전달
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 8);
+		
+		ArrayList<HomeShopList> hsList = hService.getHomeShopList(pi);
+		
+		
+		if(hsList != null) {
+			mv.addObject("hsList", hsList);
+			mv.addObject("pi", pi);
+			mv.setViewName("home");
+		} else {
+			throw new HomeException("홈페이지 조회에 실패했습니다.");
+		}
+		return mv;
 	}
 }
