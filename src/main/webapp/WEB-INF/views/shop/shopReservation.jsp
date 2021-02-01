@@ -209,7 +209,7 @@ h4,h2{margin-left:8%;}
    
 
   <%--  <%=request.getParameter("SHOP_NO")%> --%>
-  <!--${loginUser.memberId}  -->
+  <!--${loginUser.member_id}  -->
    
    <div id="info">
       <p id="shopnm">${reservationList[0].SHOP_NAME}</p> 
@@ -228,7 +228,7 @@ h4,h2{margin-left:8%;}
 	  <input type="hidden" name="ShopNo" value="<%=request.getParameter("SHOP_NO")%>"> 
 	   <input type="hidden" name="reservePhone" value="${loginUser.phone}"> 
 	    <input type="hidden" name="reserveName" value="${loginUser.member_name}"> 
-	     <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
+	     <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
 	     <input type="hidden" name="shopName" value="${reservationList[0].SHOP_NAME}">
 	  
 	  
