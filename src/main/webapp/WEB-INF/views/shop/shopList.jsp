@@ -105,7 +105,7 @@
 						<div class="col-lg-6 col-md-6 col-sm-12" style="height: 152px;">
 							<div style="width: 98%; height: 98%; border: 1px solid lightgray; text-align: center;">
 								<div id="imageArea">
-									<img id="images" src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
+									<img id="images" src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="..." style='width:95%; height:80%'>
 								</div>
 								<div id="cardArea">
 									<p><c:out value="${shopList.shopName}"/><br>
