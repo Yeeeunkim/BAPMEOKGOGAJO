@@ -105,7 +105,7 @@
 			<h1 style="text-align: center;">일반 회원가입 ></h1>
 			<br>
 			<br>
-			<div class="row">
+			<%-- <div class="row">
 				<div class="col-3"></div>
 				<div class="col-3 enrollDiv">
 					<img src="<%= request.getContextPath() %>/resources/images/naver.png"
@@ -117,8 +117,8 @@
 						style="width: 150px; height: 35px;">
 				</div>
 				<div class="col-3"></div>
-			</div><br><br><br>
-		<p><b style="color: red;">*</b>&nbsp;&nbsp;은 필수 입력란 입니다.</p><br><br>
+			</div> --%><br><br><br>
+		<p><b style="color: red;">💡&nbsp;*</b>&nbsp;&nbsp;은 필수 입력란 입니다.</p><br><br>
 		
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;이름</p>&nbsp;&nbsp;
 		<div class="input-info">
@@ -127,7 +127,7 @@
 		
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;아이디</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "username_input" type="text" name="member_id" id="m_id" placeholder="아이디"  >
+			<input class= "username_input" type="text" name="memberId" id="m_id" placeholder="아이디"  >
 			<span class="guide ok">사용 가능한 아이디입니다.</span>
 			<span class="guide error">사용 불가능한 아이디입니다.</span>
 			<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
@@ -171,17 +171,11 @@
 		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;핸드폰</p>&nbsp;&nbsp;
 		<div class="input-info">
 			<input class= "cInput" type="text" name="phone" id="phone" placeholder="핸드폰(-없이 입력해주세요)">
-			<button class="authBtn">인증</button>
 		</div><br><br>
 		
-		<p class="pp"></p><p class="pInput"><b style="color: red;">*</b>&nbsp;&nbsp;인증번호</p>&nbsp;&nbsp;
-		<div class="input-info">
-			<input class= "cInput" type="text" name="phoneAuth" id="phoneAuth" placeholder="인증번호">
-			<button class="authBtn">확인</button>
-		</div><br><br>
 		<p class="pp"></p><p class="pInput"><b>*</b>&nbsp;&nbsp;성별</p>&nbsp;&nbsp;
-			<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;남자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;여자
+			<input  type="radio" name="gender" id="gender" value="M">&nbsp;&nbsp;🧑&nbsp;남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input  type="radio" name="gender" id="gender" value="F">&nbsp;&nbsp;👩 여
 		<br><br><br>
 		
 		<button type="submit" name="auth_code"  value="1" class="btn btn-primary enrollBtn" onclick="return validate();"> 가입하기 </button>
@@ -194,16 +188,16 @@
 	$(function(){
 			
 			$('#m_id').on('keyup', function(){
-				var memberId = $(this).val().trim();//현재 내꺼 가져오기
+				var memberId = $('#m_id').val().trim();//현재 내꺼 가져오기
 			
 				if(memberId.length < 6){
 					$('.guide').hide();
 					$('#idDuplicateCheck').val(0); //0이면 중복확인 안된 상태
 				}
-				
+
 				$.ajax({
 					url: 'dupId.me',
-					data: {member_id:memberId},
+					data: {memberId:memberId},
 					success:  function(data){
 						if(data == 'true'){
 							$('.guide.error').hide();
@@ -218,6 +212,7 @@
 				});
 			});
 		});
+		
 	$(function(){
 		var reg = /^(?=.*?[a-z])(?=.*?[0-9]).{6,}$/;
 	

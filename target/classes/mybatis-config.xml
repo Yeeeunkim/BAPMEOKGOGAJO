@@ -21,7 +21,9 @@
 		<typeAlias type="com.kh.bob.manager.model.vo.DeclationReple" alias="DeclationReple"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.ShopCategory" alias="ShopCategory"/>
 		<typeAlias type="com.kh.bob.manager.model.vo.CategorySales" alias="CategorySales"/>
-		<typeAlias type="com.kh.bob.home.model.vo.HomeShopList" alias="HomeShopList"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ShopReview" alias="ShopReview"/>
+ 		<typeAlias type="com.kh.bob.shop.model.vo.ReviewReply" alias="ReviewReply"/>
+ 		<typeAlias type="com.kh.bob.home.model.vo.HomeShopList" alias="HomeShopList"/>
 	</typeAliases>
 	 
 	 

@@ -18,6 +18,7 @@ public class ShopInfo {
 	private int shopCate; 				// 식당 카테고리
 	private int businessNumber; 		// 사업자 번호
 	private String memberId; 				// 회원아이디
+
 		
 	public ShopInfo() {}
 

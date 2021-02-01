@@ -222,7 +222,7 @@ input {
    	
    	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
    	
-    <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+    <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 
    		
    		
