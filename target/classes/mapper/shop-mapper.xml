@@ -172,6 +172,7 @@
 				order by reserve_no desc)
 		where
 			  shop_no=#{shopNo} and ROWNUM=1	
+
 	</select>
 	
 	
