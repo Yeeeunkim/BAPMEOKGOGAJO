@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,34 +58,30 @@ public class ShopController {
 
 	// 김하영 시작 ================================================
 	@RequestMapping("reinsertForm.sh")
-	public ModelAndView reviewInsertForm(@RequestParam("shopNo") int shopNo, HttpSession session,
-									ModelAndView mv,HttpServletRequest request) {
-		Member member = (Member)session.getAttribute("loginUser");
-		String memberId = member.getMember_id();
-		
-		ShopInfo shopInfo = sService.selectShop(shopNo);
+	public ModelAndView reviewInsertForm(ModelAndView mv, HttpServletRequest request, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		ShopInfo shopInfo = (ShopInfo)session.getAttribute("shopInfo");
+		String memberId = loginUser.getMemberId();
 		String shopName = shopInfo.getShopName();
+		int shopNo = Integer.parseInt(request.getParameter("SHOP_NO"));
 		
-		mv.addObject("shopNo", shopNo);
+		System.out.println(memberId);
+		System.out.println(shopName);
+		System.out.println(shopNo);
+		
 		mv.addObject("memberId", memberId);
 		mv.addObject("shopName", shopName);
+		mv.addObject("shopNo", shopNo);
 		mv.setViewName("review");
 		return mv;
 	}
 
 	@RequestMapping("reviewinsert.sh")
 	public String reviewInsert(@ModelAttribute ShopReview re, @RequestParam("uploadFile") MultipartFile uploadFile,
-			HttpServletRequest request, @RequestParam("shopNo") int shopNo) {
-		// Member loginUser = (Member)session.getAttribute("loginUser");
-		// String memberId = loginUser.getMemberId();
-//		String memberId = "user01";
+			HttpServletRequest request, HttpSession session) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		String memberId = loginUser.getMemberId();
 		
-		System.out.println("test"+re);
-		System.out.println("test"+shopNo);
-		
-		re.setShopNo(shopNo);
-		String memberId=request.getParameter("memberId");
-		System.out.println(memberId+"확인@@@@");
 		re.setMemberId(memberId);
 
 		System.out.println(uploadFile);
@@ -101,7 +98,7 @@ public class ShopController {
 		int result = sService.insertReview(re);
 
 		if (result > 0) {
-			return "redirect:Reservation.do?SHOP_NO="+shopNo;
+			return "redirect:Reservation.do?SHOP_NO=";
 		} else {
 			throw new ShopException("리뷰 등록에 실패하였습니다.");
 		}
@@ -135,18 +132,17 @@ public class ShopController {
 		}
 		return renameFileName;
 	}
+
 	/*
 	 * @RequestMapping("relist.sh") public String shopDetail(Model
-	 * model, @RequestParam(value = "page", required = false) Integer page,
-	 * HttpServletRequest request) {
-	 * int currentPage = 1;
+	 * model, @RequestParam(value = "page", required = false) Integer page) { int
+	 * currentPage = 1;
 	 * 
-	 * if (page != null) { currentPage = page; } // int shopNo =
-	 * Integer.parseInt((String) param.get("ShopNo"));
+	 * if (page != null) { currentPage = page; }
 	 * 
-	 * // System.out.println(shopNo+"@@@@@@@@@@@@@@@@@@@@22$$$$$$$$$$$4444");
+	 * int shopNo = 1;
 	 * 
-	 * int shopNo = 1; int listCount = sService.getReListCount(shopNo);
+	 * int listCount = sService.getReListCount(shopNo);
 	 * 
 	 * PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 	 * 
@@ -155,17 +151,16 @@ public class ShopController {
 	 * 
 	 * if (list != null) { model.addAttribute("list", list);
 	 * model.addAttribute("pi", pi); return "shopReservation"; } else { throw new
-	 * ShopException("리뷰 리스트 가져오기를 실패하였습니다."); } }
+	 * ShopException("리뷰등록을 실패하였습니다."); } }
 	 */
 
 	@RequestMapping("reDelete.sh")
-	public String reviewDelete(@RequestParam("reNo") int reNo, @RequestParam("shopNo") int shopNo) {
+	public String reviewDelete(@RequestParam("reNo") int reNo ,@RequestParam("shopNo") int shopNo) {
 
-		
 		int result = sService.deleteReview(reNo);
 
 		if (result > 0) {
-			return "redirect:Reservation.do?SHOP_NO="+shopNo;
+			return "redirect:Reservation.do?SHOP_NO=";
 		} else {
 			throw new ShopException("리뷰 삭제를 실패하였습니다.");
 		}
@@ -179,12 +174,12 @@ public class ShopController {
 
 	@RequestMapping("rereplyinsert.sh")
 	public String rereplyinsert(@RequestParam("textarea") String content, @RequestParam("reid") int reid,
-			HttpSession session, Model model) {
+			HttpSession session) {
 		// public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession
 		// session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		 String memberId = loginUser.getMemberId();
 		
-		String memberId = loginUser.getMember_id();
 		ReviewReply rere = new ReviewReply();
 		rere.setMemberId(memberId);
 		rere.setReviewNo(reid);
@@ -195,8 +190,7 @@ public class ShopController {
 		int result = sService.insertReReply(rere);
 
 		if (result > 0) {
-			model.addAttribute("rereply", result);
-			return "Reservation.do";
+			return "success";
 		} else {
 			throw new ShopException("답글 등록에 실패했습니다.");
 		}
@@ -560,7 +554,6 @@ public class ShopController {
 	@RequestMapping("/Reservation.do")
 	   public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
 	         ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
-		
 		int currentPage = 1;
 
 		if (page != null) {
@@ -568,26 +561,22 @@ public class ShopController {
 		}
 		
 	      int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
-	      
-	     System.out.println("param"+param);
-	      
 	      ShopInfo shopInfo = sService.selectShop(shop_no);
-	      
-	      int listCount = sService.getReListCount(shop_no);
-	      
-	      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 	      
 	      List<String> timeList = new ArrayList<String>();
 	      
-	      ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shop_no, pi);
-	      
-	      if (list != null) {
+	      int listCount = sService.getReListCount(shop_no);
+
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shop_no, pi);
+			
+			if(list != null) {
 				mv.addObject("list", list);
 				mv.addObject("pi", pi);
-			} else {
-				throw new ShopException("리뷰 리스트 가져오기를 실패하였습니다.");
+			}else {
+				throw new ShopException("리뷰조회를 실패하였습니다.");
 			}
-
 	      
 	      String openTime=shopInfo.getShopOpen();
 	      String closeTime=shopInfo.getShopClose();

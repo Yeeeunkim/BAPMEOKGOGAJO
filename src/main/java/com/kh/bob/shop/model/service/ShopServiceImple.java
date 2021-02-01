@@ -19,11 +19,6 @@ import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
 @Service("sService")
 public class ShopServiceImple implements ShopService {
 
@@ -126,8 +121,6 @@ public class ShopServiceImple implements ShopService {
 	// 김예은 끝 =================================================
 
 	// 김하영 시작 ================================================
-
-	// 김하영 끝 =================================================
 	@Override
 	public int getReListCount(int shop_no) {
 		return sDAO.getReListCount(sqlSession, shop_no);
@@ -157,6 +150,8 @@ public class ShopServiceImple implements ShopService {
 	public ArrayList<ReviewReply> selectReReply(int reviewNo) {
 		return sDAO.selectReReply(sqlSession, reviewNo);
 	}
+	// 김하영 끝 =================================================
+	
 	// 민병욱 시작 =================================================
 
 	@Override
@@ -249,11 +244,9 @@ public class ShopServiceImple implements ShopService {
 
 	@Override
 	public List<String> getShopList(String SHOP_CATE, ShoplistPageInfo pi) {
-<<<<<<< HEAD
+
 	List<String> ShopList = sDAO.getShopList(sqlSession,SHOP_CATE, pi); 
-=======
-		List<String> ShopList = sDAO.getShopList(sqlSession, SHOP_CATE, pi);
->>>>>>> master
+
 		return ShopList;
 	}
 

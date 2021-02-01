@@ -16,14 +16,32 @@
 <body align="center" id="boby">
 	
 	<h2>답글 달기</h2>
-	<form>
+	<form action="rereplyinsert.sh">
 	<input type="hidden" name="reid" value="${ reNo }">
 	<textarea rows="10" cols="70" id="textarea"></textarea><br>
-	<input type="submit" value="답글 등록" onclick="rereplyinsert.sh">
+	<input type="submit" value="답글 등록" >
 	<input type="button" class="recancle" value="취소" onclick="window.close();">
 	</form>
 	<script>
- 	
+/* 	function replysend(reid){
+			$(function(){
+			var textarea = $('#textarea'+reid).val();
+			//var reid = ${re.reviewNo};
+			console.log(textarea);
+			console.log(reid);
+			$.ajax({
+				url: 'rereplyinsert.sh',
+				data: {textarea:textarea, reid:reid},
+				success: function(data){
+					console.log(data);
+					if(data == 'success'){
+						$('textarea').val('');
+						/* getReplyList(reid); 
+					}
+				}
+			});
+			});
+		}; */
 	</script>
 </body>
 </html>

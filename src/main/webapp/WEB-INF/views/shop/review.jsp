@@ -95,9 +95,10 @@
 		<br><br>
 		
 		<form action="reviewinsert.sh" method="post" align="center" enctype="multipart/form-data" id="form">
-			<input type="hidden" name="shopNo" value="${shopNo}">
-			<div id="reviewran"><h2><b>${shopName}</b> 에 솔찍한 리뷰를 써주세요</h2></div>
-			<input type="hidden"name="memberId" value="${memberId}">
+			<input type="hidden" name="memberId">
+			<input type="hidden" name="shopNo">
+			<div id="reviewran"><h2><b>${ shopName }</b> 에 솔찍한 리뷰를 써주세요</h2></div>
+			
 			 <div class="my-rating">
 				<label class="label"><input type="radio" name="reviewScore" value="1"/><span class="str">☆</span></label>
 				<label class="label"><input type="radio" name="reviewScore" value="2"/><span class="str">☆</span></label>
@@ -112,7 +113,7 @@
 			
 			
 			<div class="btn">
-				<input type="button" id="cancle" onclick="replysend(reviewinsert.sh)"value="취소">
+				<input type="button" id="cancle" onclick="location.href='relist.sh'"value="취소">
 				<input type="submit" id="send" value="등록">
 			</div>
 		</form>
@@ -158,7 +159,6 @@
 			  
 			  
 			});
-		
 		
 		
 	});	

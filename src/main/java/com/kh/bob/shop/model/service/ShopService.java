@@ -68,9 +68,9 @@ public interface ShopService {
 	// 김예은 끝 =================================================
 
 	// 김하영 시작 ================================================
-	int getReListCount(int shopNo);
+	int getReListCount(int shop_no);
 
-	List<ShopReview> selectReList(int shop_no, PageInfo pi);
+	List<ShopReview> selectReList(int shopNo, PageInfo pi);
 
 	int insertReview(ShopReview re);
 
