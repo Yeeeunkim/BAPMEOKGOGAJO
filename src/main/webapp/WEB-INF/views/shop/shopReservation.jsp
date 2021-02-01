@@ -134,8 +134,6 @@
    color: white;
 }
 
-<<<<<<<
-HEAD
 .user {
    display: block;
    margin: 0 auto;
@@ -319,6 +317,9 @@ h4, h2 {
    width: 10px;
    height: 10px;
 }
+
+#shopIntro{margin-left:25%; text-align: center}
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -390,10 +391,9 @@ h4, h2 {
    <br>
    <br>
    <br>
+      <div id="shopIntro" style="width:50%">${reservationList[0].SHOP_INTRO}</div>
    <br>
    <br>
-
-
    <form action="ShopReservation.do" method="post"
       enctype="Multipart/form-data" onsubmit="return writeBoard();">
 
@@ -984,7 +984,7 @@ h4, h2 {
                            html += "<td>"+data.MainMenu[i].MENU_PRICE+"</td>"
                            html += "<td>"
                            html += "<select name='menuname' class='main'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-                           html +="</td>"
+                           html += "</td>"
                            html += "</tr>"
                         }
                   
@@ -1000,7 +1000,7 @@ h4, h2 {
                            html += "<td>"+data.SideMenu[i].MENU_PRICE+"</td>"
                            html += "<td>"
                            html += "<select name='menuname' class='side'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-                           html +="</td>"
+                           html += "</td>"
                            html += "</tr>"
                         }
                          $("#SidemenuBody").html(html);
@@ -1014,7 +1014,7 @@ h4, h2 {
                              html += "<td>"+data.DrinkMenu[i].MENU_PRICE+"</td>"
                              html += "<td>"
                              html += "<select name='menuname' class='drink'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-                             html +="</td>"
+                             html += "</td>"
                              html += "</tr>"
                           }
                            $("#DrinkmenuBody").html(html);  
