@@ -202,7 +202,61 @@
 <!--김예은 끝 ================================================= -->
    
 <!-- 김하영 시작 ================================================ -->
-   
+   	<select id="getReListCount" resultType="_int">
+		select count(*)
+		from shop_review
+		where review_status ='Y' AND SHOP_NO = #{shopNo}
+	</select>
+	
+ 	<select id="selectReList" resultMap="reviewResultSet">
+ 		select *
+ 		from shop_review
+ 		where review_status='Y' AND SHOP_NO = #{shopNo}
+ 		order by review_no desc
+ 	</select>
+ 	
+ 	<resultMap type="ShopReview" id="reviewResultSet">
+ 		<id property="reviewNo" column="REVIEW_NO"/>
+ 		<result property="reviewContents" column="REVIEW_CONTENTS" />
+ 		<result property="reviewWrite" column="REVIEW_WRITE"/>
+ 		<result property="reviewScore" column="REVIEW_SCORE"/>
+ 		<result property="shopNo" column="SHOP_NO"/>
+ 		<result property="memberId" column="MEMBER_ID"/>
+ 		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
+ 		<result property="renameFilename" column="RENAME_FILENAME"/>
+ 		<result property="reviewStatus" column="REVIEW_STATUS"/>
+ 	</resultMap>
+ 	
+ 	<insert id="insertReveiw">
+ 		insert into shop_review
+ 		values(seq_rno.nextval, #{reviewContents}, sysdate, #{reviewScore}, #{shopNo},
+ 				#{memberId},#{originalFilename}, #{renameFilename}, default)
+ 	</insert>
+ 	
+ 	<update id="deleteReview">
+ 		update shop_review
+ 		set review_status ='N'
+ 		where review_No = #{reviewNo}
+ 	</update>
+ 	
+ 	<insert id="insertReReply">
+ 		insert into review_reply
+ 		values(#{reviewNo}, #{replyContent}, #{memberId}, sysdate, default)
+ 	</insert>
+ 	
+ 	<select id="selectReReply">
+ 		select *
+ 		from review_reply
+ 		where review_no = #{reviewNo}
+ 	</select>
+ 	
+ 	<resultMap type="ReviewReply" id="reviewReplyResultSet">
+ 		<id property="reviewNo" column="REVIEW_NO"/>
+ 		<result property="replyContent" column="REPLY_CONTENT"/>
+ 		<result property="memberId" column="MEMBER_ID"/>
+ 		<result property="replyTime" column="REPLY_TIME"/>
+ 		<result property="replyStatus" column="REPLY_STATUS"/>
+ 	</resultMap>
 <!-- 김하영 끝 ================================================= -->
 
 
@@ -334,6 +388,7 @@
 	</insert>
 	
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
+
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
 		select *
 		from (
@@ -407,7 +462,5 @@
    </select>
    
 <!-- 원태원 끝 ====================================================== -->
-
-
 
 </mapper>
