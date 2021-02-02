@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
-<title>MyPage</title>
+<title>밥먹고가조  QNA 등록</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
   
@@ -20,7 +20,6 @@
 	#noticeTable {text-align: left;  margin: auto; width: 500px;  margin-top: 45px; }
 	#noticeTable th{border-bottom: 3px solid #1D3557;}
 	#noticeTable td{border-bottom: 1px solid #1D3557;}
-
 	 #content_text {display: block; margin-right: auto; width: 500px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
 	
@@ -36,7 +35,6 @@
 	/*글쓰기 버튼*/
 	.btn1{ width: 100px; height: 30px; border: none; border-radius: 50px;  background: #F42B03; color:white; margin-left: 310px; margin-top: 40px;} 
 	.btn2{ width: 100px; height: 30px; border: none; border-radius: 50px;  background: #F42B03; color:white; margin-left: 200px; margin-top: 40px;}
-
 	/*푸터 높이 조절*/
 	footer{margin-top: 300px;}
 </style>
@@ -55,7 +53,7 @@
 				</tr>
 				<tr>
 					<th>&nbsp&nbsp작성자&nbsp&nbsp&nbsp&nbsp
-					<input type="text" id="writerInput" readonly="readonly" name="memberId" value="test"></th>
+					<input type="text" id="writerInput" readonly="readonly" name="mId" value='${loginUser.memberId}'></th>
 				</tr>
 				<tr>
 					<div id="fileArea">

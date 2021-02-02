@@ -9,31 +9,26 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
 	rel="stylesheet">
-<title>MyPage</title>
+<title>밥먹고가조 QNA 수정</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-
 /*테이블관련*/
 table {
 	width: 500px;
 	font-family: 'Gugi';
 }
-
 #qnaTable {
 	text-align: left;
 	margin: auto;
 	width: 500px;
 	margin-top: 45px;
 }
-
 #qnaTable th {
 	border-bottom: 3px solid;
 }
-
 #qnaTable td {
 	border-bottom: 1px solid;
 }
-
 #content_text {
 	display: block;
 	margin-right: auto;
@@ -44,11 +39,9 @@ table {
 	border: none;
 	font-family: 'Gugi';
 }
-
 #text {
 	border: none;
 }
-
 /*글쓰기 버튼*/
 .btn1 {
 	width: 100px;
@@ -60,7 +53,6 @@ table {
 	margin-left: 310px;
 	margin-top: 40px;
 }
-
 .btn2 {
 	width: 100px;
 	height: 30px;
@@ -71,7 +63,6 @@ table {
 	margin-left: 200px;
 	margin-top: 40px;
 }
-
 /*푸터 높이 조절*/
 footer {
 	margin-top: 300px;
@@ -147,17 +138,14 @@ footer {
 		// 내용 작성 부분의 공간을 클릭할 때 파일 첨부 창이 뜨도록 설정하는 함수
 		$(function() {
 			$("#fileArea").hide();
-
 			$("#titleImgArea").click(function() {
 				$("#thumbnailImg1").click();
 			});
 		});
-
 		// 각각의 영역에 파일을 첨부 했을 경우 미리 보기가 가능하도록 하는 함수
 		function LoadImg(value, num) {
 			if (value.files && value.files[0]) {
 				var reader = new FileReader();
-
 				reader.onload = function(e) {
 					switch (num) {
 					case 1:
@@ -165,7 +153,6 @@ footer {
 						break;
 					}
 				}
-
 				reader.readAsDataURL(value.files[0]);
 			}
 		}

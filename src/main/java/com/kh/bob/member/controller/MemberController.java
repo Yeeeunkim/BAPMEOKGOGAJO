@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bob.member.model.exception.MemberException;
 import com.kh.bob.member.model.service.MemberService;
 import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.notice.model.vo.Comment;
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
@@ -203,8 +205,8 @@ public class MemberController {
 
 	// 일반 마이페이지
 	@RequestMapping("myPage.me")
-	public ModelAndView myPageForm(HttpSession session, ModelAndView mv) {
-		Member loginUser = (Member) session.getAttribute("loginUser");
+	public ModelAndView myPageForm( HttpSession session, ModelAndView mv) {
+Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		HashMap<String,Object> paramMap = new HashMap<String,Object>();
 		
@@ -332,6 +334,7 @@ public class MemberController {
 				ReserveInfo rinfo = sService.selectRinfo(si.getShopNo());
 				System.out.println("rinfo : " + rinfo);
 				
+				
 				//식당이 예약받은 정보들  - 예약인원, 예약 시간 등
 				List<ReserveInfo> ri = sService.selectReserveInfo(si.getShopNo());
 				System.out.println("ri : " + ri);
@@ -400,17 +403,14 @@ public class MemberController {
 	@RequestMapping("shopUpdate.me")
 	public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("menuNo") int menuNo, @RequestParam("shopNo") int shopNo,  @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
 			         HttpSession session, ModelAndView mv){
-//		String menuno[]=request.getParameterValues("menuNo");
-//		String shopno[]=request.getParameterValues("shopNo");
+		
 		String menuname[]=request.getParameterValues("MenuName");
 		String menuprice[]=request.getParameterValues("MenuPrice");
 		String sidename[]=request.getParameterValues("SideName");
 		String sideprice[]=request.getParameterValues("SidePrice");
 		String drinkname[]=request.getParameterValues("DrinkName");
 		String drinkprice[]=request.getParameterValues("DrinkPrice");
-		
-		
-		
+				
 		List<ShopMenu> shopmenu =new ArrayList<ShopMenu>(si.getShopNo());
 		
 		for(int i=0; i<menuname.length; i++) {
@@ -532,6 +532,7 @@ public class MemberController {
 	public String deleteMemberForm() {
 		return "deleteMemberForm";
 	}
+	
 	@RequestMapping("mdelete.me")
 	public String deleteMember(@RequestParam("memberId") String memberId, SessionStatus status) {
 		int result = bmService.deleteMember(memberId);
@@ -554,6 +555,7 @@ public class MemberController {
 	public String deleteShopForm() {
 		return "deleteShopForm";
 	}
+	
 	@RequestMapping("sdelete.me")
 	public String deleteShop(@RequestParam("memberId") String memberId, SessionStatus status) {
 		int result = bmService.deleteMember(memberId);

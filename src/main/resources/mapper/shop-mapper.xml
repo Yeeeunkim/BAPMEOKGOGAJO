@@ -151,10 +151,27 @@
 		 where MEMBER_ID = #{memberId}
 	</select>
 	<!-- 사용자마이페이지  - 예약내역 조회 -->
-	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
+<!-- 	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
 		select *
         from RESERVE_INFO
         where MEMBER_ID = #{memberId}
+	</select> -->
+	<select id="selectMyReInfo"  resultType ="hashmap" parameterType="hashmap" >
+		select RESERVE_NO        as "reserveNo",
+		       RESERVE_DATE      as "reserveDate",
+		         RESERVE_TIME			  as "reserveTime",
+		       RESERVE_PEOPLE  as "reservePeople",
+		       TOTAL_PRICE       as "totalPrice",
+		        RESERVE_STATUS 		as "reserveStatus",
+		        RESERVE_NAME		as "reserveName",
+		        RESERVE_PHONE		as "reservePhone",
+		        RESERVE_COMMENT		as "reserveComment",
+		        RESERVE_AD as "reserveAd",
+		        RESERVE_PAY			as  "reservePay",
+		        MEMBER_ID		      as	"memberId",
+		         SHOP_NO as "shopNo"
+        from RESERVE_INFO 
+        where MEMBER_ID = #{memberId} 
 	</select>
 	
 	<!-- 사용자마이페이지  - 사용자가 선택한 식당정보  -->

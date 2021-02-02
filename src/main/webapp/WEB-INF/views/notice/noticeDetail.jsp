@@ -9,10 +9,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
 	rel="stylesheet">
-<title>MyPage</title>
+
+<title>밥먹고가조 공지사항</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
-
 /*사이브 메뉴바 높이*/
 #sideBar {
 	margin-top: -650px;
@@ -22,28 +22,23 @@
 	height: 300px;
 	background: white;
 }
-
 /*테이블관련*/
 table {
 	width: 800px;
 	font-family: 'Gugi';
 }
-
 #noticeTable {
 	text-align: left;
 	margin: auto;
 	width: 800px;
 	margin-top: 45px;
 }
-
 #noticeTable th {
 	border-bottom: 3px solid #1D3557;
 }
-
 #noticeTable td {
 	border-bottom: 1px solid #1D3557;
 }
-
 #content_text {
 	display: block;
 	margin-right: auto;
@@ -54,11 +49,9 @@ table {
 	border: none;
 	font-family: 'Gugi';
 }
-
 #text {
 	border: none;
 }
-
 /*글쓰기 버튼*/
 .btn1 {
 	width: 100px;
@@ -70,7 +63,6 @@ table {
 	margin-left: 610px;
 	margin-top: 40px;
 }
-
 .btn2 {
 	width: 100px;
 	height: 30px;
@@ -81,7 +73,6 @@ table {
 	margin-left: 500px;
 	margin-top: 40px;
 }
-
 /*푸터 높이 조절*/
 footer {
 	margin-top: 300px;
@@ -132,14 +123,16 @@ footer {
 			<c:param name="bNo" value="${board.bNo}" />
 		</c:url>
 
-		<%-- 				<c:if test="${ # }"> --%>
+
+		<c:if test="${ loginUser.memberId eq board.mId || loginUser.memberId eq 'admin' }">
 		<tr style="border: none;">
 			<td colspan="2" align="center" style="border: none;">
 				<button class="btn1" onclick="nUpView();" style="position: absolute;">수정하기</button>
 				<button class="btn2" onclick="nDelete();">삭제하기</button>
 			</td style="border: none;">
 		</tr style="border: none;">
-		<%-- 				</c:if> --%>
+		</c:if>
+
 	</table>
 
 
@@ -149,7 +142,6 @@ footer {
 		function LoadImg(value, num) {
 			if (value.files && value.files[0]) {
 				var reader = new FileReader();
-
 				reader.onload = function(e) {
 					switch (num) {
 					case 1:

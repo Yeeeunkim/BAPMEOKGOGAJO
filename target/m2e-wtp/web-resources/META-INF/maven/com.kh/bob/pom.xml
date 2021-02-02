@@ -33,6 +33,24 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+				<!-- jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+				
+				
+	<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.9.2</version>
+</dependency>
+				
+				
+				
+				
+				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -228,7 +246,7 @@
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
 		</dependency> 
-		
+
 		<!-- gson -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
@@ -252,7 +270,7 @@
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.9</version>
-                <configuration>
+ 	      <configuration>
                     <additionalProjectnatures>
                         <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
                     </additionalProjectnatures>

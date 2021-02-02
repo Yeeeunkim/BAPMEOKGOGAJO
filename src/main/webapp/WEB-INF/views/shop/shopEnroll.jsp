@@ -28,8 +28,12 @@
 <!-- jQuery -->
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 <!-- 폰트 -->
-<script src="https://kit.fontawesome.com/7293f5b137.js"
-crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7293f5b137.js"crossorigin="anonymous"></script>
+
+<!-- timepicker -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 <style>
 #shopListArea {
    /*    border: 1px solid lightgray; */
@@ -49,11 +53,9 @@ crossorigin="anonymous"></script>
   margin: auto;
   text-align:center;
 }
-
 #thumbImg{
 	border:2px red;
 }
-
 .form-group{
 	width: 70%;
 	height: 30%;
@@ -67,12 +69,10 @@ crossorigin="anonymous"></script>
 	margin: 0 auto;
 	margin-top: 50px;
 }
-
 .enrollDiv {
 	text-align: center;
 	align-content: center;
 }
-
 .enrollBtn {
 	display: block !important;
 	margin: 0 auto !important;
@@ -81,32 +81,26 @@ crossorigin="anonymous"></script>
 	width: 250px !important;
 	height: 50px;
 }
-
 .pp {
 	display: inline-block;
 	width: 25%;
 }
-
 .pInput{
 	display: inline-block;
 	width: 20%;
 }
-
 .input-info{
 	display: inline;
 }
-
 .cInput {
 	width: 30%;
 }
-
 .authBtn {
 	margin: 0 auto !important;
 	background: #F42B03 !important;
 	border: 0px !important;
 	color: white;
 }
-
 .enrollBtn {
 	display: block !important;
 	margin: 0 auto !important;
@@ -130,7 +124,6 @@ crossorigin="anonymous"></script>
 	width: 70%;
 	text-align: center;
 }
-
 #drinkmenu{
 	margin: auto;
 	width: 70%;
@@ -151,7 +144,6 @@ crossorigin="anonymous"></script>
 	background: #F42B03;
 	color: white;
 }
-
 #gps{
 	width: 40px;
 	margin-left:30%;
@@ -168,7 +160,6 @@ crossorigin="anonymous"></script>
   text-align:center;
 }
 #enroll{
-
   background-color: #F42B03;
   border: none;
   color: white;
@@ -177,34 +168,28 @@ crossorigin="anonymous"></script>
   width: 100px;
   height: 40px;
  }
-
 #btnP{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 input { 
     text-align: center; 
 }
-
 #myselect{width:10%; margin-left:5%;}
-
-
-
+#holiday { padding: .3em .5em; }
 /*-------------------------------------*/
 .centerText table {
 	margin: auto; 
 	align-content: center;
 	border-collapse: collapse;
 }
-
 .centerText table tr td {
 	padding: 5px;
 }
-
 #thumbnailImg{margin-left:10%;}
-
+.form-floating{margin:0 0 20px 35%;}
+#floatingTextarea2{border-radius:5px; border-color:#C1C1C1;}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -214,30 +199,36 @@ input {
    	
    	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
    	
-   	 <input type="hidden" name="MemberId" value="${ loginUser.member_id}"> 
-   		<!-- <input type="hidden" name="MemberId" value="user01"> -->
+    <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
+
    		
    		
-       <select class="form-select" aria-label="Default select example"  id="myselect" name="ShopCate" >
+       <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" selected="selected">--선택해주세요--</option>
          <option value="1">한식</option>
          <option value="2">양식</option>
-         <option value="3">중식</option>
-         <option value="4">일식</option>
+         <option value="3">일식</option>
+         <option value="4">중식</option>
          <option value="5">분식</option>
+         <option value="6">동남아</option>
+         <option value="7">샐러드</option>
       </select>
       
         <script>
   			function writeBoard(){
   				var a=$("#myselect").val();
+  				var b=$("#holiday").val();
   				if(a==0){
   					alert("카테고리를 선택해주세요");
   					return false;
+  				}else if(b==0){
+  					alert("휴무일을 선택해주세요");
+  					return false;
   				}else{
   					return true;
-  				}
+  	  	  		}
   			}
-  		</script>
+  		</script> 
       
           
 
@@ -245,7 +236,7 @@ input {
 		<div class="thumb" id="thumbnail"><img id="thumbImg" width="100%" height="100%"><p id="text">메뉴 썸네일 사진을 등록해주세요.</p></div>
 		
 	
-	<div id="fileArea">
+		<div id="fileArea">
 		<input type="file" id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
 	</div>
 	
@@ -272,56 +263,93 @@ input {
 							reader.readAsDataURL(value.files[0]);
 						}
 					}
-	</script>
+				</script>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		
+	<br><br><br><br><br><br><br><br><br><br>
+   	<div class="form-floating">
+   		  <p>가게소개</p>
+		  <textarea placeholder="가게소개글을 입력해주세요" name="shopIntro" id="floatingTextarea2" style="height:300px; width:50%"></textarea>
+	</div>
+   
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;사업자 번호</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="businessNum" id="businessNum" placeholder="사업자 번호를 입력하세요."  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+			<input class= "cInput" type="text" name="businessNumber" id="businessNum" placeholder="사업자 번호를 입력하세요."  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 		</div> 
    
    <p class="pp"></p><p class="pInput">&nbsp;&nbsp;상호명</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="ShopName" id="ShopName" placeholder="상호명을 입력하세요.">
+			<input class= "cInput" type="text" name="shopName" id="ShopName" placeholder="상호명을 입력하세요.">
 		</div>
 	
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;전화</p>&nbsp;&nbsp;
 		<div class="input-info">
-			 <input class= "cInput" type=text name="ShopPhone" onfocus="OnCheckPhone(this)"  onKeyup="OnCheckPhone(this)" size="14" placeholder="전화번호를 입력하세요."> 	
+			 <input class= "cInput" type=text name="shopPhone" onfocus="OnCheckPhone(this)"  onKeyup="OnCheckPhone(this)" size="14" placeholder="전화번호를 입력하세요."> 	
 		</div>
 		<script src="<%= request.getContextPath() %>/resources/js/telephone.js"></script>
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;오픈시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="time" name="OpenTime" id="time" placeholder="오픈시간을 입력하세요.">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+			<input class= "cInput time" type="text" name="shopOpen" id="time" placeholder="오픈시간을 입력하세요." >
 		</div>
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;마감시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="time" name="CloseTime" id="time2" placeholder="마감시간을 입력하세요.">
+			<input class= "cInput time" type="text" name="shopClose" id="time2" placeholder="마감시간을 입력하세요.">
 		</div>	
-		
-		
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;브레이크타임</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="BreakTime" id="break" placeholder="브레이크타임을 입력하세요.">
-		</div>
-		
-	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;예약마감시간</p>&nbsp;&nbsp;
+			<input class= "cInput time" type="text" name="shopBreakStart" id="break1" placeholder="브레이크타임을 입력하세요." style="width:210px">&nbsp; ~ &nbsp;			
+			<input class= "cInput time" type="text" name="shopBreakClose" id="break2" placeholder="브레이크타임을 입력하세요." style="width:210px">
+			
+		</div>	
+		<br>
+	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;최대예약시간</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="time" name="MaxReservationTime" id="MaxReservationTime" placeholder="예약마감시간을 입력하세요.">
+			<input class= "cInput" type="number" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
 		</div>
 		
 		
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;휴무일</p>&nbsp;&nbsp;
 		<div class="input-info">
-			<input class= "cInput" type="text" name="Holiday" id="holiday" placeholder="휴무일을 입력하세요.">
+			<!-- <input class= "cInput" type="text" name="shopOffday" id="holiday" placeholder="휴무일을 입력하세요."> -->
+			<select class= "cInput" name="shopOffday" id="holiday" style="text-align-last:center; color:gray" onchange="mycolor(this.value)">
+				    <option value="0"style="color:gray">--휴무일을 선택해주세요--</option>
+				    <option value="월"style="color:black">월</option>
+				    <option value="화"style="color:black">화</option>
+				    <option value="수"style="color:black">수</option>
+				    <option value="목"style="color:black">목</option>
+				    <option value="금"style="color:black">금</option>
+				    <option value="토"style="color:black">토</option>
+				    <option value="일"style="color:black">일</option>
+				    <option value="주말"style="color:black">주말</option>
+			</select>
 		</div>
-	
-
+					
+	<script>
+		function mycolor(str) {
+			if(str==0){
+				$("#holiday").css("color","gray");
+			}else{
+				$("#holiday").css("color","black");
+				}
+		}
+		$('.cInput.time').timepicker({
+		    timeFormat: 'HH:mm',
+		    interval: 30,
+		    minTime: '00',
+		    maxTime: '11:30pm',
+		    defaultTime: '11',
+		    startTime: '00:00',
+		    dynamic: false,
+		    dropdown: true,
+		    scrollbar: true
+		});
+		
+	</script>
 
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;주소</p>&nbsp;&nbsp;
 		<div class="input-info">
@@ -387,6 +415,8 @@ input {
 		</script>
 	
 	
+	
+	
    
    <br><br><br>
    <hr class="line">
@@ -429,7 +459,6 @@ input {
 		  // Cell에 텍스트 추가
 		 /*  newCell1.innerText = '메뉴';
 		  newCell2.innerText = '가격'; */
-
 		  newCell1.innerHTML = '<input type="text" name="MenuName" size="20" style="width:100%; border: 0;">';
 		  newCell2.innerHTML = '<input type="number" name="MenuPrice" size="20" style="width:100%; border: 0;" min="100">';
 		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow(this)">&nbsp;-&nbsp;</button>';
@@ -442,7 +471,6 @@ input {
 				  // 행(Row) 삭제
 				  const newRow = table.deleteRow(i);
 		}
-
 		/* $(function () {
 		    $('#btn-empty').click( function() {
 		        $( '#menu > thead').empty();
@@ -485,7 +513,6 @@ input {
 		  newCell2.innerHTML = '<input type="number" name="SidePrice" size="20" style="width:100%; border: 0;" min="100">';
 		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow2(this)">&nbsp;-&nbsp;</button>';
 			}
-
 		function deleteRow2(r) {
 			  var i = r.parentNode.parentNode.rowIndex;
 			  // table element 찾기

@@ -21,14 +21,7 @@
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopReview" alias="ShopReview"/>
 		
 		<!-- <typeAlias type="com.kh.bob.common.LowerKeyMap" alias="lowerKeyMap"/> -->
-		
-
-		<typeAlias type="com.kh.bob.manager.model.vo.ManageReview" alias="ManageReview"/>
-		<typeAlias type="com.kh.bob.manager.model.vo.ManageShopInfo" alias="ManageShopInfo"/>
-		<typeAlias type="com.kh.bob.manager.model.vo.ManageDeclaration" alias="ManageDeclaration"/>
-		<typeAlias type="com.kh.bob.manager.model.vo.DeclationReple" alias="DeclationReple"/>
-		<typeAlias type="com.kh.bob.manager.model.vo.ShopCategory" alias="ShopCategory"/>
-		<typeAlias type="com.kh.bob.manager.model.vo.CategorySales" alias="CategorySales"/>
+	
 	</typeAliases>
 	 
 	 
@@ -37,7 +30,6 @@
 		<mapper resource="mapper/member-mapper.xml"/>
 		<mapper resource="mapper/board-mapper.xml"/>
 		<mapper resource="mapper/shop-mapper.xml"/>
-		<mapper resource="mapper/manager-mapper.xml"/>
 	</mappers>
 	
 </configuration>

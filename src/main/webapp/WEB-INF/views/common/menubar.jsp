@@ -73,7 +73,6 @@
 		padding-left: 30px;
 		margin-top: 10px;	
 	}
-
 	@media screen and (max-width: 780px) {
 		.navbar{
 			flex-direction:column;
@@ -104,8 +103,6 @@
 			text-align: center;
 		}
 	}
-	
-	
 	/*--------------------------------------------------------------------*/
 	
  	.searchbar{
@@ -120,7 +117,6 @@
    .searchbar {
    	list-style:none;
    } 
-
     .search_input{
 	    color: black;
 	    border: 0;
@@ -131,7 +127,6 @@
 	    line-height: 40px;
 	    transition: width 0.4s linear;
     }
-
     .searchbar:hover > .search_input{
 	    padding: 0 10px;
 	    width: 200px;  /*수정 보류!*/
@@ -140,12 +135,10 @@
 	    background-color: white;
 	    border-radius:4px;
     }
-
     .searchbar:hover > .search_icon{
 	    background: white;
 	    color: #e74c3c;
     }
-
     .search_icon{
 	    height: 50px;
 	    width: 50px;
@@ -158,7 +151,6 @@
 	    text-decoration:none;
     }
 	 
-
 </style>
 </head>
 <body>
@@ -173,8 +165,8 @@
 				<img id="logo" src="resources/images/logo.png" href="home.do">
 				<a href="home.do">밥먹고 가조</a>
 					<span class="searchbar">
-          				 <input class="search_input" type="text" name="" placeholder="Search...">
-         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span>  
 			<ul class="navbar_icons" >
@@ -193,8 +185,8 @@
 				<img id="logo" src="resources/images/logo.png" href="home.do">
 				<a href="home.do">밥먹고 가조</a>
 					<span class="searchbar">
-          				 <input class="search_input" type="text" name="" placeholder="Search...">
-         				 <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
+         				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
        				 </span>
 			</span> 
 			<ul class="navbar_icons" >
@@ -205,48 +197,31 @@
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '2'  }">
 					<li class="menu" ><a href="shopMypage.me"><i class="fas fa-user"></i></a></li>
+					<li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
 				</c:if>
-				 <li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
-				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 
+				 <c:if test="${ loginUser.auth_code eq '0'  }">
+				 	<li class="menu" onclick="manager();" ><a href="#">M</a></li> 
+				 </c:if>
 			</ul>
 		</nav>
 	</c:if>
-	
+	</div>
 
-	
-</div>
-		
-		
 	<script>
-	/*  $(function(){ // document ready
-	      if (!!$('#gnb').offset()) { // make sure "#gnb" element exists
-	        var stickyTop = $('#gnb').offset().top; // returns number 
-	        $(window).scroll(function(){ // scroll event
-	          var windowTop = $(window).scrollTop(); // returns number 
-	          if (stickyTop < windowTop){
-	            $('#gnb').css({ position: 'fixed', top: 0 });
-	          }
-	          else {
-	            $('#gnb').css('position','static');
-	          }
-	        });
-	      }
-	    }); */
-		
-	  
-	    
-	    function shop(){
-			location.href="${ contextPath }/shop.do"
+		function shop() {
+			location.href = "${contextPath }/shop.do"
 		}
-	    
-	    function manager(){
-	    	location.href="${ contextPath }/manager.ma"
-	    }
-	    
-	    function mypage(){
-	    	location.href="${ contextPath}/myPage.me"
-	    }
-	    
+		function manager() {
+			location.href = "${contextPath }/manager.ma"
+		}
+		function mypage() {
+			location.href = "${contextPath}/myPage.me"
+		}
+		
+		function search() {
+			var searchContents = $('#searchInput').val();
+			location.href = "${contextPath}/shopSearch.sh?searchContents=" + searchContents;
+		}
 	</script>
 </body>
 </html>
