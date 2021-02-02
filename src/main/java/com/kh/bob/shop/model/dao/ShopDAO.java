@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ReviewReply;
 import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
@@ -18,12 +19,12 @@ import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
-
 @Repository("sDAO")
 public class ShopDAO {
 	// 강동기 시작 ===============================================
 
 	// 강동기 끝 ================================================
+
 
 	// 김예은 시작 ================================================
 	//사장님마이페이지 - 식당정보조회
@@ -198,9 +199,6 @@ public class ShopDAO {
 	}
 	
 	
-
-
-	
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
@@ -226,9 +224,6 @@ public class ShopDAO {
 		return sqlSession.selectOne("shopMapper.getListCateCount", shop);
 	}
 
-
-	
-	
 	
 
 	/*

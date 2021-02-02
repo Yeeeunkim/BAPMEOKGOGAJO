@@ -113,7 +113,7 @@
 			
 			
 			<div class="btn">
-				<input type="button" id="cancle" onclick="location.href='relist.sh'"value="취소">
+				<input type="button" id="cancle" onclick="history.back();"value="취소">
 				<input type="submit" id="send" value="등록">
 			</div>
 		</form>

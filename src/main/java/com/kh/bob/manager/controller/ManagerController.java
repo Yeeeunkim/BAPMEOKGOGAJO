@@ -69,6 +69,8 @@ public class ManagerController {
 		if(mSList != null) {
 			mv.addObject("mSList", mSList);
 			mv.addObject("pi", pi);
+			mv.addObject("condition", condition);
+			mv.addObject("search", search);
 			mv.setViewName("shopList");
 		} else {
 			throw new ManagerException("상점 검색에 실패했습니다.");

@@ -1,12 +1,27 @@
 package com.kh.bob.shop.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
+import java.util.ArrayList;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.dao.ShopDAO;
@@ -18,6 +33,7 @@ import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
+import com.kh.bob.shop.model.vo.ShopReview;
 
 @Service("sService")
 public class ShopServiceImple implements ShopService {
@@ -32,15 +48,13 @@ public class ShopServiceImple implements ShopService {
 
 	// 강동기 끝 ================================================
 
-	// 김예은 시작 ================================================
-
-	// 사장님마이페이지 - 식당 정보 조회
+	//김예은 시작 =============================================
+	//사장님마이페이지 - 식당 정보 조회
 	@Override
 	public ShopInfo selectMyShop(String member_id) {
 		return sDAO.selectMyShop(sqlSession, member_id);
 	}
-
-	// 사장님마이페이지 - 메인
+	// 사장님마이페이지 - 메인 
 	@Override
 	public List<ShopMenu> selectMyMenu1(int shopNo) {
 		return sDAO.selectMyMenu1(sqlSession, shopNo);
@@ -51,62 +65,58 @@ public class ShopServiceImple implements ShopService {
 	public List<ShopMenu> selectMyMenu2(int shopNo) {
 		return sDAO.selectMyMenu2(sqlSession, shopNo);
 	}
-
+	
 	// 사장님마이페이지 - 음료
 	@Override
 	public List<ShopMenu> selectMyMenu3(int shopNo) {
 		return sDAO.selectMyMenu3(sqlSession, shopNo);
 	}
-
-	// 사장님마이페이지 - 예약받은 정보들
+	//사장님마이페이지 - 예약받은 정보들
 	@Override
 	public ReserveInfo selectRinfo(int shopNo) {
 		return sDAO.selectRinfo(sqlSession, shopNo);
 	}
-
-	// 사장님마이페이지 - 예약받은 인원수, 시간
+	//사장님마이페이지 - 예약받은 인원수, 시간
 	@Override
 	public List<ReserveInfo> selectReserveInfo(int shopNo) {
 		return sDAO.selectReserveInfo(sqlSession, shopNo);
 	}
-
-	// 사장님마이페이지 - 예약받은 메뉴
+	//사장님마이페이지 - 예약받은 메뉴
 	@Override
 	public List<ReserveMenu> selectReserveMenu(int reserveNo) {
 		return sDAO.selectReserveMenu(sqlSession, reserveNo);
 	}
+	
 
-	// 사용자마이페이지 - 예약내역 조회
+	//사용자마이페이지  - 예약내역 조회
 	@Override
 	public ReserveInfo selectMyReInfo(String memberId) {
 		return sDAO.selectMyReInfo(sqlSession, memberId);
 	}
-
-	// 사용자마이페이지 - 사용자가 선택한 식당정보
+	//사용자마이페이지  - 사용자가 선택한 식당정보
 	@Override
 	public List<ShopInfo> selectMyShopPick(int shopNo) {
 		return sDAO.selectMyShopPick(sqlSession, shopNo);
 	}
-
-	// 사용자마이페이지 - 사용자가 선택한 메뉴
+	//사용자마이페이지  - 사용자가 선택한 메뉴
 	@Override
 	public List<ReserveMenu> selectMyReMenu(int reserveNo) {
 		return sDAO.selectMyReMenu(sqlSession, reserveNo);
 	}
 
-	// 사용자마이페이지 - 사용자 리뷰
+	//사용자마이페이지  - 사용자 리뷰
 	@Override
 	public List<ShopReview> selectMyReview(String memberId) {
 		return sDAO.selectMyReview(sqlSession, memberId);
 	}
 
-	// 사장님마이페이지 식당수정 - 식당 정보
+	//사장님마이페이지 식당수정 - 식당 정보
 	@Override
 	public int sinfoUpdate(ShopInfo si) {
 		return sDAO.sinfoUpdate(sqlSession, si);
 	}
 
-	// 사장님마이페이지 식당수정- 식당 메뉴
+	//사장님마이페이지 식당수정- 식당 메뉴
 	@Override
 	public int smenuUpdate(List<ShopMenu> shopmenu) {
 		return sDAO.smenuUpdate(sqlSession, shopmenu);
@@ -118,7 +128,9 @@ public class ShopServiceImple implements ShopService {
 		return sDAO.selectMyrInfo(sqlSession, memberId);
 	}
 
-	// 김예은 끝 =================================================
+
+	//김예은 끝 =============================================
+
 
 	// 김하영 시작 ================================================
 	@Override
@@ -153,7 +165,7 @@ public class ShopServiceImple implements ShopService {
 	// 김하영 끝 =================================================
 	
 	// 민병욱 시작 =================================================
-
+	// @@@@@테스트용
 	@Override
 	public ShopInfo selectShop(int sNo) {
 		return sDAO.selectShop(sqlSession, sNo);
@@ -207,6 +219,7 @@ public class ShopServiceImple implements ShopService {
 	public int insertMenu(List<ShopMenu> shopmenu) {
 		return sDAO.insertMenu(sqlSession, shopmenu);
 	}
+
 
 	@Override
 	public List<ShopMenu> selectShopMenu(int shopNo) {

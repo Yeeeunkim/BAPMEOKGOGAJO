@@ -35,6 +35,7 @@ import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
 
 
+
 @SessionAttributes("loginUser")
 
 @Controller
@@ -60,11 +61,9 @@ public class MemberController {
 	// 로그인 기능 페이지
 	@RequestMapping("login.me")
 	public String login(Member m, HttpSession session, Model model) {
-
 		Member loginUser = bmService.loginMember(m);
 		System.out.println("loginUser : " + loginUser);
 		if (loginUser != null) {
-
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do";
 		} else {
@@ -165,7 +164,6 @@ public class MemberController {
 		m.setMember_birth(year + "/" + month + "/" + date);
 
 		int result = bmService.memberInsert(m);
-
 		System.out.println("m : " + m);
 		if (result > 0) {
 			return "redirect:home.do";
@@ -190,7 +188,6 @@ public class MemberController {
 		}
 	}
 
-
 	// 아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("memberId") String memberId, HttpServletResponse response) {
@@ -207,21 +204,14 @@ public class MemberController {
 	// 일반 마이페이지
 	@RequestMapping("myPage.me")
 	public ModelAndView myPageForm(HttpSession session, ModelAndView mv) {
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		
-		HashMap<String,Object> paramMap = new HashMap<String,Object>();
-		
-		paramMap.put("memberId", loginUser.getMemberId());
-		//paramMap.put("name","이름");
-		
+		Member loginUser = (Member) session.getAttribute("loginUser");		
 		
 		//예약 내역
 		ReserveInfo rei = sService.selectMyReInfo(loginUser.getMemberId());
-		System.out.println("re : " + rei);
+		System.out.println("rei : " + rei);
 		
 		//사용자가 예약한 예약내역 조회 
 		List<ReserveInfo> re = sService.selectMyrInfo(loginUser.getMemberId());
-		
 		
 		//사용자가 예약한 식당 정보 조회
 		List<ShopInfo> sp = sService.selectMyShopPick(rei.getShopNo());
@@ -335,6 +325,7 @@ public class MemberController {
 				ReserveInfo rinfo = sService.selectRinfo(si.getShopNo());
 				System.out.println("rinfo : " + rinfo);
 				
+				
 				//식당이 예약받은 정보들  - 예약인원, 예약 시간 등
 				List<ReserveInfo> ri = sService.selectReserveInfo(si.getShopNo());
 				System.out.println("ri : " + ri);
@@ -343,7 +334,7 @@ public class MemberController {
 				List<ReserveMenu> rm = sService.selectReserveMenu(rinfo.getReserveNo());
 				System.out.println("rm : " + rm);
 				
-				if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
+				if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty() ){ 
 					  
 					 mv.addObject("si", si);
 					 mv.addObject("sm", sm);
@@ -403,17 +394,14 @@ public class MemberController {
 	@RequestMapping("shopUpdate.me")
 	public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("menuNo") int menuNo, @RequestParam("shopNo") int shopNo,  @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
 			         HttpSession session, ModelAndView mv){
-//		String menuno[]=request.getParameterValues("menuNo");
-//		String shopno[]=request.getParameterValues("shopNo");
+		
 		String menuname[]=request.getParameterValues("MenuName");
 		String menuprice[]=request.getParameterValues("MenuPrice");
 		String sidename[]=request.getParameterValues("SideName");
 		String sideprice[]=request.getParameterValues("SidePrice");
 		String drinkname[]=request.getParameterValues("DrinkName");
 		String drinkprice[]=request.getParameterValues("DrinkPrice");
-		
-		
-		
+				
 		List<ShopMenu> shopmenu =new ArrayList<ShopMenu>(si.getShopNo());
 		
 		for(int i=0; i<menuname.length; i++) {
@@ -535,6 +523,7 @@ public class MemberController {
 	public String deleteMemberForm() {
 		return "deleteMemberForm";
 	}
+	
 	@RequestMapping("mdelete.me")
 	public String deleteMember(@RequestParam("memberId") String memberId, SessionStatus status) {
 		int result = bmService.deleteMember(memberId);
@@ -557,6 +546,7 @@ public class MemberController {
 	public String deleteShopForm() {
 		return "deleteShopForm";
 	}
+	
 	@RequestMapping("sdelete.me")
 	public String deleteShop(@RequestParam("memberId") String memberId, SessionStatus status) {
 		int result = bmService.deleteMember(memberId);

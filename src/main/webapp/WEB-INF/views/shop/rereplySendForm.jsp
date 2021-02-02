@@ -14,34 +14,22 @@
 </style>
 </head>
 <body align="center" id="boby">
-	
+	${ shopNo }
+	${ reNo }
 	<h2>답글 달기</h2>
-	<form action="rereplyinsert.sh">
+	<form action="rereplyinsert.sh" id="form">
+	<input type="hidden" name="reid" value="${ shopNo }">
 	<input type="hidden" name="reid" value="${ reNo }">
-	<textarea rows="10" cols="70" id="textarea"></textarea><br>
+	<textarea rows="10" cols="70" name="textarea"></textarea><br>
 	<input type="submit" value="답글 등록" >
 	<input type="button" class="recancle" value="취소" onclick="window.close();">
 	</form>
 	<script>
-/* 	function replysend(reid){
-			$(function(){
-			var textarea = $('#textarea'+reid).val();
-			//var reid = ${re.reviewNo};
-			console.log(textarea);
-			console.log(reid);
-			$.ajax({
-				url: 'rereplyinsert.sh',
-				data: {textarea:textarea, reid:reid},
-				success: function(data){
-					console.log(data);
-					if(data == 'success'){
-						$('textarea').val('');
-						/* getReplyList(reid); 
-					}
-				}
+		$(function(){
+			$('#form').submit(function(event){
+				self.close();
 			});
-			});
-		}; */
+		});
 	</script>
 </body>
 </html>
