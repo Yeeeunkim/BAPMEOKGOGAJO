@@ -101,7 +101,7 @@
 								</div>
 								<div id="cardArea">
 									<p><c:out value="${shopList.shopName}"/><br>
-										★4.8 | 리뷰n개<br></p>
+										★${ shopList.avgScore } | 리뷰${ shopList.countReview }개<br></p>
 									<a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-warning">예약하기</a>
 								</div>
 							</div>

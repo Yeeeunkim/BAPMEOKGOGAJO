@@ -75,14 +75,14 @@ td{border-bottom: 1px solid #1D3557 !important;}
 					<tr class="nContents">
 						<td scope="row">${ b.bNo }</td>
 						<td class="nTitle">
-							<c:if test="${ loginUser.member_id eq b.mId || loginUser.member_id eq 'admin'}">
+							<c:if test="${ loginUser.memberId eq b.mId || loginUser.memberId eq 'admin'}">
 								<c:url var="qdetail" value="qdetail.no">
 									<c:param name="bNo" value="${ b.bNo }"/>
 									<c:param name="page" value="${ pi.currentPage }"/>
 								</c:url>
 								<a href="${ qdetail }" class="aTitle">${ b.bTitle }</a>
 							</c:if>
-							<c:if test="${ loginUser.member_id ne b.mId && loginUser.member_id ne 'admin'}">
+							<c:if test="${ loginUser.memberId ne b.mId && loginUser.memberId ne 'admin'}">
 								<a onclick="noWriter();" class="aTitle">${ b.bTitle }</a>
 							</c:if>
 						</td>
@@ -140,7 +140,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 			</table>
 			
 
-			<c:if test="${ !empty loginUser.member_id }">
+			<c:if test="${ !empty loginUser.memberId }">
 			<button class="nBtn" onclick="qInsert();">글쓰기</button>
 			</c:if>
 		</div>

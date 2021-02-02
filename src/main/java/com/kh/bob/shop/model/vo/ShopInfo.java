@@ -18,6 +18,8 @@ public class ShopInfo {
 	private int shopCate; 				// 식당 카테고리
 	private int businessNumber; 		// 사업자 번호
 	private String memberId; 				// 회원아이디
+	private int avgScore;
+	private int countReview;
 
 		
 	public ShopInfo() {}
@@ -43,6 +45,33 @@ public class ShopInfo {
 		this.shopCate = shopCate;
 		this.businessNumber = businessNumber;
 		this.memberId = memberId;
+	}
+	
+	
+
+	public ShopInfo(int shopNo, String shopName, String shopIntro, String shopOpen, String shopClose,
+			String shopAddress, String shopPhone, String shopBreakStart, String shopBreakClose, String shopOffday,
+			String maxReservationTime, String shopOrigin, String shopRename, int shopCate, int businessNumber,
+			String memberId, int avgScore, int countReview) {
+		super();
+		this.shopNo = shopNo;
+		this.shopName = shopName;
+		this.shopIntro = shopIntro;
+		this.shopOpen = shopOpen;
+		this.shopClose = shopClose;
+		this.shopAddress = shopAddress;
+		this.shopPhone = shopPhone;
+		this.shopBreakStart = shopBreakStart;
+		this.shopBreakClose = shopBreakClose;
+		this.shopOffday = shopOffday;
+		this.maxReservationTime = maxReservationTime;
+		this.shopOrigin = shopOrigin;
+		this.shopRename = shopRename;
+		this.shopCate = shopCate;
+		this.businessNumber = businessNumber;
+		this.memberId = memberId;
+		this.avgScore = avgScore;
+		this.countReview = countReview;
 	}
 
 	public int getShopNo() {
@@ -173,6 +202,22 @@ public class ShopInfo {
 		this.memberId = memberId;
 	}
 
+	public int getAvgScore() {
+		return avgScore;
+	}
+
+	public void setAvgScore(int avgScore) {
+		this.avgScore = avgScore;
+	}
+
+	public int getCountReview() {
+		return countReview;
+	}
+
+	public void setCountReview(int countReview) {
+		this.countReview = countReview;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopInfo [shopNo=" + shopNo + ", shopName=" + shopName + ", shopIntro=" + shopIntro + ", shopOpen="
@@ -180,6 +225,7 @@ public class ShopInfo {
 				+ ", shopBreakStart=" + shopBreakStart + ", shopBreakClose=" + shopBreakClose + ", shopOffday="
 				+ shopOffday + ", maxReservationTime=" + maxReservationTime + ", shopOrigin=" + shopOrigin
 				+ ", shopRename=" + shopRename + ", shopCate=" + shopCate + ", businessNumber=" + businessNumber
-				+ ", memberId=" + memberId + "]";
+				+ ", memberId=" + memberId + ", avgScore=" + avgScore + ", countReview=" + countReview + "]";
 	}
+
 }

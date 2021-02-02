@@ -160,9 +160,6 @@ public class ReserveInfo {
 		this.shopNo = shopNo;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "ReserveInfo [reserveNo=" + reserveNo + ", reserveDate=" + reserveDate + ", reserveTime=" + reserveTime
@@ -173,3 +170,4 @@ public class ReserveInfo {
 	}
 
 }
+
