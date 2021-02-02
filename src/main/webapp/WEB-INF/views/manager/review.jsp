@@ -19,7 +19,7 @@
 .sidebar ul li:hover a{padding-left:50px;}
 .row {width:100%; padding-left:15%; padding-top:5%}
 .pagination {margin-left:35%;}
-.contentTR:hover {cursor: pointer;}
+/* .contentTR:hover {cursor: pointer;} */
 </style>
 </head>
 <body>
@@ -62,14 +62,14 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<script>
-				$(function(){
-					$('.contentTD').click(function(){
-						var rNo=$(this).parent().children('td').eq(1).text();
-						location.href='rdetail.ma?rNo=' + rNo;
-					});
-				});
-			</script>
+<!-- 			<script> -->
+// 				$(function(){
+// 					$('.contentTD').click(function(){
+// 						var rNo=$(this).parent().children('td').eq(1).text();
+// 						location.href='rdetail.ma?rNo=' + rNo;
+// 					});
+// 				});
+<!-- 			</script> -->
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<c:if test="${ pi.currentPage <= 1 }">
