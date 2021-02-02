@@ -541,7 +541,7 @@ public class ShopController {
       int declareInsert=sService.insertDeclare(sd);
       
       if (declareInsert>0) {
-         return "/shop/shopList";
+         return "redirect:shop.do";
       } else {
          throw new ShopException("식당신고 등록에 실패하였습니다.");
       }
