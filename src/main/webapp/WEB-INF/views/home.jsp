@@ -62,15 +62,16 @@
 	/*list*/
 	ul, li {list-style:none;}
 	a { text-decoration:none; color:inherit;}
-	.list_wrap {display: inline-block; width:1300px;}
+	.list_wrap {display: inline-block; width:1300px; padding-bottom: 10px;}
 	.list_wrap ul {font-size:0;}
-	.list_wrap .item {display:inline-block; width:280px; margin-left:2%; margin-top:0.2%;}
+	.list_wrap .item {display:inline-block; width:280px; height: 330px; margin-left:2%; margin-top:10px;}
 	.list_wrap .item:nth-child(-n+4){margin-top:0;}
 	.list_wrap .item:nth-child(4n-3){margin-left:0;}
 	.list_wrap .item .image {width:100%; height:160px;  background-position:50% 50%; background-size:cover; }
  	.list_wrap .item .cont {padding:20px;}
 	.list_wrap .item strong a {display:block; margin:0 0 10px 0; font-size:16px; letter-spacing: -1px;}
 	.list_wrap .item p {font-size:13px; letter-spacing:-1px;}	
+	.sIntro{float:left; text-overflow: ellipsis;}
 	.go{display:inline-block; margin-top:10px; padding:5px 10px; background: #eee; font-size:13px; letter-spacing:-1px;} 
 	
 	/*------------------------------------------------------------------*/
@@ -188,11 +189,11 @@
 				<c:forEach var="hs" items="${ hsList }">
 					<li class="item item1 hsContent">
 						<input type="hidden" class="sNo" value="${ hs.sNo }">
-						<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/images/main/main.png);"></div>
+						<div class="image" style="background-image: url(<%= request.getContextPath() %>/resources/shopuploadFiles/${ hs.sRename });"></div>
 						<div class="cont">
 							<h5>${ hs.sName }</h5>
-							<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;${ hs.avgScore }</p>
-							<p>${ hs.sIntro }</p>
+							<p class="explain"><i class="far fa-star" style="color:#FFDE32"></i>&nbsp;&nbsp;${ hs.avgScore }</p><br>
+							<p class="sIntro">${ hs.sIntro }</p>
 						</div>
 					</li>
 				</c:forEach>

@@ -13,7 +13,9 @@
 		location.href='home.do';
 	});
 </script>
+
 		 <c:import url="WEB-INF/views/shop/shopReservation.jsp"/>
 <%--  <%@ include file="WEB-INF/views/home.jsp" %>  --%>
 </body>
+
 </html>
