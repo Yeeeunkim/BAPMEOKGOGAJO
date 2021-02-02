@@ -289,7 +289,7 @@ input {
 				</script>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		
+	<br><br><br><br><br><br><br><br><br><br>
    	<div class="form-floating">
    		  <p>가게소개</p>
 		  <textarea placeholder="가게소개글을 입력해주세요" name="shopIntro" id="floatingTextarea2" style="height:300px; width:50%"></textarea>
@@ -329,7 +329,7 @@ input {
 			<input class= "cInput time" type="text" name="shopBreakClose" id="break2" placeholder="브레이크타임을 입력하세요." style="width:210px">
 			
 		</div>	
-		
+		<br>
 	<p class="pp"></p><p class="pInput">&nbsp;&nbsp;최대예약시간</p>&nbsp;&nbsp;
 		<div class="input-info">
 			<input class= "cInput" type="number" name="maxReservationTime" id="MaxReservationTime" placeholder="단위(시간)">
