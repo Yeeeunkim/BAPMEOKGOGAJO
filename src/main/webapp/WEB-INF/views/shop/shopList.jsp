@@ -105,11 +105,11 @@
 						<div class="col-lg-6 col-md-6 col-sm-12" style="height: 152px;">
 							<div style="width: 98%; height: 98%; border: 1px solid lightgray; text-align: center;">
 								<div id="imageArea">
-									<img id="images" src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="...">
+									<img id="images" src="<%= request.getContextPath() %>/resources/shopuploadFiles/${shopList.shopRename}" class="card-img-top" alt="..." style='width:95%; height:80%'>
 								</div>
 								<div id="cardArea">
 									<p><c:out value="${shopList.shopName}"/><br>
-										★4.8 | 리뷰n개<br></p>
+										★${ shopList.avgScore } | 리뷰${ shopList.countReview }개<br></p>
 									<a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-warning">예약하기</a>
 								</div>
 							</div>
@@ -193,9 +193,11 @@
 
 	<div class="row">
 		<div class="col-lg-9 col-md-10 col-sm-8"></div>
+		<c:if test="${ loginUser.auth_code eq '2'  }">
 		<div class="col-lg-1 col-md-1 col-sm-4">
 			<button type="button" class="enrollBtn" onclick="enrollShop();">식당 	등록</button>
 		</div>
+		</c:if>
 		<div class="col-lg-2 col-md-1"></div>
 
 	</div>

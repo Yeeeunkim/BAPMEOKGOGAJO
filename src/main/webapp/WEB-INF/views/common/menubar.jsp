@@ -191,7 +191,6 @@
 			<span class="navbar_logo">
 				<img id="logo" src="resources/images/logo.png" href="home.do">
 				<a href="home.do">밥먹고 가조</a>
-
 					<span class="searchbar">
           				 <input class="search_input" type="text" id="searchInput" name="searchContents" placeholder="Search...">
          				 <a href="#" class="search_icon"><i onclick="search();" class="fas fa-search"></i></a>
@@ -207,12 +206,12 @@
 					<li class="menu" ><a href="shopMypage.me"><i class="fas fa-user"></i></a></li>
 
 				</c:if>
-				 <li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
-				 <li class="menu" onclick="manager();" ><a href="#">M</a></li> 
+				 <c:if test="${ loginUser.auth_code eq '0'  }">
+				 	<li class="menu" onclick="manager();" ><a href="#">M</a></li> 
+				 </c:if>
 			</ul>
 		</nav>
 	</c:if>
-
 	</div>
 	<script>
 		function shop() {

@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -170,6 +170,7 @@ public class MemberController {
 		int result = bmService.memberInsert(m);
 
 		if(result > 0) {
+
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("일반 회원가입에 실패했습니다.");
@@ -193,7 +194,8 @@ public class MemberController {
 	}
 
 
-	//아이디 중복검사
+
+	// 아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("memberId") String memberId, HttpServletResponse response) {
 		boolean isUsable = bmService.checkIdDup(memberId) == 0 ? true : false;
@@ -205,8 +207,9 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
-	
-	//일반 마이페이지 
+
+
+	// 일반 마이페이지
 	@RequestMapping("myPage.me")
 	public ModelAndView myPageForm(HttpSession session, ModelAndView mv) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
@@ -275,7 +278,6 @@ public class MemberController {
 			} else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
-
 		}else {
 			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
@@ -288,7 +290,7 @@ public class MemberController {
 	}
 
 
-	//일반 정보 수정 비밀번호 기능 페이지 
+	// 일반 정보 수정 비밀번호 기능 페이지
 	@RequestMapping("mInfoPwd.me")
 	public String mCheckPwd(Member m, HttpSession session, Model model) {
 		Member loginUser = bmService.infoPwd(m);
@@ -470,6 +472,7 @@ public class MemberController {
 		 }
 		return mv;
 
+	}
 	
 	//파일 이름 날짜로 수정하는 과정
 		public String saveFile(MultipartFile file, HttpServletRequest request) {

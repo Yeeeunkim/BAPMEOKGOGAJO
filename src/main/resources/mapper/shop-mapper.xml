@@ -20,14 +20,14 @@
 		<result property="shopCate" column="SHOP_CATE" />
 		<result property="businessNumber" column="BUSINESS_NUMBER" />
 		<result property="memberId" column="MEMBER_ID" />
+		<result property="avgScore" column="AVG_SCORE" />
+		<result property="countReview" column="COUNT_REVIEW" />
 	</resultMap>
 
 <!-- 강동기 시작 =============================================== -->
    
 <!-- 강동기 끝 ================================================ -->
 
-<<<<<<< HEAD
- 
 <!--김예은 시작 ================================================= -->
 	<!-- ★ shopInfo resultMap -->  
 	<resultMap type="ShopInfo" id="mshopInfoResultSet">
@@ -203,10 +203,62 @@
 
 <!--김예은 끝 ================================================= -->
 
-
-   
 <!-- 김하영 시작 ================================================ -->
-   
+   	<select id="getReListCount" resultType="_int">
+		select count(*)
+		from shop_review
+		where review_status ='Y' AND SHOP_NO = #{shopNo}
+	</select>
+	
+ 	<select id="selectReList" resultMap="reviewResultSet">
+ 		select *
+ 		from shop_review
+ 		where review_status='Y' AND SHOP_NO = #{shopNo}
+ 		order by review_no desc
+ 	</select>
+ 	
+ 	<resultMap type="ShopReview" id="reviewResultSet">
+ 		<id property="reviewNo" column="REVIEW_NO"/>
+ 		<result property="reviewContents" column="REVIEW_CONTENTS" />
+ 		<result property="reviewWrite" column="REVIEW_WRITE"/>
+ 		<result property="reviewScore" column="REVIEW_SCORE"/>
+ 		<result property="shopNo" column="SHOP_NO"/>
+ 		<result property="memberId" column="MEMBER_ID"/>
+ 		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
+ 		<result property="renameFilename" column="RENAME_FILENAME"/>
+ 		<result property="reviewStatus" column="REVIEW_STATUS"/>
+ 	</resultMap>
+ 	
+ 	<insert id="insertReveiw">
+ 		insert into shop_review
+ 		values(seq_rno.nextval, #{reviewContents}, sysdate, #{reviewScore}, #{shopNo},
+ 				#{memberId},#{originalFilename}, #{renameFilename}, default)
+ 	</insert>
+ 	
+ 	<update id="deleteReview">
+ 		update shop_review
+ 		set review_status ='N'
+ 		where review_No = #{reviewNo}
+ 	</update>
+ 	
+ 	<insert id="insertReReply">
+ 		insert into review_reply
+ 		values(#{reviewNo}, #{replyContent}, #{memberId}, sysdate, default)
+ 	</insert>
+ 	
+ 	<select id="selectReReply">
+ 		select *
+ 		from review_reply
+ 		where review_no = #{reviewNo}
+ 	</select>
+ 	
+ 	<resultMap type="ReviewReply" id="reviewReplyResultSet">
+ 		<id property="reviewNo" column="REVIEW_NO"/>
+ 		<result property="replyContent" column="REPLY_CONTENT"/>
+ 		<result property="memberId" column="MEMBER_ID"/>
+ 		<result property="replyTime" column="REPLY_TIME"/>
+ 		<result property="replyStatus" column="REPLY_STATUS"/>
+ 	</resultMap>
 <!-- 김하영 끝 ================================================= -->
 
 
@@ -274,8 +326,12 @@
 	</select>
 	
 	<select id="selectAddressSearch" resultMap="shopInfoResultSet">
-		select *
-		from shop_info
+		SELECT * FROM SHOP_INFO
+        FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
+		FROM SHOP_INFO
+		FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+		GROUP BY SHOP_NO
+		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
 		where
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
 	</select>
@@ -328,17 +384,25 @@
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 	
 	<insert id="insertDeclare">
-		insert into shop_declare values(SEQ_DNO.nextval,#{memberId},'Y',#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
+		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
 	</insert>
 	
 	<insert id="insertReserveShopInfo">
 		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
+
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
 		select *
 		from (
@@ -348,7 +412,11 @@
 		where
 			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
 			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
@@ -368,7 +436,12 @@
    <!-- 첫 LOAD FORM용 -->
    <select id="getShopList" resultMap="shopInfoResultSet">
    
-   SELECT * FROM SHOP_INFO
+   		SELECT * FROM SHOP_INFO
+        FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
+		FROM SHOP_INFO
+		FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+		GROUP BY SHOP_NO
+		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
    
 	   <if test="SHOP_CATE != null or SHOP_CATE eq '' ">
 	   WHERE SHOP_CATE  = #{SHOP_CATE}
@@ -376,27 +449,27 @@
 	   
    </select>
    
-   <select id="getReservationList" resultType="Map" parameterType="int">
-   
-		SELECT 
-		SI.SHOP_NO
-		,SI.SHOP_OPEN
-		,SI.SHOP_CLOSE
-		,SI.SHOP_OFFDAY
-		,SI.SHOP_BREAK_START
+    <select id="getReservationList" resultType="Map" parameterType="int">
+      SELECT 
+      SI.SHOP_NO
+      ,SI.SHOP_OPEN
+      ,SI.SHOP_CLOSE
+      ,SI.SHOP_OFFDAY
+      ,SI.SHOP_BREAK_START
         ,SI.SHOP_BREAK_CLOSE
         ,SI.MAX_RESERVATION_TIME
-		,SM.MENU_NAME
-		,SM.MENU_PRICE
-		,SM.MENU_STATUS
-		,SM.MENU_CATE
-		,SI.SHOP_PHONE
-		,SI.SHOP_ADDRESS
-		,SI.SHOP_NAME
-		,SI.SHOP_RENAME
-		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
-			WHERE SI.SHOP_NO = #{shop_no}
-     
+      ,SM.MENU_NAME
+      ,SM.MENU_PRICE
+      ,SM.MENU_STATUS
+      ,SM.MENU_CATE
+      ,SI.SHOP_PHONE
+        ,SI.SHOP_INTRO
+      ,SI.SHOP_ADDRESS
+      ,SI.SHOP_NAME
+      ,SI.SHOP_RENAME
+      ,SI.MEMBER_ID
+      FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
+         WHERE SI.SHOP_NO = #{shop_no}
    </select>
    
    <select id="getListAllCount" resultType="_int">
@@ -413,5 +486,8 @@
    
 <!-- 원태원 끝 ====================================================== -->
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 </mapper>

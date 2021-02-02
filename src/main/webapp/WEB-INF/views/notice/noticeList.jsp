@@ -156,8 +156,8 @@ td{border-bottom: 1px solid #1D3557 !important;}
 			</tr>	
 		</table>
 			
-			<c:if test="${ loginUser.member_id eq 'admin' }">
-			<input type="hidden" name="mId" value='${loginUser.member_id}'>
+			<c:if test="${ loginUser.memberId eq 'admin' }">
+			<input type="hidden" name="mId" value='${loginUser.memberId}'>
 			<button class="nBtn" onclick="nInsert();">글쓰기</button>
 			</c:if>
 

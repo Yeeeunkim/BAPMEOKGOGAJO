@@ -222,14 +222,14 @@
 			 if(false === reg.test($('#o_pwd').val())){
 				 $('#pwd1Result').text('사용 불가능한 비밀번호입니다.');
 				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#o_pwd').val('');
-		         $('#o_pwd').focus();
+				 //$('#o_pwd').val('');
+		        // $('#o_pwd').focus();
 		         return false;
 			 }else if($('#o_pwd').val()==''){
 				 $('#pwd1Result').text('비밀번호를  입력해주세요.');
 				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#o_pwd').val('');
-		         $('#o_pwd').focus();
+				 //$('#o_pwd').val('');
+		         //$('#o_pwd').focus();
 		         return false;
 			}else{
 					$('#pwd1Result').text('사용 가능한 비밀번호입니다');
@@ -242,14 +242,14 @@
 			 if($('#o_pwd').val() != $('#o_pwd2').val()){
 				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');
 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#o_pwd2').val('');
-		         $('#o_pwd2').focus();
+				// $('#o_pwd2').val('');
+		        // $('#o_pwd2').focus();
 		         return false;
 			 }else if($('#o_pwd2').val()==''){
 				 $('#pwd2Result').text('비밀번호를  입력해주세요.');
 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#o_pwd2').val('');
-		         $('#o_pwd2').focus();
+				// $('#o_pwd2').val('');
+		        // $('#o_pwd2').focus();
 		         return false;
 			}else{
 					$('#pwd2Result').text('비밀번호가 일치합니다.');
