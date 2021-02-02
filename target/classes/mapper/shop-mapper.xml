@@ -385,7 +385,7 @@
 	</select>
 	
 	<insert id="insertDeclare">
-		insert into shop_declare values(SEQ_DNO.nextval,#{memberId},'Y',#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
+		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
 	</insert>
 	
 	<insert id="insertReserveShopInfo">
