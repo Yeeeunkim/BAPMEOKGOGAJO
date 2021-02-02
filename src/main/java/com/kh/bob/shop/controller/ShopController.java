@@ -487,7 +487,7 @@ public class ShopController {
 		System.out.println("잘들어왔는지:" + shopresult + "," + menuresult);
 
 		if (shopresult > 0 && menuresult > 0) {
-			return "/shop/shopList";
+			return "redirect:shop.do";
 		} else {
 			throw new ShopException("게시글 등록에 실패하였습니다.");
 		}
@@ -541,7 +541,7 @@ public class ShopController {
 		int declareInsert=sService.insertDeclare(sd);
 		
 		if (declareInsert>0) {
-			return "/shop/shopList";
+			return "redirect:shop.do";
 		} else {
 			throw new ShopException("식당신고 등록에 실패하였습니다.");
 		}

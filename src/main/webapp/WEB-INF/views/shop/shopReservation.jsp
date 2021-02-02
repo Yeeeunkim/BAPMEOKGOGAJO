@@ -134,8 +134,6 @@
 	color: white;
 }
 
-<<<<<<<
-HEAD
 .user {
 	display: block;
 	margin: 0 auto;
@@ -319,6 +317,9 @@ h4, h2 {
 	width: 10px;
 	height: 10px;
 }
+
+#shopIntro{margin-left:25%; text-align: center}
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -390,10 +391,9 @@ h4, h2 {
 	<br>
 	<br>
 	<br>
+		<div id="shopIntro" style="width:50%">${reservationList[0].SHOP_INTRO}</div>
 	<br>
 	<br>
-
-
 	<form action="ShopReservation.do" method="post"
 		enctype="Multipart/form-data" onsubmit="return writeBoard();">
 
@@ -471,7 +471,7 @@ h4, h2 {
 		                url : "/bob/reserveDate.do",
 		                type: "post",
 		               dataType: 'json',
-		               data : {shopNo,shopNo},
+		               data : {shopNo, shopNo},
 		               success : function(data){
 							for(var i=0; i<data.shopreserveTime.length; i++){
 								/* document.getElementById(data.shopreserveTime[i]).disabled = false; */
