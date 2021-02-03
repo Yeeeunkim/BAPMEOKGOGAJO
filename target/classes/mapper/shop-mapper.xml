@@ -384,6 +384,7 @@
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
+
 	
 	<insert id="insertDeclare">
 		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
@@ -436,16 +437,15 @@
 	   </if>
 	   
    </select>
-   
 
    <select id="getReservationList" resultType="Map" parameterType="int">
-   
       SELECT 
       SI.SHOP_NO
       ,SI.SHOP_OPEN
       ,SI.SHOP_CLOSE
       ,SI.SHOP_OFFDAY
       ,SI.SHOP_BREAK_START
+
       ,SI.SHOP_BREAK_CLOSE
       ,SI.MAX_RESERVATION_TIME
       ,SM.MENU_NAME
@@ -474,4 +474,5 @@
    </select>
    
 <!-- 원태원 끝 ====================================================== -->
+
 </mapper>

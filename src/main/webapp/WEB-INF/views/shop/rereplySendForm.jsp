@@ -28,6 +28,9 @@
 		$(function(){
 			$('#form').submit(function(event){
 				self.close();
+				$shopNo = ${ shopNo }
+				
+				console.log(shopNo);
 			});
 		});
 	</script>

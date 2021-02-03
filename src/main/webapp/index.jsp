@@ -8,11 +8,12 @@
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-
 <script>
 	$(document).ready(function(){
 		location.href='home.do';
 	});
 </script>
+
 </body>
+
 </html>

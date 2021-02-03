@@ -25,7 +25,6 @@ public class ShopMenu {
 		this.shopNo = shopNo;
 	}
 
-
 	public ShopMenu(int menuNo, String menuName, String menuPrice, char menuStatus, int menuCate, int shopNo) {
 		super();
 		this.menuNo = menuNo;

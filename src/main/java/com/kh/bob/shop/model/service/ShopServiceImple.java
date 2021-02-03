@@ -49,6 +49,7 @@ public class ShopServiceImple implements ShopService {
 	// 강동기 끝 ================================================
 
 	//김예은 시작 =============================================
+
 	//사장님마이페이지 - 식당 정보 조회
 	@Override
 	public ShopInfo selectMyShop(String member_id) {
