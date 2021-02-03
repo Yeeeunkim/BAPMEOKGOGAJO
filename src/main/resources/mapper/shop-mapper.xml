@@ -384,14 +384,6 @@
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
->>>>>>> 3d862dcaf96fa1e705540f81078b882b83072a1f
 	
 	<insert id="insertDeclare">
 		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
@@ -459,7 +451,6 @@
       ,SM.MENU_STATUS
       ,SM.MENU_CATE
       ,SI.SHOP_PHONE
-<<<<<<< HEAD
       ,SI.SHOP_INTRO
       ,SI.SHOP_ADDRESS
       ,SI.SHOP_NAME

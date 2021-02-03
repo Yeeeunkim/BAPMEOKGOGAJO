@@ -131,7 +131,6 @@ public class ShopServiceImple implements ShopService {
 
 	//김예은 끝 =============================================
 
->>>>>>> 3d862dcaf96fa1e705540f81078b882b83072a1f
 
 	// 김하영 시작 ================================================
 	@Override
