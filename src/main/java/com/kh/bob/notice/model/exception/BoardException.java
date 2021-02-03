@@ -6,4 +6,3 @@ public class BoardException extends RuntimeException {
 		super(msg);
 	}
 }
-

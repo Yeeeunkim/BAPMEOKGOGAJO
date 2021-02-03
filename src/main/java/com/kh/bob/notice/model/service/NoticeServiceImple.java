@@ -121,6 +121,10 @@ public class NoticeServiceImple implements NoticeService {
 		return nDAO.selectCommentList(sqlSession, bNo);
 	}
 
+	@Override
+	public ArrayList<Board> faqList() {
+		return nDAO.faqList(sqlSession);
+	}
 
 
 

@@ -30,5 +30,7 @@ public interface MemberService {
 
 	int pwdUpdate(HashMap<String, String> map);
 
+	int cancelShop(int reserveNo);
+
 // 김예은 끝 =================================================
 }

@@ -48,6 +48,7 @@
 <body style="font-family: 'Gugi'; " >
 
 	<jsp:include page="../common/menubar.jsp" />
+		
 	<div class="outer"><br><br>
 		<h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<c:out value="${ loginUser.member_name}님 환영합니다  🙌 ‍"/></h1>
 		<div class="mid">
@@ -55,6 +56,15 @@
 			<!-- <div class="inner"> -->
 			<h5>◼&nbsp예약 내역</h5>
 			 <hr class="line"> 
+			 <c:if test="${ empty re }">
+			 	<table>
+			 	<tr>
+			 		<td>🚨예약한 내역이 없습니다.</td>
+			 		<button value="식당 예약하기">
+			 	</tr>
+			 	</table>
+			 </c:if>
+			 <c:if test="${ !empty re }">
 				<table>
 					<tr height="5px">
 					</tr>
@@ -70,10 +80,9 @@
 					</c:forEach>
 					</tr>
 					<tr height="30px">
-					<c:forEach var="reme" items="${ reme }">
-						<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp : ${ reme.menuName }</td>
-						</c:forEach>
-						<td><div class="cancelBtn" >예약취소</div></td>
+					<td>메뉴&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<c:forEach var="reme" items="${ reme }"> ${ reme.menuName }&nbsp&nbsp
+						</c:forEach></td>
+						<td><a onclick="sCancel();"><div class="cancelBtn">예약취소</div></a></td>
 					</tr>
 					<tr height="30px">
 					<c:forEach var="re" items="${ re }">
@@ -86,13 +95,20 @@
 					<tr height="5px">
 					</tr>
 				</table>
+			</c:if>
 		 <hr class="line"> 
 			<h5>◼&nbsp리뷰 내역 </h5>
-			 <hr class="line"> 
+			 <hr class="line">
+			 <c:if test="${ empty rev }">
+			 	<table>
+			 	<tr>
+			 		<td>🚨작성한 리뷰가 없습니다.</td>
+			 	</tr>
+			 	</table>
+			 </c:if>
+			 <c:if test="${ !empty rev }">		 
 				<table>
-					<tr height="10px">
-					<td width="100px">
-					</tr>
+					<tr height="10px"></tr>
 					<tr height="30px">
 					<td rowspan="3" width="160px"><img src="resources/images/파스타.jpg" height="140px" width="160px"></td>
 					<c:forEach var="rev" items="${ rev }">
@@ -115,6 +131,7 @@
 					<tr height="5px">
 					</tr>
 				</table>
+				</c:if>
 				<div class="inner"> 
 				 <hr class="line"> 
 				<c:url var="pwdUpdate" value="mPwdUpdate.me"/>

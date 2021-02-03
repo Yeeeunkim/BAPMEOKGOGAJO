@@ -81,5 +81,9 @@
 		where MEMBER_ID=#{memberId}
 	</update>
 	
-
+	<update id="cancelShop">
+		update reserve_info
+		set reserve_status='N'
+		where RESERVE_NO=#{reserveNo}
+	</update>
 </mapper>

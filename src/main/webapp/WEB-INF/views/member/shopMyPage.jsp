@@ -39,7 +39,7 @@
 		margin-bottom: 50px;
 	}
 	#introduceArea{
-		background-color: lightgray;
+		background-color: #F4F3EE;
 		height: 150px;
 		width: 100%;
 		padding: 20px;
@@ -92,6 +92,16 @@
 	.status{
 		height: 25px;
 		width: 100px;
+		text-align: center;
+		background-color: #F4F3EE;
+	}
+	
+	.border{
+		boarder-color: gray;
+	}
+	.statusfinal{
+		height: 25px;
+		width: 100px;
 		background-color: #3ABD37;
 		text-align: center;
 	}
@@ -128,6 +138,7 @@
 	.updateBtnArea{
 		text-align: center;
 	}
+	
 </style>
 </head>
 <body  style="font-family: 'Gugi'; ">
@@ -149,9 +160,9 @@
 		   <table class="table table-bordered table-sm" id="drinkmenu">
 		   <input type="hidden" name="menuCate" value="1">
 			      <tr>
-			      	<td>
+			      	<td>메인 <br>
 			      	<c:forEach var="sm" items="${ sm }">
-			        	메인 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sm.menuName }&nbsp&nbsp&nbsp${ sm.menuPrice }원<br>
+			        	 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sm.menuName }&nbsp&nbsp&nbsp${ sm.menuPrice }원<br>
 			        </c:forEach>
 			        </td>
 			      </tr>
@@ -159,9 +170,9 @@
 		 <table class="table table-bordered table-sm" id="drinkmenu">
 		   <input type="hidden" name="menuCate" value="2">
 			      <tr>
-			      	<td>
+			      	<td>사이드<br>
 			      	<c:forEach var="sms" items="${ sms }">
-			       		사이드  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sms.menuName}&nbsp&nbsp&nbsp${ sms.menuPrice }원<br>
+			       		 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ sms.menuName}&nbsp&nbsp&nbsp${ sms.menuPrice }원<br>
 			        </c:forEach>
 			        </td>
 			      </tr>
@@ -169,9 +180,9 @@
 		   <table class="table table-bordered table-sm" id="drinkmenu">
 		   <input type="hidden" name="menuCate" value="3">
 			      <tr>
-			      	<td>
+			      	<td>음료<br>
 			      	 <c:forEach var="smb" items="${ smb }">
-			         	음료 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ smb.menuName}&nbsp&nbsp&nbsp${ smb.menuPrice}원<br>
+			         	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${ smb.menuName}&nbsp&nbsp&nbsp${ smb.menuPrice}원<br>
 			         </c:forEach>
 			         </td>
 			      </tr>
@@ -183,20 +194,28 @@
 		<div class="inner reservationDiv">
 			<label class="mainLabel">◼&nbsp예약 관리</label>
 			<table id="reservation">
-				<tr>
-				<c:forEach var="rm" items="${ rm }">
+				<tr class="status">
+					<td  width="100px">예약 번호 </td>
+					<td  width="350px">주문 메뉴</td>
+					<td  width="200px">인원수 & 예약 시간</td>
+					<td	 width="150px">결제상태</td>
+				</tr>
 				<c:forEach var="ri" items="${ ri }">
-					<td width="100px">${ ri.reserveNo }</td>
-					<td width="330px">${ rm.menuName }</td>
-					<td width="170px"><div class="reservationSeat">${ri.reservePeople}명 &nbsp ${ ri.reserveTime }</div></td>
-					<td	width="100px">
-						<div>
-							<div class="status">결재완료</div>
+				<tr>
+					<td width="100px"  style="text-align: center" >${ ri.reserveNo }번 </td>
+					<td width="350px"  style="text-align: center" >
+					<c:forEach var="rm" items="${ rm }">
+					${ rm.menuName }
+				</c:forEach>
+					</td>
+					<td width="200px"  style="text-align: center" ><div class="reservationSeat">${ri.reservePeople}명 &nbsp ${ ri.reserveTime }</div></td>
+					<td	width="150px" >
+						<div >
+							<div class="statusfinal" >결제완료</div>
 						</div>
 					</td>
-				</c:forEach>
-				</c:forEach>
 				</tr>
+				</c:forEach>
 			</table>
 		</div><br>
 		<div class="inner reservationSettingDiv">
@@ -228,7 +247,7 @@
 			<div class="subDiv">
 				<label class="mainLabel">◼&nbsp가게 운영 시간</label>
 				<div class="innerContent">
-					오전&nbsp<input type="number" name="shopOpen" value="${ si.shopOpen }"  style="border: 0; width: 50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopClose" value="${ si.shopClose }"  style="border: 0; width: 50px;" readonly>시
+					오전&nbsp<input type="text" name="shopOpen" value="${ si.shopOpen }"  style="border: 0; width: 50px;" readonly>시 ~ 오후&nbsp<input type="text" name="shopClose" value="${ si.shopClose }"  style="border: 0; width: 50px;" readonly>시
 				</div>
 			</div>
 			<div class="subDiv">
@@ -250,7 +269,7 @@
 			<div class="subDiv">
 				<label class="mainLabel">◼&nbsp브레이크 타임</label>
 				<div class="innerContent"> 
-					오전&nbsp<input type="number" name="shopBreakStart" value="${ si.shopBreakStart }"  style="border: 0; width:  50px;" readonly>시 ~ 오후&nbsp<input type="number" name="shopBreakClose" value="${ si.shopBreakClose }" style="border: 0; width:  50px;"readonly>시 
+					오전&nbsp<input type="text" name="shopBreakStart" value="${ si.shopBreakStart }"  style="border: 0; width:  50px;" readonly>시 ~ 오후&nbsp<input type="text" name="shopBreakClose" value="${ si.shopBreakClose }" style="border: 0; width:  50px;"readonly>시 
 				</div>
 			</div>
 		</div><br>

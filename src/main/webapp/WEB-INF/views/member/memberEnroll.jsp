@@ -188,16 +188,16 @@
 	$(function(){
 			
 			$('#m_id').on('keyup', function(){
-				var memberId = $('#m_id').val().trim();//현재 내꺼 가져오기
+				var member_Id = $(this).val().trim();//현재 내꺼 가져오기
 			
-				if(memberId.length < 6){
+				if(member_Id.length < 6){
 					$('.guide').hide();
 					$('#idDuplicateCheck').val(0); //0이면 중복확인 안된 상태
 				}
 
 				$.ajax({
 					url: 'dupId.me',
-					data: {memberId:memberId},
+					data: {memberId:member_Id},
 					success:  function(data){
 						if(data == 'true'){
 							$('.guide.error').hide();

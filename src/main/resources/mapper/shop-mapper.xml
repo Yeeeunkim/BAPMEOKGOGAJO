@@ -151,28 +151,12 @@
 		 where MEMBER_ID = #{memberId}
 	</select>
 	<!-- 사용자마이페이지  - 예약내역 조회 -->
-<!-- 	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
+	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
 		select *
         from RESERVE_INFO
         where MEMBER_ID = #{memberId}
-	</select> -->
-	<select id="selectMyReInfo"  resultType ="hashmap" parameterType="hashmap" >
-		select RESERVE_NO        as "reserveNo",
-		       RESERVE_DATE      as "reserveDate",
-		         RESERVE_TIME			  as "reserveTime",
-		       RESERVE_PEOPLE  as "reservePeople",
-		       TOTAL_PRICE       as "totalPrice",
-		        RESERVE_STATUS 		as "reserveStatus",
-		        RESERVE_NAME		as "reserveName",
-		        RESERVE_PHONE		as "reservePhone",
-		        RESERVE_COMMENT		as "reserveComment",
-		        RESERVE_AD as "reserveAd",
-		        RESERVE_PAY			as  "reservePay",
-		        MEMBER_ID		      as	"memberId",
-		         SHOP_NO as "shopNo"
-        from RESERVE_INFO 
-        where MEMBER_ID = #{memberId} 
 	</select>
+
 	
 	<!-- 사용자마이페이지  - 사용자가 선택한 식당정보  -->
 	<select id="selectMyShopPick"  resultMap="mshopInfoResultSet">
@@ -207,7 +191,7 @@
 	</update>
 
 	<!-- 사장님마이페이지 식당수정- 식당 메뉴 -->
-    <update id="smenuUpdate" >
+     <update id="smenuUpdate" >
 	  <foreach item="item" collection="list" separator=";" open="DECLARE BEGIN" close="; END;">
 		update SHOP_MENU
    			set  MENU_NAME=#{item.menuName}, MENU_PRICE=#{item.menuPrice} , MENU_CATE=#{item.menuCate}
@@ -215,22 +199,72 @@
 	  </foreach>
 	</update>
 
-
-
 <!--김예은 끝 ================================================= -->
 
 
    
 <!-- 김하영 시작 ================================================ -->
-   
+   <select id="getReListCount" resultType="_int">
+		select count(*)
+		from shop_review
+		where review_status ='Y' AND SHOP_NO = #{shopNo}
+	</select>
+	
+ 	<select id="selectReList" resultMap="reviewResultSet">
+ 		select *
+ 		from shop_review
+ 		where review_status='Y' AND SHOP_NO = #{shopNo}
+ 		order by review_no desc
+ 	</select>
+ 	
+ 	<resultMap type="ShopReview" id="reviewResultSet">
+ 		<id property="reviewNo" column="REVIEW_NO"/>
+ 		<result property="reviewContents" column="REVIEW_CONTENTS" />
+ 		<result property="reviewWrite" column="REVIEW_WRITE"/>
+ 		<result property="reviewScore" column="REVIEW_SCORE"/>
+ 		<result property="shopNo" column="SHOP_NO"/>
+ 		<result property="memberId" column="MEMBER_ID"/>
+ 		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
+ 		<result property="renameFilename" column="RENAME_FILENAME"/>
+ 		<result property="reviewStatus" column="REVIEW_STATUS"/>
+ 	</resultMap>
+ 	
+ 	<insert id="insertReveiw">
+ 		insert into shop_review
+ 		values(seq_rno.nextval, #{reviewContents}, sysdate, #{reviewScore}, #{shopNo},
+ 				#{memberId},#{originalFilename}, #{renameFilename}, default)
+ 	</insert>
+ 	
+ 	<update id="deleteReview">
+ 		update shop_review
+ 		set review_status ='N'
+ 		where review_No = #{reviewNo}
+ 	</update>
+ 	
+ 	<insert id="insertReReply">
+ 		insert into review_reply
+ 		values(#{reviewNo}, #{replyContent}, #{memberId}, sysdate, default)
+ 	</insert>
+ 	
+ 	<select id="selectReReply">
+ 		select *
+ 		from review_reply
+ 		where review_no = #{reviewNo}
+ 	</select>
+ 	
+ 	<resultMap type="ReviewReply" id="reviewReplyResultSet">
+ 		<id property="reviewNo" column="REVIEW_NO"/>
+ 		<result property="replyContent" column="REPLY_CONTENT"/>
+ 		<result property="memberId" column="MEMBER_ID"/>
+ 		<result property="replyTime" column="REPLY_TIME"/>
+ 		<result property="replyStatus" column="REPLY_STATUS"/>
+ 	</resultMap>
 <!-- 김하영 끝 ================================================= -->
 
 
 <!-- 민병욱 시작 ================================================= -->
 
 	<!-- @@@@@테스트용 -->
-	
-	
 	<resultMap type="ReserveInfo" id="reserveInfoResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
 		<result property="reserveDate" column="RESERVE_DATE" />
@@ -341,7 +375,6 @@
 		<result property="shopNo" column="SHOP_NO" />
 	</resultMap>
 
-
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
@@ -366,8 +399,6 @@
 			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
 
-	
-	
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
 			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
@@ -387,7 +418,12 @@
    <!-- 첫 LOAD FORM용 -->
    <select id="getShopList" resultMap="shopInfoResultSet">
    
-   SELECT * FROM SHOP_INFO
+   		SELECT * FROM SHOP_INFO
+        FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
+		FROM SHOP_INFO
+		FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+		GROUP BY SHOP_NO
+		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
    
 	   <if test="SHOP_CATE != null or SHOP_CATE eq '' ">
 	   WHERE SHOP_CATE  = #{SHOP_CATE}
@@ -395,27 +431,27 @@
 	   
    </select>
    
-   <select id="getReservationList" resultType="Map" parameterType="int">
-   
-		SELECT 
-		SI.SHOP_NO
-		,SI.SHOP_OPEN
-		,SI.SHOP_CLOSE
-		,SI.SHOP_OFFDAY
-		,SI.SHOP_BREAK_START
+    <select id="getReservationList" resultType="Map" parameterType="int">
+      SELECT 
+      SI.SHOP_NO
+      ,SI.SHOP_OPEN
+      ,SI.SHOP_CLOSE
+      ,SI.SHOP_OFFDAY
+      ,SI.SHOP_BREAK_START
         ,SI.SHOP_BREAK_CLOSE
         ,SI.MAX_RESERVATION_TIME
-		,SM.MENU_NAME
-		,SM.MENU_PRICE
-		,SM.MENU_STATUS
-		,SM.MENU_CATE
-		,SI.SHOP_PHONE
-		,SI.SHOP_ADDRESS
-		,SI.SHOP_NAME
-		,SI.SHOP_RENAME
-		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
-			WHERE SI.SHOP_NO = #{shop_no}
-     
+      ,SM.MENU_NAME
+      ,SM.MENU_PRICE
+      ,SM.MENU_STATUS
+      ,SM.MENU_CATE
+      ,SI.SHOP_PHONE
+        ,SI.SHOP_INTRO
+      ,SI.SHOP_ADDRESS
+      ,SI.SHOP_NAME
+      ,SI.SHOP_RENAME
+      ,SI.MEMBER_ID
+      FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
+         WHERE SI.SHOP_NO = #{shop_no}
    </select>
    
    <select id="getListAllCount" resultType="_int">

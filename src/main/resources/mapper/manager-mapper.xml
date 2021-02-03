@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="managerMapper">
+	<resultMap type="ManageShopInfo" id="mShopInfoResultSet">
+		<id property="shopNo" column="SHOP_NO" /> 
+		<result property="shopName" column="SHOP_NAME" /> 
+		<result property="shopAddress" column="SHOP_ADDRESS" /> 
+		<result property="shopPhone" column="SHOP_PHONE" /> 
+		<result property="shopCate" column="SHOP_CATE" />
+		<result property="businessNumber" column="BUSINESS_NUMBER" /> 
+		<result property="memberId" column="MEMBER_ID" /> 
+	</resultMap>
+	<resultMap type="ManageReview" id="mReviewResultSet">
+		<id property="rNo" column="REVIEW_NO" /> 
+		<result property="rContents" column="REVIEW_CONTENTS" /> 
+		<result property="rWrite" column="REVIEW_WRITE" /> 
+		<result property="rScore" column="REVIEW_SCORE" /> 
+		<result property="shopNo" column="SHOP_NO" />
+		<result property="memberId" column="MEMBER_ID" /> 
+		<result property="originalFilename" column="ORIGINAL_FILENAME" /> 
+		<result property="renameFilename" column="RENAME_FILENAME" /> 
+		<result property="rStatus" column="REVIEW_STATUS" /> 
+	</resultMap>
+	<resultMap type="ManageDeclaration" id="mDeclarationResultSet">
+		<id property="dNo" column="DECLARE_NO" /> 
+		<result property="memberId" column="MEMBER_ID" /> 
+		<result property="dStatus" column="DECLARE_STATUS" /> 
+		<result property="sNo" column="SHOP_NO" /> 
+		<result property="sName" column="SHOP_NAME" />
+		<result property="dComment" column="DECLARE_COMMENT" /> 
+		<result property="dWrite" column="DECLARE_WRITE" /> 
+	</resultMap>
+	<resultMap type="DeclationReple" id="dRepleResultSet">
+		<id property="dNo" column="DECLARE_NO" /> 
+		<result property="dRComment" column="DECLARE_REPLY_COMMENT" /> 
+		<result property="dRWrite" column="DECLARE_REPLY_WRITE" /> 
+	</resultMap>
+	<resultMap type="ShopCategory" id="sCateResultSet">
+		<id property="shopCate" column="SHOP_CATE" /> 
+		<result property="shopSep" column="SHOP_SEPARATION_NM" /> 
+	</resultMap>
+	<resultMap type="CategorySales" id="cSalesResultSet">
+		<id property="shopCategory" column="SHOP_SEPARATION_NM" /> 
+		<result property="sales" column="SALES" /> 
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM SHOP_REVIEW
+		WHERE REVIEW_STATUS='Y' AND SHOP_NO=#{sNo}
+	</select>
+	<select id="selectRList" resultMap="mReviewResultSet">
+		SELECT *
+		FROM SHOP_REVIEW
+		WHERE REVIEW_STATUS='Y' AND SHOP_NO=#{sNo}
+		ORDER BY REVIEW_NO DESC
+	</select>
+	
+	<select id="getSListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM SHOP_INFO
+		<where>
+			<if test="bNumber != null">
+				BUSINESS_NUMBER = #{bNumber}
+			</if>
+			<if test="sName != null">
+				AND SHOP_NAME LIKE '%' || #{sName} || '%'
+			</if>
+			<if test="memberId != null">
+				AND MEMBER_ID = #{memberId}
+			</if>
+		</where>
+	</select>
+	<select id="selectSList" resultMap="mShopInfoResultSet">
+		SELECT SHOP_NO, SHOP_NAME, SHOP_ADDRESS, SHOP_PHONE, SHOP_CATE, BUSINESS_NUMBER, MEMBER_ID
+		FROM SHOP_INFO
+		<where>
+			<if test="bNumber != null">
+				BUSINESS_NUMBER = #{bNumber}
+			</if>
+			<if test="sName != null">
+				AND SHOP_NAME LIKE '%' || #{sName} || '%'
+			</if>
+			<if test="memberId != null">
+				AND MEMBER_ID = #{memberId}
+			</if>
+		</where>
+		ORDER BY SHOP_NO DESC
+	</select> 
+	<update id="deleteReview">
+		UPDATE SHOP_REVIEW
+		SET REVIEW_STATUS='N'
+		WHERE REVIEW_NO=#{rNo}
+	</update>
+	<select id="getDListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM SHOP_DECLARE
+	</select>
+	<select id="selectDList" resultMap="mDeclarationResultSet">
+		SELECT *
+		FROM SHOP_DECLARE
+		ORDER BY DECLARE_NO DESC
+	</select>
+	<select id="getDeclationDetail" resultMap="mDeclarationResultSet">
+		SELECT *
+		FROM SHOP_DECLARE
+		WHERE DECLARE_NO=#{dNo}
+	</select>
+	<select id="getDeclationReple" resultMap="dRepleResultSet">
+		SELECT *
+		FROM DECLARE_REPLY
+		WHERE DECLARE_NO=#{dNo}
+	</select>
+	<insert id="dRepleInsert">
+		INSERT INTO DECLARE_REPLY VALUES(#{dNo}, #{dRComment}, SYSDATE)
+	</insert>
+	<update id="updateDStatus">
+		UPDATE SHOP_DECLARE
+		SET DECLARE_STATUS='Y'
+		WHERE DECLARE_NO=#{dNo}
+	</update>
+	<select id="getShopCategory" resultMap="sCateResultSet">
+		SELECT *
+		FROM SHOP_CODE
+	</select>
+	<select id="getCategorySales" resultMap="cSalesResultSet">
+		SELECT SHOP_SEPARATION_NM, SUM(NVL(TOTAL_PRICE, 0)) AS SALES
+		FROM(SELECT SHOP_SEPARATION_NM, TO_NUMBER(TOTAL_PRICE) AS TOTAL_PRICE
+			FROM RESERVE_INFO
+			FULL OUTER JOIN SHOP_INFO USING(SHOP_NO)
+			FULL OUTER JOIN SHOP_CODE USING(SHOP_CATE))
+		GROUP BY SHOP_SEPARATION_NM
+	</select>
+</mapper>

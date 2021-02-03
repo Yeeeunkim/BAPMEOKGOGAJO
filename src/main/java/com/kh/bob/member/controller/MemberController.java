@@ -206,7 +206,7 @@ public class MemberController {
 	// 일반 마이페이지
 	@RequestMapping("myPage.me")
 	public ModelAndView myPageForm( HttpSession session, ModelAndView mv) {
-Member loginUser = (Member) session.getAttribute("loginUser");
+		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		HashMap<String,Object> paramMap = new HashMap<String,Object>();
 		
@@ -234,11 +234,10 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 		List<ShopReview> rev = sService.selectMyReview(loginUser.getMemberId());	
 		System.out.println("rev : " + rev);
 		
-		 if(rei != null || sp != null ||  re!= null || !reme.isEmpty() || !rev.isEmpty() ){ 
-			 mv.addObject("rei", rei);
+		 if(re!= null || !rev.isEmpty() ){ 
 			 mv.addObject("re", re);
-			 mv.addObject("sp", sp);
-			 mv.addObject("reme", reme);
+//			 mv.addObject("sp", sp);
+//			 mv.addObject("reme", reme);
 			 mv.addObject("rev", rev);
 			 mv.setViewName("myPage");
 			 return mv;
@@ -399,69 +398,69 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 			}
 		}
 	
-	//사장님 식당 정보 수정 기능
-	@RequestMapping("shopUpdate.me")
-	public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("menuNo") int menuNo, @RequestParam("shopNo") int shopNo,  @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
-			         HttpSession session, ModelAndView mv){
-		
-		String menuname[]=request.getParameterValues("MenuName");
-		String menuprice[]=request.getParameterValues("MenuPrice");
-		String sidename[]=request.getParameterValues("SideName");
-		String sideprice[]=request.getParameterValues("SidePrice");
-		String drinkname[]=request.getParameterValues("DrinkName");
-		String drinkprice[]=request.getParameterValues("DrinkPrice");
-				
-		List<ShopMenu> shopmenu =new ArrayList<ShopMenu>(si.getShopNo());
-		
-		for(int i=0; i<menuname.length; i++) {
-			System.out.println(menuname[i]+"test1");
-			System.out.println(menuprice[i]+"test1");
-			shopmenu.add(new ShopMenu( menuname[i],menuprice[i], 1));
-		}
-		for(int i=0; i<sidename.length; i++) {
-			System.out.println(sidename[i]+"test2");
-			System.out.println(sideprice[i]+"test2");
-			shopmenu.add(new ShopMenu( sidename[i], sideprice[i], 2));
-		}
-		for(int i=0; i<drinkname.length; i++) {
-			System.out.println(drinkname[i]+"test3");
-			System.out.println(drinkprice[i]+"test3");
-			shopmenu.add(new ShopMenu(drinkname[i],drinkprice[i], 3));
-		}
+		//사장님 식당 정보 수정 기능
+		@RequestMapping("shopUpdate.me")
+		public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("menuNo") int menuNo, @RequestParam("shopNo") int shopNo,  @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
+				         HttpSession session, ModelAndView mv){
 			
-			if(thumbnailImg != null && !thumbnailImg.isEmpty()) {//첨부파일이 있다면
-				if (si.getShopRename() != null) { // 기존에 넣었던 파일이 있다면
-					deleteFile(si.getShopRename(), request);
-				}
-				String renameFileName = saveFile(thumbnailImg, request);
-				
-				if(renameFileName != null) {
-					si.setShopRename(renameFileName);
-					si.setShopOrigin(thumbnailImg.getOriginalFilename());
-				}
+			String menuname[]=request.getParameterValues("MenuName");
+			String menuprice[]=request.getParameterValues("MenuPrice");
+			String sidename[]=request.getParameterValues("SideName");
+			String sideprice[]=request.getParameterValues("SidePrice");
+			String drinkname[]=request.getParameterValues("DrinkName");
+			String drinkprice[]=request.getParameterValues("DrinkPrice");
+					
+			List<ShopMenu> shopmenu =new ArrayList<ShopMenu>(si.getShopNo());
+			
+			for(int i=0; i<menuname.length; i++) {
+				System.out.println(menuname[i]+"test1");
+				System.out.println(menuprice[i]+"test1");
+				shopmenu.add(new ShopMenu( menuname[i],menuprice[i], 1));
 			}
-			
-			int siResult = sService.sinfoUpdate(si);
-			int smResult = sService.smenuUpdate(shopmenu);
-//			int smsResult = sService.sideUpdate(sms);
-//			int smbResult = sService.beverUpate(smb);
-			
-			System.out.println("siUpdate" + si);
-			System.out.println("smUpdate" + shopmenu);
-//			System.out.println("smsUpdate" + sms);
-//			System.out.println("smbUpdate" + smb);
-			
-		 if(siResult > 0 || smResult > 0 ){ 
-			  mv.addObject("si", si);
-//			  mv.addObject("shopmenu", shopmenu);
-//			  mv.addObject("sms", sms);
-//			  mv.addObject("smb", smb);
-			  mv.setViewName("redirect:shopMypage.me"); 
-		 }else { 
-			 throw new MemberException("사장님 마이페이지 수정에 실패했습니다."); 
-		 }
-		return mv;
-	}
+			for(int i=0; i<sidename.length; i++) {
+				System.out.println(sidename[i]+"test2");
+				System.out.println(sideprice[i]+"test2");
+				shopmenu.add(new ShopMenu( sidename[i], sideprice[i], 2));
+			}
+			for(int i=0; i<drinkname.length; i++) {
+				System.out.println(drinkname[i]+"test3");
+				System.out.println(drinkprice[i]+"test3");
+				shopmenu.add(new ShopMenu(drinkname[i],drinkprice[i], 3));
+			}
+				
+				if(thumbnailImg != null && !thumbnailImg.isEmpty()) {//첨부파일이 있다면
+					if (si.getShopRename() != null) { // 기존에 넣었던 파일이 있다면
+						deleteFile(si.getShopRename(), request);
+					}
+					String renameFileName = saveFile(thumbnailImg, request);
+					
+					if(renameFileName != null) {
+						si.setShopRename(renameFileName);
+						si.setShopOrigin(thumbnailImg.getOriginalFilename());
+					}
+				}
+				
+				int siResult = sService.sinfoUpdate(si);
+				int smResult = sService.smenuUpdate(shopmenu);
+//				int smsResult = sService.sideUpdate(sms);
+//				int smbResult = sService.beverUpate(smb);
+				
+				System.out.println("siUpdate" + si);
+				System.out.println("smUpdate" + shopmenu);
+//				System.out.println("smsUpdate" + sms);
+//				System.out.println("smbUpdate" + smb);
+				
+			 if(siResult > 0 || smResult > 0 ){ 
+				  mv.addObject("si", si);
+//				  mv.addObject("shopmenu", shopmenu);
+//				  mv.addObject("sms", sms);
+//				  mv.addObject("smb", smb);
+				  mv.setViewName("redirect:shopMypage.me"); 
+			 }else { 
+				 throw new MemberException("사장님 마이페이지 수정에 실패했습니다."); 
+			 }
+			return mv;
+		}
 	
 	//파일 이름 날짜로 수정하는 과정
 		public String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -568,5 +567,11 @@ Member loginUser = (Member) session.getAttribute("loginUser");
 		}
 	}
 	
+	//예약취소
+	@RequestMapping("reCancel.me")
+	public String cancelShop(@RequestParam("reserveNo") int reserveNo) {
+		int result = bmService.cancelShop(reserveNo);
+		return "redirect:home.do";
+	}
 	// 김예은 끝 =================================================
 }

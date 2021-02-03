@@ -96,14 +96,10 @@
 			 if(false === reg.test($('#newPwd').val())){
 				 $('#pwd1Result').text('사용 불가능한 비밀번호입니다.');
 				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#newPwd').val('');
-		         $('#newPwd').focus();
 		         return false;
 			 }else if($('#newPwd').val()==''){
 				 $('#pwd1Result').text('비밀번호를  입력해주세요.');
 				 $('#pwd1Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#newPwd').val('');
-		         $('#newPwd').focus();
 		         return false;
 			}else{
 					$('#pwd1Result').text('사용 가능한 비밀번호입니다');
@@ -116,14 +112,10 @@
 			 if($('#newPwd').val() != $('#newPwCheck').val()){
 				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');
 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#newPwCheck').val('');
-		         $('#newPwCheck').focus();
 		         return false;
 			 }else if($('#newPwCheck').val()==''){
 				 $('#pwd2Result').text('비밀번호를  입력해주세요.');
 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
-				 $('#newPwCheck').val('');
-		         $('#newPwCheck').focus();
 		         return false;
 			}else{
 					$('#pwd2Result').text('비밀번호가 일치합니다.');

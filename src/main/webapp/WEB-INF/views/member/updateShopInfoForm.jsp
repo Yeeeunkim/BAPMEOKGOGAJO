@@ -234,6 +234,7 @@ crossorigin="anonymous"></script>
 	font-size: 20px; 
 	text-align: center;
 	}  
+	
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -246,23 +247,11 @@ crossorigin="anonymous"></script>
    	 <input type="hidden" name="memberId" value="${ loginUser.memberId}"> 
    	 <input type="hidden" name="shopOrigin" value="${ si.shopOrigin }">
    	 <input type="hidden" name="shopRename" value="${ si.shopRename }">
-    <c:forEach var="sm" items="${ sm }">
+   	 <c:forEach var="sm" items="${ sm }">
 	   	<input type="hidden" name="menuNo" value="${ sm.menuNo }">
-	   	<input type="hidden" name="menuStatus" value="${ sm.menuStatus }">
 	   	<input type="hidden" name="shopNo" value="${ sm.shopNo }">
-	   	<input type="hidden" name="menuCate" value="${ sm.menuCate }">
-	 </c:forEach>
-   <%--  <c:forEach var="sms" items="${ sms }">
-    	<input type="hidden" name="menuNo" value="${ sms.menuNo }">
-	   	<input type="hidden" name="menuStatus" value="${ sms.menuStatus }">
-	   	<input type="hidden" name="menuCate" value="${ sms.menuCate }">
-   </c:forEach>
-    <c:forEach var="smb" items="${ smb }">
-    	<input type="hidden" name="menuNo" value="${ smb.menuNo }">
-	   	<input type="hidden" name="menuStatus" value="${ smb.menuStatus }">
-	   	<input type="hidden" name="menuCate" value="${ smb.menuCate }">
-   </c:forEach> --%>
-   
+	   	<input type="hidden" name="menuStatus" value="${sm.menuStatus }">
+	  </c:forEach>
      <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" >--선택해주세요--</option>
          <option value="1" selected="selected">한식</option>
@@ -296,7 +285,7 @@ crossorigin="anonymous"></script>
 	
 	<div id="fileArea">
 		<input type="file" href="${ contextPath }/resources/shopuploadFiles/${ si.shopRename }
-			download="${ si.shopOrigin }"  id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
+			download="${ si.shopOrigin }"   id="thumbnailImg"  name="thumbnailImg" onchange="LoadImg(this)">
 		 <br>
 	</div>
 	

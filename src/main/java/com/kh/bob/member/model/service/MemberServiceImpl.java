@@ -76,6 +76,12 @@ public class MemberServiceImpl implements MemberService {
 	public int pwdUpdate(HashMap<String, String> map) {
 		return bmDAO.pwdUpdate(sqlSession, map);
 	}
+	
+	//예약취소
+	@Override
+	public int cancelShop(int reserveNo) {
+		return bmDAO.cancelShop(sqlSession, reserveNo);
+	}
 
 // 김예은 끝 =================================================
 }
