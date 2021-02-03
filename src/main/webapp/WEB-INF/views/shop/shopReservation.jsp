@@ -53,11 +53,13 @@
    margin: auto;
    text-align: center;
 }
+
 .form-group {
    width: 70%;
    height: 30%;
    margin: auto;
 }
+
 #enrollArea {
    /*    border: 1px solid lightgray; */
    width: 80%;
@@ -66,10 +68,12 @@
    margin: 0 auto;
    margin-top: 50px;
 }
+
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
+
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -78,22 +82,27 @@
    width: 250px !important;
    height: 50px;
 }
+
 #info {
    position: absolute;
    left: 10%;
 }
+
 .input-info {
    display: inline;
 }
+
 .cInput {
    width: 30%;
 }
+
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
+
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -102,17 +111,20 @@
    width: 250px !important;
    height: 50px;
 }
+
 .line {
    width: 60%;
    margin: auto;
    margin-bottom: 50px;
    border: solid 2px gray;
 }
+
 #menu {
    margin: auto;
    width: 70%;
    text-align: center;
 }
+
 .menuPlus {
    display: block !important;
    margin: 0 auto !important;
@@ -121,6 +133,7 @@
    border: 0px;
    color: white;
 }
+
 .user {
    display: block;
    margin: 0 auto;
@@ -128,16 +141,20 @@
    height: 70px;
    float: left;
 }
+
 #user {
    margin-left: 20%
 }
+
 #userimg {
    height: 100px;
    width: 100px;
 }
+
 #gps {
    width: 40px;
 }
+
 #map {
    top: 20%;
    width: 50%;
@@ -146,6 +163,7 @@
    margin: auto;
    text-align: center;
 }
+
 #btnR {
    background-color: #F42B03;
    border: none;
@@ -155,20 +173,24 @@
    width: 100px;
    height: 40px;
 }
+
 td {
    width: 390px !important;
 }
+
 #btnR {
    display: flex;
    align-items: center;
    justify-content: center;
 }
+
 .time {
    margin: auto;
    display: flex;
    align-items: center;
    justify-content: center;
 }
+
 #timeB {
    background-color: #F42B03;
    border: none;
@@ -178,6 +200,7 @@ td {
    width: 100px;
    height: 40px;
 }
+
 #map {
    margin: auto;
    display: flex;
@@ -186,14 +209,17 @@ td {
    width: 70%;
    height: 30%;
 }
+
 #menuP {
    border-radius: 30px;
    width: 800px;
    height: 400px;
 }
+
 h4, h2 {
    margin-left: 8%;
 }
+
 .button {
    background-color: #F42B03;
    border: none;
@@ -202,10 +228,12 @@ h4, h2 {
    width: 100px;
    height: 40px;
 }
+
 #review {
    display: block;
    margin-left: 48%;
 }
+
 #declare {
    display: inline-block;
    margin-left: 90%;
@@ -214,27 +242,31 @@ h4, h2 {
    height: 20px;
    font-size: 10px;
 }
+
 .image {
    display: inline-block;
 }
+
 .review {
    display: inline-block;
    height: 20%;
 }
+
 #floatingTextarea2 {
    margin-left: 35%;
    margin-top: 5%;
    border-radius: 5px;
    border-color: gray;
 }
+
 .reviewList {
-   margin-left: 400px;
-   width: 1300px;
-   
+   margin-left: 100px;
 }
+
 #user {
    margin-left: 100px;
 }
+
 #reviewbtn {
    margin-left: 800px;
    background-color: #F42B03;
@@ -244,39 +276,50 @@ h4, h2 {
    width: 100px;
    height: 40px;
 }
+
 #rebottom {
    padding: 30px;
 }
+
 .rere {
    color: orange;
 }
+
 .reDelete {
    color: red;
 }
+
 #map {
    margin-left: 100px;
    width: 900px;
    height: 500px;
 }
+
 .replytextarea {
    display: none;
 }
+
 #reviewScore {
    color: #0B0B61;
    width: 20px;
 }
+
 #buttonTab {
    border-left: hidden;
    border-right: hidden;
 }
+
 .pi {
    color: #08088A;
 }
+
 #usertd {
    width: 10px;
    height: 10px;
 }
+
 #shopIntro{margin-left:25%; text-align: center}
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -402,12 +445,15 @@ h4, h2 {
             }else{
                return true;
             }
+
+
             if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
                alert("메뉴를 선택하세요");
                return false;
             }else{
                return true;
             }
+
          }
          </script>
 
@@ -437,6 +483,7 @@ h4, h2 {
                      }
                   });
             });
+
                $('#example-date-input').change(function (){
                       date = $('#example-date-input').val();
                   console.log(date);
@@ -648,22 +695,22 @@ h4, h2 {
                </c:url>
 
                <td id="rereplytd">
-               	  <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }">
-               		<span class="rere" onclick="rereplySendForm(${re.reviewNo}, '<%=request.getParameter("SHOP_NO")%>');">답글</span>
+               	  <c:if test="${ loginUser.memberId eq reservationList[0].MEMBER_ID }">
+               		<span class="rere" onclick="rereplySendForm(${re.reviewNo});">답글</span>
                	  </c:if>
-                  <c:if test="${ loginUser.memberId eq re.memberId || loginUser.auth_code == 0 }">
+                  <c:if test="${ loginUser.memberId eq re.memberId }">
                   	&nbsp;&nbsp;&nbsp;&nbsp; <a class="reDelete" href="${ redelete }">삭제</a>
                   </c:if>
                </td>
             </tr>
-	            <tr>
-	            <c:if test="${ rereply.reviewNo eq re.reviewNo }">
-	            	<td></td>
-	            	<td>사장님 : <br>${rereply.replyTime } </td>
-	            	<td> ${rereply.replyContent } </td>
-	            </c:if>	
-	            </tr>
+            <tr class="replytextarea">
+               <td><textarea rows="10" cols="70" id="textarea"></textarea> <input
+                  type="button" value="답글 등록" onclick="replysend(${re.reviewNo})">
+                  <input type="button" class="recancle" value="취소"></td>
+
+            </tr>
          </table>
+
       </form>
       <br>
 
@@ -710,37 +757,27 @@ h4, h2 {
    </div>
 
    <script>
-   function rereplySendForm(reid,shopNum){
- 		window.open('', 'rereplySendForm' ,'width=500, height=300');
- 		
- 		var form = document.createElement('form');
- 		form.action = "rereplySendForm.sh";
- 		form.method = "post";
- 		form.target = "rereplySendForm";
- 		
- 		var input = document.createElement("input");
- 		input.type = "hidden";
- 		input.name = "reNo";
- 		input.value = reid;
- 		
- 		var shopNo = document.createElement("input");
- 		shopNo.type = "hidden";
- 		shopNo.name = "shopNo";
- 		shopNo.value = parseInt(shopNum);
- 		
- 		
- 		/* shopNo.value =Integer.parseInt((String)("SHOP_NO")); */
- 		
- 		console.log(shopNum);
- 		form.appendChild(input);
- 		form.appendChild(shopNo);
- 		 
- 		
- 		document.body.appendChild(form);
- 		form.submit();
- 		document.body.removeChild(form);
- 		
- 	}
+        function rereplySendForm(reid){
+           window.open('', 'rereplySendForm' ,'width=500, height=300');
+           
+           var form = document.createElement('form');
+           form.action = "rereplySendForm.sh";
+           form.method = "post";
+           form.target = "rereplySendForm";
+           
+           var input = document.createElement("input");
+           input.type = "hidden";
+           input.name = "reNo";
+           input.value = reid;
+           
+           form.appendChild(input);
+           
+           document.body.appendChild(form);
+           form.submit();
+           document.body.removeChild(form);
+           
+        }
+
  </script>
 
    <script>
@@ -838,6 +875,7 @@ h4, h2 {
                      alert("error");
                      }
                   });
+
          }); 
  
     </script>
@@ -986,6 +1024,7 @@ h4, h2 {
                      alert("error");
                      }
                   });
+
          }); 
  
  </script>
@@ -1009,6 +1048,7 @@ h4, h2 {
          location.href= 'reinsertForm.sh?shopNo='<%=request.getParameter("SHOP_NO")%>;
       } --%>
       
+
       function declareEnroll(){
          location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;
       }

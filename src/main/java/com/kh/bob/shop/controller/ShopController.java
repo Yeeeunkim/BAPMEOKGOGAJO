@@ -45,6 +45,7 @@ import com.kh.bob.shop.model.vo.ShoplistPageInfo;
 
 @Controller
 public class ShopController {
+<<<<<<< HEAD
 	@Autowired
 	private ShopService sService;
 
@@ -762,3 +763,4 @@ public class ShopController {
 	// 원태원 끝 ======================================================
 
 }
+
