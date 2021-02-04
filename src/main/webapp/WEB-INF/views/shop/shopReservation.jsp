@@ -28,8 +28,14 @@
 <!-- jQuery -->
 <script
    src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
+
+<!-- 진식씨? 태원씨? 카카오맵 스크립트 -->
+<!-- <script type="text/javascript" -->
+<!-- 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=673fc628ebaa83da22c5004efaed383c&libraries=services,clusterer,drawing"></script> -->
+<!-- 동기씨 카카오맵 스크립트 -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9bc905556dec1b7404a2b39d054e7e2d&libraries=services,clusterer,drawing"></script>
+
 <!-- timepicker -->
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

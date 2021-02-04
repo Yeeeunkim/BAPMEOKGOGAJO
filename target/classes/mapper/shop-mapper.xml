@@ -27,7 +27,7 @@
 <!-- 강동기 시작 =============================================== -->
    
 <!-- 강동기 끝 ================================================ -->
- 
+
 <!--김예은 시작 ================================================= -->
 	<!-- ★ shopInfo resultMap -->  
 	<resultMap type="ShopInfo" id="mshopInfoResultSet">
@@ -202,7 +202,7 @@
 
 
 <!--김예은 끝 ================================================= -->
-   
+
 <!-- 김하영 시작 ================================================ -->
    	<select id="getReListCount" resultType="_int">
 		select count(*)
@@ -358,6 +358,7 @@
    
    
 <!-- 신진식 시작 =================================================== -->
+
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
 	</insert>
@@ -383,6 +384,7 @@
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
+
 	
 	<insert id="insertDeclare">
 		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
@@ -391,7 +393,7 @@
 	<insert id="insertReserveShopInfo">
 		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
-	
+
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
 
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
@@ -403,7 +405,7 @@
 		where
 			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
-	
+
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
 			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)

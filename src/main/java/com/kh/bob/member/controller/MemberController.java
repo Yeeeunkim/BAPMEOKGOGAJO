@@ -2,7 +2,6 @@
 
 import java.io.File;
 import java.io.IOException;
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,14 +27,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.bob.member.model.exception.MemberException;
 import com.kh.bob.member.model.service.MemberService;
 import com.kh.bob.member.model.vo.Member;
-
 import com.kh.bob.shop.model.service.ShopService;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
-import com.kh.bob.shop.model.vo.ShopSeat;
 
 
 

@@ -384,10 +384,7 @@
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
-<<<<<<< HEAD
 
-=======
->>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 	
 	<insert id="insertDeclare">
 		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
@@ -396,11 +393,7 @@
 	<insert id="insertReserveShopInfo">
 		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
 
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
@@ -412,11 +405,7 @@
 		where
 			  shop_no=#{shopNo} and ROWNUM=1	
 	</select>
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 	<insert id="insertReserveMenu">
 			<foreach item="item" collection="list" separator=" " open="INSERT ALL " close="SELECT * FROM DUAL">
 			INTO reserve_menu (RESERVE_NO, MENU_NO, MENU_NAME, MENU_QTY)
@@ -486,8 +475,4 @@
    
 <!-- 원태원 끝 ====================================================== -->
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b816d072119d5fa880fa9a307efec5d0e85db787
 </mapper>
