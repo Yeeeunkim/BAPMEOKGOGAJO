@@ -82,7 +82,7 @@
 				</c:if>
 				<c:if test="${ pi.currentPage > 1 }">
 					<li class="page-item">
-						<a class="page-link" href="review.ma?page=${ pi.currentPage - 1 }" aria-label="Previous">
+						<a class="page-link" href="shopList.ma?searchCondition=${ condition }&search=${ search }&page=${ pi.currentPage - 1 }" aria-label="Previous">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
@@ -93,7 +93,7 @@
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
-						<li class="page-item"><a class="page-link" href="review.ma?page=${ p }">${ p }</a></li>
+						<li class="page-item"><a class="page-link" href="shopList.ma?searchCondition=${ condition }&search=${ search }&page=${ p }">${ p }</a></li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${ pi.currentPage >= pi.maxPage }">
@@ -105,7 +105,7 @@
 				</c:if>
 				<c:if test="${ pi.currentPage < pi.maxPage }">
 					<li class="page-item">
-			      		<a class="page-link" href="review.ma?page=${ pi.currentPage + 1 }" aria-label="Next">
+			      		<a class="page-link" href="shopList.ma?searchCondition=${ condition }&search=${ search }&page=${ pi.currentPage + 1 }" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
 			      		</a>
 					</li>

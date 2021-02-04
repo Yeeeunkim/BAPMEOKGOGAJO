@@ -10,6 +10,7 @@ import com.kh.bob.member.model.vo.Member;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 
+
 @Repository("bmDAO")
 public class MemberDAO {
 // 김예은 시작 ================================================
@@ -49,6 +50,7 @@ public class MemberDAO {
 	public int pwdUpdate(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.update("memberMapper.pwdUpdate", map);
 	}
+
 // 김예은 끝 =================================================
 
 }
