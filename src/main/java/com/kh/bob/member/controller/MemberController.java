@@ -1,4 +1,4 @@
-package com.kh.bob.member.controller;
+﻿package com.kh.bob.member.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -61,9 +61,10 @@ public class MemberController {
 	// 로그인 기능 페이지
 	@RequestMapping("login.me")
 	public String login(Member m, HttpSession session, Model model) {
+
 		Member loginUser = bmService.loginMember(m);
-		System.out.println("loginUser : " + loginUser);
-		if (loginUser != null) {
+
+		if(loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			return "redirect:home.do";
 		} else {
@@ -164,8 +165,9 @@ public class MemberController {
 		m.setMember_birth(year + "/" + month + "/" + date);
 
 		int result = bmService.memberInsert(m);
-		System.out.println("m : " + m);
-		if (result > 0) {
+
+		if(result > 0) {
+
 			return "redirect:home.do";
 		} else {
 			throw new MemberException("일반 회원가입에 실패했습니다.");
@@ -188,6 +190,8 @@ public class MemberController {
 		}
 	}
 
+
+
 	// 아이디 중복검사
 	@RequestMapping("dupId.me")
 	public void idDuplicateCheck(@RequestParam("memberId") String memberId, HttpServletResponse response) {
@@ -200,6 +204,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 	}
+
 
 	// 일반 마이페이지
 	@RequestMapping("myPage.me")
@@ -274,7 +279,8 @@ public class MemberController {
 			} else {
 				throw new MemberException("비밀번호 수정에 실패하였습니다.");
 			}
-		} else {
+		}else {
+			
 			throw new MemberException("기존 비밀번호 틀렸습니다.");
 		}
 	}
@@ -283,6 +289,7 @@ public class MemberController {
 	public String mCheckPwdForm() {
 		return "checkPwd";
 	}
+
 
 	// 일반 정보 수정 비밀번호 기능 페이지
 	@RequestMapping("mInfoPwd.me")
@@ -466,6 +473,7 @@ public class MemberController {
 			 }
 			return mv;
 		}
+
 	
 	//파일 이름 날짜로 수정하는 과정
 		public String saveFile(MultipartFile file, HttpServletRequest request) {
@@ -554,12 +562,13 @@ public class MemberController {
 	public String deleteShopinfo() {
 		return "shopNullPage";
 	}
+
 	//사업자  탈퇴
 	@RequestMapping("mdeleteShopForm.me")
 	public String deleteShopForm() {
 		return "deleteShopForm";
 	}
-	
+
 	@RequestMapping("sdelete.me")
 	public String deleteShop(@RequestParam("memberId") String memberId, SessionStatus status) {
 		int result = bmService.deleteMember(memberId);

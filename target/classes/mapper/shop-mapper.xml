@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="shopMapper">
@@ -20,13 +20,14 @@
 		<result property="shopCate" column="SHOP_CATE" />
 		<result property="businessNumber" column="BUSINESS_NUMBER" />
 		<result property="memberId" column="MEMBER_ID" />
+		<result property="avgScore" column="AVG_SCORE" />
+		<result property="countReview" column="COUNT_REVIEW" />
 	</resultMap>
 
 <!-- 강동기 시작 =============================================== -->
    
 <!-- 강동기 끝 ================================================ -->
 
- 
 <!--김예은 시작 ================================================= -->
 	<!-- ★ shopInfo resultMap -->  
 	<resultMap type="ShopInfo" id="mshopInfoResultSet">
@@ -207,9 +208,10 @@
 		 where MEMBER_ID = #{memberId}
 	</select>
 <!--김예은 끝 ================================================= -->
-   
+
+
 <!-- 김하영 시작 ================================================ -->
-   <select id="getReListCount" resultType="_int">
+  <select id="getReListCount" resultType="_int">
 		select count(*)
 		from shop_review
 		where review_status ='Y' AND SHOP_NO = #{shopNo}
@@ -328,8 +330,12 @@
 	</select>
 	
 	<select id="selectAddressSearch" resultMap="shopInfoResultSet">
-		select *
-		from shop_info
+		SELECT * FROM SHOP_INFO
+        FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
+		FROM SHOP_INFO
+		FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+		GROUP BY SHOP_NO
+		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
 		where
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
 	</select>
@@ -379,9 +385,10 @@
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}
 	</select>
+
 	
 	<insert id="insertDeclare">
-		insert into shop_declare values(SEQ_DNO.nextval,#{memberId},'Y',#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
+		insert into shop_declare values(SEQ_DNO.nextval,#{memberId}, default,#{shopNo},#{shopName},#{shopDeclareComment},sysdate)
 	</insert>
 	
 	<insert id="insertReserveShopInfo">
@@ -389,6 +396,7 @@
 	</insert>
 
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
+
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
 		select *
 		from (
@@ -467,4 +475,5 @@
    </select>
    
 <!-- 원태원 끝 ====================================================== -->
+
 </mapper>

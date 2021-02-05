@@ -135,6 +135,7 @@
 		        amount: amount,	// 결제 금액
 		        buyer_email: buyer_email,	// 주문자 이메일
 		        buyer_name: buyer_name,		// 주문자 이름
+
 		      }, function (rsp) { // callback
 		        if (rsp.success) {
 		        	// 결제 승인 시 로직

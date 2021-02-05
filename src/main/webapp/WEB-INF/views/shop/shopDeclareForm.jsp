@@ -10,10 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/7293f5b137.js" crossorigin="anonymous"></script>
 <style>
+
 	#body{
 		align:center;
 		font-family: 'Gugi';
 	}
+
 	#cancle {
    background-color: white;
    color: gray;
@@ -26,6 +28,7 @@
    right: 100px;
    font-size :large;
 }
+
 #send {
    background-color: #F42B03;
    color: white;
@@ -60,7 +63,8 @@
 		<h1 align="center"><b>식당 신고></b></h1>
 		<br><br>
 		<form action="declare.do" align="center">
-			 <input type="hidden" name="memberId" value="${loginUser.member_id}"> 
+
+			 <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 			 <input type="hidden" name="shopNo" value="${shopNo}"> 
 			  <input type="hidden" name="shopName" value="${shopName}"> 
 			<div id="reviewran"><h2><b>${shopName}</b> 에 신고내용을 써주세요</h2></div>

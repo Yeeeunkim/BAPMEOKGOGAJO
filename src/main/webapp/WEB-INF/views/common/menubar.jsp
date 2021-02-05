@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -103,6 +103,7 @@
 			text-align: center;
 		}
 	}
+
 	/*--------------------------------------------------------------------*/
 	
  	.searchbar{
@@ -197,7 +198,7 @@
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '2'  }">
 					<li class="menu" ><a href="shopMypage.me"><i class="fas fa-user"></i></a></li>
-					<li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
+
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '0'  }">
 				 	<li class="menu" onclick="manager();" ><a href="#">M</a></li> 
@@ -211,9 +212,12 @@
 		function shop() {
 			location.href = "${contextPath }/shop.do"
 		}
+
+
 		function manager() {
 			location.href = "${contextPath }/manager.ma"
 		}
+
 		function mypage() {
 			location.href = "${contextPath}/myPage.me"
 		}

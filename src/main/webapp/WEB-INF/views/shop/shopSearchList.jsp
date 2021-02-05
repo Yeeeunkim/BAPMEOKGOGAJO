@@ -15,15 +15,19 @@
 	text-align: center;
 	font-weight: bold;
 }
+
 .container-fluid {
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto;
 }
+
+
 #listArea {
 	margin: 0 auto;
 }
+
 #imageArea {
 	width: 150px;
 	height: 150px;
@@ -33,6 +37,7 @@
 	padding-left: 10px;
 	float: left;
 }
+
 #cardArea {
 	height: 150px;
 	display: inline-block;
@@ -41,11 +46,13 @@
 	position: relative;
 	top: 25px;
 }
+
 .btn-warning {
 	font-weight: bold !important;
 	background-color: orange !important;
 	color: white !important;
 }
+
 .enrollBtn {
 	background-color: #F42B03;
 	border: none;
@@ -56,13 +63,17 @@
 	margin: 50px auto;
 	float: right !important;
 }
+
 .enrollBtn:hover {
 	background: tomato;
 	color: white;
 }
+
+
 .aPage{
 	color: black !important;
 }
+
 .aTitle{
 	color: black;
 }

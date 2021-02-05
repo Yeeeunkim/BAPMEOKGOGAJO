@@ -242,7 +242,8 @@
 				 $('#pwd2Result').text('비밀번호가 일치하지 않습니다.');
 				 $('#pwd2Result').css({'color':'red','float':'center','display':'inline-block', 'font-size' : '12px'});  
 				 //$('#m_pwd2').val('');
-		        // $('#m_pwd2').focus();
+
+		         //$('#m_pwd2').focus();
 		         return false;
 			 }else if($('#m_pwd2').val()==''){
 				 $('#pwd2Result').text('비밀번호를  입력해주세요.');

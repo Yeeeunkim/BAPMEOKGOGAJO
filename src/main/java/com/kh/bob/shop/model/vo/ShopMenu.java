@@ -1,4 +1,4 @@
-package com.kh.bob.shop.model.vo;
+﻿package com.kh.bob.shop.model.vo;
 
 public class ShopMenu {
 	private int menuNo;			// 메뉴번호
@@ -8,14 +8,15 @@ public class ShopMenu {
 	private int menuCate;		// 메뉴카테고리
 	private int shopNo;			// 식당번호
 	
-	
+	public ShopMenu() {}	
+
 	public ShopMenu(String menuName, String menuPrice, int menuCate) {
 		super();
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
 		this.menuCate = menuCate;
 	}
-	
+
 	public ShopMenu(String menuName, String menuPrice, int menuCate, int shopNo) {
 		super();
 		this.menuName = menuName;

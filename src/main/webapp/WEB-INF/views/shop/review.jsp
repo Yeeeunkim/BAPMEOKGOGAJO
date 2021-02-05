@@ -12,10 +12,12 @@
 <script src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 
 <style>
+
 	#body{
 		align:center;
 		font-family: 'Gugi';
 	}
+
 	#cancle {
    background-color: white;
    color: gray;
@@ -28,6 +30,7 @@
    right: 100px;
    font-size :large;
 }
+
 #send {
    background-color: #F42B03;
    color: white;
@@ -80,6 +83,7 @@
 		color:red;
 	}
 	
+
     
 </style>
 </head>
@@ -126,6 +130,7 @@
 			  var input = $(this).find("input");
 			  var value = input.attr("value");
 			  stars.find("span").text("☆").css('color', 'black');
+
 			  for (let i = 0; i < value; i++) {
 			    var span = $(stars.children()[i]).find("span");
 			    span.text("★").css({'color' : '#F7FE2E'});

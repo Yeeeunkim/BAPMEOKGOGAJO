@@ -15,6 +15,7 @@
 	width: 200px !important;
 	display: inline-block !important;
 }
+
 .bArea {
 	width: 60% !important;
 	display: inline !important;
@@ -22,22 +23,29 @@
 	top: 80px;
 	margin: auto;
 }
+
+
 .check {
 /* 	display: none; */
 }
+
 .title {
 	width: 100%;
 	font-weight: bold;
 	padding: 0px;
 	margin: 0px;
 }
+
 .desc {
 	max-height: 0px;
 	overflow: hidden;
 }
+
+
 .check:checked+.title+.desc {
 	max-height: 1000px;
 }
+
 .btn1 {
 	float: right;
 	margin-top: 50px;

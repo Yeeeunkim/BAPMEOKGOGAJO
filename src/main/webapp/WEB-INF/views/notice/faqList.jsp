@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+=======
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+>>>>>>> origin/master
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -11,6 +15,7 @@
 	rel="stylesheet">
 <title>밥먹고가조 FAQ</title>
 <style>
+
 .sArea {	
 	width: 200px !important;
 	display: inline-block !important;
@@ -22,22 +27,28 @@
 	top: 80px;
 	margin: auto;
 }
+
+
 .check {
 	display: none;
 }
+
 .title {
 	width: 100%;
 	font-weight: bold;
 	padding: 0px;
 	margin: 0px;
 }
+
 .desc {
 	max-height: 0px;
 	overflow: hidden;
 }
+
 .check:checked+.title+.desc {
 	max-height: 1000px;
 }
+
 .btn1 {
 	float: right;
 	margin-top: 50px;

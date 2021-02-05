@@ -86,6 +86,7 @@ public class ShopServiceImple implements ShopService {
 		public List<ReserveMenu> selectReserveMenu(int reserveNo) {
 			return sDAO.selectReserveMenu(sqlSession, reserveNo);
 		}
+
 		//사용자마이페이지  - 예약내역 조회
 		@Override
 		public ReserveInfo selectMyReInfo(String memberId) {
@@ -95,6 +96,7 @@ public class ShopServiceImple implements ShopService {
 		public List<ReserveInfo> selectMyrInfo(String memberId) {
 			return sDAO.selectMyrInfo(sqlSession, memberId);
 		}
+
 		//사용자마이페이지  - 사용자가 선택한 식당정보
 		@Override
 		public List<ShopInfo> selectMyShopPick(int shopNo) {

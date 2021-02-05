@@ -55,10 +55,12 @@
    margin: 0 auto;
    margin-top: 50px;
 }
+
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
+
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -67,22 +69,28 @@
    width: 250px !important;
    height: 50px;
 }
+
 #info{
    position: absolute;
    left: 10%;
 }
+
+
 .input-info{
    display: inline;
 }
+
 .cInput {
    width: 30%;
 }
+
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
+
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -110,6 +118,7 @@
       color: white;
   
 }
+
 #user{
    display: block; 
    margin: 0 auto; 
@@ -129,6 +138,7 @@
   text-align:center;
 }
 #btnR{
+
   background-color: #F42B03;
   border: none;
   color: white;
@@ -136,6 +146,7 @@
   float: right;
   width: 100px;
   height: 40px;
+
  }
  
  td {
@@ -146,6 +157,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .time{
    margin: auto;
    display: flex;
@@ -193,6 +205,7 @@
 .reDelete{
    color:red;
 }
+
 #map{
       margin-left: 100px;
       width:900px;
@@ -204,6 +217,7 @@
    display: 
     
 }
+
 .check{
    display: none;
 }

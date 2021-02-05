@@ -13,6 +13,7 @@
 	<!-- Application Loggers -->
 	<logger name="com.kh.bob">
 		<level value="info" />
+		<appender-ref ref="console"/>
 	</logger>
 	
 	<!-- SQL Logger -->
@@ -35,23 +36,30 @@
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
+		<appender-ref ref="console"/>
 	</logger>
 	
 	<logger name="org.springframework.beans">
 		<level value="info" />
+		<appender-ref ref="console"/>
 	</logger>
 	
 	<logger name="org.springframework.context">
 		<level value="info" />
+		<appender-ref ref="console"/>
 	</logger>
 
 	<logger name="org.springframework.web">
 		<level value="info" />
+		<appender-ref ref="console"/>
 	</logger>
+	
+	
+	
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

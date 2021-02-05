@@ -22,6 +22,7 @@
 	#boardTable td{border-bottom: 1px solid #1D3557;}
 	 #content_text {display: block; margin-right: auto; width: 500px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
+
 	#titleInput {
 		outline: none;
 		width: 87%;

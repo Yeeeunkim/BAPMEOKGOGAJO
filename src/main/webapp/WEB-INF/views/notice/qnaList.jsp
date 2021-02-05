@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -152,6 +152,7 @@ td{border-bottom: 1px solid #1D3557 !important;}
 		function noWriter(){
 			alert("작성자만 접근이 가능합니다.");
 		}
+
 	</script>
 </body>
 </html>

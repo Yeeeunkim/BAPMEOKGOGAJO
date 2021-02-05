@@ -1,7 +1,6 @@
-package com.kh.bob.shop.model.service;
+﻿package com.kh.bob.shop.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +8,12 @@ import com.kh.bob.notice.model.vo.PageInfo;
 import com.kh.bob.shop.model.vo.ReserveInfo;
 import com.kh.bob.shop.model.vo.ReserveMenu;
 
+import com.kh.bob.shop.model.vo.ReviewReply;
+import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
-import com.kh.bob.shop.model.vo.ShopDeclare;
 import com.kh.bob.shop.model.vo.ShoplistPageInfo;
-import com.kh.bob.shop.model.vo.ReviewReply;
 
 public interface ShopService {
 	// 강동기 시작 ===============================================
@@ -56,17 +55,17 @@ public interface ShopService {
 	List<ReserveMenu> selectMyReMenu(int reserveNo);
 				
 	//사용자마이페이지  - 사용자 리뷰
-   List<ShopReview> selectMyReview(String memberId);
+   	List<ShopReview> selectMyReview(String memberId);
 			
-   //사장님마이페이지 식당수정 - 식당 정보
+  	 //사장님마이페이지 식당수정 - 식당 정보
 	int sinfoUpdate(ShopInfo si);
 				
 	//사장님마이페이지 식당수정- 메인 메뉴
-    int smenuUpdate(List<ShopMenu> shopmenu);
+   	 int smenuUpdate(List<ShopMenu> shopmenu);
 				
 	//마이페이지 로그 시 예약 정보 가져오기 
 	ReserveInfo selectri(String memberId);
-    //김예은 끝 =============================================
+       //김예은 끝 =============================================
 
 	// 김하영 시작 ================================================
 	int getReListCount(int shop_no);
@@ -81,7 +80,6 @@ public interface ShopService {
 
 	ArrayList<ReviewReply> selectReReply(int reviewNo);
 
-	
 	// 김하영 끝 =================================================
 
 	// 민병욱 시작 =================================================

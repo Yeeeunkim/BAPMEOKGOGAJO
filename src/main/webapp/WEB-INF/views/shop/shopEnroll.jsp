@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -177,7 +177,9 @@ input {
     text-align: center; 
 }
 #myselect{width:10%; margin-left:5%;}
+
 #holiday { padding: .3em .5em; }
+
 /*-------------------------------------*/
 .centerText table {
 	margin: auto; 
@@ -188,21 +190,24 @@ input {
 	padding: 5px;
 }
 #thumbnailImg{margin-left:10%;}
+
 .form-floating{margin:0 0 20px 35%;}
+
 #floatingTextarea2{border-radius:5px; border-color:#C1C1C1;}
+
 </style>
 </head>
 <body style="font-family: 'Gugi';">
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
+
    	
    	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
    	
     <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 
-   		
-   		
+
        <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" selected="selected">--선택해주세요--</option>
          <option value="1">한식</option>
@@ -337,6 +342,7 @@ input {
 				$("#holiday").css("color","black");
 				}
 		}
+
 		$('.cInput.time').timepicker({
 		    timeFormat: 'HH:mm',
 		    interval: 30,

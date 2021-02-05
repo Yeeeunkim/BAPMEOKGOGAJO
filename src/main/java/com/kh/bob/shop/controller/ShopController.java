@@ -361,7 +361,8 @@ public class ShopController {
          int price=Integer.parseInt(sm.get(i).getMenuPrice());
          int menucount=Integer.parseInt(mainmenu[i]);
          if(menucount!=0) {
-            reservemenu.add(new ReserveMenu(menuNo,menucount, menuName,menucount));
+
+            reservemenu.add(new ReserveMenu(menuNo,menuName,menucount));
          }
       }
       

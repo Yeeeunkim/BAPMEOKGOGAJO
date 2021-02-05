@@ -21,6 +21,7 @@
 		align:center;
 		font-family: 'Gugi';
 	}
+
 	.red{
 		color: red;
 	}
@@ -52,6 +53,7 @@
 		width:900px;
 		height: 500px;
 	}
+
 </style>
 </head>
 <body>

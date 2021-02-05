@@ -17,6 +17,7 @@
 .sidebar header{font-size: 22px; color:white; text-align:center; line-height:70px;  user-select:none;}
 .sidebar ul a{display::block; height:100%; width:100%; line-height:65px; font-size:20px; color:white; padding-left:15px;box-sizing:border-box; }
 .sidebar ul li:hover a{padding-left:50px;}
+
 .dropdown{margin-left:85%; margin-top:20px; z-index} 
 .container {width:80%;}
 .row {width:80%; padding-left:10%;}
@@ -65,7 +66,9 @@
 					</c:forEach>
 				],
 				datasets:[{
-					label:'카테고리별 매출', 
+
+					label:'카테고리별 매출',
+
 					data:[
 						<c:forEach var="cs" items="${ cs }" varStatus="status">
 							${ cs.sales }<c:if test="${ !status.last }">,</c:if>

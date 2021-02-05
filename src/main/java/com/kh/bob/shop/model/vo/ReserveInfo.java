@@ -19,7 +19,6 @@ public class ReserveInfo {
 	
 	public ReserveInfo() {}
 
-
 	
 
 	public ReserveInfo(Date reserveDate, String reserveTime, int reservePeople, String reserveName, String reservePhone,
@@ -161,9 +160,6 @@ public class ReserveInfo {
 		this.shopNo = shopNo;
 	}
 
-
-
-
 	@Override
 	public String toString() {
 		return "ReserveInfo [reserveNo=" + reserveNo + ", reserveDate=" + reserveDate + ", reserveTime=" + reserveTime
@@ -174,3 +170,4 @@ public class ReserveInfo {
 	}
 
 }
+
