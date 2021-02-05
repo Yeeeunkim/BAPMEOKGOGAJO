@@ -135,9 +135,6 @@
 			<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
 			<br>
 			 <!-- <a href="naverLogin.me" class="snsBtn"><img class="snsBtn" src="resources/images/naver.png" ></a> -->
-			<!-- 네이버 로그인 창으로 이동 -->
-			<div id="naver_id_login" style="text-align:center"><a href="${url}">
-			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
 			<br>
 
 			 <!-- <img class="snsBtn" src="resources/images/naver.png" id="naver_id_login" >  -->

@@ -209,7 +209,7 @@
                         </c:if>
                   </c:forEach>
                </td>
-               <td width="210px"  style="text-align: center" ><div class="reservationSeat">${ri.reservePeople}명 |오후${ ri.reserveTime }시| ${ ri.reserveDate }</div></td>
+               <td width="210px"  style="text-align: center" ><div class="reservationSeat">${ri.reservePeople}명 |오후${ ri.reserveTime }시|<br> ${ ri.reserveDate }</div></td>
                <td width="150px" >
                
                   <div >

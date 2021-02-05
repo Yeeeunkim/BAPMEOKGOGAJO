@@ -208,15 +208,8 @@
 		 where MEMBER_ID = #{memberId}
 	</select>
 <!--김예은 끝 ================================================= -->
-<<<<<<< HEAD
-   
-<!-- 김하영 시작 ================================================ -->
-   <select id="getReListCount" resultType="_int">
-=======
-
 <!-- 김하영 시작 ================================================ -->
    	<select id="getReListCount" resultType="_int">
->>>>>>> origin/master
 		select count(*)
 		from shop_review
 		where review_status ='Y' AND SHOP_NO = #{shopNo}
@@ -324,9 +317,24 @@
 		where reserve_no = #{reserveNo}
 	</update>
 	
+<!-- 	<select id="selectSearchList" resultMap="shopInfoResultSet"> -->
+<!-- 		select * -->
+<!-- 		from shop_info -->
+<!-- 		where -->
+<!-- 			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%' -->
+<!-- 			<if test="shopCate != 0"> -->
+<!-- 				or to_char(shop_cate) = #{shopCate} -->
+<!-- 			</if> -->
+<!-- 	</select> -->
 	<select id="selectSearchList" resultMap="shopInfoResultSet">
-		select *
-		from shop_info
+		SELECT * FROM SHOP_INFO
+        FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
+		FROM SHOP_INFO
+		FULL OUTER JOIN (SELECT *
+            FROM SHOP_REVIEW
+            WHERE REVIEW_STATUS = 'Y') USING(SHOP_NO)
+		GROUP BY SHOP_NO
+		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
 		where
 			replace(trim(shop_name), ' ','') like '%' || #{shopName} || '%'
 			<if test="shopCate != 0">
@@ -434,10 +442,12 @@
    		SELECT * FROM SHOP_INFO
         FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
 		FROM SHOP_INFO
-		FULL OUTER JOIN SHOP_REVIEW USING(SHOP_NO)
+		FULL OUTER JOIN (SELECT *
+            FROM SHOP_REVIEW
+            WHERE REVIEW_STATUS = 'Y') USING(SHOP_NO)
 		GROUP BY SHOP_NO
 		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
-   
+		
 	   <if test="SHOP_CATE != null or SHOP_CATE eq '' ">
 	   WHERE SHOP_CATE  = #{SHOP_CATE}
 	   </if>

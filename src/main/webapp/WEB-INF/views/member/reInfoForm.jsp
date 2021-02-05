@@ -109,7 +109,7 @@
 					</tr><tr height="30px"></tr>
 					<c:forEach var="rev" items="${ rev }">
 					<tr>
-						<td rowspan="3" width="160px"><img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/buploadFiles/${ rev.originalFilename }"></td>
+						<td rowspan="3" width="160px"><img id="thumbImg" width="160px" height="140px" src="${ contextPath }/resources/buploadFiles/${ rev.renameFilename }"></td>
 						<td width="500px"><br><br>${ rev.reviewContents }</td>
 						<td width="100px"><br><br>${ rev.reviewScore }점</td>
 						<td width="100px"><br><br>${ rev.reviewWrite }</td>
