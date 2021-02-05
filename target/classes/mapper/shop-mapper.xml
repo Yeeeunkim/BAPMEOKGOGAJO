@@ -392,7 +392,6 @@
 	<insert id="insertReserveShopInfo">
 		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
-
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
 
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
@@ -436,7 +435,7 @@
 	   </if>
 	   
    </select>
-
+   
    <select id="getReservationList" resultType="Map" parameterType="int">
       SELECT 
       SI.SHOP_NO
@@ -456,7 +455,7 @@
       ,SI.SHOP_NAME
       ,SI.SHOP_RENAME
       FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
-      WHERE SI.SHOP_NO = #{shop_no}
+         WHERE SI.SHOP_NO = #{shop_no}
    </select>
    
    <select id="getListAllCount" resultType="_int">

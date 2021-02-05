@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 
 import com.kh.bob.member.model.dao.MemberDAO;
 import com.kh.bob.member.model.vo.Member;
+import com.kh.bob.shop.model.vo.ShopInfo;
+import com.kh.bob.shop.model.vo.ShopMenu;
 
 @Service("bmService")
 public class MemberServiceImpl implements MemberService {
