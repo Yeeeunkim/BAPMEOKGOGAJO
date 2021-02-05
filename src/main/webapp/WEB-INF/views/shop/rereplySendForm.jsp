@@ -14,25 +14,28 @@
 </style>
 </head>
 <body align="center" id="boby">
-	${ shopNo }
 	${ reNo }
+	${ shopNo }
 	<h2>답글 달기</h2>
-	<form action="rereplyinsert.sh" id="form">
-	<input type="hidden" name="reid" value="${ shopNo }">
+	<form action="rereplyinsert.sh" id="form" target="'Reservation.do?SHOP_NO='+shopNo">
 	<input type="hidden" name="reid" value="${ reNo }">
-	<textarea rows="10" cols="70" name="textarea"></textarea><br>
-	<input type="submit" value="답글 등록" >
+	<input type="hidden" name="shopNo" value="${ shopNo }">
+	<textarea rows="10" cols="70" name="rereContent"></textarea><br>
+	<input type="submit" value="답글 등록" onclick="window.close()" >
 	<input type="button" class="recancle" value="취소" onclick="window.close();">
 	</form>
 	<script>
-		$(function(){
-			$('#form').submit(function(event){
-				self.close();
-				$shopNo = ${ shopNo }
+		function popupClose(form){
+			form.target = opener.name;
+			
+			form.submit();
+			
+			if(opener != null){
+				opener.insert = null;
 				
-				console.log(shopNo);
-			});
-		});
+				self.close();
+			}
+		} 
 	</script>
 </body>
 </html>

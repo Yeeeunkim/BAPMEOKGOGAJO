@@ -1,4 +1,4 @@
-﻿package com.kh.bob.shop.controller;
+package com.kh.bob.shop.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -174,60 +174,66 @@ public class ShopController {
 	      }
 	   }
 
-	   @RequestMapping("rereplySendForm.sh")
-	   public String rereplySendForm(@RequestParam("reNo") int reNo,@RequestParam("shopNo") int shopNo, Model model) {
-		  model.addAttribute("shopNo", shopNo);
-	      model.addAttribute("reNo", reNo);
-	      System.out.println("리리댓글 !!shopno: " + shopNo);
-	      System.out.println("리리댓글 !!reno : " + reNo);
-	      return "rereplySendForm";
-	   }
+		
+		  @RequestMapping("rereplySendForm.sh")
+		  public String rereplySendForm(@RequestParam("reNo") int reNo,@RequestParam("shopNo") int shopNo,
+				  						Model model) { 
+	      model.addAttribute("shopNo", shopNo);
+		  model.addAttribute("reNo", reNo);
+		  System.out.println("리리댓글 !!shopno: " + shopNo);
+		  System.out.println("리리댓글 !!reno : " + reNo);
+		  return "rereplySendForm"; 
+		  }
+		 
 
 		@RequestMapping("rereplyinsert.sh")
-		public String rereplyinsert(@RequestParam("reid") int reid, @RequestParam("shopNo") int shopNo,
-				HttpSession session, Model mv ,HttpServletRequest req) {
+		public String rereplyinsert(@RequestParam("reid") int reid, HttpSession session, Model mv ,HttpServletRequest req) {
 			// public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession
 			// session) {
 			Member loginUser = (Member) session.getAttribute("loginUser");
-			String content = req.getParameter("textarea");
+			
+			String reContent = req.getParameter("rereContent");
 			String memberId = loginUser.getMemberId();
 			ReviewReply rere = new ReviewReply();
-			
-			shopNo = Integer.parseInt(req.getParameter("shopNo"));
+			int shopNo = Integer.parseInt(req.getParameter("shopNo"));
+	
 			rere.setMemberId(memberId);
 			rere.setReviewNo(reid);
-			rere.setReplyContent(content);
-			
-
+			rere.setReplyContent(reContent);
 			
 			System.out.println("rere : " + rere);
 
 			int result = sService.insertReReply(rere);
 
 			if (result > 0) {
-				mv.addAttribute("rereply", result);
-				mv.addAttribute("shopNo",shopNo);
-				
+				return  "redirect:Reservation.do?SHOP_NO="+shopNo;
 			} else {
 				throw new ShopException("답글 등록에 실패했습니다.");
 			}
-			return "rereplyList.sh";
-		}
-
-		@RequestMapping("rereplyList.sh")
-		public String rereplyList(@RequestParam("reid") int reviewNo, HttpServletRequest req, Model model) {
-			ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
-			int shopNo = Integer.parseInt(req.getParameter("shopNo"));
-			if(rereList != null) {
-				model.addAttribute("rereList", rereList);
-				model.addAttribute("shopReservation");
-			}
-			
-			return "redirect:Reservation.do?SHOP_NO="+ shopNo;
-			
-
 			
 		}
+		 @RequestMapping("rereplyList.sh") 
+		  public String rereplyList(@RequestParam("reNo") int reviewNo, @RequestParam("shopNo") int shopNo, HttpServletRequest req,
+				  							Model model) {
+		  
+			  ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
+			  
+			  
+			  System.out.println(rereList);
+			 
+			  if(rereList != null) { 
+				  model.addAttribute("rereList", rereList); 
+				  System.out.println(rereList);
+			 } else {
+				throw new ShopException("리뷰답글 조회를 실패하였습니다.");
+					}
+		  
+		  return "redirect:Reservation.do?SHOP_NO="+ shopNo;
+		  
+		  
+		  
+		 }
+		 
 	// 김하영 끝 =================================================
 
 	// 민병욱 시작 =================================================
@@ -566,12 +572,15 @@ public class ShopController {
 	
 	@RequestMapping("/Reservation.do")
 	   public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
-	         ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
+	         ModelAndView mv,  @RequestParam(value = "page", required = false) Integer page) {
 		int currentPage = 1;
 
+		
+		  
+		 
 		if (page != null) {
 			currentPage = page;
-		}
+		} 
 		
 	      int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
 	      ShopInfo shopInfo = sService.selectShop(shop_no);
@@ -762,4 +771,3 @@ public class ShopController {
 	// 원태원 끝 ======================================================
 
 }
-
