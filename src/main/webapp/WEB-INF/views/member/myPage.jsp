@@ -90,7 +90,7 @@
 			<hr class="line"> 
 			<div class="row">
 				<div class="col-4 enrollDiv">
-					<c:url var="myinfo" value="mInfoPwdForm.me"/>
+					<c:url var="myinfo" value="mInfoPwdForm.me"/> 
 					<img src="<%= request.getContextPath() %>/resources/images/user.png"
 						style="width: 200px; height: 200px;" onclick="location.href='${myinfo}'">
 					<br><br><br>
