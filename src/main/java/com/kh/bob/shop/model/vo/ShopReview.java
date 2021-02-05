@@ -13,10 +13,13 @@ public class ShopReview {
 	private String renameFilename;		// 리뷰 리네임 파일명
 	private char reviewStatus;			// 리뷰상태
 	
+	private ReviewReply reviewReply;
+	
 	public ShopReview() {}
 
 	public ShopReview(int reviewNo, String reviewContents, Date reviewWrite, int reviewScore, int shopNo,
-			String memberId, String originalFilename, String renameFilename, char reviewStatus) {
+			String memberId, String originalFilename, String renameFilename, char reviewStatus,
+			ReviewReply reviewReply) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reviewContents = reviewContents;
@@ -27,6 +30,7 @@ public class ShopReview {
 		this.originalFilename = originalFilename;
 		this.renameFilename = renameFilename;
 		this.reviewStatus = reviewStatus;
+		this.reviewReply = reviewReply;
 	}
 
 	public int getReviewNo() {
@@ -101,11 +105,21 @@ public class ShopReview {
 		this.reviewStatus = reviewStatus;
 	}
 
+	public ReviewReply getReviewReply() {
+		return reviewReply;
+	}
+
+	public void setReviewReply(ReviewReply reviewReply) {
+		this.reviewReply = reviewReply;
+	}
+
 	@Override
 	public String toString() {
 		return "ShopReview [reviewNo=" + reviewNo + ", reviewContents=" + reviewContents + ", reviewWrite="
 				+ reviewWrite + ", reviewScore=" + reviewScore + ", shopNo=" + shopNo + ", memberId=" + memberId
 				+ ", originalFilename=" + originalFilename + ", renameFilename=" + renameFilename + ", reviewStatus="
-				+ reviewStatus + "]";
+				+ reviewStatus + ", reviewReply=" + reviewReply + "]";
 	}
+
+	
 }

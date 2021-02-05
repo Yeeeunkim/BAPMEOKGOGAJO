@@ -212,9 +212,10 @@
 	
  	<select id="selectReList" resultMap="reviewResultSet">
  		select *
- 		from shop_review
- 		where review_status='Y' AND SHOP_NO = #{shopNo}
- 		order by review_no desc
+		from shop_review SR
+		     LEFT JOIN review_reply RR ON(SR.REVIEW_NO = RR.REVIEW_NO)
+		where SR.review_status='Y' AND SR.SHOP_NO = #{shopNo}
+		order by SR.review_no desc
  	</select>
  	
  	<resultMap type="ShopReview" id="reviewResultSet">
@@ -227,6 +228,8 @@
  		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
  		<result property="renameFilename" column="RENAME_FILENAME"/>
  		<result property="reviewStatus" column="REVIEW_STATUS"/>
+ 		
+ 		<association property="reviewReply" javaType="ReviewReply" resultMap="reviewReplyResultSet" />
  	</resultMap>
  	
  	<insert id="insertReveiw">

@@ -230,13 +230,14 @@ h4, h2 {
 .reviewList {
    margin-left: 400px;
    width: 1300px;
+   table-layout: fixed;
    
 }
 #user {
    margin-left: 100px;
 }
 #reviewbtn {
-   margin-left: 800px;
+   margin-left: 950px;
    background-color: #F42B03;
    color: white;
    border: 1px solid white;
@@ -280,6 +281,25 @@ h4, h2 {
 	color:#08088A;
 }
 #shopIntro{margin-left:25%; text-align: center}
+
+.col1 {
+	width: 100px;
+}
+.col2 {
+	width: 100px;
+}
+.col3 {
+	width: 100px;
+}
+.col4 {
+	width: 100px;
+}
+.col5 {
+	width: 100px;
+}
+.col6 {
+	width: 100px;
+}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -447,7 +467,7 @@ h4, h2 {
                             url : "/bob/reserveDate.do",
                             type: "post",
                            dataType: 'json',
-                           data : {shopNo, shopNo},
+                           data : {shopNo:shopNo},
                            success : function(data){
                            for(var i=0; i<data.shopreserveTime.length; i++){
                               document.getElementById(data.shopreserveTime[i]).disabled = false;
@@ -614,6 +634,14 @@ h4, h2 {
    <c:forEach var="re" items="${ list }">
       <form>
          <table class="reviewList">
+         	<colgroup>
+			        <col class="col1">
+			        <col class="col2">
+			        <col class="col3">
+			        <col class="col4">
+			        <col class="col5">
+			        <col class="col6">
+			</colgroup>
             <tr>
                <td id="usertd"><img
                   src="<%= request.getContextPath() %>/resources/images/user.png"
@@ -638,11 +666,15 @@ h4, h2 {
                   </c:choose></td>
                <td>${ re.reviewContents }</td>
 
-               <c:if test="${!empty re.originalFilename }">
-                  <td><img
+               
+                  <td>
+                  <c:if test="${!empty re.originalFilename }">
+                  <img
                      src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }"
-                     width="100" height="100"></td>
-               </c:if>
+                     width="100" height="100">
+                  </c:if>   
+                  </td>
+               
 
                <c:url var="redelete" value="reDelete.sh">
                   <c:param name="reNo" value="${ re.reviewNo }" />
@@ -654,15 +686,15 @@ h4, h2 {
                		<c:param name="reid" value="${re.reviewNo}"/>
                		<c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>' />
                </c:url>
-               	  <%--  <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }"> --%>
-               		<%-- <a class="rere" href="${ rereInsert })">답글보내기</a><br> --%>
-               	 <%--   </c:if> --%>
+               	 
                	 <c:url var="replaysend" value="rereplyList.sh">
 	            	<c:param name = "reNo" value="${re.reviewNo}" />
 	            	<c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>'/>
             	</c:url>
-               	 		<span class="rere" onclick="rereplySendForm(${re.reviewNo},'<%=request.getParameter("SHOP_NO")%>');" >답글보내기</span>
-               	 		 <br><a href="${ replaysend }" id="check">답글확인 </a><br>
+               	 	<c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }">
+               		<span class="rere" onclick="rereplySendForm(${re.reviewNo},'<%=request.getParameter("SHOP_NO")%>');" >답글보내기</span>
+               	 	</c:if>
+               	 		<%--  <br><a href="${ replaysend }" id="check">답글확인 </a><br> --%>
                   <c:if test="${ loginUser.memberId eq re.memberId || loginUser.auth_code == 0 }">
                   	&nbsp;&nbsp;&nbsp;&nbsp; <a class="reDelete" href="${ redelete }">삭제</a>
                   </c:if>
@@ -670,16 +702,15 @@ h4, h2 {
                  
                </td>
             </tr>
-          
+          <c:if test="${ re.reviewReply.replyStatus != '' }">
             <tr id="replydiv">
-            <c:set var="reList" value="${ rereList}"/>
             		<td></td>
-				<%-- <c:if test="${ rereList.reviewNo eq re.reviewNo }"> --%>
-	            	<td id="replyTime">사장님 : <br>${ reList.replyTime } </td>
-	            	<td id="replyContent"> ${ reList.replyContent } </td>
-	        	<%-- </c:if> --%>
+            		<td></td>
+	            	<td id="replyTime">사장님 : <br>${ re.reviewReply.replyTime } </td>
+	            	<td id="replyContent"> ${ re.reviewReply.replyContent } </td>
 	        </tr>
-			 <!--  <tr id="textarea">
+	      </c:if> 
+			 <!-- <tr id="textarea">
             	<td></td>
             	<td></td>
             	<td></td>

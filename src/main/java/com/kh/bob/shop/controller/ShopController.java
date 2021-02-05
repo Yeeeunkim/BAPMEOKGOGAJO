@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -214,7 +215,7 @@ public class ShopController {
 		}
 		 @RequestMapping("rereplyList.sh") 
 		  public String rereplyList(@RequestParam("reNo") int reviewNo, HttpServletRequest req,
-				  							Model model) {
+				  							RedirectAttributes redirect) {
 		  
 			  ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
 			  int shopNo = Integer.parseInt(req.getParameter("shopNo"));
@@ -222,7 +223,7 @@ public class ShopController {
 			  System.out.println("rereList = " + rereList);
 			 
 			  if(rereList != null) { 
-				  model.addAttribute("rereList", rereList); 
+				  redirect.addFlashAttribute("rereList", rereList); 
 			 } else {
 				throw new ShopException("리뷰답글 조회를 실패하였습니다.");
 					}
@@ -586,6 +587,7 @@ public class ShopController {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
 			ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shop_no, pi);
+			
 			
 			if(list != null) {
 				mv.addObject("list", list);
