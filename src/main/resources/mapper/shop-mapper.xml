@@ -150,6 +150,7 @@
 		from reserve_info
 		 where MEMBER_ID = #{memberId}
 	</select>
+	
 	<!-- 사용자마이페이지  - 예약내역 조회 -->
 	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
 		select *
@@ -186,7 +187,8 @@
    		set SHOP_NAME=#{shopName}, SHOP_INTRO=#{shopIntro}, SHOP_OPEN=#{shopOpen}, 
    			SHOP_CLOSE=#{shopClose}, SHOP_ADDRESS=#{shopAddress}, SHOP_PHONE=#{shopPhone},  
    			SHOP_BREAK_START=#{shopBreakStart},  SHOP_BREAK_CLOSE=#{shopBreakClose}, 
-   			SHOP_OFFDAY=#{shopOffday}, MAX_RESERVATION_TIME=#{maxReservationTime}, SHOP_ORIGIN=#{shopOrigin},  SHOP_RENAME=#{shopRename},  BUSINESS_NUMBER=#{businessNumber}
+   			SHOP_OFFDAY=#{shopOffday}, MAX_RESERVATION_TIME=#{maxReservationTime}, SHOP_ORIGIN=#{shopOrigin},  
+   			SHOP_RENAME=#{shopRename},  BUSINESS_NUMBER=#{businessNumber}
    		where MEMBER_ID=#{memberId} 
 	</update>
 
@@ -198,10 +200,13 @@
    			where SHOP_NO=#{item.shopNo} 
 	  </foreach>
 	</update>
-
+	
+	<select id="selectri" resultMap="mReserveInfoResultSet">
+		select *
+		from reserve_info
+		 where MEMBER_ID = #{memberId}
+	</select>
 <!--김예은 끝 ================================================= -->
-
-
    
 <!-- 김하영 시작 ================================================ -->
    <select id="getReListCount" resultType="_int">
@@ -260,7 +265,6 @@
  		<result property="replyStatus" column="REPLY_STATUS"/>
  	</resultMap>
 <!-- 김하영 끝 ================================================= -->
-
 
 <!-- 민병욱 시작 ================================================= -->
 
@@ -347,12 +351,10 @@
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
 	</select>
 
-   
 <!-- 민병욱 끝 ==================================================== -->
    
    
 <!-- 신진식 시작 =================================================== -->
-
 
 	<insert id="insertShop">
 		insert into shop_info values(seq_sno.nextval,#{shopName},#{shopIntro},#{shopOpen},#{shopClose},#{shopAddress},#{shopPhone},#{shopBreakStart},#{shopBreakClose},#{shopOffday},#{maxReservationTime},#{shopOrigin},#{shopRename},#{shopCate},#{businessNumber},#{memberId})
@@ -364,7 +366,6 @@
 			VALUES (SEQ_MNO.nextval, #{item.menuName}, #{item.menuPrice}, 'Y', #{item.menuCate},seq_sno.currval)
 		</foreach> 		
 	</insert>	    
-
 
 	<resultMap type="ShopMenu" id="shopMenuResulSet">
 		<id property="menuNo" column="MENU_NO" />
@@ -386,7 +387,6 @@
 	<insert id="insertReserveShopInfo">
 		insert into RESERVE_INFO values(SEQ_SRNO.nextval,#{reserveDate},#{reservePeople},#{totalPrice},'N',#{reserveName},#{reservePhone},#{reserveComment},null,null,#{memberId},#{shopNo},#{reserveTime})
 	</insert>
-	
 
 	<select id="selectReserveNo" resultMap="reserveInfoResultSet">
 <!-- 		select * from reserve_info where shop_no=#{shopNo} and ROWNUM=1 ORDER BY reserve_no desc -->
@@ -467,7 +467,4 @@
    </select>
    
 <!-- 원태원 끝 ====================================================== -->
-
-
-
 </mapper>

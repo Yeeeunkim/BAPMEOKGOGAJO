@@ -25,7 +25,6 @@ public class ShopDAO {
 
 	// 강동기 끝 ================================================
 
-
 	// 김예은 시작 ================================================
 	//사장님마이페이지 - 식당정보조회
 		public ShopInfo selectMyShop(SqlSessionTemplate sqlSession, String member_id) {
@@ -45,8 +44,8 @@ public class ShopDAO {
 		}
 		
 		//사장님마이페이지 - 예약받은 정보들
-		public ReserveInfo selectRinfo(SqlSessionTemplate sqlSession, int shopNo) {
-			return sqlSession.selectOne("shopMapper.selectRinfo", shopNo);
+		public List<ReserveInfo> selectRinfo(SqlSessionTemplate sqlSession, int shopNo) {
+			return (ArrayList)sqlSession.selectList("shopMapper.selectRinfo", shopNo);
 		}
 		//사장님마이페이지 - 예약받은 인원수, 시간
 		public List<ReserveInfo> selectReserveInfo(SqlSessionTemplate sqlSession, int shopNo) {
@@ -56,11 +55,14 @@ public class ShopDAO {
 		public List<ReserveMenu> selectReserveMenu(SqlSessionTemplate sqlSession, int reserveNo) {
 			return (ArrayList)sqlSession.selectList("shopMapper.selectReserveMenu", reserveNo);
 		}
-		
+		//마이페이지 조회시 예약 정보 가져오기 
+		public ReserveInfo selectri(SqlSessionTemplate sqlSession, String memberId) {
+			return sqlSession.selectOne("shopMapper.selectri", memberId);
+		}
 		public List<ReserveInfo> selectMyrInfo(SqlSessionTemplate sqlSession, String memberId) {
-			// TODO Auto-generated method stub
 			return (ArrayList)sqlSession.selectList("shopMapper.selectMyrInfo", memberId);
 		}
+		//요기요
 		//사용자마이페이지  - 예약내역 조회
 		public ReserveInfo selectMyReInfo(SqlSessionTemplate sqlSession, String memberId) {
 			return  sqlSession.selectOne("shopMapper.selectMyReInfo", memberId);
@@ -77,7 +79,6 @@ public class ShopDAO {
 		public List<ShopReview> selectMyReview(SqlSessionTemplate sqlSession, String memberId) {
 			return (ArrayList)sqlSession.selectList("shopMapper.selectMyReview", memberId);
 		}
-
 		
 		//사장님마이페이지  식당수정 - 식당 정보
 		public int sinfoUpdate(SqlSessionTemplate sqlSession, ShopInfo si) {
@@ -199,7 +200,6 @@ public class ShopDAO {
 		return sqlSession.insert("shopMapper.insertReserveMenu", reservemenu);
 	}
 	
-	
 	// 신진식 끝 =====================================================
 
 	// 원태원 시작 ====================================================
@@ -225,14 +225,10 @@ public class ShopDAO {
 		return sqlSession.selectOne("shopMapper.getListCateCount", shop);
 	}
 
-	
-
 	/*
 	 * public void insertShop(SqlSessionTemplate sqlSession,HashMap<String, Object>
 	 * data) { sqlSession.insert("shopMapper.insertShop"); }
 	 */
 	
-	
 	// 원태원 끝 ======================================================
-
 }

@@ -172,4 +172,5 @@ public class ReserveInfo {
 				+ reserveComment + ", reserveAd=" + reserveAd + ", reservePay=" + reservePay + ", memberId=" + memberId
 				+ ", shopNo=" + shopNo + "]";
 	}
+
 }

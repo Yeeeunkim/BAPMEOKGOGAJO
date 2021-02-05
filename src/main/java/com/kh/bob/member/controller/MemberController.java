@@ -36,15 +36,11 @@ import com.kh.bob.shop.model.vo.ShopInfo;
 import com.kh.bob.shop.model.vo.ShopMenu;
 import com.kh.bob.shop.model.vo.ShopReview;
 
-
-
 @SessionAttributes("loginUser")
 
 @Controller
 public class MemberController {
 // 김예은 시작 ================================================
-
-
 	@Autowired
 	private MemberService bmService;
 
@@ -53,6 +49,8 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
+
+	private int i;
 
 	// 로그인 페이지
 	@RequestMapping("loginView.me")
@@ -208,45 +206,50 @@ public class MemberController {
 	public ModelAndView myPageForm( HttpSession session, ModelAndView mv) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		HashMap<String,Object> paramMap = new HashMap<String,Object>();
-		
-		paramMap.put("memberId", loginUser.getMemberId());
-		//paramMap.put("name","이름");
-		
-		
-		//예약 내역
-		ReserveInfo rei = sService.selectMyReInfo(loginUser.getMemberId());
-		System.out.println("re : " + rei);
-		
-		//사용자가 예약한 예약내역 조회 
-		List<ReserveInfo> re = sService.selectMyrInfo(loginUser.getMemberId());
-		
-		
-		//사용자가 예약한 식당 정보 조회
-		List<ShopInfo> sp = sService.selectMyShopPick(rei.getShopNo());
-		System.out.println("sp: "  + sp); 
-		
-		//예약 메뉴
-		List<ReserveMenu> reme = sService.selectMyReMenu(rei.getReserveNo());	
-		System.out.println("reme : " + reme);
-		
-		//리뷰
-		List<ShopReview> rev = sService.selectMyReview(loginUser.getMemberId());	
-		System.out.println("rev : " + rev);
-		
-		 if(re!= null || !rev.isEmpty() ){ 
-			 mv.addObject("re", re);
-//			 mv.addObject("sp", sp);
-//			 mv.addObject("reme", reme);
-			 mv.addObject("rev", rev);
+		 if( loginUser != null ){ 
 			 mv.setViewName("myPage");
-			 return mv;
-		 }else { 
-				throw new MemberException("사용자 마이페이지 조회에 실패하였습니다.");
+		 }else {
+			 throw new MemberException("마이페이지 조회에 실패했습니다.");
 		 }
-		 
+		 return mv;
 	}
 
+	//사용자 마이페이지 - 예약내역
+	@RequestMapping("reinfo.me")
+		public ModelAndView reinfoForm( HttpSession session, ModelAndView mv) {
+			Member loginUser = (Member) session.getAttribute("loginUser");			
+				
+			//예약 내역
+			ReserveInfo rei = sService.selectMyReInfo(loginUser.getMemberId());
+			System.out.println("rei : " + rei);
+				
+			//사용자가 예약한 예약내역 조회 
+			List<ReserveInfo> re = sService.selectMyrInfo(loginUser.getMemberId());
+				
+		    ArrayList<ShopInfo> sp=new ArrayList<ShopInfo>();
+			ArrayList<ReserveMenu> reme=new ArrayList<ReserveMenu>();
+				
+			if(rei!=null) {
+			//사용자가 예약한 식당 정보 조회
+				sp = (ArrayList<ShopInfo>) sService.selectMyShopPick(rei.getShopNo());
+				System.out.println("sp: "  + sp); 
+					
+				//예약 메뉴
+				reme = (ArrayList<ReserveMenu>) sService.selectMyReMenu(rei.getReserveNo());	
+				System.out.println("reme : " + reme);
+		    }
+				
+			//리뷰
+			List<ShopReview> rev = sService.selectMyReview(loginUser.getMemberId());	
+			System.out.println("rev : " + rev);
+					mv.addObject("re", re);
+					mv.addObject("sp", sp);
+					mv.addObject("reme", reme);
+					mv.addObject("rev", rev);
+					mv.setViewName("reInfoForm");
+				return mv;
+	}
+	
 	@RequestMapping("mPwdUpdate.me")
 	public String pwdUpdate() {
 		return "updatePwdForm";
@@ -297,8 +300,9 @@ public class MemberController {
 	// 일반 회원정보 수정 기능 페이지
 	@RequestMapping("mInfoUpdate.me")
 	public String minfoUpdate(@ModelAttribute Member m, Model model) {
+		
 		int result = bmService.minfoUpdate(m);
-		System.out.println(m);
+		
 		if (result > 0) {
 			model.addAttribute("loginUser", m);
 			return "redirect:home.do";
@@ -330,7 +334,7 @@ public class MemberController {
 				System.out.println(smb);
 				
 				//식당이 예약받은 정보들
-				ReserveInfo rinfo = sService.selectRinfo(si.getShopNo());
+				List<ReserveInfo> rinfo = sService.selectRinfo(si.getShopNo());
 				System.out.println("rinfo : " + rinfo);
 				
 				
@@ -339,10 +343,18 @@ public class MemberController {
 				System.out.println("ri : " + ri);
 				
 				//식당이 예약받은 정보들  - 예약메뉴
-				List<ReserveMenu> rm = sService.selectReserveMenu(rinfo.getReserveNo());
+				ArrayList<ReserveMenu> rm = new ArrayList<ReserveMenu>();
 				System.out.println("rm : " + rm);
 				
-				if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
+				if(rinfo!=null) {
+		               for(int i=0; i<rinfo.size(); i++) {
+		                  rm.addAll(sService.selectReserveMenu(rinfo.get(i).getReserveNo()));
+		                  System.out.println("test77:"+sService.selectReserveMenu(rinfo.get(i).getReserveNo()));
+		                  System.out.println("rm : " + rm);
+		               }
+		            }
+				
+				if(si != null && !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
 					  
 					 mv.addObject("si", si);
 					 mv.addObject("sm", sm);
@@ -373,7 +385,7 @@ public class MemberController {
 		// 사장님마이페이지 - 음료
 		List<ShopMenu> smb = sService.selectMyMenu3(si.getShopNo());
 
-		if(si != null || !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
+		if(si != null && !sm.isEmpty() || !sms.isEmpty() || !smb.isEmpty()){ 
 			  
 			 mv.addObject("si", si);
 			 mv.addObject("sm", sm);
@@ -400,8 +412,8 @@ public class MemberController {
 	
 		//사장님 식당 정보 수정 기능
 		@RequestMapping("shopUpdate.me")
-		public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("menuNo") int menuNo, @RequestParam("shopNo") int shopNo,  @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
-				         HttpSession session, ModelAndView mv){
+		public ModelAndView shopUpdate(@ModelAttribute ShopInfo si, @RequestParam("thumbnailImg") MultipartFile thumbnailImg, HttpServletRequest request, 
+										HttpSession session, ModelAndView mv){
 			
 			String menuname[]=request.getParameterValues("MenuName");
 			String menuprice[]=request.getParameterValues("MenuPrice");
@@ -442,19 +454,12 @@ public class MemberController {
 				
 				int siResult = sService.sinfoUpdate(si);
 				int smResult = sService.smenuUpdate(shopmenu);
-//				int smsResult = sService.sideUpdate(sms);
-//				int smbResult = sService.beverUpate(smb);
 				
 				System.out.println("siUpdate" + si);
 				System.out.println("smUpdate" + shopmenu);
-//				System.out.println("smsUpdate" + sms);
-//				System.out.println("smbUpdate" + smb);
 				
 			 if(siResult > 0 || smResult > 0 ){ 
 				  mv.addObject("si", si);
-//				  mv.addObject("shopmenu", shopmenu);
-//				  mv.addObject("sms", sms);
-//				  mv.addObject("smb", smb);
 				  mv.setViewName("redirect:shopMypage.me"); 
 			 }else { 
 				 throw new MemberException("사장님 마이페이지 수정에 실패했습니다."); 
@@ -567,11 +572,5 @@ public class MemberController {
 		}
 	}
 	
-	//예약취소
-	@RequestMapping("reCancel.me")
-	public String cancelShop(@RequestParam("reserveNo") int reserveNo) {
-		int result = bmService.cancelShop(reserveNo);
-		return "redirect:home.do";
-	}
 	// 김예은 끝 =================================================
 }
