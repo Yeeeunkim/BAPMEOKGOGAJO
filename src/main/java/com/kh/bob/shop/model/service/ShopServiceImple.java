@@ -281,6 +281,10 @@ public class ShopServiceImple implements ShopService {
 	public int getListCateCount(ShopInfo shop) {
 		return sDAO.getListCateCount(sqlSession, shop);
 	}
+	@Override
+	public double getReviewScore(int shop_no) {
+		return sDAO.getReviewScore(sqlSession, shop_no);
+	}
 
 
 	// 원태원 끝 ======================================================

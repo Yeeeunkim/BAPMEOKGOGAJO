@@ -224,6 +224,9 @@ public class ShopDAO {
 	public int getListCateCount(SqlSessionTemplate sqlSession, ShopInfo shop) {
 		return sqlSession.selectOne("shopMapper.getListCateCount", shop);
 	}
+	public double getReviewScore(SqlSessionTemplate sqlSession, int shop_no) {
+		return sqlSession.selectOne("shopMapper.getReviewScore", shop_no);
+	}
 
 	/*
 	 * public void insertShop(SqlSessionTemplate sqlSession,HashMap<String, Object>

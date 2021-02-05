@@ -488,6 +488,17 @@
    		WHERE SHOP_CATE  = #{shopCate}
 
    </select>
-   
+   <select id="getReviewScore" resultType="_double">
+   		 SELECT AVG_SCORE FROM SHOP_INFO
+        FULL OUTER JOIN(SELECT SHOP_NO, ROUND(AVG(NVL(REVIEW_SCORE, 0)), 1) AS AVG_SCORE, COUNT(REVIEW_SCORE) AS COUNT_REVIEW
+		FROM SHOP_INFO
+		FULL OUTER JOIN (SELECT *
+            FROM SHOP_REVIEW
+            WHERE REVIEW_STATUS = 'Y') USING(SHOP_NO)
+		GROUP BY SHOP_NO
+		ORDER BY AVG_SCORE DESC) USING(SHOP_NO)
+        WHERE  SHOP_NO=#{shop_no}
+
+   </select>
 <!-- 원태원 끝 ====================================================== -->
 </mapper>

@@ -632,10 +632,12 @@ public class ShopController {
 
 
          List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
-
+         double reviewScore = sService.getReviewScore(shop_no);
+         
          mv.addObject("timeList", timeList);
          mv.addObject("closeTime1",closeTime1);
          mv.addObject("reservationList", reservationList);
+         mv.addObject("reviewScore", reviewScore);
          mv.setViewName("/shop/shopReservation");
 
          return mv;

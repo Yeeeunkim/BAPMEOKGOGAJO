@@ -379,7 +379,8 @@ h4, h2 {
 
    <div id="info">
       <p id="shopnm">${reservationList[0].SHOP_NAME}</p>
-      <p>[별점]</p>
+      <p>[별점]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      	 ${ reviewScore }</p>
       <p>전화
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          ${reservationList[0].SHOP_PHONE}</p>

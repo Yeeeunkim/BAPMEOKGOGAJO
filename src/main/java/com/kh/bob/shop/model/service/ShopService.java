@@ -131,6 +131,8 @@ public interface ShopService {
 
 	int getListCateCount(ShopInfo shop);
 
+	double getReviewScore(int shop_no);
+
 	/* void insertShop(HashMap<String, Object> data); */
 
 	// 원태원 끝 ======================================================
