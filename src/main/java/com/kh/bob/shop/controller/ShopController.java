@@ -213,24 +213,21 @@ public class ShopController {
 			
 		}
 		 @RequestMapping("rereplyList.sh") 
-		  public String rereplyList(@RequestParam("reNo") int reviewNo, @RequestParam("shopNo") int shopNo, HttpServletRequest req,
+		  public String rereplyList(@RequestParam("reNo") int reviewNo, HttpServletRequest req,
 				  							Model model) {
 		  
 			  ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
+			  int shopNo = Integer.parseInt(req.getParameter("shopNo"));
 			  
-			  
-			  System.out.println(rereList);
+			  System.out.println("rereList = " + rereList);
 			 
 			  if(rereList != null) { 
 				  model.addAttribute("rereList", rereList); 
-				  System.out.println(rereList);
 			 } else {
 				throw new ShopException("리뷰답글 조회를 실패하였습니다.");
 					}
 		  
 		  return "redirect:Reservation.do?SHOP_NO="+ shopNo;
-		  
-		  
 		  
 		 }
 		 
@@ -574,10 +571,7 @@ public class ShopController {
 	   public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
 	         ModelAndView mv,  @RequestParam(value = "page", required = false) Integer page) {
 		int currentPage = 1;
-
 		
-		  
-		 
 		if (page != null) {
 			currentPage = page;
 		} 

@@ -16,7 +16,7 @@
 <body align="center" id="boby">
 	${ reNo }
 	${ shopNo }
-	<h2>답글 달기</h2>
+	<h2>답글 달기</h2>        
 	<form action="rereplyinsert.sh" id="form" target="'Reservation.do?SHOP_NO='+shopNo">
 	<input type="hidden" name="reid" value="${ reNo }">
 	<input type="hidden" name="shopNo" value="${ shopNo }">

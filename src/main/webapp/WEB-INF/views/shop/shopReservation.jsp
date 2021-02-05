@@ -276,6 +276,9 @@ h4, h2 {
    width: 10px;
    height: 10px;
 }
+#check{
+	color:#08088A;
+}
 #shopIntro{margin-left:25%; text-align: center}
 </style>
 </head>
@@ -643,31 +646,49 @@ h4, h2 {
 
                <c:url var="redelete" value="reDelete.sh">
                   <c:param name="reNo" value="${ re.reviewNo }" />
-                  <c:param name="shopNo"
-                     value='<%=request.getParameter("SHOP_NO")%>' />
+                  <c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>' />
                </c:url>
-
+				
                <td id="rereplytd">
-               	  <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }">
-               		<span class="rere" onclick="rereplySendForm(${re.reviewNo}, '<%=request.getParameter("SHOP_NO")%>');">답글</span>
-               	  </c:if>
+               <c:url var="rereInsert" value="rereplyinsert.sh">
+               		<c:param name="reid" value="${re.reviewNo}"/>
+               		<c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>' />
+               </c:url>
+               	  <%--  <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }"> --%>
+               		<%-- <a class="rere" href="${ rereInsert })">답글보내기</a><br> --%>
+               	 <%--   </c:if> --%>
+               	 <c:url var="replaysend" value="rereplyList.sh">
+	            	<c:param name = "reNo" value="${re.reviewNo}" />
+	            	<c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>'/>
+            	</c:url>
+               	 		<span class="rere" onclick="rereplySendForm(${re.reviewNo},'<%=request.getParameter("SHOP_NO")%>');" >답글보내기</span>
+               	 		 <br><a href="${ replaysend }" id="check">답글확인 </a><br>
                   <c:if test="${ loginUser.memberId eq re.memberId || loginUser.auth_code == 0 }">
                   	&nbsp;&nbsp;&nbsp;&nbsp; <a class="reDelete" href="${ redelete }">삭제</a>
                   </c:if>
+                  
+                 
                </td>
             </tr>
-	            <tr>
-	            <c:if test="${ rereply.reviewNo eq re.reviewNo }">
-	            	<td></td>
-	            	<td>사장님 : <br>${rereply.replyTime } </td>
-	            	<td> ${rereply.replyContent } </td>
-	            </c:if>	
-	            </tr>
+          
+            <tr id="replydiv">
+            <c:set var="reList" value="${ rereList}"/>
+            		<td></td>
+				<%-- <c:if test="${ rereList.reviewNo eq re.reviewNo }"> --%>
+	            	<td id="replyTime">사장님 : <br>${ reList.replyTime } </td>
+	            	<td id="replyContent"> ${ reList.replyContent } </td>
+	        	<%-- </c:if> --%>
+	        </tr>
+			 <!--  <tr id="textarea">
+            	<td></td>
+            	<td></td>
+            	<td></td>
+            	<td>ㄴ <textarea cols="70" rows="1" name="rereContent"></textarea></td>
+            </tr> -->
+				
          </table>
       </form>
       <br>
-
-
    </c:forEach>
 
 
@@ -676,8 +697,9 @@ h4, h2 {
       <span> <!-- [이전] --> <c:if test="${ pi.currentPage <= 1 }">
                [이전] &nbsp;
             </c:if> <c:if test="${ pi.currentPage > 1 }">
-            <c:url var="before" value="relist.sh">
+            <c:url var="before" value="/Reservation.do">
                <c:param name="page" value="${ pi.currentPage - 1 }" />
+               <c:param name="SHOP_NO" value='<%=request.getParameter("SHOP_NO")%>' />
             </c:url>
             <a href="${ before }" class="pi">[이전]</a> &nbsp;
             </c:if> <!-- 페이지 --> <c:forEach var="p" begin="${ pi.startPage }"
@@ -687,16 +709,18 @@ h4, h2 {
             </c:if>
 
             <c:if test="${ p ne pi.currentPage }">
-               <c:url var="pagination" value="relist.sh">
+               <c:url var="pagination" value="/Reservation.do">
                   <c:param name="page" value="${ p }" />
+                  <c:param name="SHOP_NO" value='<%=request.getParameter("SHOP_NO")%>' />
                </c:url>
                <a href="${ pagination }" class="pi">${ p }</a> &nbsp;
                </c:if>
          </c:forEach> <!-- [다음] --> <c:if test="${ pi.currentPage >= pi.maxPage }">
                [다음]
             </c:if> <c:if test="${ pi.currentPage < pi.maxPage }">
-            <c:url var="after" value="relist.sh">
+            <c:url var="after" value="/Reservation.do">
                <c:param name="page" value="${ pi.currentPage + 1 }" />
+               <c:param name="SHOP_NO" value='<%=request.getParameter("SHOP_NO")%>' />
             </c:url>
             <a href="${ after }" class="pi">[다음]</a>
          </c:if>
@@ -707,10 +731,9 @@ h4, h2 {
    <br>
    <br>
 
-   </div>
-
    <script>
-   function rereplySendForm(reid,shopNum){
+    function rereplySendForm(reid,shopNum){
+    	window.name =  "redirect:Reservation.do?SHOP_NO="+shopNo
  		window.open('', 'rereplySendForm' ,'width=500, height=300');
  		
  		var form = document.createElement('form');
@@ -739,8 +762,10 @@ h4, h2 {
  		document.body.appendChild(form);
  		form.submit();
  		document.body.removeChild(form);
+
  		
- 	}
+ 	} 
+ 	
  </script>
 
    <script>
@@ -806,7 +831,6 @@ h4, h2 {
                   
                         html = "";
                         
-                        
                         for(var i=0; i<data.SideMenu.length; i++){
                            
                            html += "<tr>"
@@ -842,55 +866,6 @@ h4, h2 {
  
     </script>
 
-   <script>
-        // 리뷰 답변달기
-/*      
-         function replysend(reid){
-           $(function(){
-           var textarea = $('#textarea'+reid).val();
-           //var reid = ${re.reviewNo};
-           console.log(textarea);
-           console.log(reid);
-           $.ajax({
-              url: 'rereplyinsert.sh',
-              data: {textarea:textarea, reid:reid},
-              success: function(data){
-                 console.log(data);
-                 if(data == 'success'){
-                    $('textarea').val('');
-                    getReplyList(reid);
-                 }
-              }
-           });
-           });
-        }; */
-        
-        // 리뷰 답글 불러오기
-        function getReplyList(reid){
-           /* var reviewNo = ${re.reviewNo}; */
-           $(function(){
-              
-        	   console.log(reid);
-           $.ajax({
-              url: 'rereplyList.sh',
-              data : {reid:reid},
-              success: function(data){
-                 console.log(data);
-                 
-                 var $rereplyTime = $('#rereplyTime');
-                 var $rereContents = $('#rereContents');
-                 
-                 if(data.length > 0){
-                    $rereplyTime.append('${ rereply.reviewTime }');
-                    $rereContents.append('${rereply.replyContents}')
-                 }
-                 
-              }
-              
-           });
-        }); 
-      }
-  </script>
    <script>
        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
        var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -1013,7 +988,6 @@ h4, h2 {
          location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;
       }
    </script>
-
 
    <jsp:include page="../common/footer.jsp" />
 
