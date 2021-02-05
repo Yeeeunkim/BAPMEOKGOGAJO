@@ -80,6 +80,12 @@
 		set member_pwd=#{newPwd}
 		where MEMBER_ID=#{memberId}
 	</update>
+	
+	<update id="cancelShop">
+		update reserve_info
+		set reserve_status='N'
+		where RESERVE_NO=#{reserveNo}
+	</update>
 
 
 <!--김예은 끝 ================================================= -->

@@ -151,12 +151,14 @@
 		from reserve_info
 		 where MEMBER_ID = #{memberId}
 	</select>
+	
 	<!-- 사용자마이페이지  - 예약내역 조회 -->
 	<select id="selectMyReInfo"  resultMap="mReserveInfoResultSet" >
 		select *
         from RESERVE_INFO
         where MEMBER_ID = #{memberId}
 	</select>
+
 	
 	<!-- 사용자마이페이지  - 사용자가 선택한 식당정보  -->
 	<select id="selectMyShopPick"  resultMap="mshopInfoResultSet">
@@ -186,25 +188,30 @@
    		set SHOP_NAME=#{shopName}, SHOP_INTRO=#{shopIntro}, SHOP_OPEN=#{shopOpen}, 
    			SHOP_CLOSE=#{shopClose}, SHOP_ADDRESS=#{shopAddress}, SHOP_PHONE=#{shopPhone},  
    			SHOP_BREAK_START=#{shopBreakStart},  SHOP_BREAK_CLOSE=#{shopBreakClose}, 
-   			SHOP_OFFDAY=#{shopOffday}, MAX_RESERVATION_TIME=#{maxReservationTime}, SHOP_ORIGIN=#{shopOrigin},  SHOP_RENAME=#{shopRename},  BUSINESS_NUMBER=#{businessNumber}
+   			SHOP_OFFDAY=#{shopOffday}, MAX_RESERVATION_TIME=#{maxReservationTime}, SHOP_ORIGIN=#{shopOrigin},  
+   			SHOP_RENAME=#{shopRename},  BUSINESS_NUMBER=#{businessNumber}
    		where MEMBER_ID=#{memberId} 
 	</update>
 
 	<!-- 사장님마이페이지 식당수정- 식당 메뉴 -->
-    <update id="smenuUpdate" >
+     <update id="smenuUpdate" >
 	  <foreach item="item" collection="list" separator=";" open="DECLARE BEGIN" close="; END;">
 		update SHOP_MENU
    			set  MENU_NAME=#{item.menuName}, MENU_PRICE=#{item.menuPrice} , MENU_CATE=#{item.menuCate}
    			where SHOP_NO=#{item.shopNo} 
 	  </foreach>
 	</update>
-
-
-
+	
+	<select id="selectri" resultMap="mReserveInfoResultSet">
+		select *
+		from reserve_info
+		 where MEMBER_ID = #{memberId}
+	</select>
 <!--김예은 끝 ================================================= -->
 
+
 <!-- 김하영 시작 ================================================ -->
-   	<select id="getReListCount" resultType="_int">
+  <select id="getReListCount" resultType="_int">
 		select count(*)
 		from shop_review
 		where review_status ='Y' AND SHOP_NO = #{shopNo}
@@ -261,12 +268,9 @@
  	</resultMap>
 <!-- 김하영 끝 ================================================= -->
 
-
 <!-- 민병욱 시작 ================================================= -->
 
 	<!-- @@@@@테스트용 -->
-	
-	
 	<resultMap type="ReserveInfo" id="reserveInfoResultSet">
 		<id property="reserveNo" column="RESERVE_NO" />
 		<result property="reserveDate" column="RESERVE_DATE" />
@@ -353,7 +357,6 @@
 			replace(trim(shop_address), ' ','') like '%' || #{shopAddress} || '%'
 	</select>
 
-   
 <!-- 민병욱 끝 ==================================================== -->
    
    
@@ -370,7 +373,6 @@
 		</foreach> 		
 	</insert>	    
 
-
 	<resultMap type="ShopMenu" id="shopMenuResulSet">
 		<id property="menuNo" column="MENU_NO" />
 		<id property="menuName" column="MENU_NAME" />
@@ -379,7 +381,6 @@
 		<result property="menuCate" column="MENU_CATE" />
 		<result property="shopNo" column="SHOP_NO" />
 	</resultMap>
-
 
 	<select id="selectShopMenu" resultMap="shopMenuResulSet">
 		select * from shop_menu where shop_no= #{shopNo}

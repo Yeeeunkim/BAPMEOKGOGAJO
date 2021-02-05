@@ -22,7 +22,6 @@
 	#qnaTable {text-align: left;  margin: auto; width: 800px;  margin-top: 45px; }
 	#qnaTable th{border-bottom: 3px solid #1D3557;}
 	#qnaTable td{border-bottom: 1px solid #1D3557;}
-
 	#content_text {display: block; margin-right: auto; width: 800px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
 	

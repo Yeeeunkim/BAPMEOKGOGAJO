@@ -23,6 +23,7 @@
 	margin-left: auto;
 }
 
+
 #listArea {
 	margin: 0 auto;
 }
@@ -67,6 +68,7 @@
 	background: tomato;
 	color: white;
 }
+
 
 .aPage{
 	color: black !important;

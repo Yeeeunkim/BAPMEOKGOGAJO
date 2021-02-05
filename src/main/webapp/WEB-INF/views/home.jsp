@@ -28,7 +28,6 @@
 	
 	 .img{height:70vh;background-size: cover;margin:0;font-family:'Gugi';
 	 	background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ),url("<%= request.getContextPath() %>/resources/images/main/main.png");}
-
   	.img .content{
 	     position: relative; 
 	     top:50%;
@@ -117,7 +116,6 @@
 	
 	.card { margin-left:10px;} 
 	.card{display:inline-block; }   
-
     
     /*top버튼 */
     a#MOVE_TOP_BTN {
@@ -197,6 +195,7 @@
 		<script>
 			$('.category').slick({slidesToShow:4, slidesToScroll:4, dots:true});
 		</script>
+
 		
 		<br><br>
 		

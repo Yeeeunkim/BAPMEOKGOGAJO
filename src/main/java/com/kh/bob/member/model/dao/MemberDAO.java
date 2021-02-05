@@ -51,6 +51,10 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.pwdUpdate", map);
 	}
 
+	public int cancelShop(SqlSessionTemplate sqlSession, int reserveNo) {
+		return sqlSession.update("memberMapper.cancelShop", reserveNo);
+	}
+
 // 김예은 끝 =================================================
 
 }

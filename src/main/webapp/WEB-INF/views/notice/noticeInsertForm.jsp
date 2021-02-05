@@ -20,7 +20,6 @@
 	#noticeTable {text-align: left;  margin: auto; width: 500px;  margin-top: 45px; }
 	#noticeTable th{border-bottom: 3px solid #1D3557;}
 	#noticeTable td{border-bottom: 1px solid #1D3557;}
-
 	 #content_text {display: block; margin-right: auto; width: 500px;
 		height: 250px; resize: none; outline: none; border: none;  font-family: 'Gugi'; } 
 	
@@ -34,7 +33,6 @@
 	/*글쓰기 버튼*/
 	.btn1{ width: 100px; height: 30px; border: none; border-radius: 50px;  background: #F42B03; color:white; margin-left: 310px; margin-top: 40px;} 
 	.btn2{ width: 100px; height: 30px; border: none; border-radius: 50px;  background: #F42B03; color:white; margin-left: 200px; margin-top: 40px;}
-
 	/*푸터 높이 조절*/
 	footer{margin-top: 300px;}
 </style>

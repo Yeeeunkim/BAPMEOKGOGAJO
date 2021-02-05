@@ -53,11 +53,9 @@
   margin: auto;
   text-align:center;
 }
-
 #thumbImg{
 	border:2px red;
 }
-
 .form-group{
 	width: 70%;
 	height: 30%;
@@ -71,12 +69,10 @@
 	margin: 0 auto;
 	margin-top: 50px;
 }
-
 .enrollDiv {
 	text-align: center;
 	align-content: center;
 }
-
 .enrollBtn {
 	display: block !important;
 	margin: 0 auto !important;
@@ -85,32 +81,26 @@
 	width: 250px !important;
 	height: 50px;
 }
-
 .pp {
 	display: inline-block;
 	width: 25%;
 }
-
 .pInput{
 	display: inline-block;
 	width: 20%;
 }
-
 .input-info{
 	display: inline;
 }
-
 .cInput {
 	width: 30%;
 }
-
 .authBtn {
 	margin: 0 auto !important;
 	background: #F42B03 !important;
 	border: 0px !important;
 	color: white;
 }
-
 .enrollBtn {
 	display: block !important;
 	margin: 0 auto !important;
@@ -134,7 +124,6 @@
 	width: 70%;
 	text-align: center;
 }
-
 #drinkmenu{
 	margin: auto;
 	width: 70%;
@@ -155,7 +144,6 @@
 	background: #F42B03;
 	color: white;
 }
-
 #gps{
 	width: 40px;
 	margin-left:30%;
@@ -172,7 +160,6 @@
   text-align:center;
 }
 #enroll{
-
   background-color: #F42B03;
   border: none;
   color: white;
@@ -181,17 +168,14 @@
   width: 100px;
   height: 40px;
  }
-
 #btnP{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 input { 
     text-align: center; 
 }
-
 #myselect{width:10%; margin-left:5%;}
 
 #holiday { padding: .3em .5em; }
@@ -202,11 +186,9 @@ input {
 	align-content: center;
 	border-collapse: collapse;
 }
-
 .centerText table tr td {
 	padding: 5px;
 }
-
 #thumbnailImg{margin-left:10%;}
 
 .form-floating{margin:0 0 20px 35%;}
@@ -224,6 +206,7 @@ input {
    	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
    	
     <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
+
 
        <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" selected="selected">--선택해주세요--</option>
@@ -482,7 +465,6 @@ input {
 		  // Cell에 텍스트 추가
 		 /*  newCell1.innerText = '메뉴';
 		  newCell2.innerText = '가격'; */
-
 		  newCell1.innerHTML = '<input type="text" name="MenuName" size="20" style="width:100%; border: 0;">';
 		  newCell2.innerHTML = '<input type="number" name="MenuPrice" size="20" style="width:100%; border: 0;" min="100">';
 		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow(this)">&nbsp;-&nbsp;</button>';
@@ -495,7 +477,6 @@ input {
 				  // 행(Row) 삭제
 				  const newRow = table.deleteRow(i);
 		}
-
 		/* $(function () {
 		    $('#btn-empty').click( function() {
 		        $( '#menu > thead').empty();
@@ -538,7 +519,6 @@ input {
 		  newCell2.innerHTML = '<input type="number" name="SidePrice" size="20" style="width:100%; border: 0;" min="100">';
 		  newCell3.innerHTML = '<button type="button" class="menuMinus"  onclick="deleteRow2(this)">&nbsp;-&nbsp;</button>';
 			}
-
 		function deleteRow2(r) {
 			  var i = r.parentNode.parentNode.rowIndex;
 			  // table element 찾기

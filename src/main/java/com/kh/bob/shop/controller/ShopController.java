@@ -1,4 +1,4 @@
-﻿package com.kh.bob.shop.controller;
+package com.kh.bob.shop.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -361,6 +361,7 @@ public class ShopController {
          int price=Integer.parseInt(sm.get(i).getMenuPrice());
          int menucount=Integer.parseInt(mainmenu[i]);
          if(menucount!=0) {
+
             reservemenu.add(new ReserveMenu(menuNo,menuName,menucount));
          }
       }

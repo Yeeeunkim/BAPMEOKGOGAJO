@@ -133,4 +133,5 @@ public class Shop {
 				+ ", age=" + age + ", phone=" + phone + ", address=" + address + ", enrollDate=" + enrollDate
 				+ ", updateDate=" + updateDate + ", mStatus=" + mStatus + "]";
 	}
+
 }

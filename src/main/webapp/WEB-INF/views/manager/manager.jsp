@@ -66,7 +66,9 @@
 					</c:forEach>
 				],
 				datasets:[{
+
 					label:'카테고리별 매출',
+
 					data:[
 						<c:forEach var="cs" items="${ cs }" varStatus="status">
 							${ cs.sales }<c:if test="${ !status.last }">,</c:if>

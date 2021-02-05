@@ -19,7 +19,9 @@
 .sidebar ul li:hover a{padding-left:50px;}
 .row {width:100%; padding-left:15%; padding-top:5%}
 .pagination {margin-left:35%;}
+
 /* .contentTR:hover {cursor: pointer;} */
+
 </style>
 </head>
 <body>
@@ -62,6 +64,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+
 <!-- 			<script> -->
 // 				$(function(){
 // 					$('.contentTD').click(function(){

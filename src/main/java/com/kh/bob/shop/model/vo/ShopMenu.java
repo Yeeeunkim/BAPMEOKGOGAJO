@@ -34,6 +34,15 @@ public class ShopMenu {
 		this.menuCate = menuCate;
 		this.shopNo = shopNo;
 	}
+	//김예은 - 메뉴 여러개 추가한 것
+	public ShopMenu(int menuNo, String menuName, String menuPrice, int menuCate, int shopNo) {
+		super();
+		this.menuNo = menuNo;
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+		this.menuCate = menuCate;
+		this.shopNo = shopNo;
+	}
 
 	public int getMenuNo() {
 		return menuNo;

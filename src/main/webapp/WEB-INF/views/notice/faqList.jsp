@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+=======
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+>>>>>>> origin/master
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,7 +20,6 @@
 	width: 200px !important;
 	display: inline-block !important;
 }
-
 .bArea {
 	width: 60% !important;
 	display: inline !important;
@@ -24,6 +27,7 @@
 	top: 80px;
 	margin: auto;
 }
+
 
 .check {
 	display: none;

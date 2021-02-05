@@ -24,6 +24,7 @@
 	margin: auto;
 }
 
+
 .check {
 /* 	display: none; */
 }
@@ -39,6 +40,7 @@
 	max-height: 0px;
 	overflow: hidden;
 }
+
 
 .check:checked+.title+.desc {
 	max-height: 1000px;

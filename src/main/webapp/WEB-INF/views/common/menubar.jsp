@@ -73,7 +73,6 @@
 		padding-left: 30px;
 		margin-top: 10px;	
 	}
-
 	@media screen and (max-width: 780px) {
 		.navbar{
 			flex-direction:column;
@@ -119,7 +118,6 @@
    .searchbar {
    	list-style:none;
    } 
-
     .search_input{
 	    color: black;
 	    border: 0;
@@ -130,7 +128,6 @@
 	    line-height: 40px;
 	    transition: width 0.4s linear;
     }
-
     .searchbar:hover > .search_input{
 	    padding: 0 10px;
 	    width: 200px;  /*수정 보류!*/
@@ -139,12 +136,10 @@
 	    background-color: white;
 	    border-radius:4px;
     }
-
     .searchbar:hover > .search_icon{
 	    background: white;
 	    color: #e74c3c;
     }
-
     .search_icon{
 	    height: 50px;
 	    width: 50px;
@@ -157,7 +152,6 @@
 	    text-decoration:none;
     }
 	 
-
 </style>
 </head>
 <body>
@@ -213,10 +207,12 @@
 		</nav>
 	</c:if>
 	</div>
+
 	<script>
 		function shop() {
 			location.href = "${contextPath }/shop.do"
 		}
+
 
 		function manager() {
 			location.href = "${contextPath }/manager.ma"

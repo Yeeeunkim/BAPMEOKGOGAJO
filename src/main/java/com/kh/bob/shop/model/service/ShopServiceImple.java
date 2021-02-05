@@ -73,7 +73,7 @@ public class ShopServiceImple implements ShopService {
 		}
 		//사장님마이페이지 - 예약받은 정보들
 		@Override
-		public ReserveInfo selectRinfo(int shopNo) {
+		public List<ReserveInfo> selectRinfo(int shopNo) {
 			return sDAO.selectRinfo(sqlSession, shopNo);
 		}
 		//사장님마이페이지 - 예약받은 인원수, 시간
@@ -86,13 +86,17 @@ public class ShopServiceImple implements ShopService {
 		public List<ReserveMenu> selectReserveMenu(int reserveNo) {
 			return sDAO.selectReserveMenu(sqlSession, reserveNo);
 		}
-			
 
 		//사용자마이페이지  - 예약내역 조회
 		@Override
 		public ReserveInfo selectMyReInfo(String memberId) {
 			return sDAO.selectMyReInfo(sqlSession, memberId);
 		}
+		@Override
+		public List<ReserveInfo> selectMyrInfo(String memberId) {
+			return sDAO.selectMyrInfo(sqlSession, memberId);
+		}
+
 		//사용자마이페이지  - 사용자가 선택한 식당정보
 		@Override
 		public List<ShopInfo> selectMyShopPick(int shopNo) {
@@ -122,12 +126,12 @@ public class ShopServiceImple implements ShopService {
 			return sDAO.smenuUpdate(sqlSession, shopmenu);
 		}
 
+		//마이페이지조회시 예약정보 가져오기 
 		@Override
-		public List<ReserveInfo> selectMyrInfo(String memberId) {
-			return sDAO.selectMyrInfo(sqlSession, memberId);
+		public ReserveInfo selectri(String memberId) {
+			// TODO Auto-generated method stub
+			return sDAO.selectri(sqlSession, memberId);
 		}
-
-
 	//김예은 끝 =============================================
 
 

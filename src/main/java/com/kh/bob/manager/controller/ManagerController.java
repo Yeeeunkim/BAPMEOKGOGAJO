@@ -162,4 +162,5 @@ public class ManagerController {
 			throw new ManagerException("신고글 답변에 실패했습니다.");
 		}
 	}
+
 }

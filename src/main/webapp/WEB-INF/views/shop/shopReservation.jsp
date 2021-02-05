@@ -44,7 +44,6 @@
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
-
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
    crossorigin="anonymous"></script>
@@ -146,6 +145,7 @@
    width: 70px;
    height: 70px;
    float: left;
+
 }
 
 #user {
@@ -179,6 +179,7 @@
    width: 100px;
    height: 40px;
 }
+
 
 td {
    width: 390px !important;
@@ -222,6 +223,7 @@ td {
    height: 400px;
 }
 
+
 h4, h2 {
    margin-left: 8%;
 }
@@ -249,6 +251,7 @@ h4, h2 {
    font-size: 10px;
 }
 
+
 .image {
    display: inline-block;
 }
@@ -264,6 +267,7 @@ h4, h2 {
    border-radius: 5px;
    border-color: gray;
 }
+
 
 .reviewList {
    margin-left: 100px;
@@ -283,6 +287,7 @@ h4, h2 {
    height: 40px;
 }
 
+
 #rebottom {
    padding: 30px;
 }
@@ -301,6 +306,7 @@ h4, h2 {
    height: 500px;
 }
 
+
 .replytextarea {
    display: none;
 }
@@ -314,6 +320,7 @@ h4, h2 {
    border-left: hidden;
    border-right: hidden;
 }
+
 
 .pi {
    color: #08088A;
@@ -451,7 +458,6 @@ h4, h2 {
             }else{
                return true;
             }
-
 
             if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
                alert("메뉴를 선택하세요");

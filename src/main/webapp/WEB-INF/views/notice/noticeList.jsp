@@ -39,7 +39,6 @@
 	width: 200px !important;
 	display: inline-block !important;
 }
-
 .bArea {
 	width: 60% !important;
 	display: inline !important;
@@ -47,7 +46,6 @@
 	top: 80px;
 	margin: auto;
 }
-
 .nBtn{
 	float: right;
 	margin-top: 50px;
@@ -59,14 +57,11 @@
 	border-radius: 50px; 
 /* 	border: 0px !important; */   
 }
-
 th{border-bottom: 3px solid #1D3557 !important;}
 td{border-bottom: 1px solid #1D3557 !important;}
-
 .aPage{
 	color: black !important;
 }
-
 .aTitle{
 	color: black;
 }

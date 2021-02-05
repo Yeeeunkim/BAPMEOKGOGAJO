@@ -63,6 +63,7 @@
 		<h1 align="center"><b>식당 신고></b></h1>
 		<br><br>
 		<form action="declare.do" align="center">
+
 			 <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 			 <input type="hidden" name="shopNo" value="${shopNo}"> 
 			  <input type="hidden" name="shopName" value="${shopName}"> 

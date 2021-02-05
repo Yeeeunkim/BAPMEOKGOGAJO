@@ -6,7 +6,6 @@ public class ReserveMenu {
 	private String menuName;	// 메뉴이름
 	private int MenuQty;		// 메뉴수량
 	
-	public ReserveMenu() {}
 
 	public ReserveMenu(int menuNo, String menuName, int menuQty) {
 		super();
