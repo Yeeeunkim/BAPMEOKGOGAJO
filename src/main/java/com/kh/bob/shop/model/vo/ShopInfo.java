@@ -18,7 +18,7 @@ public class ShopInfo {
 	private int shopCate; 				// 식당 카테고리
 	private int businessNumber; 		// 사업자 번호
 	private String memberId; 				// 회원아이디
-	private int avgScore;
+	private double avgScore;
 	private int countReview;
 
 		
@@ -52,7 +52,7 @@ public class ShopInfo {
 	public ShopInfo(int shopNo, String shopName, String shopIntro, String shopOpen, String shopClose,
 			String shopAddress, String shopPhone, String shopBreakStart, String shopBreakClose, String shopOffday,
 			String maxReservationTime, String shopOrigin, String shopRename, int shopCate, int businessNumber,
-			String memberId, int avgScore, int countReview) {
+			String memberId, double avgScore, int countReview) {
 		super();
 		this.shopNo = shopNo;
 		this.shopName = shopName;
@@ -202,11 +202,11 @@ public class ShopInfo {
 		this.memberId = memberId;
 	}
 
-	public int getAvgScore() {
+	public double getAvgScore() {
 		return avgScore;
 	}
 
-	public void setAvgScore(int avgScore) {
+	public void setAvgScore(double avgScore) {
 		this.avgScore = avgScore;
 	}
 

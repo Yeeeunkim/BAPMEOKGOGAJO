@@ -17,6 +17,7 @@
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveInfo" alias="ReserveInfo"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ReserveMenu" alias="ReserveMenu"/>
 		<typeAlias type="com.kh.bob.shop.model.vo.ShopReview" alias="ShopReview"/>
+		<typeAlias type="com.kh.bob.shop.model.vo.ReviewReply" alias="ReviewReply"/>
 		
 		<!-- <typeAlias type="com.kh.bob.common.LowerKeyMap" alias="lowerKeyMap"/> -->
 

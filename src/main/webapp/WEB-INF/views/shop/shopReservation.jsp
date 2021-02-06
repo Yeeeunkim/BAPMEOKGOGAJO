@@ -28,14 +28,8 @@
 <!-- jQuery -->
 <script
    src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
-
-<!-- 진식씨? 태원씨? 카카오맵 스크립트 -->
-<!-- <script type="text/javascript" -->
-<!-- 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=673fc628ebaa83da22c5004efaed383c&libraries=services,clusterer,drawing"></script> -->
-<!-- 동기씨 카카오맵 스크립트 -->
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9bc905556dec1b7404a2b39d054e7e2d&libraries=services,clusterer,drawing"></script>
-
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9bc905556dec1b7404a2b39d054e7e2d&libraries=services,clusterer,drawing"></script>
 <!-- timepicker -->
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -43,6 +37,7 @@
    href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script
    src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 
 <!-- 폰트 -->
 <script src="https://kit.fontawesome.com/7293f5b137.js"
@@ -58,13 +53,11 @@
    margin: auto;
    text-align: center;
 }
-
 .form-group {
    width: 70%;
    height: 30%;
    margin: auto;
 }
-
 #enrollArea {
    /*    border: 1px solid lightgray; */
    width: 80%;
@@ -73,12 +66,10 @@
    margin: 0 auto;
    margin-top: 50px;
 }
-
 .enrollDiv {
    text-align: center;
    align-content: center;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -87,27 +78,22 @@
    width: 250px !important;
    height: 50px;
 }
-
 #info {
    position: absolute;
    left: 10%;
 }
-
 .input-info {
    display: inline;
 }
-
 .cInput {
    width: 30%;
 }
-
 .authBtn {
    margin: 0 auto !important;
    background: #F42B03 !important;
    border: 0px !important;
    color: white;
 }
-
 .enrollBtn {
    display: block !important;
    margin: 0 auto !important;
@@ -116,20 +102,17 @@
    width: 250px !important;
    height: 50px;
 }
-
 .line {
    width: 60%;
    margin: auto;
    margin-bottom: 50px;
    border: solid 2px gray;
 }
-
 #menu {
    margin: auto;
    width: 70%;
    text-align: center;
 }
-
 .menuPlus {
    display: block !important;
    margin: 0 auto !important;
@@ -138,29 +121,23 @@
    border: 0px;
    color: white;
 }
-
 .user {
    display: block;
    margin: 0 auto;
    width: 70px;
    height: 70px;
    float: left;
-
 }
-
 #user {
    margin-left: 20%
 }
-
 #userimg {
    height: 100px;
    width: 100px;
 }
-
 #gps {
    width: 40px;
 }
-
 #map {
    top: 20%;
    width: 50%;
@@ -169,7 +146,6 @@
    margin: auto;
    text-align: center;
 }
-
 #btnR {
    background-color: #F42B03;
    border: none;
@@ -179,25 +155,20 @@
    width: 100px;
    height: 40px;
 }
-
-
-td {
-   width: 390px !important;
-}
-
+/* td { */
+/*    width: 390px !important; */
+/* } */
 #btnR {
    display: flex;
    align-items: center;
    justify-content: center;
 }
-
 .time {
    margin: auto;
    display: flex;
    align-items: center;
    justify-content: center;
 }
-
 #timeB {
    background-color: #F42B03;
    border: none;
@@ -207,7 +178,6 @@ td {
    width: 100px;
    height: 40px;
 }
-
 #map {
    margin: auto;
    display: flex;
@@ -216,18 +186,14 @@ td {
    width: 70%;
    height: 30%;
 }
-
 #menuP {
    border-radius: 30px;
    width: 800px;
    height: 400px;
 }
-
-
 h4, h2 {
    margin-left: 8%;
 }
-
 .button {
    background-color: #F42B03;
    border: none;
@@ -236,12 +202,10 @@ h4, h2 {
    width: 100px;
    height: 40px;
 }
-
 #review {
    display: block;
    margin-left: 48%;
 }
-
 #declare {
    display: inline-block;
    margin-left: 90%;
@@ -250,35 +214,26 @@ h4, h2 {
    height: 20px;
    font-size: 10px;
 }
-
-
 .image {
    display: inline-block;
 }
-
 .review {
    display: inline-block;
    height: 20%;
 }
-
 #floatingTextarea2 {
    margin-left: 35%;
    margin-top: 5%;
    border-radius: 5px;
    border-color: gray;
 }
-
-
 .reviewList {
-   margin-left: 100px;
+   width: 1200px;
 }
-
 #user {
    margin-left: 100px;
 }
-
 #reviewbtn {
-   margin-left: 800px;
    background-color: #F42B03;
    color: white;
    border: 1px solid white;
@@ -286,53 +241,83 @@ h4, h2 {
    width: 100px;
    height: 40px;
 }
-
-
-#rebottom {
-   padding: 30px;
-}
-
+/* #rebottom { */
+/*    padding: 30px; */
+/* } */
 .rere {
    color: orange;
 }
-
 .reDelete {
    color: red;
 }
-
 #map {
    margin-left: 100px;
    width: 900px;
    height: 500px;
 }
-
-
 .replytextarea {
    display: none;
 }
-
 #reviewScore {
    color: #0B0B61;
-   width: 20px;
 }
-
 #buttonTab {
    border-left: hidden;
    border-right: hidden;
 }
-
-
 .pi {
    color: #08088A;
 }
-
-#usertd {
-   width: 10px;
-   height: 10px;
+/* #usertd { */
+/*    width: 10px; */
+/*    height: 10px; */
+/* } */
+#check{
+   color:#08088A;
 }
-
 #shopIntro{margin-left:25%; text-align: center}
 
+.col1 {
+   width: 100px;
+}
+.col2 {
+   width: 100px;
+}
+.col3 {
+   width: 100px;
+}
+.col4 {
+   width: 100px;
+}
+.col5 {
+   width: 100px;
+}
+.col6 {
+   width: 100px;
+}
+
+#replyTime{
+   color:red;
+   position: relative;
+   font-weight: bolder;
+   left: 25px;
+}
+.replyTime{
+   color:black;
+   position: relative;   
+}
+.reline{
+	margin: auto;
+   width: 1200px;
+   position: relative;
+}
+#replydiv{
+   height: 30px;
+}
+#q{
+   color:black;
+   font-weight: bolder;
+}
 </style>
 </head>
 <body style="font-family: 'Gugi';">
@@ -459,14 +444,12 @@ h4, h2 {
             }else{
                return true;
             }
-
             if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
                alert("메뉴를 선택하세요");
                return false;
             }else{
                return true;
             }
-
          }
          </script>
 
@@ -484,7 +467,7 @@ h4, h2 {
                       url : "/bob/reserveDate.do",
                       type: "post",
                      dataType: 'json',
-                     data : {shopNo, shopNo},
+                     data : {shopNo: shopNo},
                      success : function(data){
                      for(var i=0; i<data.shopreserveTime.length; i++){
                         /* document.getElementById(data.shopreserveTime[i]).disabled = false; */
@@ -496,7 +479,6 @@ h4, h2 {
                      }
                   });
             });
-
                $('#example-date-input').change(function (){
                       date = $('#example-date-input').val();
                   console.log(date);
@@ -504,7 +486,7 @@ h4, h2 {
                             url : "/bob/reserveDate.do",
                             type: "post",
                            dataType: 'json',
-                           data : {shopNo, shopNo},
+                           data : {shopNo : shopNo},
                            success : function(data){
                            for(var i=0; i<data.shopreserveTime.length; i++){
                               document.getElementById(data.shopreserveTime[i]).disabled = false;
@@ -670,13 +652,21 @@ h4, h2 {
 
    <c:forEach var="re" items="${ list }">
       <form>
-         <table class="reviewList">
+         <table class="reviewList" align="center">
+<%--             <colgroup> --%>
+<%--                  <col class="col1"> --%>
+<%--                  <col class="col2"> --%>
+<%--                  <col class="col3"> --%>
+<%--                  <col class="col4"> --%>
+<%--                  <col class="col5"> --%>
+<%--                  <col class="col6"> --%>
+<%--          </colgroup> --%>
             <tr>
-               <td id="usertd"><img
+               <td id="usertd" width="120px"><img
                   src="<%= request.getContextPath() %>/resources/images/user.png"
                   id="userimg"></td>
-               <td id="rebottom">${ re.memberId }<br>${re.reviewWrite}</td>
-               <td id="reviewScore"><c:choose>
+               <td id="rebottom" width="150px">${ re.memberId }<br>${re.reviewWrite}</td>
+               <td id="reviewScore" width="180px"><c:choose>
                      <c:when test="${re.reviewScore == 1 }">★<br>
                         <span>별로예요😣</span>
                      </c:when>
@@ -693,41 +683,60 @@ h4, h2 {
                         <span>최고에요🥰</span>
                      </c:when>
                   </c:choose></td>
-               <td>${ re.reviewContents }</td>
+               <td width="500px">${ re.reviewContents }</td>
 
-               <c:if test="${!empty re.originalFilename }">
-                  <td><img
+               
+                  <td>
+                  <c:if test="${!empty re.originalFilename }">
+                  <img
                      src="<%= request.getContextPath() %>/resources/buploadFiles/${ re.renameFilename }"
-                     width="100" height="100"></td>
-               </c:if>
+                     width="100" height="100">
+                  </c:if>   
+                  </td>
+               
 
                <c:url var="redelete" value="reDelete.sh">
                   <c:param name="reNo" value="${ re.reviewNo }" />
-                  <c:param name="shopNo"
-                     value='<%=request.getParameter("SHOP_NO")%>' />
+                  <c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>' />
                </c:url>
-
+            
                <td id="rereplytd">
-               	  <c:if test="${ loginUser.memberId eq reservationList[0].MEMBER_ID }">
-               		<span class="rere" onclick="rereplySendForm(${re.reviewNo});">답글</span>
-               	  </c:if>
-                  <c:if test="${ loginUser.memberId eq re.memberId }">
-                  	&nbsp;&nbsp;&nbsp;&nbsp; <a class="reDelete" href="${ redelete }">삭제</a>
+               <c:url var="rereInsert" value="rereplyinsert.sh">
+                     <c:param name="reid" value="${re.reviewNo}"/>
+                     <c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>' />
+               </c:url>
+                    <%--  <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }"> --%>
+                     <%-- <a class="rere" href="${ rereInsert })">답글보내기</a><br> --%>
+                   <%--   </c:if> --%>
+                  <%--  <c:url var="replaysend" value="rereplyList.sh">
+                  <c:param name = "reNo" value="${re.reviewNo}" />
+                  <c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>'/>
+               </c:url> --%>
+               <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId && re.reviewReply.replyStatus == '' }">   
+                      <span class="rere" onclick="rereplySendForm(${re.reviewNo},'<%=request.getParameter("SHOP_NO")%>');" >답글보내기</span>
                   </c:if>
+                         <%--  <br><a href="${ replaysend }" id="check">답글확인 </a><br> --%>
+                  <c:if test="${ loginUser.memberId eq re.memberId || loginUser.auth_code == 0 }">
+                     &nbsp;&nbsp;&nbsp;&nbsp; <a class="reDelete" href="${ redelete }">삭제</a>
+                  </c:if>
+                  
+                 
                </td>
             </tr>
-            <tr class="replytextarea">
-               <td><textarea rows="10" cols="70" id="textarea"></textarea> <input
-                  type="button" value="답글 등록" onclick="replysend(${re.reviewNo})">
-                  <input type="button" class="recancle" value="취소"></td>
-
-            </tr>
+            <tr></tr>
+          <c:if test="${ re.reviewReply.replyStatus != '' }">
+            <tr id="replydiv">
+                  <td></td>
+                  <td id="replyTime" class="owner"><span id="q">L</span>  &nbsp;&nbsp;&nbsp; 사장님 : </td>
+                  <td><span class="replyTime" class="owner">${ re.reviewReply.replyTime }</span></td>
+                  <td id="replyContent" class="owner"> ${ re.reviewReply.replyContent } </td>
+           </tr>
+         </c:if> 
+            
          </table>
-
+         <br><hr class="reline" align="center">
       </form>
       <br>
-
-
    </c:forEach>
 
 
@@ -736,8 +745,9 @@ h4, h2 {
       <span> <!-- [이전] --> <c:if test="${ pi.currentPage <= 1 }">
                [이전] &nbsp;
             </c:if> <c:if test="${ pi.currentPage > 1 }">
-            <c:url var="before" value="relist.sh">
+            <c:url var="before" value="/Reservation.do">
                <c:param name="page" value="${ pi.currentPage - 1 }" />
+               <c:param name="SHOP_NO" value='<%=request.getParameter("SHOP_NO")%>' />
             </c:url>
             <a href="${ before }" class="pi">[이전]</a> &nbsp;
             </c:if> <!-- 페이지 --> <c:forEach var="p" begin="${ pi.startPage }"
@@ -747,16 +757,18 @@ h4, h2 {
             </c:if>
 
             <c:if test="${ p ne pi.currentPage }">
-               <c:url var="pagination" value="relist.sh">
+               <c:url var="pagination" value="/Reservation.do">
                   <c:param name="page" value="${ p }" />
+                  <c:param name="SHOP_NO" value='<%=request.getParameter("SHOP_NO")%>' />
                </c:url>
                <a href="${ pagination }" class="pi">${ p }</a> &nbsp;
                </c:if>
          </c:forEach> <!-- [다음] --> <c:if test="${ pi.currentPage >= pi.maxPage }">
                [다음]
             </c:if> <c:if test="${ pi.currentPage < pi.maxPage }">
-            <c:url var="after" value="relist.sh">
+            <c:url var="after" value="/Reservation.do">
                <c:param name="page" value="${ pi.currentPage + 1 }" />
+               <c:param name="SHOP_NO" value='<%=request.getParameter("SHOP_NO")%>' />
             </c:url>
             <a href="${ after }" class="pi">[다음]</a>
          </c:if>
@@ -767,30 +779,41 @@ h4, h2 {
    <br>
    <br>
 
-   </div>
-
    <script>
-        function rereplySendForm(reid){
-           window.open('', 'rereplySendForm' ,'width=500, height=300');
-           
-           var form = document.createElement('form');
-           form.action = "rereplySendForm.sh";
-           form.method = "post";
-           form.target = "rereplySendForm";
-           
-           var input = document.createElement("input");
-           input.type = "hidden";
-           input.name = "reNo";
-           input.value = reid;
-           
-           form.appendChild(input);
-           
-           document.body.appendChild(form);
-           form.submit();
-           document.body.removeChild(form);
-           
-        }
+    function rereplySendForm(reid,shopNum){
+       window.name =  "redirect:Reservation.do?SHOP_NO="+shopNo
+       window.open('', 'rereplySendForm' ,'width=500, height=300');
+       
+       var form = document.createElement('form');
+       form.action = "rereplySendForm.sh";
+       form.method = "post";
+       form.target = "rereplySendForm";
+       
+       var input = document.createElement("input");
+       input.type = "hidden";
+       input.name = "reNo";
+       input.value = reid;
+       
+       var shopNo = document.createElement("input");
+       shopNo.type = "hidden";
+       shopNo.name = "shopNo";
+       shopNo.value = parseInt(shopNum);
+       
+       
+       /* shopNo.value =Integer.parseInt((String)("SHOP_NO")); */
+       
+       console.log(shopNum);
+       form.appendChild(input);
+       form.appendChild(shopNo);
+        
+       
+       document.body.appendChild(form);
+       form.submit();
+       document.body.removeChild(form);
 
+       
+    } 
+    
  </script>
 
    <script>
@@ -841,7 +864,7 @@ h4, h2 {
                      "SHOP_NO" : <%=request.getParameter("SHOP_NO")%>
                      },
                      success : function(data){
-                    	console.log(data);
+                       console.log(data);
                         for(var i=0; i<data.MainMenu.length; i++){
                            html += "<tr>"
                            html += "<td>"+data.MainMenu[i].MENU_NAME+"</td>"
@@ -855,7 +878,6 @@ h4, h2 {
                         $("#MainmenuBody").html(html);
                   
                         html = "";
-                        
                         
                         for(var i=0; i<data.SideMenu.length; i++){
                            
@@ -888,164 +910,15 @@ h4, h2 {
                      alert("error");
                      }
                   });
-
          }); 
  
     </script>
 
-   <script>
-        // 리뷰 답변달기
-/*      
-         function replysend(reid){
-           $(function(){
-           var textarea = $('#textarea'+reid).val();
-           //var reid = ${re.reviewNo};
-           console.log(textarea);
-           console.log(reid);
-           $.ajax({
-              url: 'rereplyinsert.sh',
-              data: {textarea:textarea, reid:reid},
-              success: function(data){
-                 console.log(data);
-                 if(data == 'success'){
-                    $('textarea').val('');
-                    getReplyList(reid);
-                 }
-              }
-           });
-           });
-        }; */
-        
-        // 리뷰 답글 불러오기
-        function getReplyList(reid){
-           /* var reviewNo = ${re.reviewNo}; */
-           $(function(){
-              
-        	   console.log(reid);
-           $.ajax({
-              url: 'rereplyList.sh',
-              data : {reid:reid},
-              success: function(data){
-                 console.log(data);
-                 
-                 var $rereplyTime = $('#rereplyTime');
-                 var $rereContents = $('#rereContents');
-                 
-                 if(data.length > 0){
-                    $rereplyTime.append('${ rereply.reviewTime }');
-                    $rereContents.append('${rereply.replyContents}')
-                 }
-                 
-              }
-              
-           });
-        }); 
-      }
-  </script>
-   <script>
-       var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-       var options = { //지도를 생성할 때 필요한 기본 옵션
-          center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-          level: 3 //지도의 레벨(확대, 축소 정도)
-       };
-       var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-       
-       $(document).ready(function() {
-          var gpsaddress = $("#gpsaddress").text();
-          var shopnm = $("#shopnm").text();
-          function geocoding(gpsaddress){
-               // 주소-좌표 변환 객체를 생성합니다
-               var geocoder = new kakao.maps.services.Geocoder();
-               // 주소로 좌표를 검색합니다
-               geocoder.addressSearch(gpsaddress, function(result, status) {
-                   // 정상적으로 검색이 완료됐으면 
-                    if (status === kakao.maps.services.Status.OK) {
-                       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                       // 결과값으로 받은 위치를 마커로 표시합니다
-                       var marker = new kakao.maps.Marker({
-                           map: map,
-                           position: coords
-                       });
-                       // 인포윈도우로 장소에 대한 설명을 표시합니다
-                        var infowindow = new kakao.maps.InfoWindow({
-                           content: '<div style="width:150px;text-align:center;padding:6px 0;">'+shopnm+'</div>'
-                       });
-                       infowindow.open(map, marker);
-          
-                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                       map.setCenter(coords);
-                   } 
-               });          
-            } 
-          
-          
-          geocoding(gpsaddress);       
-       var html = "";
-          
-       $.ajax({
-                     url : "/bob/MainMenu.do",
-                      type: "post",
-                     dataType: 'json',
-                     data : {
-                     "SHOP_NO" : <%=request.getParameter("SHOP_NO")%>
-                     },
-                     success : function(data){
-                    	 console.log(data);
-                        for(var i=0; i<data.MainMenu.length; i++){
-                           html += "<tr>"
-                           html += "<td>"+data.MainMenu[i].MENU_NAME+"</td>"
-                           html += "<td>"+data.MainMenu[i].MENU_PRICE+"</td>"
-                           html += "<td>"
-                           html += "<select name='menuname' class='main'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-                           html +="</td>"
-                           html += "</tr>"
-                        }
-                  
-                        $("#MainmenuBody").html(html);
-                  
-                        html = "";
-                        
-                        
-                        for(var i=0; i<data.SideMenu.length; i++){
-                           
-                           html += "<tr>"
-                           html += "<td>"+data.SideMenu[i].MENU_NAME+"</td>"
-                           html += "<td>"+data.SideMenu[i].MENU_PRICE+"</td>"
-                           html += "<td>"
-                           html += "<select name='menuname' class='side'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-                           html +="</td>"
-                           html += "</tr>"
-                        }
-                         $("#SidemenuBody").html(html);
-                         
-                         html = "";
-                         
-                         for(var i=0; i<data.DrinkMenu.length; i++){
-                             
-                             html += "<tr>"
-                             html += "<td>"+data.DrinkMenu[i].MENU_NAME+"</td>"
-                             html += "<td>"+data.DrinkMenu[i].MENU_PRICE+"</td>"
-                             html += "<td>"
-                             html += "<select name='menuname' class='drink'> <option value='0'> 0개 </option><option value='1'> 1개 </option> <option value='2'> 2개 </option><option value='3'> 3개 </option><option value='4'> 4개 </option><option value='5'> 5개 </option><option value='6'> 6개 </option><option value='7'> 7개 </option><option value='8'> 8개 </option><option value='9'> 9개 </option><option value='10'> 10개 </option> </select>"
-                             html +="</td>"
-                             html += "</tr>"
-                          }
-                           $("#DrinkmenuBody").html(html);  
-                        
-                     },
-                     error : function(err){
-                     alert("error");
-                     }
-                  });
-
-         }); 
  
- </script>
    <form action="reinsertForm.sh" method="post"
       encType="multipart/form-data">
-      <input type="hidden" name="shopNo"
-         value="<%=request.getParameter("SHOP_NO")%>"> <span
-         align="center"><button type="submit" id="reviewbtn">리뷰등록</button></span>
+      <input type="hidden" name="shopNo" value="<%=request.getParameter("SHOP_NO")%>">
+         <div style="display: block;" align="center"><button type="submit" id="reviewbtn">리뷰등록</button></div>
    </form>
 
 
@@ -1061,12 +934,10 @@ h4, h2 {
          location.href= 'reinsertForm.sh?shopNo='<%=request.getParameter("SHOP_NO")%>;
       } --%>
       
-
       function declareEnroll(){
          location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;
       }
    </script>
-
 
    <jsp:include page="../common/footer.jsp" />
 

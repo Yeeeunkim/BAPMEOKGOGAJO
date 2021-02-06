@@ -15,15 +15,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -172,51 +174,56 @@ public class ShopController {
       }
    }
 
-   @RequestMapping("rereplySendForm.sh")
-   public String rereplySendForm(@RequestParam("reNo") int reNo, Model model) {
-      model.addAttribute("reNo", reNo);
-      return "rereplySendForm";
-   }
+	@RequestMapping("rereplySendForm.sh")
+	public String rereplySendForm(@RequestParam("reNo") int reNo,@RequestParam("shopNo") int shopNo, Model model) { 
+		model.addAttribute("shopNo", shopNo);
+		model.addAttribute("reNo", reNo);
+		System.out.println("리리댓글 !!shopno: " + shopNo);
+		System.out.println("리리댓글 !!reno : " + reNo);
+		return "rereplySendForm"; 
+	}
 
    @RequestMapping("rereplyinsert.sh")
-   public String rereplyinsert(@RequestParam("textarea") String content, @RequestParam("reid") int reid,
-         HttpSession session, Model model) {
+	public String rereplyinsert(@RequestParam("reid") int reid, HttpSession session, Model mv ,HttpServletRequest req) {
       // public String rereplyinsert(@ModelAttribute ReviewReply rere, HttpSession
       // session) {
-      Member loginUser = (Member) session.getAttribute("loginUser");
+	   Member loginUser = (Member) session.getAttribute("loginUser");
+	   
+	   String reContent = req.getParameter("rereContent");
+	   String memberId = loginUser.getMemberId();
+	   ReviewReply rere = new ReviewReply();
+	   int shopNo = Integer.parseInt(req.getParameter("shopNo"));
+	   
+	   rere.setMemberId(memberId);
+	   rere.setReviewNo(reid);
+	   rere.setReplyContent(reContent);
+	   
+	   System.out.println("rere : " + rere);
+	   
+	   int result = sService.insertReReply(rere);
+	   
+	   if (result > 0) {
+		   return "redirect:Reservation.do?SHOP_NO="+shopNo;
+	   } else {
+		   throw new ShopException("답글 등록에 실패했습니다.");
+	   }
       
-      String memberId = loginUser.getMemberId();
-      ReviewReply rere = new ReviewReply();
-      rere.setMemberId(memberId);
-      rere.setReviewNo(reid);
-      rere.setReplyContent(content);
-
-      System.out.println(rere);
-
-      int result = sService.insertReReply(rere);
-
-      if (result > 0) {
-         model.addAttribute("rereply", result);
-         return "Reservation.do";
-      } else {
-         throw new ShopException("답글 등록에 실패했습니다.");
-      }
    }
 
-   @RequestMapping("rereplyList.sh")
-   public void rereplyList(@RequestParam("reid") int reviewNo, HttpServletResponse response) {
-      ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
+	@RequestMapping("rereplyList.sh") 
+	public String rereplyList(@RequestParam("reNo") int reviewNo, @RequestParam("shopNo") int shopNo, RedirectAttributes redirectAttributes) {
+		ArrayList<ReviewReply> rereList = sService.selectReReply(reviewNo);
+		
+		System.out.println("rereList = " + rereList);
+		
+		if(rereList != null) { 
+			redirectAttributes.addFlashAttribute("rereList", rereList); 
+		} else {
+			throw new ShopException("리뷰답글 조회를 실패하였습니다.");
+		}
 
-      response.setContentType("application/json; charset=UTF-8");
-
-      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-      try {
-         gson.toJson(rereList, response.getWriter());
-      } catch (JsonIOException | IOException e) {
-         e.printStackTrace();
-      }
-   }
+      	return "redirect:/Reservation.do?SHOP_NO="+ shopNo;
+	}
 
    /*
     * @RequestMapping("rereplySendFome.sh") public String rereplySendFome() {
@@ -560,90 +567,91 @@ public class ShopController {
    }
    
    @RequestMapping("/Reservation.do")
-      public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
-            ModelAndView mv, @RequestParam(value = "page", required = false) Integer page) {
-      int currentPage = 1;
+   public ModelAndView reservationForm(@RequestParam HashMap<String, Object> param, HttpServletRequest req,
+         ModelAndView mv,  @RequestParam(value = "page", required = false) Integer page) {
+	int currentPage = 1;
+	
+	if (page != null) {
+		currentPage = page;
+	} 
+	
+      int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
+      ShopInfo shopInfo = sService.selectShop(shop_no);
+      
+      List<String> timeList = new ArrayList<String>();
+      
+      int listCount = sService.getReListCount(shop_no);
 
-      if (page != null) {
-         currentPage = page;
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shop_no, pi);
+		
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.addObject("pi", pi);
+		}else {
+			throw new ShopException("리뷰조회를 실패하였습니다.");
+		}
+      
+      String openTime=shopInfo.getShopOpen();
+      String closeTime=shopInfo.getShopClose();
+      String breakStartTime=shopInfo.getShopBreakStart();
+      String breakCloseTime=shopInfo.getShopBreakClose();
+      int minute1 =30;
+      int maxResTime = Integer.parseInt(shopInfo.getMaxReservationTime());
+      
+      LocalTime opentime1 = LocalTime.parse(openTime);  //오픈시간
+      LocalTime closeTime1 = LocalTime.parse(closeTime);  //마감시간
+      LocalTime breakStartTime1 = LocalTime.parse(breakStartTime);  //브레이크 시작시간
+      LocalTime breakCloseTime1 = LocalTime.parse(breakCloseTime);  //브레이크 마감시간
+      
+      int reserveTime=60*maxResTime;
+      
+      breakStartTime1=breakStartTime1.minusMinutes(reserveTime);
+      closeTime1=closeTime1.minusMinutes(reserveTime);
+      
+      System.out.println("변경된 브레이크 시작 시간은?: "+breakStartTime1);
+      
+      for(int i=0; i<100; i++) {
+         String open=opentime1+"";
+         String breaktime=breakStartTime1+"";
+         opentime1=opentime1.plusMinutes(minute1);
+//         System.out.println(open);
+            timeList.add(open);
+         if(open.equals(breaktime)) {
+            break;
+         }
       }
       
-         int shop_no = Integer.parseInt((String) param.get("SHOP_NO"));
-         ShopInfo shopInfo = sService.selectShop(shop_no);
-         
-         List<String> timeList = new ArrayList<String>();
-         
-         int listCount = sService.getReListCount(shop_no);
-
-         PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-         
-         ArrayList<ShopReview> list = (ArrayList<ShopReview>) sService.selectReList(shop_no, pi);
-         
-         if(list != null) {
-            mv.addObject("list", list);
-            mv.addObject("pi", pi);
-         }else {
-            throw new ShopException("리뷰조회를 실패하였습니다.");
+      for(int i=0; i<100; i++) {
+         String closetime=closeTime1+"";
+         String breaktime=breakCloseTime1+"";
+         breakCloseTime1=breakCloseTime1.plusMinutes(minute1);
+//         System.out.println(breaktime);
+            timeList.add(breaktime);
+         if(breaktime.equals(closetime)) {
+            break;
          }
-         
-         String openTime=shopInfo.getShopOpen();
-         String closeTime=shopInfo.getShopClose();
-         String breakStartTime=shopInfo.getShopBreakStart();
-         String breakCloseTime=shopInfo.getShopBreakClose();
-         int minute1 =30;
-         int maxResTime = Integer.parseInt(shopInfo.getMaxReservationTime());
-         
-         LocalTime opentime1 = LocalTime.parse(openTime);  //오픈시간
-         LocalTime closeTime1 = LocalTime.parse(closeTime);  //마감시간
-         LocalTime breakStartTime1 = LocalTime.parse(breakStartTime);  //브레이크 시작시간
-         LocalTime breakCloseTime1 = LocalTime.parse(breakCloseTime);  //브레이크 마감시간
-         
-         int reserveTime=60*maxResTime;
-         
-         breakStartTime1=breakStartTime1.minusMinutes(reserveTime);
-         closeTime1=closeTime1.minusMinutes(reserveTime);
-         
-         System.out.println("변경된 브레이크 시작 시간은?: "+breakStartTime1);
-         
-         for(int i=0; i<100; i++) {
-            String open=opentime1+"";
-            String breaktime=breakStartTime1+"";
-            opentime1=opentime1.plusMinutes(minute1);
-//            System.out.println(open);
-               timeList.add(open);
-            if(open.equals(breaktime)) {
-               break;
-            }
-         }
-         
-         for(int i=0; i<100; i++) {
-            String closetime=closeTime1+"";
-            String breaktime=breakCloseTime1+"";
-            breakCloseTime1=breakCloseTime1.plusMinutes(minute1);
-//            System.out.println(breaktime);
-               timeList.add(breaktime);
-            if(breaktime.equals(closetime)) {
-               break;
-            }
-         }
-         
-         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-         System.out.println(timeList);
-
-
-         List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
-         double reviewScore = sService.getReviewScore(shop_no);
-         
-         mv.addObject("timeList", timeList);
-         mv.addObject("closeTime1",closeTime1);
-         mv.addObject("reservationList", reservationList);
-         mv.addObject("reviewScore", reviewScore);
-         mv.setViewName("/shop/shopReservation");
-
-         return mv;
-
       }
+      
+      System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+      System.out.println(timeList);
 
+
+      List<Map<String, Object>> reservationList = sService.getReservationList(shop_no);
+      
+      double reviewScore = sService.getReviewScore(shop_no);
+
+      mv.addObject("timeList", timeList);
+      mv.addObject("closeTime1",closeTime1);
+      mv.addObject("reservationList", reservationList);
+      mv.addObject("reviewScore", reviewScore);
+      mv.setViewName("/shop/shopReservation");
+
+      return mv;
+
+   }
    @RequestMapping("/MainMenu.do")
    public @ResponseBody HashMap<String, Object> MainMenu(HttpServletRequest req) {
 
