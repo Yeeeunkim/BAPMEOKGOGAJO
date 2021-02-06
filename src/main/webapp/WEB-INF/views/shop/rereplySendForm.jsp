@@ -70,7 +70,7 @@ nav{
    <form action="rereplyinsert.sh" id="form" target="'Reservation.do?SHOP_NO='+shopNo">
    <input type="hidden" name="reid" value="${ reNo }">
    <input type="hidden" name="shopNo" value="${ shopNo }">
-   <textarea rows="10" cols="70" name="rereContent"></textarea><br>
+   <textarea rows="10" cols="70" name="rereContent" style="font-size: 10px;"></textarea><br>
    <div class="buttonBlock">
       <input type="submit" value="답글 등록" onclick="window.close()" class="button">
       <input type="button" class="recancle button" value="취소" onclick="window.close();">

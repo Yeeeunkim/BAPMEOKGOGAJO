@@ -782,8 +782,15 @@ h4, h2 {
    <script>
     function rereplySendForm(reid,shopNum){
        window.name =  "redirect:Reservation.do?SHOP_NO="+shopNo
-       window.open('', 'rereplySendForm' ,'width=500, height=300');
        
+       var _width = '500';
+       var _height = '340';
+    
+       var _left = Math.ceil(( window.screen.width - _width )/2);
+       var _top = Math.ceil(( window.screen.height - _height )/2); 
+    
+       window.open('', 'rereplySendForm', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );
+
        var form = document.createElement('form');
        form.action = "rereplySendForm.sh";
        form.method = "post";
