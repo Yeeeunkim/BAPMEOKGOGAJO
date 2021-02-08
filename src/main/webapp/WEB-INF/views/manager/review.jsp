@@ -65,14 +65,6 @@
 				</tbody>
 			</table>
 
-<!-- 			<script> -->
-// 				$(function(){
-// 					$('.contentTD').click(function(){
-// 						var rNo=$(this).parent().children('td').eq(1).text();
-// 						location.href='rdetail.ma?rNo=' + rNo;
-// 					});
-// 				});
-<!-- 			</script> -->
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<c:if test="${ pi.currentPage <= 1 }">

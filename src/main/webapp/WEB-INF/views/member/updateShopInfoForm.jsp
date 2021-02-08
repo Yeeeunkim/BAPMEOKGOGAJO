@@ -43,7 +43,7 @@ crossorigin="anonymous"></script>
    
    #thumbImg{
 	  position: absolute;
-	  top: 30%;
+	  top: 20%;
 	  left: 32%;
 	  background: white;
 	  text-align:center;
