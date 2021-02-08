@@ -9,7 +9,7 @@
    href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap"
    rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<title>Insert title here</title>
+<title></title>
 <style>
 /*  */
 .sideArea {

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신고</title>
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/7293f5b137.js" crossorigin="anonymous"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.5.1.min.js"></script>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
-<title>MyPage</title>
+<title>밥먹고가조 FAQ 등록</title>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style>
   

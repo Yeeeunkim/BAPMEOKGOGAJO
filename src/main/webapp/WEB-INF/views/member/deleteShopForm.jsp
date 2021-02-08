@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>사업자 탈퇴</title>
 <style>
 	#outer{
 		width: 70%;

@@ -26,7 +26,7 @@
 	<c:import url="../common/menubar.jsp"/>
 	
  	<div class="sidebar">
-		<header><b>Manager Page</b></header>
+		<header><b>신고목록</b></header>
 		<ul>
 <!-- 			<li><a href="#"><i class="fas fa-qrcode">메뉴바</i></a></li>		 -->
 			<li><a href="manager.ma"><i class="fas fa-signal">통계</i></a></li>	

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약결제</title>
 <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Gugi&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/7293f5b137.js" crossorigin="anonymous"></script>
 <style>

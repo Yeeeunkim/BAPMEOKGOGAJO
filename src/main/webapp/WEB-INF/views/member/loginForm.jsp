@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 		<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 
-<title>Insert title here</title>
+<title>로그인</title>
 <!-- 부트 스트랩 -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상점 정보</title>
 <!-- 부트 스트랩 -->
 <link
    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -321,8 +321,7 @@ h4, h2 {
 </style>
 </head>
 <body style="font-family: 'Gugi';">
-   <script
-      src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
    <jsp:include page="../common/menubar.jsp" />
 
    <br>
@@ -331,10 +330,7 @@ h4, h2 {
 
    <!-- 사진, 지도 폼 -->
 
-   <img
-      src="<%= request.getContextPath() %>/resources/shopuploadFiles/${reservationList[0].SHOP_RENAME}"
-      id="menuP" />
-
+   <img src="<%= request.getContextPath() %>/resources/shopuploadFiles/${reservationList[0].SHOP_RENAME}" id="menuP" />
 
    <br>
    <br>
@@ -357,10 +353,6 @@ h4, h2 {
    <br>
    <br>
    <br>
-
-
-   <%--  <%=request.getParameter("SHOP_NO")%> --%>
-   <!--${loginUser.memberId}  -->
 
    <div id="info">
       <p id="shopnm">${reservationList[0].SHOP_NAME}</p>
@@ -436,21 +428,21 @@ h4, h2 {
 
 
             <script>
-         function writeBoard(){
-            var a=$("#time").val();
-            if(a==0){
-               alert("시간을 선택해주세요");
-               return false;
-            }else{
-               return true;
-            }
-            if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
-               alert("메뉴를 선택하세요");
-               return false;
-            }else{
-               return true;
-            }
-         }
+	         function writeBoard(){
+	            var a=$("#time").val();
+	            if(a==0){
+	               alert("시간을 선택해주세요");
+	               return false;
+	            }else{
+	               return true;
+	            }
+	            if($('.main').val()==0 && $('.side').val()==0 && $('.drink').val()==0){
+	               alert("메뉴를 선택하세요");
+	               return false;
+	            }else{
+	               return true;
+	            }
+	         }
          </script>
 
 
@@ -464,7 +456,7 @@ h4, h2 {
                date = $('#example-date-input').val();
                console.log(date);
                $.ajax({
-                      url : "/bob/reserveDate.do",
+                      url : "${ contextPath }/reserveDate.do",
                       type: "post",
                      dataType: 'json',
                      data : {shopNo: shopNo},
@@ -483,7 +475,7 @@ h4, h2 {
                       date = $('#example-date-input').val();
                   console.log(date);
                    $.ajax({
-                            url : "/bob/reserveDate.do",
+                            url : "${ contextPath }/reserveDate.do",
                             type: "post",
                            dataType: 'json',
                            data : {shopNo : shopNo},
@@ -592,26 +584,16 @@ h4, h2 {
       </div>
 
       <br>
-
-      <div class="row">
-         <button type="submit" value="submit" class="button menuPlus"
-            id="btnR">예약하기</button>
-      </div>
-
+		<c:if test="${ !empty sessionScope.loginUser }">
+			<div class="row">
+				<button type="submit" value="submit" class="button menuPlus" id="btnR">예약하기</button>
+			</div>
+		</c:if>
    </form>
 
    <div class="row">
-      <!--  <button type="button" class="button menuPlus" onclick="reservationShop()" id="btnR">예약하기</button> -->
+   
    </div>
-
-
-   <!--   <script>
-         function reservationShop(){
-               location.href= "ShopReservation.do"
-            }
-      </script>  -->
-
-
 
    <br>
    <br>
@@ -653,14 +635,6 @@ h4, h2 {
    <c:forEach var="re" items="${ list }">
       <form>
          <table class="reviewList" align="center">
-<%--             <colgroup> --%>
-<%--                  <col class="col1"> --%>
-<%--                  <col class="col2"> --%>
-<%--                  <col class="col3"> --%>
-<%--                  <col class="col4"> --%>
-<%--                  <col class="col5"> --%>
-<%--                  <col class="col6"> --%>
-<%--          </colgroup> --%>
             <tr>
                <td id="usertd" width="120px"><img
                   src="<%= request.getContextPath() %>/resources/images/user.png"
@@ -705,17 +679,11 @@ h4, h2 {
                      <c:param name="reid" value="${re.reviewNo}"/>
                      <c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>' />
                </c:url>
-                    <%--  <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId }"> --%>
-                     <%-- <a class="rere" href="${ rereInsert })">답글보내기</a><br> --%>
-                   <%--   </c:if> --%>
-                  <%--  <c:url var="replaysend" value="rereplyList.sh">
-                  <c:param name = "reNo" value="${re.reviewNo}" />
-                  <c:param name="shopNo" value='<%=request.getParameter("SHOP_NO")%>'/>
-               </c:url> --%>
-               <c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId && re.reviewReply.replyStatus == '' }">   
-                      <span class="rere" onclick="rereplySendForm(${re.reviewNo},'<%=request.getParameter("SHOP_NO")%>');" >답글보내기</span>
-                  </c:if>
-                         <%--  <br><a href="${ replaysend }" id="check">답글확인 </a><br> --%>
+               
+				<c:if test="${ reservationList[0].MEMBER_ID eq loginUser.memberId && re.reviewReply.replyStatus == '' }">   
+					<span class="rere" onclick="rereplySendForm(${re.reviewNo},'<%=request.getParameter("SHOP_NO")%>');" >답글보내기</span>
+				</c:if>
+                  
                   <c:if test="${ loginUser.memberId eq re.memberId || loginUser.auth_code == 0 }">
                      &nbsp;&nbsp;&nbsp;&nbsp; <a class="reDelete" href="${ redelete }">삭제</a>
                   </c:if>
@@ -864,7 +832,7 @@ h4, h2 {
        var html = "";
           
        $.ajax({
-                     url : "/bob/MainMenu.do",
+                     url : "${ contextPath }/MainMenu.do",
                       type: "post",
                      dataType: 'json',
                      data : {
@@ -921,26 +889,19 @@ h4, h2 {
  
     </script>
 
- 
-   <form action="reinsertForm.sh" method="post"
-      encType="multipart/form-data">
-      <input type="hidden" name="shopNo" value="<%=request.getParameter("SHOP_NO")%>">
-         <div style="display: block;" align="center"><button type="submit" id="reviewbtn">리뷰등록</button></div>
-   </form>
+	<c:if test="${ !empty sessionScope.loginUser }">
+		<form action="reinsertForm.sh" method="post" encType="multipart/form-data">
+			<input type="hidden" name="shopNo" value="<%=request.getParameter("SHOP_NO")%>">
+			<div style="display: block;" align="center"><button type="submit" id="reviewbtn">리뷰등록</button></div>
+		</form>
 
-
-
-
-   <button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
+		<button onclick="declareEnroll()" class="button" id="declare">신고하기</button>
+	</c:if>
 
    <script>
       var shopNo=<%=request.getParameter("SHOP_NO")%>;
       var shopName=$('#shopnm').text();
        
-      <%-- function review(){
-         location.href= 'reinsertForm.sh?shopNo='<%=request.getParameter("SHOP_NO")%>;
-      } --%>
-      
       function declareEnroll(){
          location.href='DeclareEnrollForm.do?shopNo=' +shopNo + '&shopName='+shopName;
       }

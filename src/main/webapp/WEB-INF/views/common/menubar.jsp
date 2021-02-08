@@ -14,7 +14,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script src="<%= request.getContextPath() %>/resources/js/jquery-3.5.1.min.js"></script>
-<title>Insert title here</title>
+<title></title>
 <script src="https://kit.fontawesome.com/7293f5b137.js" crossorigin="anonymous"></script>
 <style>
 	#logo{

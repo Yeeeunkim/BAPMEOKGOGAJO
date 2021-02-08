@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 정보 수정</title>
 <style>
 	.outer{
 		width: 70%;

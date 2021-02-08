@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/member-style.css" type="text/css">
 <!-- 부트 스트랩 -->
 <link

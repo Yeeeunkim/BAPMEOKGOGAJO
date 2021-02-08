@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상점 목록</title>
 <style>
 #shopListArea {
 	display: block;
@@ -111,7 +111,7 @@
 								<div id="cardArea">
 									<p><c:out value="${shopList.shopName}"/><br>
 										★${ shopList.avgScore } | 리뷰${ shopList.countReview }개<br></p>
-									<a href="/bob/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-warning">예약하기</a>
+									<a href="${ contextPath }/Reservation.do?SHOP_NO=${shopList.shopNo}" class="btn btn-warning">예약하기</a>
 								</div>
 							</div>
 						</div>
