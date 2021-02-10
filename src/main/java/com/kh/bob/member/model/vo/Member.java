@@ -118,5 +118,6 @@ public class Member {
 				+ ", member_status=" + member_status + ", member_birth=" + member_birth + ", auth_code=" + auth_code
 				+ "]";
 	}
+
 }
 

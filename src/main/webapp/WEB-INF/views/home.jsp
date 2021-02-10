@@ -117,6 +117,23 @@
 	
 	.card { margin-left:10px;} 
 	.card{display:inline-block; }   
+
+    
+    /*top버튼 */
+    a#MOVE_TOP_BTN {
+     position: fixed;
+    right: 2%;
+    bottom: 50px;
+    display: none;
+    z-index: 999;
+    width: 40px;
+    height: 30px;
+    background-color: red;
+    font-family: 'Gugi';
+	font-size: 20px; 
+	text-align: center;
+	}   
+
 	.item1:hover {
 	cursor: pointer;
 	border: 1px solid black;

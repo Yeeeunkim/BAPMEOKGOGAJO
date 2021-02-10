@@ -219,13 +219,12 @@ input {
    <jsp:include page="../common/menubar.jsp" />
    
    <br><br>
+
    	
    	<form action="shopEnrollAdd.do" method="post" enctype="Multipart/form-data"  onsubmit="return writeBoard();"> <!-- enctype="Multipart/form-data" --> 
    	
     <input type="hidden" name="memberId" value="${loginUser.memberId}"> 
 
-   		
-   		
        <select class="form-select" aria-label="Default select example"  id="myselect" name="shopCate" >
          <option value="0" selected="selected">--선택해주세요--</option>
          <option value="1">한식</option>

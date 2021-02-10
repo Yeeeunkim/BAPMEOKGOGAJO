@@ -204,7 +204,7 @@
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '2'  }">
 					<li class="menu" ><a href="shopMypage.me"><i class="fas fa-user"></i></a></li>
-					<li class="menu" ><a href=""><i class="fas fa-star"></i></a></li>
+
 				</c:if>
 				 <c:if test="${ loginUser.auth_code eq '0'  }">
 				 	<li class="menu" onclick="manager();" ><a href="#">M</a></li> 
@@ -213,7 +213,6 @@
 		</nav>
 	</c:if>
 	</div>
-
 	<script>
 		function shop() {
 			location.href = "${contextPath }/shop.do"
