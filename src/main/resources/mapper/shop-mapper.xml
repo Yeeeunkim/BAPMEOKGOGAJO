@@ -127,8 +127,8 @@
 	<!-- 사장님마이페이지 - 예약받은 정보들 -->		
 	<select id="selectRinfo" resultMap="mReserveInfoResultSet">
 		select *
-		from reserve_info
-		where shop_no=#{shoNo}
+		from reserve_info   
+		where shop_no=#{shopNo} and reserve_status='Y'
 	</select>
 	
 	<!-- 사장님마이페이지 - 예약받은 인원수, 시간 -->
