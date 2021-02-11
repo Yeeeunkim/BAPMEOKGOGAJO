@@ -426,26 +426,27 @@
 	   
    </select>
    
-   <select id="getReservationList" resultType="Map" parameterType="int">
+ <select id="getReservationList" resultType="Map" parameterType="int">
    
-		SELECT 
-		SI.SHOP_NO
-		,SI.SHOP_OPEN
-		,SI.SHOP_CLOSE
-		,SI.SHOP_OFFDAY
-		,SI.SHOP_BREAK_START
+      SELECT 
+      SI.SHOP_NO
+      ,SI.SHOP_OPEN
+      ,SI.SHOP_CLOSE
+      ,SI.SHOP_OFFDAY
+      ,SI.SHOP_BREAK_START
         ,SI.SHOP_BREAK_CLOSE
         ,SI.MAX_RESERVATION_TIME
-		,SM.MENU_NAME
-		,SM.MENU_PRICE
-		,SM.MENU_STATUS
-		,SM.MENU_CATE
-		,SI.SHOP_PHONE
-		,SI.SHOP_ADDRESS
-		,SI.SHOP_NAME
-		,SI.SHOP_RENAME
-		FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
-			WHERE SI.SHOP_NO = #{shop_no}
+      ,SM.MENU_NAME
+      ,SM.MENU_PRICE
+      ,SM.MENU_STATUS
+      ,SM.MENU_CATE
+      ,SI.SHOP_PHONE
+        ,SI.SHOP_INTRO
+      ,SI.SHOP_ADDRESS
+      ,SI.SHOP_NAME
+      ,SI.SHOP_RENAME
+      FROM SHOP_INFO SI INNER JOIN SHOP_MENU SM ON SI.SHOP_NO = SM.SHOP_NO 
+         WHERE SI.SHOP_NO = #{shop_no}
      
    </select>
    
